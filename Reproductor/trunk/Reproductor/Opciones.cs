@@ -13,21 +13,18 @@ namespace Reproductor
         private Form1 ventana_principal;
         private Color color_actual;
         private Color color_nuevo;
-        private Color color_actual_panel;
-        private Color color_nuevo_panel;
+        private bool hubo_cambio = false;
 
         public Opciones(Form1 form)
         {
             InitializeComponent();
             ventana_principal = form;
             color_actual = ventana_principal.BackColor;
-          
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {         
-            if(color_nuevo != color_actual)
+            if(color_nuevo != color_actual && hubo_cambio)
                 foreach (Control ctl in ventana_principal.Controls)
                 {
                     ctl.BackColor = color_nuevo;
@@ -43,6 +40,7 @@ namespace Reproductor
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            hubo_cambio = true;
             switch (comboBox1.SelectedIndex)
             {
                 case 0:
@@ -68,7 +66,6 @@ namespace Reproductor
         private void button3_Click(object sender, EventArgs e)
         {
             colorDialog2.ShowDialog();
-
             ventana_principal.Cambiar_color_tabs(colorDialog2.Color);
         }
     }
