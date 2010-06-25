@@ -103,7 +103,7 @@ namespace Reproductor
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            label3.Text = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString() + ":" + DateTime.Now.Second.ToString();
+            label3.Text = DateTime.Now.ToString("HH:mm:ss");
         }
 
         private void button6_Click(object sender, EventArgs e)
