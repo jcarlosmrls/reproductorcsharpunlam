@@ -12,7 +12,7 @@ namespace Reproductor
     {        
         private Form1 ventana_principal;
         private Color color_actual;
-        private Color color_nuevo;
+        private Color color_nuevo;  <--- cambie aca xD
         private bool hubo_cambio = false;
 
         public Opciones(Form1 form)
