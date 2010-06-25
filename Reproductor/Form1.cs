@@ -125,6 +125,7 @@ namespace Reproductor
             
             tabPage1.BackColor = col;
             tabPage2.BackColor = col;
+            tabPage3.BackColor = col;
         }
 
         
