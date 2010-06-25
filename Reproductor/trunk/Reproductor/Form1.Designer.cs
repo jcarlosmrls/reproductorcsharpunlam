@@ -32,6 +32,11 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.accionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reproducirPausarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.detenerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.siguienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.anteriorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,11 +64,6 @@
             this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button6 = new System.Windows.Forms.Button();
-            this.accionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reproducirPausarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.detenerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.siguienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.anteriorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -101,6 +101,41 @@
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
+            // accionesToolStripMenuItem
+            // 
+            this.accionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.reproducirPausarToolStripMenuItem,
+            this.detenerToolStripMenuItem,
+            this.siguienteToolStripMenuItem,
+            this.anteriorToolStripMenuItem});
+            this.accionesToolStripMenuItem.Name = "accionesToolStripMenuItem";
+            this.accionesToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.accionesToolStripMenuItem.Text = "Acciones";
+            // 
+            // reproducirPausarToolStripMenuItem
+            // 
+            this.reproducirPausarToolStripMenuItem.Name = "reproducirPausarToolStripMenuItem";
+            this.reproducirPausarToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.reproducirPausarToolStripMenuItem.Text = "Reproducir/Pausar";
+            // 
+            // detenerToolStripMenuItem
+            // 
+            this.detenerToolStripMenuItem.Name = "detenerToolStripMenuItem";
+            this.detenerToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.detenerToolStripMenuItem.Text = "Detener";
+            // 
+            // siguienteToolStripMenuItem
+            // 
+            this.siguienteToolStripMenuItem.Name = "siguienteToolStripMenuItem";
+            this.siguienteToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.siguienteToolStripMenuItem.Text = "Siguiente";
+            // 
+            // anteriorToolStripMenuItem
+            // 
+            this.anteriorToolStripMenuItem.Name = "anteriorToolStripMenuItem";
+            this.anteriorToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.anteriorToolStripMenuItem.Text = "Anterior";
+            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -137,6 +172,7 @@
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.Controls.Add(this.boton_volumen);
             this.panel1.Controls.Add(this.button5);
+            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
@@ -212,7 +248,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(278, 328);
+            this.label3.Location = new System.Drawing.Point(58, 36);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 13);
             this.label3.TabIndex = 4;
@@ -410,41 +446,6 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // accionesToolStripMenuItem
-            // 
-            this.accionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.reproducirPausarToolStripMenuItem,
-            this.detenerToolStripMenuItem,
-            this.siguienteToolStripMenuItem,
-            this.anteriorToolStripMenuItem});
-            this.accionesToolStripMenuItem.Name = "accionesToolStripMenuItem";
-            this.accionesToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.accionesToolStripMenuItem.Text = "Acciones";
-            // 
-            // reproducirPausarToolStripMenuItem
-            // 
-            this.reproducirPausarToolStripMenuItem.Name = "reproducirPausarToolStripMenuItem";
-            this.reproducirPausarToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.reproducirPausarToolStripMenuItem.Text = "Reproducir/Pausar";
-            // 
-            // detenerToolStripMenuItem
-            // 
-            this.detenerToolStripMenuItem.Name = "detenerToolStripMenuItem";
-            this.detenerToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.detenerToolStripMenuItem.Text = "Detener";
-            // 
-            // siguienteToolStripMenuItem
-            // 
-            this.siguienteToolStripMenuItem.Name = "siguienteToolStripMenuItem";
-            this.siguienteToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.siguienteToolStripMenuItem.Text = "Siguiente";
-            // 
-            // anteriorToolStripMenuItem
-            // 
-            this.anteriorToolStripMenuItem.Name = "anteriorToolStripMenuItem";
-            this.anteriorToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.anteriorToolStripMenuItem.Text = "Anterior";
-            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -453,7 +454,6 @@
             this.ClientSize = new System.Drawing.Size(795, 449);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.trackBar2);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.button3);
@@ -470,6 +470,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
