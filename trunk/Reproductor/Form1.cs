@@ -19,8 +19,7 @@ namespace Reproductor
         public Form1()
         {
             InitializeComponent();
-            this.MaximumSize = new System.Drawing.Size(maxTamH, maxTamV);
-            
+            this.MaximumSize = new System.Drawing.Size(maxTamH, maxTamV);   
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -128,6 +127,26 @@ namespace Reproductor
             tabPage3.BackColor = col;
         }
 
-        
+        public void CambiarASkinPacman()
+        {
+            //Boton izquierda
+            button5.BackColor = Color.Black;
+            button5.Text = "";
+            button5.FlatStyle = FlatStyle.Popup;
+            button5.BackgroundImage = Reproductor.Properties.Resources.botonizq;
+            button5.BackgroundImageLayout = ImageLayout.Stretch;
+            //Boton derecha
+            button4.BackColor = Color.Black;
+            button4.Text = "";
+            button4.FlatStyle = FlatStyle.Popup;
+            button4.BackgroundImage = Reproductor.Properties.Resources.botonder;
+            button4.BackgroundImageLayout = ImageLayout.Stretch;
+            //Panel derecho
+            panel2.BackColor = Color.Gray;
+            panel2.ForeColor = Color.White;
+            //Ventana principal
+            this.BackColor = Color.Black;
+            panel1.BackColor = Color.Black;
+        }
     }
 }

@@ -47,16 +47,7 @@ namespace Reproductor
                     color_nuevo = Color.FromName("Control");
                     break;
                 case 1:
-                    color_nuevo = Color.LightBlue;
-                    break;
-                case 2:
-                    color_nuevo = Color.Tomato;
-                    break;
-                case 3:
-                    color_nuevo = Color.LightGreen;
-                    break;
-                case 4:
-                    color_nuevo = Color.DarkGray;
+                    ventana_principal.CambiarASkinPacman();
                     break;
                 default:
                     break;
