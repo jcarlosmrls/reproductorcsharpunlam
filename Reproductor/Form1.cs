@@ -11,63 +11,37 @@ namespace Reproductor
 {
     public partial class Form1 : Form
     {
-        private int panelAbierto = 1;
-        private int maxTamV = Screen.PrimaryScreen.Bounds.Height;
-        private int maxTamH = Screen.PrimaryScreen.Bounds.Width;
-        private int minTamH = 655;
+        private bool panelAbierto = true;
+        PanelReproduccion panelReproduccion = new PanelReproduccion();
 
         public Form1()
         {
             InitializeComponent();
-            this.MaximumSize = new System.Drawing.Size(maxTamH, maxTamV);   
+            panelReproduccion.Asignar(this);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (panelAbierto == 1)
+            if (panelAbierto)
+            {
                 Cerrar_Panel();
+            }
             else
-                Abrir_Panel(); 
+            {
+                Abrir_Panel();
+            }
         }
 
         private void Cerrar_Panel()
         {
-            if (Form1.ActiveForm.Width - 150 >= minTamH && panelAbierto == 1 && Form1.ActiveForm.WindowState != FormWindowState.Maximized)
-            {
-                tabControl1.Anchor -= AnchorStyles.Right;
-                trackBar1.Anchor -= AnchorStyles.Right;
-                trackBar2.Anchor = AnchorStyles.Left;
-                panelBotones.Anchor = AnchorStyles.Left;
-                panelAbierto = 0;
-                button3.Text = ">>";
-                Form1.ActiveForm.Width -= 150;
-                label2.Hide();
-                panelListaDeReproduccion.Hide();
-                tabControl1.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Top);
-                trackBar1.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom);
-                panelBotones.Anchor = AnchorStyles.Bottom;
-                trackBar2.Anchor = AnchorStyles.Bottom;
-            }
+            panelReproduccion.Hide();
+            panelAbierto = false;            
         }
 
         private void Abrir_Panel()
         {
-            if (Form1.ActiveForm.Width + 150 <= maxTamH && panelAbierto == 0 && Form1.ActiveForm.WindowState != FormWindowState.Maximized)
-            {
-                tabControl1.Anchor -= AnchorStyles.Right;
-                trackBar1.Anchor -= AnchorStyles.Right;
-                panelBotones.Anchor = AnchorStyles.Left;
-                trackBar2.Anchor = AnchorStyles.Left;
-                panelAbierto = 1;
-                button3.Text = "<<";
-                Form1.ActiveForm.Width += 150;
-                label2.Show();
-                panelListaDeReproduccion.Show();
-                trackBar1.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom);
-                tabControl1.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Top);
-                panelBotones.Anchor = AnchorStyles.Bottom;
-                trackBar2.Anchor = AnchorStyles.Bottom;
-            }
+            panelReproduccion.Show();
+            panelAbierto = true;
         }
 
         private void trackBar2_Leave(object sender, EventArgs e)
@@ -134,9 +108,6 @@ namespace Reproductor
             panelBotones.BackColor = Color.Black;
             //Trackbar de tiempo de reproduccion
             trackBar1.BackColor = Color.Black;
-            //Panel derecho
-            panelListaDeReproduccion.BackColor = Color.Gray;
-            panelListaDeReproduccion.ForeColor = Color.White;
             //Boton izquierda
             botonAnterior.BackColor = Color.Black;
             botonAnterior.Text = "";
