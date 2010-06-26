@@ -37,15 +37,15 @@ namespace Reproductor
                 tabControl1.Anchor -= AnchorStyles.Right;
                 trackBar1.Anchor -= AnchorStyles.Right;
                 trackBar2.Anchor = AnchorStyles.Left;
-                panel1.Anchor = AnchorStyles.Left;
+                panelBotones.Anchor = AnchorStyles.Left;
                 panelAbierto = 0;
                 button3.Text = ">>";
                 Form1.ActiveForm.Width -= 150;
                 label2.Hide();
-                panel2.Hide();
+                panelListaDeReproduccion.Hide();
                 tabControl1.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Top);
                 trackBar1.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom);
-                panel1.Anchor = AnchorStyles.Bottom;
+                panelBotones.Anchor = AnchorStyles.Bottom;
                 trackBar2.Anchor = AnchorStyles.Bottom;
             }
         }
@@ -56,16 +56,16 @@ namespace Reproductor
             {
                 tabControl1.Anchor -= AnchorStyles.Right;
                 trackBar1.Anchor -= AnchorStyles.Right;
-                panel1.Anchor = AnchorStyles.Left;
+                panelBotones.Anchor = AnchorStyles.Left;
                 trackBar2.Anchor = AnchorStyles.Left;
                 panelAbierto = 1;
                 button3.Text = "<<";
                 Form1.ActiveForm.Width += 150;
                 label2.Show();
-                panel2.Show();
+                panelListaDeReproduccion.Show();
                 trackBar1.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom);
                 tabControl1.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Top);
-                panel1.Anchor = AnchorStyles.Bottom;
+                panelBotones.Anchor = AnchorStyles.Bottom;
                 trackBar2.Anchor = AnchorStyles.Bottom;
             }
         }
@@ -131,36 +131,36 @@ namespace Reproductor
         {
             //Ventana principal
             this.BackColor = Color.Black;
-            panel1.BackColor = Color.Black;
+            panelBotones.BackColor = Color.Black;
             //Trackbar de tiempo de reproduccion
             trackBar1.BackColor = Color.Black;
             //Panel derecho
-            panel2.BackColor = Color.Gray;
-            panel2.ForeColor = Color.White;
+            panelListaDeReproduccion.BackColor = Color.Gray;
+            panelListaDeReproduccion.ForeColor = Color.White;
             //Boton izquierda
-            button5.BackColor = Color.Black;
-            button5.Text = "";
-            button5.FlatStyle = FlatStyle.Popup;
-            button5.BackgroundImage = Reproductor.Properties.Resources.botonizq;
-            button5.BackgroundImageLayout = ImageLayout.Stretch;
+            botonAnterior.BackColor = Color.Black;
+            botonAnterior.Text = "";
+            botonAnterior.FlatStyle = FlatStyle.Popup;
+            botonAnterior.BackgroundImage = Reproductor.Properties.Resources.botonizq;
+            botonAnterior.BackgroundImageLayout = ImageLayout.Stretch;
             //Boton derecha
-            button4.BackColor = Color.Black;
-            button4.Text = "";
-            button4.FlatStyle = FlatStyle.Popup;
-            button4.BackgroundImage = Reproductor.Properties.Resources.botonder;
-            button4.BackgroundImageLayout = ImageLayout.Stretch;
+            botonSiguiente.BackColor = Color.Black;
+            botonSiguiente.Text = "";
+            botonSiguiente.FlatStyle = FlatStyle.Popup;
+            botonSiguiente.BackgroundImage = Reproductor.Properties.Resources.botonder;
+            botonSiguiente.BackgroundImageLayout = ImageLayout.Stretch;
             //Boton play
-            button1.Text = "";
-            button1.BackColor = Color.Black;
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.BackgroundImage = Properties.Resources.boton;
-            button1.BackgroundImageLayout = ImageLayout.Stretch;
+            botonPlay.Text = "";
+            botonPlay.BackColor = Color.Black;
+            botonPlay.FlatStyle = FlatStyle.Popup;
+            botonPlay.BackgroundImage = Properties.Resources.boton;
+            botonPlay.BackgroundImageLayout = ImageLayout.Stretch;
             //Boton stop
-            button2.BackColor = Color.Black;
-            button2.Text = "";
-            button2.FlatStyle = FlatStyle.Popup;
-            button2.BackgroundImage = Properties.Resources.botonstop;
-            button2.BackgroundImageLayout = ImageLayout.Stretch;
+            botonStop.BackColor = Color.Black;
+            botonStop.Text = "";
+            botonStop.FlatStyle = FlatStyle.Popup;
+            botonStop.BackgroundImage = Properties.Resources.botonstop;
+            botonStop.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
