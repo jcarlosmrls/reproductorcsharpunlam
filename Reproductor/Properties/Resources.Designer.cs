@@ -60,6 +60,13 @@ namespace Reproductor.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap boton {
+            get {
+                object obj = ResourceManager.GetObject("boton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap botonder {
             get {
                 object obj = ResourceManager.GetObject("botonder", resourceCulture);
@@ -70,6 +77,20 @@ namespace Reproductor.Properties {
         internal static System.Drawing.Bitmap botonizq {
             get {
                 object obj = ResourceManager.GetObject("botonizq", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap botonpresionado {
+            get {
+                object obj = ResourceManager.GetObject("botonpresionado", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap botonstop {
+            get {
+                object obj = ResourceManager.GetObject("botonstop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

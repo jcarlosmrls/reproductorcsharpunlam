@@ -127,4 +127,13 @@
   <data name="SinTapa" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SinTapa.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="boton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\boton.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="botonpresionado" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\botonpresionado.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="botonstop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\botonstop.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

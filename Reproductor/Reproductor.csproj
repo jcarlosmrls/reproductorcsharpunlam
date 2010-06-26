@@ -92,8 +92,11 @@
     <None Include="Resources\SinTapa.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\boton.png" />
     <Content Include="Resources\botonder.png" />
     <Content Include="Resources\botonizq.png" />
+    <None Include="Resources\botonstop.png" />
+    <None Include="Resources\botonpresionado.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

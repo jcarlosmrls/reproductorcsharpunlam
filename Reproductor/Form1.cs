@@ -129,6 +129,14 @@ namespace Reproductor
 
         public void CambiarASkinPacman()
         {
+            //Ventana principal
+            this.BackColor = Color.Black;
+            panel1.BackColor = Color.Black;
+            //Trackbar de tiempo de reproduccion
+            trackBar1.BackColor = Color.Black;
+            //Panel derecho
+            panel2.BackColor = Color.Gray;
+            panel2.ForeColor = Color.White;
             //Boton izquierda
             button5.BackColor = Color.Black;
             button5.Text = "";
@@ -141,12 +149,18 @@ namespace Reproductor
             button4.FlatStyle = FlatStyle.Popup;
             button4.BackgroundImage = Reproductor.Properties.Resources.botonder;
             button4.BackgroundImageLayout = ImageLayout.Stretch;
-            //Panel derecho
-            panel2.BackColor = Color.Gray;
-            panel2.ForeColor = Color.White;
-            //Ventana principal
-            this.BackColor = Color.Black;
-            panel1.BackColor = Color.Black;
+            //Boton play
+            button1.Text = "";
+            button1.BackColor = Color.Black;
+            button1.FlatStyle = FlatStyle.Popup;
+            button1.BackgroundImage = Properties.Resources.boton;
+            button1.BackgroundImageLayout = ImageLayout.Stretch;
+            //Boton stop
+            button2.BackColor = Color.Black;
+            button2.Text = "";
+            button2.FlatStyle = FlatStyle.Popup;
+            button2.BackgroundImage = Properties.Resources.botonstop;
+            button2.BackgroundImageLayout = ImageLayout.Stretch;
         }
     }
 }
