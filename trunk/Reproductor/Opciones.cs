@@ -11,7 +11,6 @@ namespace Reproductor
     public partial class Opciones : Form
     {        
         private Form1 ventana_principal;
-        private Color color_actual;
         private Color color_nuevo;
         private bool hubo_cambio = false;
 
@@ -19,16 +18,21 @@ namespace Reproductor
         {
             InitializeComponent();
             ventana_principal = form;
-            color_actual = ventana_principal.BackColor;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {         
-            if(color_nuevo != color_actual && hubo_cambio)
-                foreach (Control ctl in ventana_principal.Controls)
+            if(hubo_cambio)
+                switch (comboBox1.SelectedIndex)
                 {
-                    ctl.BackColor = color_nuevo;
-                    ventana_principal.BackColor = color_nuevo;
+                    case 0:
+                        //Poner Skin Default;
+                        break;
+                    case 1:
+                        ventana_principal.CambiarASkinPacman();
+                        break;
+                    default:
+                        break;
                 }
             this.Close();
         }
@@ -41,17 +45,6 @@ namespace Reproductor
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             hubo_cambio = true;
-            switch (comboBox1.SelectedIndex)
-            {
-                case 0:
-                    color_nuevo = Color.FromName("Control");
-                    break;
-                case 1:
-                    ventana_principal.CambiarASkinPacman();
-                    break;
-                default:
-                    break;
-            }
         }
 
         private void button3_Click(object sender, EventArgs e)
