@@ -71,8 +71,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.button3 = new System.Windows.Forms.Button();
-            this.panelListaDeReproduccion = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button6 = new System.Windows.Forms.Button();
@@ -98,7 +96,7 @@
             this.ayudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(795, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(639, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -524,35 +522,13 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(748, 25);
+            this.button3.Location = new System.Drawing.Point(594, 25);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(35, 21);
             this.button3.TabIndex = 4;
             this.button3.Text = "<<";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // panelListaDeReproduccion
-            // 
-            this.panelListaDeReproduccion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelListaDeReproduccion.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panelListaDeReproduccion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelListaDeReproduccion.Location = new System.Drawing.Point(647, 75);
-            this.panelListaDeReproduccion.Name = "panelListaDeReproduccion";
-            this.panelListaDeReproduccion.Size = new System.Drawing.Size(136, 362);
-            this.panelListaDeReproduccion.TabIndex = 5;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(656, 55);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(109, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Lista de reproduccion";
             // 
             // trackBar2
             // 
@@ -576,7 +552,7 @@
             // 
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(720, 25);
+            this.button6.Location = new System.Drawing.Point(566, 25);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(22, 21);
             this.button6.TabIndex = 8;
@@ -594,11 +570,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.ClientSize = new System.Drawing.Size(795, 449);
+            this.ClientSize = new System.Drawing.Size(639, 449);
             this.Controls.Add(this.trackBar2);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.panelListaDeReproduccion);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panelBotones);
@@ -647,8 +621,6 @@
         private System.Windows.Forms.Button botonStop;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Panel panelListaDeReproduccion;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button botonSiguiente;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button botonAnterior;

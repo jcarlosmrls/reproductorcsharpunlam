@@ -57,6 +57,12 @@
     <Compile Include="Opciones.Designer.cs">
       <DependentUpon>Opciones.cs</DependentUpon>
     </Compile>
+    <Compile Include="PanelReproduccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelReproduccion.Designer.cs">
+      <DependentUpon>PanelReproduccion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AcercaDe.resx">
@@ -67,6 +73,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Opciones.resx">
       <DependentUpon>Opciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelReproduccion.resx">
+      <DependentUpon>PanelReproduccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
