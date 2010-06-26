@@ -62,19 +62,16 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(25, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 13);
+            this.label1.Size = new System.Drawing.Size(94, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Combinación de colores:";
+            this.label1.Text = "Selección de skin:";
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Normal",
-            "Azul",
-            "Rojo",
-            "Verde",
-            "Gris"});
+            "Pacman"});
             this.comboBox1.Location = new System.Drawing.Point(201, 16);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(112, 21);
