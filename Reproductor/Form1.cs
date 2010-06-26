@@ -162,5 +162,12 @@ namespace Reproductor
             button2.BackgroundImage = Properties.Resources.botonstop;
             button2.BackgroundImageLayout = ImageLayout.Stretch;
         }
+
+        private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            abrirArchivo.FileName = "";
+            abrirArchivo.Filter = "MP3 files|*.mp3|WAV files|*.wav|All files|*.*";
+            abrirArchivo.ShowDialog();
+        }
     }
 }
