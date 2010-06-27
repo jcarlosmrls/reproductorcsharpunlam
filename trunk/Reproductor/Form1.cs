@@ -46,6 +46,7 @@ namespace Reproductor
         private void Abrir_Panel()
         {
             panelReproduccion.Show();
+            panelReproduccion.CambiarPosicion();
             panelAbierto = true;
         }
 
@@ -144,6 +145,19 @@ namespace Reproductor
             abrirArchivo.FileName = "";
             abrirArchivo.Filter = "MP3 files|*.mp3|WAV files|*.wav|All files|*.*";
             abrirArchivo.ShowDialog();
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            panelReproduccion.CambiarPosicion();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (timer2.Enabled)
+                timer2.Enabled = false;
+            else
+                timer2.Enabled = true;
         }
     }
 }
