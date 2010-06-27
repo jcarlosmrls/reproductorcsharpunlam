@@ -22,5 +22,10 @@ namespace Reproductor
             ventana_principal = form;
             this.Show();
         }
+
+        public void CambiarPosicion()
+        {
+            this.Location = new Point(ventana_principal.Location.X + ventana_principal.Width, ventana_principal.Location.Y);
+        }
     }
 }

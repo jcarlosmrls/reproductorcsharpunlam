@@ -20,6 +20,11 @@ namespace Reproductor
             panelReproduccion.Asignar(this);
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            panelReproduccion.CambiarPosicion();
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             if (panelAbierto)
