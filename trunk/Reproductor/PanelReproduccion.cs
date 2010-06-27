@@ -27,5 +27,11 @@ namespace Reproductor
             this.Location = new Point(ventana_principal.Location.X + ventana_principal.Width, ventana_principal.Location.Y);
             this.Show();
         }
+
+        private void PanelReproduccion_LocationChanged(object sender, EventArgs e)
+        {
+            if (ventana_principal.panelAbierto && ventana_principal.panelPegado)
+                ventana_principal.CambiarPosicion();
+        }
     }
 }

@@ -11,7 +11,8 @@ namespace Reproductor
 {
     public partial class Form1 : Form
     {
-        private bool panelAbierto = true;
+        public bool panelAbierto = true;
+        public bool panelPegado = true;
         PanelReproduccion panelReproduccion = new PanelReproduccion();
 
         public Form1()
@@ -147,17 +148,25 @@ namespace Reproductor
             abrirArchivo.ShowDialog();
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            panelReproduccion.CambiarPosicion();
-        }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
-            if (timer2.Enabled)
-                timer2.Enabled = false;
+            if (panelPegado)
+                panelPegado = false;
             else
-                timer2.Enabled = true;
+                panelPegado = true;
+        }
+
+        private void Form1_LocationChanged(object sender, EventArgs e)
+        {
+            if (panelPegado && panelAbierto)
+                panelReproduccion.CambiarPosicion();
+        }
+
+        public void CambiarPosicion()
+        {
+            this.Location = new Point(panelReproduccion.Location.X - this.Width, panelReproduccion.Location.Y);
+            this.Show();
         }
     }
 }
