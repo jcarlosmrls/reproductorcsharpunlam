@@ -30,7 +30,7 @@ namespace Reproductor
 
         private void PanelReproduccion_LocationChanged(object sender, EventArgs e)
         {
-            if (ventana_principal.panelAbierto && ventana_principal.panelPegado)
+            if (ventana_principal.PanelAbiertoYPegado())
                 ventana_principal.CambiarPosicion();
         }
     }
