@@ -147,7 +147,6 @@ namespace Reproductor
             abrirArchivo.Filter = "MP3 files|*.mp3|WAV files|*.wav|All files|*.*";
             abrirArchivo.ShowDialog();
         }
-
         
         private void button1_Click(object sender, EventArgs e)
         {
@@ -185,6 +184,20 @@ namespace Reproductor
                 return true;
             else
                 return false;
+        }
+
+        private void CambiarAModoCompacto()
+        {
+            tabControl1.Hide();
+            this.MinimumSize = new Size(0,0);
+            this.MaximizeBox = false;
+            this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            this.Size = new Size(655, 220);
+        }
+
+        private void modoCompactoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CambiarAModoCompacto();
         }
     }
 }

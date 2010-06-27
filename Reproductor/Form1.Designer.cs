@@ -76,6 +76,8 @@
             this.button6 = new System.Windows.Forms.Button();
             this.abrirArchivo = new System.Windows.Forms.OpenFileDialog();
             this.button1 = new System.Windows.Forms.Button();
+            this.verToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modoCompactoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panelBotones.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -92,6 +94,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivoToolStripMenuItem,
+            this.verToolStripMenuItem,
             this.accionesToolStripMenuItem,
             this.toolStripMenuItem1,
             this.ayudaToolStripMenuItem});
@@ -199,9 +202,12 @@
             // 
             this.panelBotones.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.panelBotones.BackColor = System.Drawing.SystemColors.Control;
+            this.panelBotones.Controls.Add(this.button1);
             this.panelBotones.Controls.Add(this.label3);
             this.panelBotones.Controls.Add(this.botonVolumen);
+            this.panelBotones.Controls.Add(this.button6);
             this.panelBotones.Controls.Add(this.botonAnterior);
+            this.panelBotones.Controls.Add(this.button3);
             this.panelBotones.Controls.Add(this.botonSiguiente);
             this.panelBotones.Controls.Add(this.botonStop);
             this.panelBotones.Controls.Add(this.botonPlay);
@@ -523,7 +529,7 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(578, 25);
+            this.button3.Location = new System.Drawing.Point(567, 72);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(51, 21);
             this.button3.TabIndex = 4;
@@ -553,7 +559,7 @@
             // 
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(550, 25);
+            this.button6.Location = new System.Drawing.Point(596, 43);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(22, 21);
             this.button6.TabIndex = 8;
@@ -569,7 +575,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(473, 25);
+            this.button1.Location = new System.Drawing.Point(567, 11);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(51, 22);
             this.button1.TabIndex = 9;
@@ -577,16 +583,28 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // verToolStripMenuItem
+            // 
+            this.verToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modoCompactoToolStripMenuItem});
+            this.verToolStripMenuItem.Name = "verToolStripMenuItem";
+            this.verToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
+            this.verToolStripMenuItem.Text = "Ver";
+            // 
+            // modoCompactoToolStripMenuItem
+            // 
+            this.modoCompactoToolStripMenuItem.Name = "modoCompactoToolStripMenuItem";
+            this.modoCompactoToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.modoCompactoToolStripMenuItem.Text = "Modo Compacto";
+            this.modoCompactoToolStripMenuItem.Click += new System.EventHandler(this.modoCompactoToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.ClientSize = new System.Drawing.Size(639, 449);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.trackBar2);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panelBotones);
             this.Controls.Add(this.menuStrip1);
@@ -669,6 +687,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.OpenFileDialog abrirArchivo;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem verToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modoCompactoToolStripMenuItem;
     }
 }
 
