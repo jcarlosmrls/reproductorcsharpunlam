@@ -57,6 +57,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Lista de Reproducción";
             this.TopMost = true;
+            this.LocationChanged += new System.EventHandler(this.PanelReproduccion_LocationChanged);
             this.ResumeLayout(false);
 
         }
