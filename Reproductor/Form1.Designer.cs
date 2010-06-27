@@ -78,6 +78,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.verToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modoCompactoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modoNormalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panelBotones.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -586,7 +587,8 @@
             // verToolStripMenuItem
             // 
             this.verToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.modoCompactoToolStripMenuItem});
+            this.modoCompactoToolStripMenuItem,
+            this.modoNormalToolStripMenuItem});
             this.verToolStripMenuItem.Name = "verToolStripMenuItem";
             this.verToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
             this.verToolStripMenuItem.Text = "Ver";
@@ -597,6 +599,13 @@
             this.modoCompactoToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.modoCompactoToolStripMenuItem.Text = "Modo Compacto";
             this.modoCompactoToolStripMenuItem.Click += new System.EventHandler(this.modoCompactoToolStripMenuItem_Click);
+            // 
+            // modoNormalToolStripMenuItem
+            // 
+            this.modoNormalToolStripMenuItem.Name = "modoNormalToolStripMenuItem";
+            this.modoNormalToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.modoNormalToolStripMenuItem.Text = "Modo Normal";
+            this.modoNormalToolStripMenuItem.Click += new System.EventHandler(this.modoNormalToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -689,6 +698,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem verToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modoCompactoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modoNormalToolStripMenuItem;
     }
 }
 

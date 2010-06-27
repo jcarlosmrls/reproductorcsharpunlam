@@ -188,6 +188,9 @@ namespace Reproductor
 
         private void CambiarAModoCompacto()
         {
+            if (this.WindowState == FormWindowState.Maximized)
+                this.WindowState = FormWindowState.Normal;
+            this.CenterToScreen();
             tabControl1.Hide();
             this.MinimumSize = new Size(0,0);
             this.MaximizeBox = false;
@@ -195,9 +198,22 @@ namespace Reproductor
             this.Size = new Size(655, 220);
         }
 
+        private void CambiarAModoNormal()
+        {
+            this.MinimumSize = new Size(655, 481);
+            this.MaximizeBox = true;
+            this.AutoSizeMode = AutoSizeMode.GrowOnly;
+            tabControl1.Show();
+        }
+
         private void modoCompactoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CambiarAModoCompacto();
+        }
+
+        private void modoNormalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CambiarAModoNormal();
         }
     }
 }
