@@ -11,8 +11,8 @@ namespace Reproductor
 {
     public partial class Form1 : Form
     {
-        public bool panelAbierto = true;
-        public bool panelPegado = true;
+        private bool panelAbierto = true;
+        private bool panelPegado = true;
         PanelReproduccion panelReproduccion = new PanelReproduccion();
 
         public Form1()
@@ -154,7 +154,11 @@ namespace Reproductor
             if (panelPegado)
                 panelPegado = false;
             else
+            {
                 panelPegado = true;
+                if (panelAbierto)
+                    panelReproduccion.CambiarPosicion();
+            }
         }
 
         private void Form1_LocationChanged(object sender, EventArgs e)
@@ -167,6 +171,20 @@ namespace Reproductor
         {
             this.Location = new Point(panelReproduccion.Location.X - this.Width, panelReproduccion.Location.Y);
             this.Show();
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            if (panelPegado && panelAbierto)
+                panelReproduccion.CambiarPosicion();
+        }
+
+        public bool PanelAbiertoYPegado()
+        {
+            if (panelPegado && panelAbierto)
+                return true;
+            else
+                return false;
         }
     }
 }
