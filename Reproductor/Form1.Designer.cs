@@ -75,6 +75,8 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button6 = new System.Windows.Forms.Button();
             this.abrirArchivo = new System.Windows.Forms.OpenFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.panelBotones.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -565,12 +567,28 @@
             // 
             this.abrirArchivo.FileName = "openFileDialog1";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(473, 25);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(51, 22);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Pegar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 5;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.ClientSize = new System.Drawing.Size(639, 449);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.trackBar2);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button3);
@@ -653,6 +671,8 @@
         private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.OpenFileDialog abrirArchivo;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
