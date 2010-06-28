@@ -178,14 +178,6 @@ namespace Reproductor
                 panelReproduccion.CambiarPosicion();
         }
 
-        public bool PanelAbiertoYPegado()
-        {
-            if (panelPegado && panelAbierto)
-                return true;
-            else
-                return false;
-        }
-
         private void CambiarAModoCompacto()
         {
             if (this.WindowState == FormWindowState.Maximized)
@@ -214,6 +206,16 @@ namespace Reproductor
         private void modoNormalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CambiarAModoNormal();
+        }
+
+        public void PegarPanel()
+        {
+            panelPegado = true;
+        }
+
+        public void DespegarPanel()
+        {
+            panelPegado = false;
         }
     }
 }
