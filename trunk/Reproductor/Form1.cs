@@ -47,7 +47,7 @@ namespace Reproductor
         private void Abrir_Panel()
         {
             panelReproduccion.Show();
-            panelReproduccion.CambiarPosicion();
+           // panelReproduccion.CambiarPosicion();
             panelAbierto = true;
         }
 
@@ -106,6 +106,35 @@ namespace Reproductor
             tabPage1.BackColor = col;
             tabPage2.BackColor = col;
             tabPage3.BackColor = col;
+        }
+
+        public void CambiarASkinNormal()
+        {
+            //Ventana principal
+            this.BackColor = Color.FromName("Control");
+            panelBotones.BackColor = Color.FromName("Control");
+            //Trackbar de tiempo de reproduccion
+            trackBar1.BackColor = Color.FromName("Control");
+            //Boton izquierda
+            botonAnterior.BackColor = Color.FromName("Control");
+            botonAnterior.Text = "l◄◄";
+            botonAnterior.BackgroundImage = null;
+            botonAnterior.FlatStyle = FlatStyle.System;
+            //Boton derecha
+            botonSiguiente.BackColor = Color.FromName("Control");
+            botonSiguiente.Text = "►►l";
+            botonSiguiente.BackgroundImage = null;
+            botonSiguiente.FlatStyle = FlatStyle.System;
+            //Boton play
+            botonPlay.BackColor = Color.FromName("Control");
+            botonPlay.Text = "►";
+            botonPlay.BackgroundImage = null;
+            botonPlay.FlatStyle = FlatStyle.System;
+            //Boton stop
+            botonStop.Text = "■";
+            botonStop.BackColor = Color.FromName("Control");
+            botonStop.BackgroundImage = null;
+            botonStop.FlatStyle = FlatStyle.System;
         }
 
         public void CambiarASkinPacman()
