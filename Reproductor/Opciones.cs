@@ -26,7 +26,7 @@ namespace Reproductor
                 switch (comboBox1.SelectedIndex)
                 {
                     case 0:
-                        //Poner Skin Default;
+                        ventana_principal.CambiarASkinNormal();
                         break;
                     case 1:
                         ventana_principal.CambiarASkinPacman();
