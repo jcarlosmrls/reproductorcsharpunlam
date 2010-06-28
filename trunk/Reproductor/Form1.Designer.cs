@@ -34,6 +34,9 @@
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modoCompactoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modoNormalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reproducirPausarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.detenerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,7 +49,9 @@
             this.panelBotones = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.botonVolumen = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.botonAnterior = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.botonSiguiente = new System.Windows.Forms.Button();
             this.botonStop = new System.Windows.Forms.Button();
             this.botonPlay = new System.Windows.Forms.Button();
@@ -70,15 +75,9 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.button3 = new System.Windows.Forms.Button();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button6 = new System.Windows.Forms.Button();
             this.abrirArchivo = new System.Windows.Forms.OpenFileDialog();
-            this.button1 = new System.Windows.Forms.Button();
-            this.verToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modoCompactoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modoNormalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panelBotones.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -133,6 +132,29 @@
             this.salirToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            // 
+            // verToolStripMenuItem
+            // 
+            this.verToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modoCompactoToolStripMenuItem,
+            this.modoNormalToolStripMenuItem});
+            this.verToolStripMenuItem.Name = "verToolStripMenuItem";
+            this.verToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
+            this.verToolStripMenuItem.Text = "Ver";
+            // 
+            // modoCompactoToolStripMenuItem
+            // 
+            this.modoCompactoToolStripMenuItem.Name = "modoCompactoToolStripMenuItem";
+            this.modoCompactoToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.modoCompactoToolStripMenuItem.Text = "Modo Compacto";
+            this.modoCompactoToolStripMenuItem.Click += new System.EventHandler(this.modoCompactoToolStripMenuItem_Click);
+            // 
+            // modoNormalToolStripMenuItem
+            // 
+            this.modoNormalToolStripMenuItem.Name = "modoNormalToolStripMenuItem";
+            this.modoNormalToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.modoNormalToolStripMenuItem.Text = "Modo Normal";
+            this.modoNormalToolStripMenuItem.Click += new System.EventHandler(this.modoNormalToolStripMenuItem_Click);
             // 
             // accionesToolStripMenuItem
             // 
@@ -203,7 +225,6 @@
             // 
             this.panelBotones.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.panelBotones.BackColor = System.Drawing.SystemColors.Control;
-            this.panelBotones.Controls.Add(this.button1);
             this.panelBotones.Controls.Add(this.label3);
             this.panelBotones.Controls.Add(this.botonVolumen);
             this.panelBotones.Controls.Add(this.button6);
@@ -243,6 +264,19 @@
             this.botonVolumen.UseVisualStyleBackColor = true;
             this.botonVolumen.Click += new System.EventHandler(this.boton_volumen_Click);
             // 
+            // button6
+            // 
+            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.Location = new System.Drawing.Point(596, 43);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(22, 21);
+            this.button6.TabIndex = 8;
+            this.button6.Text = "X";
+            this.button6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // botonAnterior
             // 
             this.botonAnterior.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -253,6 +287,17 @@
             this.botonAnterior.TabIndex = 3;
             this.botonAnterior.Text = "l◄◄";
             this.botonAnterior.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(567, 72);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(51, 21);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "Panel";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // botonSiguiente
             // 
@@ -527,17 +572,6 @@
             this.trackBar1.TabIndex = 3;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.Both;
             // 
-            // button3
-            // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(567, 72);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(51, 21);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Panel";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // trackBar2
             // 
             this.trackBar2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -556,56 +590,9 @@
             this.timer1.Interval = 900;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // button6
-            // 
-            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(596, 43);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(22, 21);
-            this.button6.TabIndex = 8;
-            this.button6.Text = "X";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
             // abrirArchivo
             // 
             this.abrirArchivo.FileName = "openFileDialog1";
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(567, 11);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(51, 22);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Pegar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // verToolStripMenuItem
-            // 
-            this.verToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.modoCompactoToolStripMenuItem,
-            this.modoNormalToolStripMenuItem});
-            this.verToolStripMenuItem.Name = "verToolStripMenuItem";
-            this.verToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
-            this.verToolStripMenuItem.Text = "Ver";
-            // 
-            // modoCompactoToolStripMenuItem
-            // 
-            this.modoCompactoToolStripMenuItem.Name = "modoCompactoToolStripMenuItem";
-            this.modoCompactoToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.modoCompactoToolStripMenuItem.Text = "Modo Compacto";
-            this.modoCompactoToolStripMenuItem.Click += new System.EventHandler(this.modoCompactoToolStripMenuItem_Click);
-            // 
-            // modoNormalToolStripMenuItem
-            // 
-            this.modoNormalToolStripMenuItem.Name = "modoNormalToolStripMenuItem";
-            this.modoNormalToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.modoNormalToolStripMenuItem.Text = "Modo Normal";
-            this.modoNormalToolStripMenuItem.Click += new System.EventHandler(this.modoNormalToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -695,7 +682,6 @@
         private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.OpenFileDialog abrirArchivo;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem verToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modoCompactoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modoNormalToolStripMenuItem;
