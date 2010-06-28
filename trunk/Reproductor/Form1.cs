@@ -47,7 +47,6 @@ namespace Reproductor
         private void Abrir_Panel()
         {
             panelReproduccion.Show();
-           // panelReproduccion.CambiarPosicion();
             panelAbierto = true;
         }
 
