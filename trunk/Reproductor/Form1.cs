@@ -208,8 +208,7 @@ namespace Reproductor
 
         private void CambiarAModoCompacto()
         {
-            if (this.WindowState == FormWindowState.Maximized)
-                this.WindowState = FormWindowState.Normal;
+            this.WindowState = FormWindowState.Normal;
             this.CenterToScreen();
             tabControl1.Hide();
             this.MinimumSize = new Size(0,0);
