@@ -13,7 +13,7 @@ namespace Reproductor
     {
         private bool panelAbierto = true;
         private bool panelPegado = true;
-        PanelReproduccion panelReproduccion = new PanelReproduccion();
+        private PanelReproduccion panelReproduccion = new PanelReproduccion();
 
         public Form1()
         {

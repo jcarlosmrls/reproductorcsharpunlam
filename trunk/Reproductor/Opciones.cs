@@ -11,7 +11,6 @@ namespace Reproductor
     public partial class Opciones : Form
     {        
         private Form1 ventana_principal;
-        private Color color_nuevo;
         private bool hubo_cambio = false;
 
         public Opciones(Form1 form)
