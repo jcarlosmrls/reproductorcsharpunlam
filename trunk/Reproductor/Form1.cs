@@ -134,6 +134,8 @@ namespace Reproductor
             botonStop.BackColor = Color.FromName("Control");
             botonStop.BackgroundImage = null;
             botonStop.FlatStyle = FlatStyle.System;
+            //Panel lista de reproduccion
+            panelReproduccion.BackColor = Color.FromName("Control");
         }
 
         public void CambiarASkinPacman()
@@ -167,6 +169,8 @@ namespace Reproductor
             botonStop.FlatStyle = FlatStyle.Popup;
             botonStop.BackgroundImage = Properties.Resources.botonstop;
             botonStop.BackgroundImageLayout = ImageLayout.Stretch;
+            //Panel lista de reproduccion
+            panelReproduccion.BackColor = Color.Black;
         }
 
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
