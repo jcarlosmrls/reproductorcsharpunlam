@@ -65,7 +65,7 @@ namespace Reproductor
 
         private void opcionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Opciones opc = new Opciones(this);
+            Opciones opc = new Opciones(this, panelReproduccion);
             opc.Show();
         }
 
