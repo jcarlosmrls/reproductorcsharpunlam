@@ -136,6 +136,8 @@ namespace Reproductor
             botonStop.FlatStyle = FlatStyle.System;
             //Panel lista de reproduccion
             panelReproduccion.BackColor = Color.FromName("Control");
+            //paneles con pestaña
+            Cambiar_color_tabs(Color.FromName("Control"));
         }
 
         public void CambiarASkinPacman()
@@ -171,6 +173,8 @@ namespace Reproductor
             botonStop.BackgroundImageLayout = ImageLayout.Stretch;
             //Panel lista de reproduccion
             panelReproduccion.BackColor = Color.Black;
+            //paneles con pestaña
+            Cambiar_color_tabs(Color.Yellow);
         }
 
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
