@@ -11,12 +11,16 @@ namespace Reproductor
     public partial class Opciones : Form
     {        
         private Form1 ventana_principal;
+        private PanelReproduccion panel;
         private bool hubo_cambio = false;
 
-        public Opciones(Form1 form)
+        public Opciones(Form1 form, PanelReproduccion pan)
         {
             InitializeComponent();
             ventana_principal = form;
+            panel = pan;
+            ventana_principal.Enabled = false;
+            panel.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -50,6 +54,12 @@ namespace Reproductor
         {
             colorDialog2.ShowDialog();
             ventana_principal.Cambiar_color_tabs(colorDialog2.Color);
+        }
+
+        private void Opciones_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ventana_principal.Enabled = true;
+            panel.Enabled = true;
         }
     }
 }
