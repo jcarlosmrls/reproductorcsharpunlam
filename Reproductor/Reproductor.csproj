@@ -12,6 +12,8 @@
     <AssemblyName>Reproductor</AssemblyName>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -104,6 +106,7 @@
     <None Include="Resources\boton.png" />
     <Content Include="Resources\botonder.png" />
     <Content Include="Resources\botonizq.png" />
+    <Content Include="Resources\panel.png" />
     <None Include="Resources\botonstop.png" />
     <None Include="Resources\botonpresionado.png" />
   </ItemGroup>
