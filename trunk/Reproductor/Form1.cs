@@ -136,6 +136,8 @@ namespace Reproductor
             botonStop.FlatStyle = FlatStyle.System;
             //Panel lista de reproduccion
             panelReproduccion.BackColor = Color.FromName("Control");
+            //Panel inferior
+            panelBotones.BackgroundImage = null;
             //paneles con pestaña
             Cambiar_color_tabs(Color.FromName("Control"));
         }
@@ -173,6 +175,9 @@ namespace Reproductor
             botonStop.BackgroundImageLayout = ImageLayout.Stretch;
             //Panel lista de reproduccion
             panelReproduccion.BackColor = Color.Black;
+            //Panel inferior
+            panelBotones.BackgroundImage = Properties.Resources.panel;
+            panelBotones.BackgroundImageLayout = ImageLayout.Stretch;
             //paneles con pestaña
             Cambiar_color_tabs(Color.Yellow);
         }
