@@ -95,13 +95,6 @@ namespace Reproductor.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap icono {
-            get {
-                object obj = ResourceManager.GetObject("icono", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap panel {
             get {
                 object obj = ResourceManager.GetObject("panel", resourceCulture);
