@@ -30,7 +30,10 @@ namespace Reproductor
 
         private void PanelReproduccion_LocationChanged(object sender, EventArgs e)
         {
-            if (this.Location.X >= ventana_principal.Location.X + ventana_principal.Width - 30 && this.Location.X <= ventana_principal.Location.X + ventana_principal.Width + 30)
+            if ( (this.Location.X >= ventana_principal.Location.X + ventana_principal.Width - 30) &&
+                 (this.Location.X <= ventana_principal.Location.X + ventana_principal.Width + 30) &&
+                 (this.Location.Y >= ventana_principal.Location.Y - 30) &&
+                 (this.Location.Y <= ventana_principal.Location.Y + 30) )
             {
                 ventana_principal.CambiarPosicion();
                 ventana_principal.PegarPanel();

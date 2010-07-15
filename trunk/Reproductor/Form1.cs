@@ -140,6 +140,8 @@ namespace Reproductor
             panelBotones.BackgroundImage = null;
             //paneles con pestaña
             Cambiar_color_tabs(Color.FromName("Control"));
+            //Color de contador
+            label3.ForeColor = Color.FromName("ControlText");
         }
 
         public void CambiarASkinPacman()
@@ -180,6 +182,8 @@ namespace Reproductor
             panelBotones.BackgroundImageLayout = ImageLayout.Stretch;
             //paneles con pestaña
             Cambiar_color_tabs(Color.Yellow);
+            //Color del contador
+            label3.ForeColor = Color.White;
         }
 
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)

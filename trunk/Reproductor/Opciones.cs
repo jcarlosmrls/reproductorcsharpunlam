@@ -50,12 +50,6 @@ namespace Reproductor
             hubo_cambio = true;
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            colorDialog2.ShowDialog();
-            ventana_principal.Cambiar_color_tabs(colorDialog2.Color);
-        }
-
         private void Opciones_FormClosed(object sender, FormClosedEventArgs e)
         {
             ventana_principal.Enabled = true;
