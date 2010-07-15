@@ -41,5 +41,10 @@ namespace Reproductor
             else
                 ventana_principal.DespegarPanel();
         }
+
+        private void PanelReproduccion_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ventana_principal.Close();
+        }
     }
 }

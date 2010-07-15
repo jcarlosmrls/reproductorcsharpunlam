@@ -58,6 +58,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Lista de Reproducción";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PanelReproduccion_FormClosed);
             this.LocationChanged += new System.EventHandler(this.PanelReproduccion_LocationChanged);
             this.ResumeLayout(false);
 
