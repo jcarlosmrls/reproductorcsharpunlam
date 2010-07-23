@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{46C6F8DD-F45F-4826-9BBA-DEF009EC1477}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -58,6 +58,24 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modificar_Album.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modificar_Album.Designer.cs">
+      <DependentUpon>Modificar_Album.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modificar_Artista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modificar_Artista.Designer.cs">
+      <DependentUpon>Modificar_Artista.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modificar_Cancion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modificar_Cancion.Designer.cs">
+      <DependentUpon>Modificar_Cancion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Opciones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,18 +92,35 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AcercaDe.resx">
       <DependentUpon>AcercaDe.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modificar_Album.resx">
+      <DependentUpon>Modificar_Album.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modificar_Artista.resx">
+      <DependentUpon>Modificar_Artista.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modificar_Cancion.resx">
+      <DependentUpon>Modificar_Cancion.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Opciones.resx">
       <DependentUpon>Opciones.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PanelReproduccion.resx">
       <DependentUpon>PanelReproduccion.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
