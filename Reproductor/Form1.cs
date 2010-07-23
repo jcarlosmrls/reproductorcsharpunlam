@@ -24,6 +24,9 @@ namespace Reproductor
         private void Form1_Load(object sender, EventArgs e)
         {
             panelReproduccion.CambiarPosicion();
+            Reproductor.Form1.ActiveForm.Hide();
+            Login login = new Login();
+            login.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
