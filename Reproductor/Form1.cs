@@ -264,5 +264,23 @@ namespace Reproductor
         {
             panelPegado = false;
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Modificar_Artista m = new Modificar_Artista(this,panelReproduccion);
+            m.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Modificar_Album al = new Modificar_Album(this, panelReproduccion);
+            al.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Modificar_Cancion c = new Modificar_Cancion(this, panelReproduccion);
+            c.Show();
+        }
     }
 }
