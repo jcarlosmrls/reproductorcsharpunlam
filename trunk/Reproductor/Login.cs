@@ -13,6 +13,7 @@ namespace Reproductor
         public Login()
         {
             InitializeComponent();
+            radioButton1.Checked = true;
         }
 
         private void botonLogin_Click(object sender, EventArgs e)
@@ -23,6 +24,18 @@ namespace Reproductor
         private void botonCancelar_Click(object sender, EventArgs e)
         {
             Application.Exit();  
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            panel2.Enabled = true;
+            panel3.Enabled = false;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            panel2.Enabled = false;
+            panel3.Enabled = true;
         }
     }
 }
