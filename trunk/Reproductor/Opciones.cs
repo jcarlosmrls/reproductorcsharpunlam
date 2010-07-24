@@ -55,5 +55,10 @@ namespace Reproductor
             ventana_principal.Enabled = true;
             panel.Enabled = true;
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.ShowDialog();
+        }
     }
 }
