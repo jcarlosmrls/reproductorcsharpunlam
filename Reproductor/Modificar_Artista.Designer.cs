@@ -62,6 +62,7 @@
             // 
             // button2
             // 
+            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button2.Location = new System.Drawing.Point(208, 132);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(64, 30);
@@ -72,9 +73,11 @@
             // 
             // Modificar_Artista
             // 
+            this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.CancelButton = this.button2;
             this.ClientSize = new System.Drawing.Size(284, 174);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -82,6 +85,7 @@
             this.Controls.Add(this.textBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Modificar_Artista";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modificar_Artista";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Modificar_Artista_FormClosed);

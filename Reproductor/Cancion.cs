@@ -94,6 +94,15 @@ namespace Reproductor
                 return archivo.Properties.Duration;
             }
         }
+
+        public string Ruta
+        {
+            get
+            {
+                return archivo.Name;
+            }
+        }
+
         #endregion
 
         #region Metodos

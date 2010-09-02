@@ -96,7 +96,8 @@ namespace Reproductor
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            DesplazarString(ref textBoxCancion);
+            textBoxCancion.Text = DesplazarString(textBoxCancion.Text.ToString());
+            this.Text = DesplazarString(this.Text);
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -215,21 +216,24 @@ namespace Reproductor
 
         private void ActualizarEtiquetas()
         {
-            this.Text = lista[cancionActual].Nombre + "          ";
-            textBoxCancion.Text = lista[cancionActual].Nombre + "          ";
-            textBoxAlbum.Text = lista[cancionActual].Album;
-            if (lista[cancionActual].Año.ToString() != "0")
+            if (lista.Count != 0)
             {
-                textBoxAño.Text = lista[cancionActual].Año.ToString();
+                this.Text = lista[cancionActual].Nombre + "          ";
+                textBoxCancion.Text = lista[cancionActual].Nombre + "          ";
+                textBoxAlbum.Text = lista[cancionActual].Album;
+                if (lista[cancionActual].Año.ToString() != "0")
+                {
+                    textBoxAño.Text = lista[cancionActual].Año.ToString();
+                }
+                else
+                {
+                    textBoxAño.Text = "";
+                }
+                textBoxArtista.Text = lista[cancionActual].Artista;
+                textBoxGenero.Text = lista[cancionActual].Genero;
+                richTextBoxLetras.Text = lista[cancionActual].Letra;
+                labelContador.Text = lista[cancionActual].Duracion.ToString();
             }
-            else
-            {
-                textBoxAño.Text = "";
-            }
-            textBoxArtista.Text = lista[cancionActual].Artista;
-            textBoxGenero.Text = lista[cancionActual].Genero;
-            richTextBoxLetras.Text = lista[cancionActual].Letra;
-            labelContador.Text = lista[cancionActual].Duracion.ToString();
         }
                 
 
@@ -320,9 +324,25 @@ namespace Reproductor
             c.Show();
         }
 
-        private void DesplazarString(ref TextBox txtb)
+        private string DesplazarString(string texto)
         {
-            txtb.Text = txtb.Text.Substring(1) + txtb.Text.Substring(0, 1);
+            return texto.Substring(1) + texto.Substring(0, 1);
+        }
+
+        private void botonSiguiente_Click(object sender, EventArgs e)
+        {
+            cancionActual++;
+            if (cancionActual == lista.Count)
+                cancionActual = 0;
+            ActualizarEtiquetas();
+        }
+
+        private void botonAnterior_Click(object sender, EventArgs e)
+        {
+            cancionActual--;
+            if (cancionActual < 0)
+                cancionActual = lista.Count - 1;
+            ActualizarEtiquetas();
         }
     }
 }

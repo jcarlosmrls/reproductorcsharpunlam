@@ -46,6 +46,7 @@
             // 
             // button2
             // 
+            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button2.Location = new System.Drawing.Point(333, 194);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(64, 28);
@@ -153,8 +154,10 @@
             // 
             // Modificar_Album
             // 
+            this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.button2;
             this.ClientSize = new System.Drawing.Size(439, 238);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button3);
@@ -170,6 +173,7 @@
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Modificar_Album";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modificar_Album";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Modificar_Album_FormClosed);

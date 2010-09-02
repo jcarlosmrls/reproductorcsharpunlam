@@ -301,6 +301,7 @@
             this.botonAnterior.TabIndex = 3;
             this.botonAnterior.Text = "l◄◄";
             this.botonAnterior.UseVisualStyleBackColor = true;
+            this.botonAnterior.Click += new System.EventHandler(this.botonAnterior_Click);
             // 
             // button3
             // 
@@ -323,6 +324,7 @@
             this.botonSiguiente.TabIndex = 2;
             this.botonSiguiente.Text = "►►l";
             this.botonSiguiente.UseVisualStyleBackColor = true;
+            this.botonSiguiente.Click += new System.EventHandler(this.botonSiguiente_Click);
             // 
             // botonStop
             // 
@@ -666,7 +668,7 @@
             // timer
             // 
             this.timer.Enabled = true;
-            this.timer.Interval = 900;
+            this.timer.Interval = 500;
             this.timer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // abrirArchivo
@@ -675,9 +677,7 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.textBoxAño);
             this.panel1.Controls.Add(this.textBoxGenero);
             this.panel1.Controls.Add(this.textBoxAlbum);
@@ -702,7 +702,7 @@
             this.textBoxCancion.ReadOnly = true;
             this.textBoxCancion.Size = new System.Drawing.Size(338, 19);
             this.textBoxCancion.TabIndex = 9;
-            this.textBoxCancion.Text = "   ";
+            this.textBoxCancion.Text = "     ";
             this.textBoxCancion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxArtista
@@ -762,7 +762,7 @@
             this.MinimumSize = new System.Drawing.Size(655, 481);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Reproductor";
+            this.Text = "Reproductor                   ";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.LocationChanged += new System.EventHandler(this.Form1_LocationChanged);
