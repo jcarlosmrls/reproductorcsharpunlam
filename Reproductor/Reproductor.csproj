@@ -151,7 +151,6 @@
     <None Include="Resources\SinTapa.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Resources\boton.png" />
     <Content Include="Resources\botonder.png" />
     <Content Include="Resources\botonizq.png" />

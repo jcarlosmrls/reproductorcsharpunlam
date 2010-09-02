@@ -702,6 +702,7 @@
             this.textBoxCancion.ReadOnly = true;
             this.textBoxCancion.Size = new System.Drawing.Size(338, 19);
             this.textBoxCancion.TabIndex = 9;
+            this.textBoxCancion.Text = "   ";
             this.textBoxCancion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxArtista

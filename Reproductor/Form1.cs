@@ -96,7 +96,7 @@ namespace Reproductor
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //Funcion que desplaza el nombre de la cancion
+            DesplazarString(ref textBoxCancion);
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -215,8 +215,8 @@ namespace Reproductor
 
         private void ActualizarEtiquetas()
         {
-            this.Text = lista[cancionActual].Nombre;
-            textBoxCancion.Text = lista[cancionActual].Nombre;
+            this.Text = lista[cancionActual].Nombre + "          ";
+            textBoxCancion.Text = lista[cancionActual].Nombre + "          ";
             textBoxAlbum.Text = lista[cancionActual].Album;
             if (lista[cancionActual].Año.ToString() != "0")
             {
@@ -318,6 +318,11 @@ namespace Reproductor
         {
             Modificar_Cancion c = new Modificar_Cancion(this, panelReproduccion);
             c.Show();
+        }
+
+        private void DesplazarString(ref TextBox txtb)
+        {
+            txtb.Text = txtb.Text.Substring(1) + txtb.Text.Substring(0, 1);
         }
     }
 }
