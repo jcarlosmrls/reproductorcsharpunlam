@@ -58,13 +58,19 @@
             this.botonPlay = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.textBoxAño = new System.Windows.Forms.TextBox();
+            this.textBoxGenero = new System.Windows.Forms.TextBox();
+            this.textBoxAlbum = new System.Windows.Forms.TextBox();
+            this.textBoxArtista = new System.Windows.Forms.TextBox();
+            this.textBoxCancion = new System.Windows.Forms.TextBox();
             this.labelLetras = new System.Windows.Forms.Label();
-            this.richTextBoxLetras = new System.Windows.Forms.RichTextBox();
             this.labelAño = new System.Windows.Forms.Label();
             this.labelGenero = new System.Windows.Forms.Label();
             this.labelAlbum = new System.Windows.Forms.Label();
             this.labelArtista = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.richTextBoxLetras = new System.Windows.Forms.RichTextBox();
+            this.pictureBoxTapaDeAlbum = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -85,23 +91,17 @@
             this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.abrirArchivo = new System.Windows.Forms.OpenFileDialog();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.textBoxCancion = new System.Windows.Forms.TextBox();
-            this.textBoxArtista = new System.Windows.Forms.TextBox();
-            this.textBoxAlbum = new System.Windows.Forms.TextBox();
-            this.textBoxGenero = new System.Windows.Forms.TextBox();
-            this.textBoxAño = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.panelBotones.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTapaDeAlbum)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -131,19 +131,19 @@
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.abrirToolStripMenuItem.Text = "Abrir";
             this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(97, 6);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -216,7 +216,7 @@
             // opcionesToolStripMenuItem
             // 
             this.opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
-            this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.opcionesToolStripMenuItem.Text = "Opciones";
             this.opcionesToolStripMenuItem.Click += new System.EventHandler(this.opcionesToolStripMenuItem_Click);
             // 
@@ -231,7 +231,7 @@
             // acercaDeToolStripMenuItem
             // 
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.acercaDeToolStripMenuItem.Text = "Acerca de...";
             this.acercaDeToolStripMenuItem.Click += new System.EventHandler(this.acercaDeToolStripMenuItem_Click);
             // 
@@ -370,7 +370,7 @@
             // 
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Controls.Add(this.richTextBoxLetras);
-            this.tabPage1.Controls.Add(this.pictureBox1);
+            this.tabPage1.Controls.Add(this.pictureBoxTapaDeAlbum);
             this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 3, 150, 3);
@@ -380,6 +380,76 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Reproducción Actual";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.textBoxAño);
+            this.panel1.Controls.Add(this.textBoxGenero);
+            this.panel1.Controls.Add(this.textBoxAlbum);
+            this.panel1.Controls.Add(this.textBoxArtista);
+            this.panel1.Controls.Add(this.textBoxCancion);
+            this.panel1.Controls.Add(this.labelLetras);
+            this.panel1.Controls.Add(this.labelAño);
+            this.panel1.Controls.Add(this.labelGenero);
+            this.panel1.Controls.Add(this.labelAlbum);
+            this.panel1.Controls.Add(this.labelArtista);
+            this.panel1.Location = new System.Drawing.Point(260, 7);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(345, 157);
+            this.panel1.TabIndex = 10;
+            // 
+            // textBoxAño
+            // 
+            this.textBoxAño.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBoxAño.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxAño.Location = new System.Drawing.Point(89, 107);
+            this.textBoxAño.Name = "textBoxAño";
+            this.textBoxAño.ReadOnly = true;
+            this.textBoxAño.Size = new System.Drawing.Size(253, 19);
+            this.textBoxAño.TabIndex = 13;
+            // 
+            // textBoxGenero
+            // 
+            this.textBoxGenero.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBoxGenero.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxGenero.Location = new System.Drawing.Point(89, 84);
+            this.textBoxGenero.Name = "textBoxGenero";
+            this.textBoxGenero.ReadOnly = true;
+            this.textBoxGenero.Size = new System.Drawing.Size(253, 19);
+            this.textBoxGenero.TabIndex = 12;
+            // 
+            // textBoxAlbum
+            // 
+            this.textBoxAlbum.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBoxAlbum.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxAlbum.Location = new System.Drawing.Point(89, 60);
+            this.textBoxAlbum.Name = "textBoxAlbum";
+            this.textBoxAlbum.ReadOnly = true;
+            this.textBoxAlbum.Size = new System.Drawing.Size(253, 19);
+            this.textBoxAlbum.TabIndex = 11;
+            // 
+            // textBoxArtista
+            // 
+            this.textBoxArtista.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBoxArtista.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxArtista.Location = new System.Drawing.Point(89, 36);
+            this.textBoxArtista.Name = "textBoxArtista";
+            this.textBoxArtista.ReadOnly = true;
+            this.textBoxArtista.Size = new System.Drawing.Size(253, 19);
+            this.textBoxArtista.TabIndex = 10;
+            // 
+            // textBoxCancion
+            // 
+            this.textBoxCancion.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBoxCancion.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxCancion.Location = new System.Drawing.Point(4, 4);
+            this.textBoxCancion.Name = "textBoxCancion";
+            this.textBoxCancion.ReadOnly = true;
+            this.textBoxCancion.Size = new System.Drawing.Size(338, 19);
+            this.textBoxCancion.TabIndex = 9;
+            this.textBoxCancion.Text = "     ";
+            this.textBoxCancion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // labelLetras
             // 
@@ -392,18 +462,6 @@
             this.labelLetras.Size = new System.Drawing.Size(48, 16);
             this.labelLetras.TabIndex = 8;
             this.labelLetras.Text = "Letras:";
-            // 
-            // richTextBoxLetras
-            // 
-            this.richTextBoxLetras.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBoxLetras.DetectUrls = false;
-            this.richTextBoxLetras.Location = new System.Drawing.Point(260, 170);
-            this.richTextBoxLetras.Name = "richTextBoxLetras";
-            this.richTextBoxLetras.ReadOnly = true;
-            this.richTextBoxLetras.Size = new System.Drawing.Size(346, 73);
-            this.richTextBoxLetras.TabIndex = 7;
-            this.richTextBoxLetras.Text = "";
             // 
             // labelAño
             // 
@@ -453,21 +511,33 @@
             this.labelArtista.TabIndex = 3;
             this.labelArtista.Text = "Artista: ";
             // 
-            // pictureBox1
+            // richTextBoxLetras
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.richTextBoxLetras.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBoxLetras.DetectUrls = false;
+            this.richTextBoxLetras.Location = new System.Drawing.Point(260, 170);
+            this.richTextBoxLetras.Name = "richTextBoxLetras";
+            this.richTextBoxLetras.ReadOnly = true;
+            this.richTextBoxLetras.Size = new System.Drawing.Size(346, 73);
+            this.richTextBoxLetras.TabIndex = 7;
+            this.richTextBoxLetras.Text = "";
+            // 
+            // pictureBoxTapaDeAlbum
+            // 
+            this.pictureBoxTapaDeAlbum.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Image = global::Reproductor.Properties.Resources.SinTapa;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(6, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(230, 244);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pictureBoxTapaDeAlbum.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBoxTapaDeAlbum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxTapaDeAlbum.Image = global::Reproductor.Properties.Resources.SinTapa;
+            this.pictureBoxTapaDeAlbum.InitialImage = null;
+            this.pictureBoxTapaDeAlbum.Location = new System.Drawing.Point(6, 3);
+            this.pictureBoxTapaDeAlbum.Name = "pictureBoxTapaDeAlbum";
+            this.pictureBoxTapaDeAlbum.Size = new System.Drawing.Size(230, 244);
+            this.pictureBoxTapaDeAlbum.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxTapaDeAlbum.TabIndex = 0;
+            this.pictureBoxTapaDeAlbum.TabStop = false;
             // 
             // tabPage2
             // 
@@ -483,7 +553,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(612, 235);
+            this.tabPage2.Size = new System.Drawing.Size(612, 249);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Biblioteca";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -525,7 +595,7 @@
             this.listBox2.FormattingEnabled = true;
             this.listBox2.Location = new System.Drawing.Point(415, 41);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(191, 186);
+            this.listBox2.Size = new System.Drawing.Size(191, 199);
             this.listBox2.TabIndex = 6;
             // 
             // label10
@@ -564,7 +634,7 @@
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listView1.Location = new System.Drawing.Point(212, 41);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(186, 184);
+            this.listView1.Size = new System.Drawing.Size(186, 198);
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
@@ -575,7 +645,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(6, 41);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(191, 186);
+            this.listBox1.Size = new System.Drawing.Size(191, 199);
             this.listBox1.TabIndex = 0;
             // 
             // tabPage3
@@ -584,7 +654,7 @@
             this.tabPage3.Controls.Add(this.panel3);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(612, 235);
+            this.tabPage3.Size = new System.Drawing.Size(612, 249);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Buscador";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -596,7 +666,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.listView2.Location = new System.Drawing.Point(182, 11);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(419, 208);
+            this.listView2.Size = new System.Drawing.Size(419, 222);
             this.listView2.TabIndex = 1;
             this.listView2.UseCompatibleStateImageBehavior = false;
             // 
@@ -610,7 +680,7 @@
             this.panel3.Controls.Add(this.textBox1);
             this.panel3.Location = new System.Drawing.Point(8, 9);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(167, 211);
+            this.panel3.Size = new System.Drawing.Size(167, 225);
             this.panel3.TabIndex = 0;
             // 
             // button7
@@ -675,76 +745,6 @@
             // 
             this.abrirArchivo.FileName = "openFileDialog1";
             // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.textBoxAño);
-            this.panel1.Controls.Add(this.textBoxGenero);
-            this.panel1.Controls.Add(this.textBoxAlbum);
-            this.panel1.Controls.Add(this.textBoxArtista);
-            this.panel1.Controls.Add(this.textBoxCancion);
-            this.panel1.Controls.Add(this.labelLetras);
-            this.panel1.Controls.Add(this.labelAño);
-            this.panel1.Controls.Add(this.labelGenero);
-            this.panel1.Controls.Add(this.labelAlbum);
-            this.panel1.Controls.Add(this.labelArtista);
-            this.panel1.Location = new System.Drawing.Point(260, 7);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(345, 157);
-            this.panel1.TabIndex = 10;
-            // 
-            // textBoxCancion
-            // 
-            this.textBoxCancion.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.textBoxCancion.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxCancion.Location = new System.Drawing.Point(4, 4);
-            this.textBoxCancion.Name = "textBoxCancion";
-            this.textBoxCancion.ReadOnly = true;
-            this.textBoxCancion.Size = new System.Drawing.Size(338, 19);
-            this.textBoxCancion.TabIndex = 9;
-            this.textBoxCancion.Text = "     ";
-            this.textBoxCancion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBoxArtista
-            // 
-            this.textBoxArtista.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.textBoxArtista.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxArtista.Location = new System.Drawing.Point(89, 36);
-            this.textBoxArtista.Name = "textBoxArtista";
-            this.textBoxArtista.ReadOnly = true;
-            this.textBoxArtista.Size = new System.Drawing.Size(253, 19);
-            this.textBoxArtista.TabIndex = 10;
-            // 
-            // textBoxAlbum
-            // 
-            this.textBoxAlbum.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.textBoxAlbum.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxAlbum.Location = new System.Drawing.Point(89, 60);
-            this.textBoxAlbum.Name = "textBoxAlbum";
-            this.textBoxAlbum.ReadOnly = true;
-            this.textBoxAlbum.Size = new System.Drawing.Size(253, 19);
-            this.textBoxAlbum.TabIndex = 11;
-            // 
-            // textBoxGenero
-            // 
-            this.textBoxGenero.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.textBoxGenero.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxGenero.Location = new System.Drawing.Point(89, 84);
-            this.textBoxGenero.Name = "textBoxGenero";
-            this.textBoxGenero.ReadOnly = true;
-            this.textBoxGenero.Size = new System.Drawing.Size(253, 19);
-            this.textBoxGenero.TabIndex = 12;
-            // 
-            // textBoxAño
-            // 
-            this.textBoxAño.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.textBoxAño.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxAño.Location = new System.Drawing.Point(89, 107);
-            this.textBoxAño.Name = "textBoxAño";
-            this.textBoxAño.ReadOnly = true;
-            this.textBoxAño.Size = new System.Drawing.Size(253, 19);
-            this.textBoxAño.TabIndex = 13;
-            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -772,7 +772,9 @@
             this.panelBotones.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTapaDeAlbum)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -780,8 +782,6 @@
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -799,7 +799,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBoxTapaDeAlbum;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Button botonStop;
         private System.Windows.Forms.Button button3;
