@@ -48,7 +48,7 @@
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelBotones = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labelContador = new System.Windows.Forms.Label();
             this.botonVolumen = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.botonAnterior = new System.Windows.Forms.Button();
@@ -58,13 +58,12 @@
             this.botonPlay = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelLetras = new System.Windows.Forms.Label();
+            this.richTextBoxLetras = new System.Windows.Forms.RichTextBox();
+            this.labelAño = new System.Windows.Forms.Label();
+            this.labelGenero = new System.Windows.Forms.Label();
+            this.labelAlbum = new System.Windows.Forms.Label();
+            this.labelArtista = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button4 = new System.Windows.Forms.Button();
@@ -84,8 +83,14 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.abrirArchivo = new System.Windows.Forms.OpenFileDialog();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.textBoxCancion = new System.Windows.Forms.TextBox();
+            this.textBoxArtista = new System.Windows.Forms.TextBox();
+            this.textBoxAlbum = new System.Windows.Forms.TextBox();
+            this.textBoxGenero = new System.Windows.Forms.TextBox();
+            this.textBoxAño = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.panelBotones.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -96,6 +101,7 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -125,19 +131,19 @@
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.abrirToolStripMenuItem.Text = "Abrir";
             this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(97, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -210,7 +216,7 @@
             // opcionesToolStripMenuItem
             // 
             this.opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
-            this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.opcionesToolStripMenuItem.Text = "Opciones";
             this.opcionesToolStripMenuItem.Click += new System.EventHandler(this.opcionesToolStripMenuItem_Click);
             // 
@@ -225,7 +231,7 @@
             // acercaDeToolStripMenuItem
             // 
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.acercaDeToolStripMenuItem.Text = "Acerca de...";
             this.acercaDeToolStripMenuItem.Click += new System.EventHandler(this.acercaDeToolStripMenuItem_Click);
             // 
@@ -233,7 +239,7 @@
             // 
             this.panelBotones.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.panelBotones.BackColor = System.Drawing.SystemColors.Control;
-            this.panelBotones.Controls.Add(this.label3);
+            this.panelBotones.Controls.Add(this.labelContador);
             this.panelBotones.Controls.Add(this.botonVolumen);
             this.panelBotones.Controls.Add(this.button6);
             this.panelBotones.Controls.Add(this.botonAnterior);
@@ -241,24 +247,24 @@
             this.panelBotones.Controls.Add(this.botonSiguiente);
             this.panelBotones.Controls.Add(this.botonStop);
             this.panelBotones.Controls.Add(this.botonPlay);
-            this.panelBotones.Location = new System.Drawing.Point(7, 336);
+            this.panelBotones.Location = new System.Drawing.Point(7, 350);
             this.panelBotones.MaximumSize = new System.Drawing.Size(621, 113);
             this.panelBotones.MinimumSize = new System.Drawing.Size(621, 93);
             this.panelBotones.Name = "panelBotones";
             this.panelBotones.Size = new System.Drawing.Size(621, 101);
             this.panelBotones.TabIndex = 1;
             // 
-            // label3
+            // labelContador
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.labelContador.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(543, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "00:00:00";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelContador.AutoSize = true;
+            this.labelContador.Location = new System.Drawing.Point(543, 69);
+            this.labelContador.Name = "labelContador";
+            this.labelContador.Size = new System.Drawing.Size(49, 13);
+            this.labelContador.TabIndex = 4;
+            this.labelContador.Text = "00:00:00";
+            this.labelContador.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // botonVolumen
             // 
@@ -355,112 +361,95 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 31);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(620, 261);
+            this.tabControl1.Size = new System.Drawing.Size(620, 275);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.richTextBox1);
-            this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.panel1);
+            this.tabPage1.Controls.Add(this.richTextBoxLetras);
             this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 3, 150, 3);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(612, 235);
+            this.tabPage1.Size = new System.Drawing.Size(612, 249);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Reproducción Actual";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // labelLetras
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(264, 136);
-            this.label2.Name = "label2";
-            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label2.Size = new System.Drawing.Size(48, 16);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Letras:";
+            this.labelLetras.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelLetras.AutoSize = true;
+            this.labelLetras.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLetras.Location = new System.Drawing.Point(4, 132);
+            this.labelLetras.Name = "labelLetras";
+            this.labelLetras.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.labelLetras.Size = new System.Drawing.Size(48, 16);
+            this.labelLetras.TabIndex = 8;
+            this.labelLetras.Text = "Letras:";
             // 
-            // richTextBox1
+            // richTextBoxLetras
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.richTextBoxLetras.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.DetectUrls = false;
-            this.richTextBox1.Location = new System.Drawing.Point(260, 164);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(346, 65);
-            this.richTextBox1.TabIndex = 7;
-            this.richTextBox1.Text = "";
+            this.richTextBoxLetras.DetectUrls = false;
+            this.richTextBoxLetras.Location = new System.Drawing.Point(260, 170);
+            this.richTextBoxLetras.Name = "richTextBoxLetras";
+            this.richTextBoxLetras.ReadOnly = true;
+            this.richTextBoxLetras.Size = new System.Drawing.Size(346, 73);
+            this.richTextBoxLetras.TabIndex = 7;
+            this.richTextBoxLetras.Text = "";
             // 
-            // label7
+            // labelAño
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(264, 113);
-            this.label7.Name = "label7";
-            this.label7.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label7.Size = new System.Drawing.Size(32, 16);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Año";
+            this.labelAño.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelAño.AutoSize = true;
+            this.labelAño.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAño.Location = new System.Drawing.Point(4, 108);
+            this.labelAño.Name = "labelAño";
+            this.labelAño.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.labelAño.Size = new System.Drawing.Size(38, 16);
+            this.labelAño.TabIndex = 6;
+            this.labelAño.Text = "Año: ";
             // 
-            // label6
+            // labelGenero
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(264, 90);
-            this.label6.Name = "label6";
-            this.label6.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label6.Size = new System.Drawing.Size(41, 16);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Estilo";
+            this.labelGenero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelGenero.AutoSize = true;
+            this.labelGenero.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGenero.Location = new System.Drawing.Point(4, 83);
+            this.labelGenero.Name = "labelGenero";
+            this.labelGenero.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.labelGenero.Size = new System.Drawing.Size(59, 16);
+            this.labelGenero.TabIndex = 5;
+            this.labelGenero.Text = "Genero: ";
             // 
-            // label5
+            // labelAlbum
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(264, 67);
-            this.label5.Name = "label5";
-            this.label5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label5.Size = new System.Drawing.Size(45, 16);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Artista";
+            this.labelAlbum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelAlbum.AutoSize = true;
+            this.labelAlbum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAlbum.Location = new System.Drawing.Point(4, 60);
+            this.labelAlbum.Name = "labelAlbum";
+            this.labelAlbum.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.labelAlbum.Size = new System.Drawing.Size(52, 16);
+            this.labelAlbum.TabIndex = 4;
+            this.labelAlbum.Text = "Album: ";
             // 
-            // label4
+            // labelArtista
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(264, 44);
-            this.label4.Name = "label4";
-            this.label4.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label4.Size = new System.Drawing.Size(46, 16);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Album";
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(347, 13);
-            this.label1.Name = "label1";
-            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label1.Size = new System.Drawing.Size(151, 24);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Nombre cancion";
+            this.labelArtista.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelArtista.AutoSize = true;
+            this.labelArtista.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelArtista.Location = new System.Drawing.Point(4, 37);
+            this.labelArtista.Name = "labelArtista";
+            this.labelArtista.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.labelArtista.Size = new System.Drawing.Size(51, 16);
+            this.labelArtista.TabIndex = 3;
+            this.labelArtista.Text = "Artista: ";
             // 
             // pictureBox1
             // 
@@ -473,7 +462,7 @@
             this.pictureBox1.InitialImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(6, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(230, 230);
+            this.pictureBox1.Size = new System.Drawing.Size(230, 244);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -655,7 +644,7 @@
             // 
             this.trackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBar1.Location = new System.Drawing.Point(12, 296);
+            this.trackBar1.Location = new System.Drawing.Point(12, 310);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(615, 45);
@@ -665,7 +654,7 @@
             // trackBar2
             // 
             this.trackBar2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.trackBar2.Location = new System.Drawing.Point(469, 202);
+            this.trackBar2.Location = new System.Drawing.Point(469, 216);
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.trackBar2.Size = new System.Drawing.Size(45, 178);
@@ -674,22 +663,93 @@
             this.trackBar2.Visible = false;
             this.trackBar2.MouseLeave += new System.EventHandler(this.trackBar2_Leave);
             // 
-            // timer1
+            // timer
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 900;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer.Enabled = true;
+            this.timer.Interval = 900;
+            this.timer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // abrirArchivo
             // 
             this.abrirArchivo.FileName = "openFileDialog1";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.textBoxAño);
+            this.panel1.Controls.Add(this.textBoxGenero);
+            this.panel1.Controls.Add(this.textBoxAlbum);
+            this.panel1.Controls.Add(this.textBoxArtista);
+            this.panel1.Controls.Add(this.textBoxCancion);
+            this.panel1.Controls.Add(this.labelLetras);
+            this.panel1.Controls.Add(this.labelAño);
+            this.panel1.Controls.Add(this.labelGenero);
+            this.panel1.Controls.Add(this.labelAlbum);
+            this.panel1.Controls.Add(this.labelArtista);
+            this.panel1.Location = new System.Drawing.Point(260, 7);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(345, 157);
+            this.panel1.TabIndex = 10;
+            // 
+            // textBoxCancion
+            // 
+            this.textBoxCancion.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBoxCancion.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxCancion.Location = new System.Drawing.Point(4, 4);
+            this.textBoxCancion.Name = "textBoxCancion";
+            this.textBoxCancion.ReadOnly = true;
+            this.textBoxCancion.Size = new System.Drawing.Size(338, 19);
+            this.textBoxCancion.TabIndex = 9;
+            this.textBoxCancion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBoxArtista
+            // 
+            this.textBoxArtista.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBoxArtista.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxArtista.Location = new System.Drawing.Point(89, 36);
+            this.textBoxArtista.Name = "textBoxArtista";
+            this.textBoxArtista.ReadOnly = true;
+            this.textBoxArtista.Size = new System.Drawing.Size(253, 19);
+            this.textBoxArtista.TabIndex = 10;
+            // 
+            // textBoxAlbum
+            // 
+            this.textBoxAlbum.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBoxAlbum.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxAlbum.Location = new System.Drawing.Point(89, 60);
+            this.textBoxAlbum.Name = "textBoxAlbum";
+            this.textBoxAlbum.ReadOnly = true;
+            this.textBoxAlbum.Size = new System.Drawing.Size(253, 19);
+            this.textBoxAlbum.TabIndex = 11;
+            // 
+            // textBoxGenero
+            // 
+            this.textBoxGenero.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBoxGenero.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxGenero.Location = new System.Drawing.Point(89, 84);
+            this.textBoxGenero.Name = "textBoxGenero";
+            this.textBoxGenero.ReadOnly = true;
+            this.textBoxGenero.Size = new System.Drawing.Size(253, 19);
+            this.textBoxGenero.TabIndex = 12;
+            // 
+            // textBoxAño
+            // 
+            this.textBoxAño.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBoxAño.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxAño.Location = new System.Drawing.Point(89, 107);
+            this.textBoxAño.Name = "textBoxAño";
+            this.textBoxAño.ReadOnly = true;
+            this.textBoxAño.Size = new System.Drawing.Size(253, 19);
+            this.textBoxAño.TabIndex = 13;
             // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.ClientSize = new System.Drawing.Size(639, 449);
+            this.ClientSize = new System.Drawing.Size(639, 463);
             this.Controls.Add(this.trackBar2);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panelBotones);
@@ -711,7 +771,6 @@
             this.panelBotones.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
@@ -720,6 +779,8 @@
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -740,20 +801,19 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Button botonStop;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button botonSiguiente;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelContador;
         private System.Windows.Forms.Button botonAnterior;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelAño;
+        private System.Windows.Forms.Label labelGenero;
+        private System.Windows.Forms.Label labelAlbum;
+        private System.Windows.Forms.Label labelArtista;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem opcionesToolStripMenuItem;
         private System.Windows.Forms.Button botonVolumen;
         private System.Windows.Forms.TrackBar trackBar2;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.ToolStripMenuItem accionesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reproducirPausarToolStripMenuItem;
@@ -776,13 +836,19 @@
         private System.Windows.Forms.ToolStripMenuItem verToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modoCompactoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modoNormalToolStripMenuItem;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RichTextBox richTextBoxLetras;
+        private System.Windows.Forms.Label labelLetras;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox textBoxCancion;
+        private System.Windows.Forms.TextBox textBoxAño;
+        private System.Windows.Forms.TextBox textBoxGenero;
+        private System.Windows.Forms.TextBox textBoxAlbum;
+        private System.Windows.Forms.TextBox textBoxArtista;
     }
 }
 
