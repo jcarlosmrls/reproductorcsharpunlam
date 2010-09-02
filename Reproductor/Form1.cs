@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace Reproductor
 {
@@ -212,6 +213,7 @@ namespace Reproductor
                 lista.Add(new Cancion(path));
             }
             ActualizarEtiquetas();
+            ObtenerImagen();
         }
 
         private void ActualizarEtiquetas()
@@ -236,6 +238,11 @@ namespace Reproductor
             }
         }
                 
+
+        private void ObtenerImagen()
+        {
+            pictureBoxTapaDeAlbum.Image = lista[cancionActual].Imagen;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -335,6 +342,7 @@ namespace Reproductor
             if (cancionActual == lista.Count)
                 cancionActual = 0;
             ActualizarEtiquetas();
+            ObtenerImagen();
         }
 
         private void botonAnterior_Click(object sender, EventArgs e)
@@ -343,6 +351,7 @@ namespace Reproductor
             if (cancionActual < 0)
                 cancionActual = lista.Count - 1;
             ActualizarEtiquetas();
+            ObtenerImagen();
         }
     }
 }

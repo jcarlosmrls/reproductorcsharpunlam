@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
+using System.Drawing;
 using TagLib;
 
 namespace Reproductor
@@ -10,7 +12,8 @@ namespace Reproductor
         #region Variables
 
         private TagLib.File archivo;    //Objeto que contiene todos las variables
-
+        private MemoryStream memoria;
+        private Image imagen;           //Una copia de la imagen de tapa
         #endregion
 
         #region Propiedades
@@ -103,6 +106,14 @@ namespace Reproductor
             }
         }
 
+        public Image Imagen
+        {
+            get
+            {
+                return imagen;
+            }
+        }
+
         #endregion
 
         #region Metodos
@@ -110,7 +121,22 @@ namespace Reproductor
         public Cancion(string filePath)
         {
             archivo = TagLib.File.Create(filePath);
+            try
+            {
+                memoria = new MemoryStream(archivo.Tag.Pictures[0].Data.Data);
+                imagen = Image.FromStream(memoria);
+            }
+            catch (Exception)
+            {
+                imagen = Reproductor.Properties.Resources.SinTapa;
+            }
+            finally
+            {
+                if (memoria != null)
+                    memoria.Close();
+            }
         }
+
         #endregion
     }
 }
