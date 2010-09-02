@@ -142,8 +142,10 @@
             // 
             // Modificar_Cancion
             // 
+            this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.button2;
             this.ClientSize = new System.Drawing.Size(264, 208);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.textBox4);
@@ -158,6 +160,7 @@
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Modificar_Cancion";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modificar_Cancion";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Modificar_Cancion_FormClosed);
