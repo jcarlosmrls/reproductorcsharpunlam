@@ -11,9 +11,15 @@ namespace Reproductor
 {
     public partial class Form1 : Form
     {
+        #region Variables
+
+        List<Cancion> lista;
+        private int cancionActual;
         private bool panelAbierto = true;
         private bool panelPegado = true;
         private PanelReproduccion panelReproduccion = new PanelReproduccion();
+
+        #endregion
 
         public Form1()
         {
@@ -25,6 +31,11 @@ namespace Reproductor
         {
             panelReproduccion.CambiarPosicion();
             Reproductor.Form1.ActiveForm.Hide();
+            lista = new List<Cancion>();
+            abrirArchivo.Multiselect = true;
+            abrirArchivo.FileName = "";
+            abrirArchivo.Filter = "MP3 files|*.mp3|WAV files|*.wav|All files|*.*";
+            cancionActual = 0;
             Login login = new Login();
             login.Show();
         }
@@ -85,7 +96,7 @@ namespace Reproductor
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            label3.Text = DateTime.Now.ToString("HH:mm:ss");
+            //Funcion que desplaza el nombre de la cancion
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -104,7 +115,6 @@ namespace Reproductor
 
         public void Cambiar_color_tabs(Color col)
         {
-            
             tabPage1.BackColor = col;
             tabPage2.BackColor = col;
             tabPage3.BackColor = col;
@@ -144,7 +154,7 @@ namespace Reproductor
             //paneles con pestaña
             Cambiar_color_tabs(Color.FromName("Control"));
             //Color de contador
-            label3.ForeColor = Color.FromName("ControlText");
+            labelContador.ForeColor = Color.FromName("ControlText");
         }
 
         public void CambiarASkinPacman()
@@ -186,16 +196,43 @@ namespace Reproductor
             //paneles con pestaña
             Cambiar_color_tabs(Color.Yellow);
             //Color del contador
-            label3.ForeColor = Color.White;
+            labelContador.ForeColor = Color.White;
         }
 
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            abrirArchivo.FileName = "";
-            abrirArchivo.Filter = "MP3 files|*.mp3|WAV files|*.wav|All files|*.*";
+            string []rutas;
+            lista.Clear();      //Hay que ver si es asi o no
+
             abrirArchivo.ShowDialog();
+            rutas = abrirArchivo.FileNames;
+            foreach (string path in rutas)
+            {
+                lista.Add(new Cancion(path));
+            }
+            ActualizarEtiquetas();
         }
-        
+
+        private void ActualizarEtiquetas()
+        {
+            this.Text = lista[cancionActual].Nombre;
+            textBoxCancion.Text = lista[cancionActual].Nombre;
+            textBoxAlbum.Text = lista[cancionActual].Album;
+            if (lista[cancionActual].Año.ToString() != "0")
+            {
+                textBoxAño.Text = lista[cancionActual].Año.ToString();
+            }
+            else
+            {
+                textBoxAño.Text = "";
+            }
+            textBoxArtista.Text = lista[cancionActual].Artista;
+            textBoxGenero.Text = lista[cancionActual].Genero;
+            richTextBoxLetras.Text = lista[cancionActual].Letra;
+            labelContador.Text = lista[cancionActual].Duracion.ToString();
+        }
+                
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (panelPegado)
