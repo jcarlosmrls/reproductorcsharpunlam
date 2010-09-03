@@ -19,6 +19,7 @@ namespace Reproductor
         private bool panelAbierto = true;
         private bool panelPegado = true;
         private PanelReproduccion panelReproduccion = new PanelReproduccion();
+        private Player player;
 
         #endregion
 
@@ -37,6 +38,8 @@ namespace Reproductor
             abrirArchivo.FileName = "";
             abrirArchivo.Filter = "MP3 files|*.mp3|WAV files|*.wav|All files|*.*";
             cancionActual = 0;
+            player = new Player();
+
             Login login = new Login();
             login.Show();
         }
@@ -97,8 +100,11 @@ namespace Reproductor
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            textBoxCancion.Text = DesplazarString(textBoxCancion.Text.ToString());
-            this.Text = DesplazarString(this.Text);
+            //if (isPlaying)
+            //{
+                textBoxCancion.Text = DesplazarString(textBoxCancion.Text.ToString());
+                this.Text = DesplazarString(this.Text);
+            //}
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -338,20 +344,47 @@ namespace Reproductor
 
         private void botonSiguiente_Click(object sender, EventArgs e)
         {
-            cancionActual++;
-            if (cancionActual == lista.Count)
-                cancionActual = 0;
-            ActualizarEtiquetas();
-            ObtenerImagen();
+            player.Close();
+            if (lista.Count != 0)
+            {
+                cancionActual++;
+                if (cancionActual == lista.Count)
+                    cancionActual = 0;
+                ActualizarEtiquetas();
+                if (lista.Count != 0)
+                    ObtenerImagen();
+                player.Open(lista[cancionActual].Ruta);
+                player.Play(false);
+            }
         }
 
         private void botonAnterior_Click(object sender, EventArgs e)
         {
-            cancionActual--;
-            if (cancionActual < 0)
-                cancionActual = lista.Count - 1;
-            ActualizarEtiquetas();
-            ObtenerImagen();
+            player.Close();
+            if(lista.Count != 0)
+            {
+                cancionActual--;
+                if (cancionActual < 0)
+                    cancionActual = lista.Count - 1;
+                ActualizarEtiquetas();
+                if (lista.Count != 0)
+                    ObtenerImagen();
+                player.Open(lista[cancionActual].Ruta);
+                player.Play(false);
+            }
+        }
+
+        private void botonPlay_Click(object sender, EventArgs e)
+        {
+            if (player.Reproduciendo())
+            {
+                player.Pause();
+            }
+            else
+            {
+                player.Open(lista[cancionActual].Ruta);
+                player.Play(false);
+            }
         }
     }
 }

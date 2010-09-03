@@ -351,6 +351,7 @@
             this.botonPlay.TabIndex = 0;
             this.botonPlay.Text = "►";
             this.botonPlay.UseVisualStyleBackColor = true;
+            this.botonPlay.Click += new System.EventHandler(this.botonPlay_Click);
             // 
             // tabControl1
             // 
