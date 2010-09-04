@@ -120,7 +120,7 @@ namespace Reproductor
 
         public Cancion(string filePath)
         {
-            archivo = TagLib.File.Create(filePath);
+            archivo = TagLib.File.Create(@filePath);
             try
             {
                 memoria = new MemoryStream(archivo.Tag.Pictures[0].Data.Data);

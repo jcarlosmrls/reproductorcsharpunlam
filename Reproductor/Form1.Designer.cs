@@ -745,6 +745,7 @@
             // abrirArchivo
             // 
             this.abrirArchivo.FileName = "openFileDialog1";
+            this.abrirArchivo.FileOk += new System.ComponentModel.CancelEventHandler(this.abrirArchivo_FileOk);
             // 
             // Form1
             // 
