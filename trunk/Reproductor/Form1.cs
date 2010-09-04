@@ -37,7 +37,7 @@ namespace Reproductor
             abrirArchivo.Multiselect = true;
             abrirArchivo.FileName = "";
             abrirArchivo.Filter = "MP3 files|*.mp3|WAV files|*.wav|All files|*.*";
-            cancionActual = 0;
+            cancionActual = -1;
             player = new Player();
 
             Login login = new Login();
@@ -209,22 +209,12 @@ namespace Reproductor
 
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string []rutas;
-            lista.Clear();      //Hay que ver si es asi o no
-
             abrirArchivo.ShowDialog();
-            rutas = abrirArchivo.FileNames;
-            foreach (string path in rutas)
-            {
-                lista.Add(new Cancion(path));
-            }
-            ActualizarEtiquetas();
-            ObtenerImagen();
         }
 
         private void ActualizarEtiquetas()
         {
-            if (lista.Count != 0)
+            if (lista.Count != -1)
             {
                 this.Text = lista[cancionActual].Nombre + "          ";
                 textBoxCancion.Text = lista[cancionActual].Nombre + "          ";
@@ -344,47 +334,68 @@ namespace Reproductor
 
         private void botonSiguiente_Click(object sender, EventArgs e)
         {
-            player.Close();
-            if (lista.Count != 0)
+            if (cancionActual != -1)
             {
+                player.Close();
                 cancionActual++;
                 if (cancionActual == lista.Count)
                     cancionActual = 0;
                 ActualizarEtiquetas();
                 if (lista.Count != 0)
                     ObtenerImagen();
-                player.Open(lista[cancionActual].Ruta);
+                player.Open(lista[cancionActual].Ruta.ToString());
                 player.Play(false);
             }
         }
 
         private void botonAnterior_Click(object sender, EventArgs e)
         {
-            player.Close();
-            if(lista.Count != 0)
+            if(cancionActual != -1)
             {
+                player.Close();
                 cancionActual--;
                 if (cancionActual < 0)
                     cancionActual = lista.Count - 1;
                 ActualizarEtiquetas();
                 if (lista.Count != 0)
                     ObtenerImagen();
-                player.Open(lista[cancionActual].Ruta);
+                player.Open(lista[cancionActual].Ruta.ToString());
                 player.Play(false);
             }
         }
 
         private void botonPlay_Click(object sender, EventArgs e)
         {
-            if (player.Reproduciendo())
+            if (cancionActual != -1)
             {
-                player.Pause();
+                if (player.Reproduciendo())
+                {
+                    player.Pause();
+                }
+                else
+                {
+                    player.Open(lista[cancionActual].Ruta.ToString());
+                    player.Play(false);
+                }
             }
-            else
+        }
+
+        private void abrirArchivo_FileOk(object sender, CancelEventArgs e)
+        {
+            string[] rutas;
+
+            lista.Clear();      //Hay que ver si es asi o no
+            rutas = abrirArchivo.FileNames;
+            foreach (string path in rutas)
             {
-                player.Open(lista[cancionActual].Ruta);
-                player.Play(false);
+                lista.Add(new Cancion(path));
             }
+            cancionActual = 0;
+            ActualizarEtiquetas();
+            ObtenerImagen();
+            player.Close();
+            player.Open(lista[0].Ruta.ToString());
+            player.Play(false);
         }
     }
 }
