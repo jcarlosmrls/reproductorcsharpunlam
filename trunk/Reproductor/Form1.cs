@@ -230,10 +230,8 @@ namespace Reproductor
                 textBoxArtista.Text = lista[cancionActual].Artista;
                 textBoxGenero.Text = lista[cancionActual].Genero;
                 richTextBoxLetras.Text = lista[cancionActual].Letra;
-                labelContador.Text = lista[cancionActual].Duracion.ToString();
             }
-        }
-                
+        }                
 
         private void ObtenerImagen()
         {
@@ -396,6 +394,15 @@ namespace Reproductor
             player.Close();
             player.Open(lista[0].Ruta.ToString());
             player.Play(false);
+        }
+
+        private void botonStop_Click(object sender, EventArgs e)
+        {
+            if (lista.Count != 0)
+            {
+                cancionActual = 0;
+                player.Close();
+            }
         }
     }
 }

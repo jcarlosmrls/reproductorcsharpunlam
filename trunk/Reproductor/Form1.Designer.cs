@@ -338,6 +338,7 @@
             this.botonStop.TabIndex = 1;
             this.botonStop.Text = "■";
             this.botonStop.UseVisualStyleBackColor = true;
+            this.botonStop.Click += new System.EventHandler(this.botonStop_Click);
             // 
             // botonPlay
             // 
