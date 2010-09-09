@@ -100,11 +100,19 @@ namespace Reproductor
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //if (isPlaying)
-            //{
-                textBoxCancion.Text = DesplazarString(textBoxCancion.Text.ToString());
-                this.Text = DesplazarString(this.Text);
-            //}
+            textBoxCancion.Text = DesplazarString(textBoxCancion.Text.ToString());
+            this.Text = DesplazarString(this.Text);
+            if (trackBarReproduccion.Value < trackBarReproduccion.Maximum)
+            {
+                TimeSpan actualPosition = TimeSpan.FromSeconds(player.CurrentPosition/1000);
+                labelContador.Text = actualPosition.Hours.ToString() + ":" + actualPosition.Minutes.ToString() + ":" + actualPosition.Seconds.ToString();
+                trackBarReproduccion.Value = (int) player.CurrentPosition;
+            }
+            else
+            {
+                trackBarReproduccion.Value = 0;
+                timerBarra.Enabled = false;
+            }
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -134,7 +142,7 @@ namespace Reproductor
             this.BackColor = Color.FromName("Control");
             panelBotones.BackColor = Color.FromName("Control");
             //Trackbar de tiempo de reproduccion
-            trackBar1.BackColor = Color.FromName("Control");
+            trackBarReproduccion.BackColor = Color.FromName("Control");
             //Boton izquierda
             botonAnterior.BackColor = Color.FromName("Control");
             botonAnterior.Text = "l◄◄";
@@ -171,7 +179,7 @@ namespace Reproductor
             this.BackColor = Color.Black;
             panelBotones.BackColor = Color.Black;
             //Trackbar de tiempo de reproduccion
-            trackBar1.BackColor = Color.Black;
+            trackBarReproduccion.BackColor = Color.Black;
             //Boton izquierda
             botonAnterior.BackColor = Color.Black;
             botonAnterior.Text = "";
@@ -212,9 +220,9 @@ namespace Reproductor
             abrirArchivo.ShowDialog();
         }
 
-        private void ActualizarEtiquetas()
+        private void ActualizarEtiquetas()  //Debe ir despues de un Play(....)
         {
-            if (lista.Count != -1)
+            if (lista.Count != 0)
             {
                 this.Text = lista[cancionActual].Nombre + "          ";
                 textBoxCancion.Text = lista[cancionActual].Nombre + "          ";
@@ -230,6 +238,9 @@ namespace Reproductor
                 textBoxArtista.Text = lista[cancionActual].Artista;
                 textBoxGenero.Text = lista[cancionActual].Genero;
                 richTextBoxLetras.Text = lista[cancionActual].Letra;
+                //Calculo la longitud del trackbar
+                ulong length = player.AudioLength;
+                trackBarReproduccion.Maximum = (int) length;
             }
         }                
 
@@ -332,33 +343,39 @@ namespace Reproductor
 
         private void botonSiguiente_Click(object sender, EventArgs e)
         {
+            trackBarReproduccion.Value = 0;
+            timerBarra.Enabled = false;
             if (cancionActual != -1)
             {
                 player.Close();
                 cancionActual++;
                 if (cancionActual == lista.Count)
                     cancionActual = 0;
-                ActualizarEtiquetas();
                 if (lista.Count != 0)
                     ObtenerImagen();
                 player.Open(lista[cancionActual].Ruta.ToString());
                 player.Play(false);
+                timerBarra.Enabled = true;
+                ActualizarEtiquetas();
             }
         }
 
         private void botonAnterior_Click(object sender, EventArgs e)
         {
+            trackBarReproduccion.Value = 0;
+            timerBarra.Enabled = false;
             if(cancionActual != -1)
             {
                 player.Close();
                 cancionActual--;
                 if (cancionActual < 0)
                     cancionActual = lista.Count - 1;
-                ActualizarEtiquetas();
                 if (lista.Count != 0)
                     ObtenerImagen();
                 player.Open(lista[cancionActual].Ruta.ToString());
                 player.Play(false);
+                timerBarra.Enabled = true;
+                ActualizarEtiquetas();
             }
         }
 
@@ -369,11 +386,13 @@ namespace Reproductor
                 if (player.Reproduciendo())
                 {
                     player.Pause();
+                    timerBarra.Enabled = false;
                 }
                 else
                 {
                     player.Open(lista[cancionActual].Ruta.ToString());
                     player.Play(false);
+                    timerBarra.Enabled = true;
                 }
             }
         }
@@ -388,21 +407,29 @@ namespace Reproductor
             {
                 lista.Add(new Cancion(path));
             }
-            cancionActual = 0;
-            ActualizarEtiquetas();
-            ObtenerImagen();
             player.Close();
             player.Open(lista[0].Ruta.ToString());
             player.Play(false);
+            cancionActual = 0;
+            ActualizarEtiquetas();
+            ObtenerImagen();
+            timerBarra.Enabled = true;
         }
 
         private void botonStop_Click(object sender, EventArgs e)
         {
+            timerBarra.Enabled = false;
+            trackBarReproduccion.Value = 0;
             if (lista.Count != 0)
             {
                 cancionActual = 0;
                 player.Close();
             }
+        }
+
+        private void trackBarReproduccion_MouseUp(object sender, MouseEventArgs e)
+        {
+            player.Seek((ulong)trackBarReproduccion.Value, (ulong)lista[cancionActual].Duracion.TotalMilliseconds);
         }
     }
 }
