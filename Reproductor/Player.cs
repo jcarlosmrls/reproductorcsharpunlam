@@ -27,7 +27,7 @@ namespace Reproductor
 		{
 			Pcommand = "close MediaFile";
 			mciSendString(Pcommand, null, 0, IntPtr.Zero);
-		      	isOpen=false;
+		    isOpen=false;
 			isPlaying=false;
 		}
 
@@ -73,6 +73,5 @@ namespace Reproductor
 				}
 				
 		}
-
     }
 }
