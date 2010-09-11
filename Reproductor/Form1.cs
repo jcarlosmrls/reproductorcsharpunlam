@@ -16,9 +16,7 @@ namespace Reproductor
 
         List<Cancion> lista;
         private int cancionActual;
-        private bool panelAbierto = true;
-        private bool panelPegado = true;
-        private PanelReproduccion panelReproduccion = new PanelReproduccion();
+        private PanelReproduccion panelReproduccion;
         private Player player;
 
         #endregion
@@ -26,27 +24,26 @@ namespace Reproductor
         public Form1()
         {
             InitializeComponent();
+            panelReproduccion = new PanelReproduccion();
             panelReproduccion.Asignar(this);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             panelReproduccion.CambiarPosicion();
-            Reproductor.Form1.ActiveForm.Hide();
             lista = new List<Cancion>();
             abrirArchivo.Multiselect = true;
             abrirArchivo.FileName = "";
             abrirArchivo.Filter = "MP3 files|*.mp3|WAV files|*.wav|All files|*.*";
             cancionActual = -1;
             player = new Player();
-
-            Login login = new Login();
+            Login login = new Login(this);            
             login.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (panelAbierto)
+            if (panelReproduccion.IsOpen)
             {
                 Cerrar_Panel();
             }
@@ -59,13 +56,13 @@ namespace Reproductor
         private void Cerrar_Panel()
         {
             panelReproduccion.Hide();
-            panelAbierto = false;            
+            panelReproduccion.IsOpen = false;            
         }
 
         private void Abrir_Panel()
         {
             panelReproduccion.Show();
-            panelAbierto = true;
+            panelReproduccion.IsOpen = true;
         }
 
         private void trackBar2_Leave(object sender, EventArgs e)
@@ -252,19 +249,19 @@ namespace Reproductor
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (panelPegado)
-                panelPegado = false;
+            if (panelReproduccion.IsStuck)
+                panelReproduccion.IsStuck = false;
             else
             {
-                panelPegado = true;
-                if (panelAbierto)
+                panelReproduccion.IsStuck = true;
+                if (panelReproduccion.IsOpen)
                     panelReproduccion.CambiarPosicion();
             }
         }
 
         private void Form1_LocationChanged(object sender, EventArgs e)
         {
-            if (panelPegado && panelAbierto)
+            if (panelReproduccion.IsStuck && panelReproduccion.IsOpen)
                 panelReproduccion.CambiarPosicion();
         }
 
@@ -276,7 +273,7 @@ namespace Reproductor
 
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
-            if (panelPegado && panelAbierto)
+            if (panelReproduccion.IsStuck && panelReproduccion.IsOpen)
                 panelReproduccion.CambiarPosicion();
         }
 
@@ -311,12 +308,12 @@ namespace Reproductor
 
         public void PegarPanel()
         {
-            panelPegado = true;
+            panelReproduccion.IsStuck = true;
         }
 
         public void DespegarPanel()
         {
-            panelPegado = false;
+            panelReproduccion.IsStuck = false;
         }
 
         private void button1_Click_1(object sender, EventArgs e)

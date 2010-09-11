@@ -10,14 +10,18 @@ namespace Reproductor
 {
     public partial class Login : Form
     {
-        public Login()
+        Form1 ventanaPrincipal;
+
+        public Login(Form1 vent)
         {
             InitializeComponent();
             radioButton1.Checked = true;
+            ventanaPrincipal = vent;
         }
 
         private void botonLogin_Click(object sender, EventArgs e)
         {
+            ventanaPrincipal.Enabled = true;
             this.Close();
         }
 
@@ -36,6 +40,11 @@ namespace Reproductor
         {
             panel2.Enabled = false;
             panel3.Enabled = true;
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            ventanaPrincipal.Enabled = false;
         }
     }
 }
