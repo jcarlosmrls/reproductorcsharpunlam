@@ -18,6 +18,7 @@ namespace Reproductor
         private int cancionActual;
         private PanelReproduccion panelReproduccion;
         private Player player;
+        private BaseDeDatos dbReproductor;
 
         #endregion
 
@@ -25,7 +26,9 @@ namespace Reproductor
         {
             InitializeComponent();
             panelReproduccion = new PanelReproduccion();
+            dbReproductor = new BaseDeDatos();
             panelReproduccion.Asignar(this);
+            dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Universidad Fabio\Proyectos Visual Studio\Reproductor\Base_Reproductor.mdb");
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -37,7 +40,7 @@ namespace Reproductor
             abrirArchivo.Filter = "MP3 files|*.mp3|WAV files|*.wav|All files|*.*";
             cancionActual = -1;
             player = new Player();
-            Login login = new Login(this);            
+            Login login = new Login(this, ref dbReproductor);            
             login.Show();
         }
 
@@ -433,6 +436,11 @@ namespace Reproductor
         private void trackBarReproduccion_MouseUp(object sender, MouseEventArgs e)
         {
             player.Seek((ulong)trackBarReproduccion.Value, (ulong)lista[cancionActual].Duracion.TotalMilliseconds);
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            dbReproductor.Close();
         }
     }
 }
