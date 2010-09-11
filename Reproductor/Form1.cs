@@ -112,6 +112,7 @@ namespace Reproductor
             {
                 trackBarReproduccion.Value = 0;
                 timerBarra.Enabled = false;
+                botonSiguiente_Click(null, null);
             }
         }
 
@@ -349,14 +350,17 @@ namespace Reproductor
             {
                 player.Close();
                 cancionActual++;
-                if (cancionActual == lista.Count)
-                    cancionActual = 0;
+                if (cancionActual == lista.Count)   //Si es la ultima cancion de la lista, detengo la reproduccion
+                    botonStop_Click(null, null);
+                else
+                {
+                    player.Open(lista[cancionActual].Ruta.ToString());
+                    player.Play(false);
+                    timerBarra.Enabled = true;
+                    ActualizarEtiquetas();
+                }
                 if (lista.Count != 0)
-                    ObtenerImagen();
-                player.Open(lista[cancionActual].Ruta.ToString());
-                player.Play(false);
-                timerBarra.Enabled = true;
-                ActualizarEtiquetas();
+                    ObtenerImagen();                
             }
         }
 
@@ -425,6 +429,8 @@ namespace Reproductor
                 cancionActual = 0;
                 player.Close();
             }
+            textBoxCancion.Text = lista[cancionActual].Nombre.ToString();
+            this.Text = lista[cancionActual].Nombre.ToString();
         }
 
         private void trackBarReproduccion_MouseUp(object sender, MouseEventArgs e)

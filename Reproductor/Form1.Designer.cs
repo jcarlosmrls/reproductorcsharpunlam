@@ -723,7 +723,7 @@
             this.trackBarReproduccion.Name = "trackBarReproduccion";
             this.trackBarReproduccion.Size = new System.Drawing.Size(615, 45);
             this.trackBarReproduccion.TabIndex = 3;
-            this.trackBarReproduccion.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.trackBarReproduccion.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarReproduccion.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBarReproduccion_MouseUp);
             // 
             // trackBar2
