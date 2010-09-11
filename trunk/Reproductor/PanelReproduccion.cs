@@ -10,11 +10,47 @@ namespace Reproductor
 {
     public partial class PanelReproduccion : Form
     {
-        private Form1 ventana_principal;
+        #region Variables
 
+        private Form1 ventana_principal;
+        private bool isOpen;
+        private bool isStuck;
+
+        #endregion
+
+        #region Propiedades
+
+        public bool IsOpen
+        {
+            get
+            {
+                return isOpen;
+            }
+            set
+            {
+                isOpen = value;
+            }
+        }
+
+        public bool IsStuck
+        {
+            get
+            {
+                return isStuck;
+            }
+            set
+            {
+                isStuck = value;
+            }
+        }
+
+        #endregion
+        
         public PanelReproduccion()
         {
             InitializeComponent();
+            isOpen = true;
+            isStuck = true;
         }
 
         public void Asignar(Form1 form)
