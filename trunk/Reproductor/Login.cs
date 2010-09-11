@@ -11,18 +11,30 @@ namespace Reproductor
     public partial class Login : Form
     {
         Form1 ventanaPrincipal;
+        BaseDeDatos baseDatos;
 
-        public Login(Form1 vent)
+        public Login(Form1 vent, ref BaseDeDatos db)
         {
             InitializeComponent();
             radioButton1.Checked = true;
             ventanaPrincipal = vent;
+            baseDatos = db;
         }
 
         private void botonLogin_Click(object sender, EventArgs e)
         {
-            ventanaPrincipal.Enabled = true;
-            this.Close();
+            if (radioButton1.Checked)
+            {
+                //Hacer login verificando contraseña
+            }
+            else
+            {
+                if (baseDatos.AddUser(textBox1.Text, textBox2.Text) != -1)  //Si no hubo error al registrar un usuario nuevo
+                {
+                    ventanaPrincipal.Enabled = true;
+                    this.Close();
+                }
+            }           
         }
 
         private void botonCancelar_Click(object sender, EventArgs e)
