@@ -41,11 +41,11 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.labelPass = new System.Windows.Forms.Label();
             this.labelUsuario = new System.Windows.Forms.Label();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -153,8 +153,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.textBox5);
             this.panel2.Controls.Add(this.textBox4);
-            this.panel2.Controls.Add(this.comboBox1);
             this.panel2.Controls.Add(this.labelPass);
             this.panel2.Controls.Add(this.labelUsuario);
             this.panel2.Location = new System.Drawing.Point(20, 21);
@@ -169,14 +169,6 @@
             this.textBox4.PasswordChar = '*';
             this.textBox4.Size = new System.Drawing.Size(194, 20);
             this.textBox4.TabIndex = 15;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(71, 10);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(195, 21);
-            this.comboBox1.TabIndex = 8;
             // 
             // labelPass
             // 
@@ -220,6 +212,13 @@
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(71, 10);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(194, 20);
+            this.textBox5.TabIndex = 16;
+            // 
             // Login
             // 
             this.AcceptButton = this.botonLogin;
@@ -260,7 +259,6 @@
         private System.Windows.Forms.Label labelPass;
         private System.Windows.Forms.Label labelUsuario;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
@@ -269,5 +267,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TextBox textBox5;
     }
 }
