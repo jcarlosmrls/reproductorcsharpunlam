@@ -12,15 +12,25 @@ namespace Reproductor
     {        
         private Form1 ventana_principal;
         private PanelReproduccion panel;
+        private BaseDeDatos baseDatos;
         private bool hubo_cambio = false;
 
-        public Opciones(Form1 form, PanelReproduccion pan)
+        public Opciones(Form1 form, PanelReproduccion pan, ref BaseDeDatos bd)
         {
             InitializeComponent();
             ventana_principal = form;
             panel = pan;
+            baseDatos = bd;
+        }
+
+        private void Opciones_Load(object sender, EventArgs e)
+        {
             ventana_principal.Enabled = false;
             panel.Enabled = false;
+            foreach (string cad in baseDatos.Leer_Columna("Ruta_De_Archivos", "Path"))
+            {
+                listBox1.Items.Add(cad);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -59,6 +69,7 @@ namespace Reproductor
         private void button3_Click(object sender, EventArgs e)
         {
             folderBrowserDialog1.ShowDialog();
+            baseDatos.AgregarRutaDeArchivos(ventana_principal.Usuario(), folderBrowserDialog1.SelectedPath);
         }
     }
 }

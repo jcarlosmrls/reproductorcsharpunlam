@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace Reproductor
 {
@@ -12,7 +13,7 @@ namespace Reproductor
     {
         Form1 ventanaPrincipal;
         BaseDeDatos baseDatos;
-
+        
         public Login(Form1 vent, ref BaseDeDatos db)
         {
             InitializeComponent();
@@ -25,11 +26,17 @@ namespace Reproductor
         {
             if (radioButton1.Checked)
             {
-                //Hacer login verificando contraseña
+                if ( ("Invitado" == txtUsuario.Text) ||                     
+                    (baseDatos.ValidarLogin(txtUsuario.Text, txtPassword.Text)))
+                {
+                    ventanaPrincipal.CambiarDeUsuario(txtUsuario.Text);
+                    ventanaPrincipal.Enabled = true;
+                    this.Close();
+                }
             }
             else
             {
-                if (baseDatos.AddUser(textBox1.Text, textBox2.Text) != -1)  //Si no hubo error al registrar un usuario nuevo
+                if (baseDatos.AddUser(txtNick.Text, txtPass1.Text) != -1)  //Si no hubo error al registrar un usuario nuevo
                 {
                     ventanaPrincipal.Enabled = true;
                     this.Close();
