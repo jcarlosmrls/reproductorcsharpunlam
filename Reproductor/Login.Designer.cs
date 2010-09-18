@@ -33,19 +33,19 @@
             this.botonCancelar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtPass2 = new System.Windows.Forms.TextBox();
+            this.txtPass1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNick = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtUsuario = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.labelPass = new System.Windows.Forms.Label();
             this.labelUsuario = new System.Windows.Forms.Label();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -90,32 +90,32 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.textBox3);
-            this.panel3.Controls.Add(this.textBox2);
+            this.panel3.Controls.Add(this.txtPass2);
+            this.panel3.Controls.Add(this.txtPass1);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.textBox1);
+            this.panel3.Controls.Add(this.txtNick);
             this.panel3.Location = new System.Drawing.Point(20, 118);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(278, 80);
             this.panel3.TabIndex = 15;
             // 
-            // textBox3
+            // txtPass2
             // 
-            this.textBox3.Location = new System.Drawing.Point(111, 55);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.PasswordChar = '*';
-            this.textBox3.Size = new System.Drawing.Size(154, 20);
-            this.textBox3.TabIndex = 13;
+            this.txtPass2.Location = new System.Drawing.Point(111, 55);
+            this.txtPass2.Name = "txtPass2";
+            this.txtPass2.PasswordChar = '*';
+            this.txtPass2.Size = new System.Drawing.Size(154, 20);
+            this.txtPass2.TabIndex = 13;
             // 
-            // textBox2
+            // txtPass1
             // 
-            this.textBox2.Location = new System.Drawing.Point(111, 30);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(154, 20);
-            this.textBox2.TabIndex = 12;
+            this.txtPass1.Location = new System.Drawing.Point(111, 30);
+            this.txtPass1.Name = "txtPass1";
+            this.txtPass1.PasswordChar = '*';
+            this.txtPass1.Size = new System.Drawing.Size(154, 20);
+            this.txtPass1.TabIndex = 12;
             // 
             // label3
             // 
@@ -144,17 +144,17 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "Nick:";
             // 
-            // textBox1
+            // txtNick
             // 
-            this.textBox1.Location = new System.Drawing.Point(111, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(154, 20);
-            this.textBox1.TabIndex = 7;
+            this.txtNick.Location = new System.Drawing.Point(111, 5);
+            this.txtNick.Name = "txtNick";
+            this.txtNick.Size = new System.Drawing.Size(154, 20);
+            this.txtNick.TabIndex = 7;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.textBox5);
-            this.panel2.Controls.Add(this.textBox4);
+            this.panel2.Controls.Add(this.txtUsuario);
+            this.panel2.Controls.Add(this.txtPassword);
             this.panel2.Controls.Add(this.labelPass);
             this.panel2.Controls.Add(this.labelUsuario);
             this.panel2.Location = new System.Drawing.Point(20, 21);
@@ -162,13 +162,21 @@
             this.panel2.Size = new System.Drawing.Size(275, 63);
             this.panel2.TabIndex = 14;
             // 
-            // textBox4
+            // txtUsuario
             // 
-            this.textBox4.Location = new System.Drawing.Point(71, 36);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.PasswordChar = '*';
-            this.textBox4.Size = new System.Drawing.Size(194, 20);
-            this.textBox4.TabIndex = 15;
+            this.txtUsuario.Location = new System.Drawing.Point(71, 10);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Size = new System.Drawing.Size(194, 20);
+            this.txtUsuario.TabIndex = 16;
+            this.txtUsuario.Text = "Invitado";
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(71, 36);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(194, 20);
+            this.txtPassword.TabIndex = 15;
             // 
             // labelPass
             // 
@@ -212,13 +220,6 @@
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(71, 10);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(194, 20);
-            this.textBox5.TabIndex = 16;
-            // 
             // Login
             // 
             this.AcceptButton = this.botonLogin;
@@ -258,15 +259,15 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Label labelPass;
         private System.Windows.Forms.Label labelUsuario;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtNick;
+        private System.Windows.Forms.TextBox txtPass2;
+        private System.Windows.Forms.TextBox txtPass1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtUsuario;
     }
 }

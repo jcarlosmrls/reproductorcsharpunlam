@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.IO;
+using System.Configuration;
 
 namespace Reproductor
 {
@@ -19,6 +20,8 @@ namespace Reproductor
         private PanelReproduccion panelReproduccion;
         private Player player;
         private BaseDeDatos dbReproductor;
+        private string usuario;
+
 
         #endregion
 
@@ -28,11 +31,12 @@ namespace Reproductor
             panelReproduccion = new PanelReproduccion();
             dbReproductor = new BaseDeDatos();
             panelReproduccion.Asignar(this);
-            dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Universidad Fabio\Proyectos Visual Studio\Reproductor\Base_Reproductor.mdb");
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //dbReproductor.Open(ConfigurationManager.ConnectionStrings["StringDeConexion"].ConnectionString.ToString());
+            dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=C:\Universidad Fabio\Proyectos Visual Studio\Reproductor\Base_Reproductor.mdb");
             panelReproduccion.CambiarPosicion();
             lista = new List<Cancion>();
             abrirArchivo.Multiselect = true;
@@ -83,7 +87,7 @@ namespace Reproductor
 
         private void opcionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Opciones opc = new Opciones(this, panelReproduccion);
+            Opciones opc = new Opciones(this, panelReproduccion, ref dbReproductor);
             opc.Show();
         }
 
@@ -441,6 +445,16 @@ namespace Reproductor
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             dbReproductor.Close();
+        }
+
+        public void CambiarDeUsuario(string user)
+        {
+            usuario = user;
+        }
+
+        public string Usuario()
+        {
+            return usuario;
         }
     }
 }

@@ -42,10 +42,41 @@ namespace Reproductor
             dbConnection.Close();
         }
 
+        public string[] Leer_Columna(string tabla, string columna)
+        {
+            string[] cadena;
+            int cant;
+            OleDbCommand cmdLeer = new OleDbCommand();
+
+            cmdLeer.CommandType = CommandType.Text;
+            cmdLeer.Connection = dbConnection;
+            cmdLeer.Parameters.Add("?", columna);
+            cmdLeer.Parameters.Add("?", tabla);
+            cmdLeer.CommandText = @"SELECT ? FROM ?";
+            dbAdapter.SelectCommand = cmdLeer;
+
+            try
+            {
+                dbAdapter.Fill(dbDataSet);
+                cant = dbDataSet.Tables[0].Rows.Count;
+                cadena = new string[cant];
+                for (int x = 0; x < cant; x++)
+                    cadena[x] = dbDataSet.Tables[0].Rows[x][columna].ToString();
+                return cadena;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al abrir la base de datos.");
+                return null;
+            }
+        }
+
+
+
         public int AddUser(string user, string password)
         {
             OleDbCommand cmdInsertar = new OleDbCommand();
-
+            
             cmdInsertar.Connection = dbConnection;
             cmdInsertar.Parameters.Add("?", user);
             cmdInsertar.Parameters.Add("?", password);
@@ -60,6 +91,54 @@ namespace Reproductor
                 return -1;
             }
             return 0;
+        }
+
+        public bool ValidarLogin(string user, string pass)
+        {
+            int cant;
+            OleDbCommand cmdValidar = new OleDbCommand();
+
+            cmdValidar.CommandType = CommandType.Text;
+            cmdValidar.Connection = dbConnection;
+            cmdValidar.Parameters.Add("?", user);
+            cmdValidar.CommandText = @"SELECT Password FROM Usuario WHERE Id_usuario = ?";
+            dbAdapter.SelectCommand = cmdValidar;
+
+            dbAdapter.Fill(dbDataSet);
+
+            cant = dbDataSet.Tables[0].Rows.Count;
+
+            if (cant == 0)
+            {
+                MessageBox.Show("El Usuario ingresado no existe :(");
+                return false;
+            }
+            else
+            {
+                if (dbDataSet.Tables[0].Rows[0]["Password"].ToString() == pass)
+                {
+                    MessageBox.Show("Bienvenido al reproductor, que la pase bien.");
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Constraseña erronea, acceso no autorizado");
+                    return false;
+                }
+            }
+        }
+
+        public void AgregarRutaDeArchivos(string user, string path)
+        {
+            OleDbCommand cmdAgregar = new OleDbCommand();
+
+            cmdAgregar.CommandType = CommandType.Text;
+            cmdAgregar.Connection = dbConnection;
+            cmdAgregar.Parameters.Add("?", user);
+            cmdAgregar.Parameters.Add("?", path);
+            cmdAgregar.CommandText = @"INSERT INTO Ruta_De_Archivos ([Id_Usuario], [Path]) VALUES (?,?)";
+
+            cmdAgregar.ExecuteNonQuery();
         }
 
         #endregion
