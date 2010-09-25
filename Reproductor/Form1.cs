@@ -456,5 +456,47 @@ namespace Reproductor
         {
             return usuario;
         }
+
+        public void CambiarSkin()
+        {
+            //Ventana principal
+            this.BackColor = Color.Black;
+            panelBotones.BackColor = Color.Black;
+            //Trackbar de tiempo de reproduccion
+            trackBarReproduccion.BackColor = Color.Black;
+            //Boton izquierda
+            botonAnterior.BackColor = Color.Black;
+            botonAnterior.Text = "";
+            botonAnterior.FlatStyle = FlatStyle.Popup;
+            botonAnterior.BackgroundImage = Reproductor.Properties.Resources.botonizq;
+            botonAnterior.BackgroundImageLayout = ImageLayout.Stretch;
+            //Boton derecha
+            botonSiguiente.BackColor = Color.Black;
+            botonSiguiente.Text = "";
+            botonSiguiente.FlatStyle = FlatStyle.Popup;
+            botonSiguiente.BackgroundImage = Reproductor.Properties.Resources.botonder;
+            botonSiguiente.BackgroundImageLayout = ImageLayout.Stretch;
+            //Boton play
+            botonPlay.Text = "";
+            botonPlay.BackColor = Color.Black;
+            botonPlay.FlatStyle = FlatStyle.Popup;
+            botonPlay.BackgroundImage = Properties.Resources.boton;
+            botonPlay.BackgroundImageLayout = ImageLayout.Stretch;
+            //Boton stop
+            botonStop.BackColor = Color.Black;
+            botonStop.Text = "";
+            botonStop.FlatStyle = FlatStyle.Popup;
+            botonStop.BackgroundImage = Properties.Resources.botonstop;
+            botonStop.BackgroundImageLayout = ImageLayout.Stretch;
+            //Panel lista de reproduccion
+            panelReproduccion.BackColor = Color.Black;
+            //Panel inferior
+            panelBotones.BackgroundImage = Properties.Resources.panel;
+            panelBotones.BackgroundImageLayout = ImageLayout.Stretch;
+            //paneles con pestaña
+            Cambiar_color_tabs(Color.Yellow);
+            //Color del contador
+            labelContador.ForeColor = Color.White;
+        }
     }
 }
