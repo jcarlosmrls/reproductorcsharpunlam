@@ -15,6 +15,7 @@ namespace Reproductor
         private Form1 ventana_principal;
         private bool isOpen;
         private bool isStuck;
+        private List<Cancion> listaDeReproduccion;
 
         #endregion
 
@@ -51,6 +52,7 @@ namespace Reproductor
             InitializeComponent();
             isOpen = true;
             isStuck = true;
+            listaDeReproduccion = new List<Cancion>();
         }
 
         public void Asignar(Form1 form)
@@ -83,13 +85,10 @@ namespace Reproductor
             ventana_principal.Close();
         }
 
-        public void CargarLista(string[] lista)
+        public void AgregarCancion(Cancion song)
         {
-            listView1.Clear();
-            foreach (string str in lista)
-            {
-                listView1.Items.Add(new ListViewItem(str));
-            }
+            listaDeReproduccion.Add(song);
+            listViewLista.Items.Add(new ListViewItem(song.Nombre));           
         }
     }
 }

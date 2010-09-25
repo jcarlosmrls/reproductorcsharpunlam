@@ -413,7 +413,9 @@ namespace Reproductor
             rutas = abrirArchivo.FileNames;
             foreach (string path in rutas)
             {
-                lista.Add(new Cancion(path));
+                Cancion song = new Cancion(path);
+                lista.Add(song);
+                panelReproduccion.AgregarCancion(song);
             }
             player.Close();
             player.Open(lista[0].Ruta.ToString());
@@ -515,10 +517,7 @@ namespace Reproductor
 
         private void button8_Click(object sender, EventArgs e)
         {
-            string[] canciones;
 
-            canciones = lista[cancionActual].GetAlbumSongs();
-            panelReproduccion.CargarLista(canciones);
         }
     }
 }

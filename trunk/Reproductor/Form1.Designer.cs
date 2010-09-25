@@ -59,6 +59,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.textBoxAño = new System.Windows.Forms.TextBox();
             this.textBoxGenero = new System.Windows.Forms.TextBox();
             this.textBoxAlbum = new System.Windows.Forms.TextBox();
@@ -70,7 +72,6 @@
             this.labelAlbum = new System.Windows.Forms.Label();
             this.labelArtista = new System.Windows.Forms.Label();
             this.richTextBoxLetras = new System.Windows.Forms.RichTextBox();
-            this.pictureBoxTapaDeAlbum = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -91,19 +92,18 @@
             this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.timerBarra = new System.Windows.Forms.Timer(this.components);
             this.abrirArchivo = new System.Windows.Forms.OpenFileDialog();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.pictureBoxTapaDeAlbum = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.panelBotones.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTapaDeAlbum)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarReproduccion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTapaDeAlbum)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -405,6 +405,26 @@
             this.panel1.Size = new System.Drawing.Size(345, 157);
             this.panel1.TabIndex = 10;
             // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(143, 125);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 15;
+            this.button8.Text = "button8";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(78, 126);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(59, 27);
+            this.button5.TabIndex = 14;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // textBoxAño
             // 
             this.textBoxAño.BackColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -528,22 +548,6 @@
             this.richTextBoxLetras.Size = new System.Drawing.Size(346, 73);
             this.richTextBoxLetras.TabIndex = 7;
             this.richTextBoxLetras.Text = "";
-            // 
-            // pictureBoxTapaDeAlbum
-            // 
-            this.pictureBoxTapaDeAlbum.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxTapaDeAlbum.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBoxTapaDeAlbum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxTapaDeAlbum.Image = global::Reproductor.Properties.Resources.SinTapa;
-            this.pictureBoxTapaDeAlbum.InitialImage = null;
-            this.pictureBoxTapaDeAlbum.Location = new System.Drawing.Point(6, 3);
-            this.pictureBoxTapaDeAlbum.Name = "pictureBoxTapaDeAlbum";
-            this.pictureBoxTapaDeAlbum.Size = new System.Drawing.Size(230, 244);
-            this.pictureBoxTapaDeAlbum.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxTapaDeAlbum.TabIndex = 0;
-            this.pictureBoxTapaDeAlbum.TabStop = false;
             // 
             // tabPage2
             // 
@@ -752,25 +756,21 @@
             this.abrirArchivo.FileName = "openFileDialog1";
             this.abrirArchivo.FileOk += new System.ComponentModel.CancelEventHandler(this.abrirArchivo_FileOk);
             // 
-            // button5
+            // pictureBoxTapaDeAlbum
             // 
-            this.button5.Location = new System.Drawing.Point(78, 126);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(59, 27);
-            this.button5.TabIndex = 14;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(143, 125);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 15;
-            this.button8.Text = "button8";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.pictureBoxTapaDeAlbum.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxTapaDeAlbum.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBoxTapaDeAlbum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxTapaDeAlbum.Image = global::Reproductor.Properties.Resources.SinTapa;
+            this.pictureBoxTapaDeAlbum.InitialImage = null;
+            this.pictureBoxTapaDeAlbum.Location = new System.Drawing.Point(6, 3);
+            this.pictureBoxTapaDeAlbum.Name = "pictureBoxTapaDeAlbum";
+            this.pictureBoxTapaDeAlbum.Size = new System.Drawing.Size(230, 244);
+            this.pictureBoxTapaDeAlbum.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxTapaDeAlbum.TabIndex = 0;
+            this.pictureBoxTapaDeAlbum.TabStop = false;
             // 
             // Form1
             // 
@@ -802,7 +802,6 @@
             this.tabPage1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTapaDeAlbum)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -810,6 +809,7 @@
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarReproduccion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTapaDeAlbum)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
