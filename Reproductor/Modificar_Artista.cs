@@ -10,10 +10,10 @@ namespace Reproductor
 {
     public partial class Modificar_Artista : Form
     {
-        private Form1 ventana_principal;
+        private PantallaPrincipal ventana_principal;
         private PanelReproduccion panel;
         
-        public Modificar_Artista(Form1 form, PanelReproduccion pan)
+        public Modificar_Artista(PantallaPrincipal form, PanelReproduccion pan)
         {
             ventana_principal = form;
             panel = pan;

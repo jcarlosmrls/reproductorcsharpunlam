@@ -11,10 +11,10 @@ namespace Reproductor
 {
     public partial class Login : Form
     {
-        Form1 ventanaPrincipal;
+        PantallaPrincipal ventanaPrincipal;
         BaseDeDatos baseDatos;
         
-        public Login(Form1 vent, ref BaseDeDatos db)
+        public Login(PantallaPrincipal vent, ref BaseDeDatos db)
         {
             InitializeComponent();
             radioButton1.Checked = true;
@@ -31,6 +31,7 @@ namespace Reproductor
                 {
                     ventanaPrincipal.CambiarDeUsuario(txtUsuario.Text);
                     ventanaPrincipal.Enabled = true;
+                    ventanaPrincipal.labelUsuarioActual.Text = txtUsuario.Text;
                     this.Close();
                 }
             }

@@ -66,6 +66,7 @@
             this.botonGuardarLista.Size = new System.Drawing.Size(27, 27);
             this.botonGuardarLista.TabIndex = 5;
             this.botonGuardarLista.UseVisualStyleBackColor = true;
+            this.botonGuardarLista.Click += new System.EventHandler(this.botonGuardarLista_Click);
             // 
             // botonBorrarLista
             // 
@@ -77,6 +78,7 @@
             this.botonBorrarLista.Size = new System.Drawing.Size(27, 27);
             this.botonBorrarLista.TabIndex = 4;
             this.botonBorrarLista.UseVisualStyleBackColor = true;
+            this.botonBorrarLista.Click += new System.EventHandler(this.botonBorrarLista_Click);
             // 
             // botonNuevaLista
             // 
@@ -88,17 +90,21 @@
             this.botonNuevaLista.Size = new System.Drawing.Size(27, 27);
             this.botonNuevaLista.TabIndex = 3;
             this.botonNuevaLista.UseVisualStyleBackColor = true;
+            this.botonNuevaLista.Click += new System.EventHandler(this.botonNuevaLista_Click);
             // 
             // listViewLista
             // 
-            this.listViewLista.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.listViewLista.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewLista.Location = new System.Drawing.Point(13, 71);
+            this.listViewLista.MultiSelect = false;
             this.listViewLista.Name = "listViewLista";
             this.listViewLista.Size = new System.Drawing.Size(213, 366);
             this.listViewLista.TabIndex = 6;
             this.listViewLista.UseCompatibleStateImageBehavior = false;
             this.listViewLista.View = System.Windows.Forms.View.List;
+            this.listViewLista.DoubleClick += new System.EventHandler(this.listViewLista_DoubleClick);
             // 
             // PanelReproduccion
             // 
@@ -121,6 +127,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Lista de Reproducción";
+            this.Load += new System.EventHandler(this.PanelReproduccion_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PanelReproduccion_FormClosed);
             this.LocationChanged += new System.EventHandler(this.PanelReproduccion_LocationChanged);
             this.ResumeLayout(false);

@@ -11,7 +11,7 @@ using System.Configuration;
 
 namespace Reproductor
 {
-    public partial class Form1 : Form
+    public partial class PantallaPrincipal : Form
     {
         #region Variables
 
@@ -20,12 +20,11 @@ namespace Reproductor
         private PanelReproduccion panelReproduccion;
         private Player player;
         private BaseDeDatos dbReproductor;
-        private string usuario;
-
+        private string usuarioActual;
 
         #endregion
 
-        public Form1()
+        public PantallaPrincipal()
         {
             InitializeComponent();
             panelReproduccion = new PanelReproduccion();
@@ -122,15 +121,15 @@ namespace Reproductor
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (Form1.ActiveForm.FormBorderStyle == FormBorderStyle.Sizable)
+            if (PantallaPrincipal.ActiveForm.FormBorderStyle == FormBorderStyle.Sizable)
             {
-                Form1.ActiveForm.FormBorderStyle = FormBorderStyle.None;
-                menuStrip1.Hide();
+                PantallaPrincipal.ActiveForm.FormBorderStyle = FormBorderStyle.None;
+                menu.Hide();
             }
             else
             {
-                Form1.ActiveForm.FormBorderStyle = FormBorderStyle.Sizable;
-                menuStrip1.Show();
+                PantallaPrincipal.ActiveForm.FormBorderStyle = FormBorderStyle.Sizable;
+                menu.Show();
             }
         }
 
@@ -409,6 +408,7 @@ namespace Reproductor
         {
             string[] rutas;
 
+            panelReproduccion.LimpiarLista();
             lista.Clear();      //Hay que ver si es asi o no
             rutas = abrirArchivo.FileNames;
             foreach (string path in rutas)
@@ -451,12 +451,12 @@ namespace Reproductor
 
         public void CambiarDeUsuario(string user)
         {
-            usuario = user;
+            usuarioActual = user;
         }
 
         public string Usuario()
         {
-            return usuario;
+            return usuarioActual;
         }
 
         public void CambiarSkin()
@@ -515,9 +515,11 @@ namespace Reproductor
             }
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        public void ReproducirCancion(int num)
         {
-
+            botonStop_Click(null, null);
+            cancionActual = num;
+            botonPlay_Click(null, null);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Reproductor
 {
-    partial class Form1
+    partial class PantallaPrincipal
     {
         /// <summary>
         /// Variable del diseñador requerida.
@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PantallaPrincipal));
+            this.menu = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -72,6 +72,7 @@
             this.labelAlbum = new System.Windows.Forms.Label();
             this.labelArtista = new System.Windows.Forms.Label();
             this.richTextBoxLetras = new System.Windows.Forms.RichTextBox();
+            this.pictureBoxTapaDeAlbum = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -92,33 +93,33 @@
             this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.timerBarra = new System.Windows.Forms.Timer(this.components);
             this.abrirArchivo = new System.Windows.Forms.OpenFileDialog();
-            this.pictureBoxTapaDeAlbum = new System.Windows.Forms.PictureBox();
-            this.menuStrip1.SuspendLayout();
+            this.labelUsuarioActual = new System.Windows.Forms.Label();
+            this.menu.SuspendLayout();
             this.panelBotones.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTapaDeAlbum)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarReproduccion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTapaDeAlbum)).BeginInit();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // menu
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivoToolStripMenuItem,
             this.verToolStripMenuItem,
             this.accionesToolStripMenuItem,
             this.toolStripMenuItem1,
             this.ayudaToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(639, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menu.Location = new System.Drawing.Point(0, 0);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(639, 24);
+            this.menu.TabIndex = 0;
+            this.menu.Text = "menu";
             // 
             // archivoToolStripMenuItem
             // 
@@ -413,7 +414,6 @@
             this.button8.TabIndex = 15;
             this.button8.Text = "button8";
             this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button5
             // 
@@ -548,6 +548,22 @@
             this.richTextBoxLetras.Size = new System.Drawing.Size(346, 73);
             this.richTextBoxLetras.TabIndex = 7;
             this.richTextBoxLetras.Text = "";
+            // 
+            // pictureBoxTapaDeAlbum
+            // 
+            this.pictureBoxTapaDeAlbum.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxTapaDeAlbum.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBoxTapaDeAlbum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxTapaDeAlbum.Image = global::Reproductor.Properties.Resources.SinTapa;
+            this.pictureBoxTapaDeAlbum.InitialImage = null;
+            this.pictureBoxTapaDeAlbum.Location = new System.Drawing.Point(6, 3);
+            this.pictureBoxTapaDeAlbum.Name = "pictureBoxTapaDeAlbum";
+            this.pictureBoxTapaDeAlbum.Size = new System.Drawing.Size(230, 244);
+            this.pictureBoxTapaDeAlbum.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxTapaDeAlbum.TabIndex = 0;
+            this.pictureBoxTapaDeAlbum.TabStop = false;
             // 
             // tabPage2
             // 
@@ -756,52 +772,50 @@
             this.abrirArchivo.FileName = "openFileDialog1";
             this.abrirArchivo.FileOk += new System.ComponentModel.CancelEventHandler(this.abrirArchivo_FileOk);
             // 
-            // pictureBoxTapaDeAlbum
+            // labelUsuarioActual
             // 
-            this.pictureBoxTapaDeAlbum.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxTapaDeAlbum.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBoxTapaDeAlbum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxTapaDeAlbum.Image = global::Reproductor.Properties.Resources.SinTapa;
-            this.pictureBoxTapaDeAlbum.InitialImage = null;
-            this.pictureBoxTapaDeAlbum.Location = new System.Drawing.Point(6, 3);
-            this.pictureBoxTapaDeAlbum.Name = "pictureBoxTapaDeAlbum";
-            this.pictureBoxTapaDeAlbum.Size = new System.Drawing.Size(230, 244);
-            this.pictureBoxTapaDeAlbum.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxTapaDeAlbum.TabIndex = 0;
-            this.pictureBoxTapaDeAlbum.TabStop = false;
+            this.labelUsuarioActual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelUsuarioActual.AutoSize = true;
+            this.labelUsuarioActual.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.labelUsuarioActual.Location = new System.Drawing.Point(583, 6);
+            this.labelUsuarioActual.Name = "labelUsuarioActual";
+            this.labelUsuarioActual.Size = new System.Drawing.Size(34, 13);
+            this.labelUsuarioActual.TabIndex = 8;
+            this.labelUsuarioActual.Text = "         ";
+            this.labelUsuarioActual.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // Form1
+            // PantallaPrincipal
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.ClientSize = new System.Drawing.Size(639, 463);
+            this.Controls.Add(this.labelUsuarioActual);
             this.Controls.Add(this.trackBar2);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panelBotones);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menu);
             this.Controls.Add(this.trackBarReproduccion);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.menu;
             this.MinimumSize = new System.Drawing.Size(655, 481);
-            this.Name = "Form1";
+            this.Name = "PantallaPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reproductor                   ";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.LocationChanged += new System.EventHandler(this.Form1_LocationChanged);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
             this.panelBotones.ResumeLayout(false);
             this.panelBotones.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTapaDeAlbum)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -809,7 +823,6 @@
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarReproduccion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTapaDeAlbum)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -817,7 +830,7 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
@@ -880,6 +893,7 @@
         private System.Windows.Forms.TextBox textBoxArtista;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button8;
+        public System.Windows.Forms.Label labelUsuarioActual;
     }
 }
 
