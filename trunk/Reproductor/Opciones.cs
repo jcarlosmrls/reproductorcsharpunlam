@@ -10,12 +10,12 @@ namespace Reproductor
 {
     public partial class Opciones : Form
     {        
-        private Form1 ventana_principal;
+        private PantallaPrincipal ventana_principal;
         private PanelReproduccion panel;
         private BaseDeDatos baseDatos;
         private bool hubo_cambio = false;
 
-        public Opciones(Form1 form, PanelReproduccion pan, ref BaseDeDatos bd)
+        public Opciones(PantallaPrincipal form, PanelReproduccion pan, ref BaseDeDatos bd)
         {
             InitializeComponent();
             ventana_principal = form;

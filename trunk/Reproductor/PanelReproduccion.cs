@@ -12,7 +12,7 @@ namespace Reproductor
     {
         #region Variables
 
-        private Form1 ventana_principal;
+        private PantallaPrincipal ventana_principal;
         private bool isOpen;
         private bool isStuck;
         private List<Cancion> listaDeReproduccion;
@@ -55,7 +55,7 @@ namespace Reproductor
             listaDeReproduccion = new List<Cancion>();
         }
 
-        public void Asignar(Form1 form)
+        public void Asignar(PantallaPrincipal form)
         {
             ventana_principal = form;
         }
@@ -89,6 +89,49 @@ namespace Reproductor
         {
             listaDeReproduccion.Add(song);
             listViewLista.Items.Add(new ListViewItem(song.Nombre));           
+        }
+
+        public void LimpiarLista()
+        {
+            listaDeReproduccion.Clear();
+            listViewLista.Clear();
+        }
+
+        public void SeleccionarCancion(int num)
+        {
+            listViewLista.Items[num].Focused = true;
+        }
+
+        private void listViewLista_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                ventana_principal.ReproducirCancion(listViewLista.SelectedIndices[0]);
+            }
+            catch(Exception)
+            {
+            }
+        }
+
+        private void botonNuevaLista_Click(object sender, EventArgs e)
+        {
+            //Crear nueva lista
+        }
+
+        private void botonBorrarLista_Click(object sender, EventArgs e)
+        {
+            //Borrar una lista de reproduccion
+        }
+
+        private void botonGuardarLista_Click(object sender, EventArgs e)
+        {
+            //Guardar la lista actual, preguntar por un nombre
+        }
+
+        private void PanelReproduccion_Load(object sender, EventArgs e)
+        {
+            //Tomar las listas de reproduccion del usuario que se conecta
+            //y completar el combobox
         }
     }
 }
