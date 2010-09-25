@@ -170,8 +170,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Resources\boton.png" />
+    <Content Include="Resources\añadir.png" />
+    <Content Include="Resources\borrar.png" />
     <Content Include="Resources\botonder.png" />
     <Content Include="Resources\botonizq.png" />
+    <None Include="Resources\flecha-derecha.png" />
+    <Content Include="Resources\guardar.png" />
     <Content Include="Resources\icono.ico" />
     <Content Include="Resources\panel.png" />
     <None Include="Service References\LyricWiki\Reference.svcmap">

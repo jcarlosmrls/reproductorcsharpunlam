@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Reproductor
 {
-    class Cancion
+    public class Cancion
     {
         #region Variables
 
