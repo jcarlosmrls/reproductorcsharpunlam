@@ -91,6 +91,8 @@
             this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.timerBarra = new System.Windows.Forms.Timer(this.components);
             this.abrirArchivo = new System.Windows.Forms.OpenFileDialog();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panelBotones.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -386,6 +388,8 @@
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.button8);
+            this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.textBoxAño);
             this.panel1.Controls.Add(this.textBoxGenero);
             this.panel1.Controls.Add(this.textBoxAlbum);
@@ -748,6 +752,26 @@
             this.abrirArchivo.FileName = "openFileDialog1";
             this.abrirArchivo.FileOk += new System.ComponentModel.CancelEventHandler(this.abrirArchivo_FileOk);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(78, 126);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(59, 27);
+            this.button5.TabIndex = 14;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(143, 125);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 15;
+            this.button8.Text = "button8";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -854,6 +878,8 @@
         private System.Windows.Forms.TextBox textBoxGenero;
         private System.Windows.Forms.TextBox textBoxAlbum;
         private System.Windows.Forms.TextBox textBoxArtista;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button8;
     }
 }
 

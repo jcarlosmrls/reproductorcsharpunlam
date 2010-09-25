@@ -82,5 +82,14 @@ namespace Reproductor
         {
             ventana_principal.Close();
         }
+
+        public void CargarLista(string[] lista)
+        {
+            listView1.Clear();
+            foreach (string str in lista)
+            {
+                listView1.Items.Add(new ListViewItem(str));
+            }
+        }
     }
 }
