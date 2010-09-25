@@ -4,6 +4,7 @@ using System.Text;
 using System.IO;
 using System.Drawing;
 using TagLib;
+using System.Windows.Forms;
 
 namespace Reproductor
 {
@@ -14,6 +15,9 @@ namespace Reproductor
         private TagLib.File archivo;    //Objeto que contiene todos las variables
         private MemoryStream memoria;
         private Image imagen;           //Una copia de la imagen de tapa
+        LyricWiki.LyricWikiPortTypeClient consulta;
+        LyricWiki.LyricsResult resultado;
+
         #endregion
 
         #region Propiedades
@@ -120,6 +124,8 @@ namespace Reproductor
 
         public Cancion(string filePath)
         {
+            consulta = new Reproductor.LyricWiki.LyricWikiPortTypeClient();
+            resultado = new Reproductor.LyricWiki.LyricsResult();
             archivo = TagLib.File.Create(@filePath);
             try
             {
@@ -135,6 +141,26 @@ namespace Reproductor
                 if (memoria != null)
                     memoria.Close();
             }
+        }
+
+        public string GetLyrics()
+        {
+            resultado = consulta.getSong(archivo.Tag.FirstAlbumArtist, archivo.Tag.Title);
+
+            return resultado.lyrics;
+        }
+
+        public string[] GetAlbumSongs()
+        {
+            string artist = archivo.Tag.FirstAlbumArtist;
+            string song = archivo.Tag.Title;
+            string direccion;
+            string []lista;
+            int año = (int)archivo.Tag.Year;
+
+            consulta.getAlbum(ref artist, ref song, ref año, out direccion, out lista);
+
+            return lista;
         }
 
         #endregion

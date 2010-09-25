@@ -498,5 +498,27 @@ namespace Reproductor
             //Color del contador
             labelContador.ForeColor = Color.White;
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string letra = lista[cancionActual].GetLyrics();
+
+            if(letra.Equals("Not found"))
+            {
+                richTextBoxLetras.Text = "No se encontraron letras para la cancion";
+            }
+            else
+            {
+                richTextBoxLetras.Text = letra;
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            string[] canciones;
+
+            canciones = lista[cancionActual].GetAlbumSongs();
+            panelReproduccion.CargarLista(canciones);
+        }
     }
 }
