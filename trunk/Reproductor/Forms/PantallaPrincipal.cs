@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Configuration;
+using Reproductor.Forms;
 
 namespace Reproductor
 {
@@ -42,9 +43,18 @@ namespace Reproductor
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            string path = Application.StartupPath;
+            int valor = path.LastIndexOf("\\");
+            path = path.Remove(valor);
+            valor = path.LastIndexOf("\\");
+            path = path.Remove(valor);
+            valor = path.LastIndexOf("\\");
+            path = path.Remove(valor);
+            path += "\\Base_Reproductor.mdb";
+
             //Abro la base de datos
-            dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=C:\Universidad Fabio\Proyectos Visual Studio\Reproductor\Base_Reproductor.mdb");
-            //dbReproductor.Open(ConfigurationManager.ConnectionStrings["StringDeConexion"].ConnectionString.ToString());
+            //dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=C:\Universidad Fabio\Proyectos Visual Studio\Reproductor\Base_Reproductor.mdb");
+            dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + path);
 
             //Inicializo variables, etc
             panelReproduccion.Asignar(this, ref dbReproductor, ref lista);
@@ -56,6 +66,11 @@ namespace Reproductor
 
             //Muestro el login
             login.Show();
+
+            //Si es que el usuario es nuevo, tengo que crear un registro
+            //de configuraciones que tenga como skin y perfil el "Default",
+            //ya que es comun a todos, y este valor cambia cuando se cierra el programa
+            //y toma el ultimo valor usado.
         }
         
         private void opcionesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -159,7 +174,6 @@ namespace Reproductor
             if (cancionActual != -1)
             {
                 player.Close();
-                cancionActual++;
                 if (cancionActual == lista.Count)   //Si es la ultima cancion de la lista, detengo la reproduccion
                     botonStop_Click(null, null);
                 else
@@ -169,8 +183,8 @@ namespace Reproductor
                     timerBarra.Enabled = true;
                     ActualizarEtiquetas();
                 }
-                if (lista.Count != 0)
-                    ObtenerImagen();                
+                ObtenerImagen();
+                cancionActual++;
             }
         }
 
@@ -215,7 +229,6 @@ namespace Reproductor
         {
             string[] rutas;
 
-            panelReproduccion.LimpiarLista();
             lista.Clear();      //Hay que ver si es asi o no
             rutas = abrirArchivo.FileNames;
             foreach (string path in rutas)

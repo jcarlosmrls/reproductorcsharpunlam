@@ -185,6 +185,11 @@ namespace Reproductor
 
         }
 
+        public void AddNewProfile(Usuario user, Configuration config)
+        {
+
+        }
+
         #endregion
 
     }
