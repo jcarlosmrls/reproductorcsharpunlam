@@ -90,19 +90,15 @@ namespace Reproductor
 
         public void CargarLista()
         {
+            listViewLista.Clear();
             foreach(Cancion song in listaDeReproduccion)
                 listViewLista.Items.Add(new ListViewItem(song.Nombre));
         }
 
-        public void LimpiarLista()
-        {
-            listaDeReproduccion.Clear();
-            listViewLista.Clear();
-        }
-
         public void SeleccionarCancion(int num)
         {
-            listViewLista.Items[num].Focused = true;
+            listViewLista.Items[num].Selected = true;
+            this.Activate();
         }
 
         private void listViewLista_DoubleClick(object sender, EventArgs e)

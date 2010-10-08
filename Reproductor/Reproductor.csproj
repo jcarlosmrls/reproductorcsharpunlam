@@ -54,18 +54,19 @@
   <ItemGroup>
     <Compile Include="Clases\BaseDeDatos.cs" />
     <Compile Include="Clases\Cancion.cs" />
+    <Compile Include="Clases\Configuraciones.cs" />
     <Compile Include="Clases\Usuario.cs" />
-    <Compile Include="Forms\PantallaPrincipal.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\PantallaPrincipal.Designer.cs">
-      <DependentUpon>PantallaPrincipal.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\AcercaDe.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AcercaDe.Designer.cs">
       <DependentUpon>AcercaDe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PantallaPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PantallaPrincipal.Designer.cs">
+      <DependentUpon>PantallaPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Login.cs">
       <SubType>Form</SubType>
@@ -108,7 +109,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AcercaDe.resx">
       <DependentUpon>AcercaDe.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PantallaPrincipal.resx">
       <DependentUpon>PantallaPrincipal.cs</DependentUpon>
@@ -167,9 +167,6 @@
     <None Include="Resources\SinTapa.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Resources\boton.png" />
     <Content Include="Resources\añadir.png" />
     <Content Include="Resources\borrar.png" />
