@@ -13,8 +13,6 @@ namespace Reproductor
     {
         private PantallaPrincipal ventanaPrincipal;
         private BaseDeDatos baseDatos;
-        private string user;
-        private string password;
         
         public Login(PantallaPrincipal vent, ref BaseDeDatos db)
         {
@@ -31,35 +29,34 @@ namespace Reproductor
 
         private void botonLogin_Click(object sender, EventArgs e)
         {
-            //Si elijo usuario nuevo
+            //Si elijo loguearme
             if (UsuarioExistente.Checked)
             {
-                user = txtUsuario.Text;
-                password = txtPassword.Text;
+                ventanaPrincipal.user.IsNewUser = false;
+                ventanaPrincipal.user.Id = txtUsuario.Text;
+                ventanaPrincipal.user.Password = txtPassword.Text;
                 //Si entro como invitado, o si el Login es correcto
-                if ( ("Invitado" == user) || (baseDatos.ValidarLogin(user, txtPassword.Text)))
+                if ( ("Invitado" == ventanaPrincipal.user.Id) || (baseDatos.ValidarLogin(ventanaPrincipal.user.Id, txtPassword.Text)))
                 {
-                    ventanaPrincipal.CambiarDeUsuario(txtUsuario.Text);
                     ventanaPrincipal.Enabled = true;
+                    ventanaPrincipal.SetUserLabel(ventanaPrincipal.user.Id);
                     this.Close();
                 }
             }
             else//Si es nuevo usuario
             {
-                user  = txtNick.Text;
-                password = txtPass1.Text;
+                ventanaPrincipal.user.IsNewUser = false;
+                ventanaPrincipal.user.Id = txtNick.Text;
+                ventanaPrincipal.user.Password = txtPass1.Text;
+
                 //Si no hubo error al registrar un usuario nuevo
                 if (baseDatos.AddUser(txtNick.Text, txtPass1.Text) != -1)
                 {
                     ventanaPrincipal.Enabled = true;
+                    ventanaPrincipal.SetUserLabel(ventanaPrincipal.user.Id);
                     this.Close();
                 }
             }           
-        }
-
-        public string GetCurrentUser()
-        {
-            return user;
         }
 
         private void botonCancelar_Click(object sender, EventArgs e)
@@ -78,12 +75,5 @@ namespace Reproductor
             panel2.Enabled = false;
             panel3.Enabled = true;
         }
-
-        private void Login_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            ventanaPrincipal.SetUserLabel(user);
-        }
-
-
     }
 }

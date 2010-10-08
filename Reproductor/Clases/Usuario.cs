@@ -7,6 +7,8 @@ namespace Reproductor
     public class Usuario
     {
         private string ID;
+        private string password;
+        private bool isNewUser;
 
         public Usuario()
         {
@@ -21,6 +23,30 @@ namespace Reproductor
             set
             {
                 ID = value;
+            }
+        }
+
+        public string Password
+        {
+            get
+            {
+                return password;
+            }
+            set
+            {
+                password = value;
+            }
+        }
+
+        public bool IsNewUser
+        {
+            get
+            {
+                return isNewUser;
+            }
+            set
+            {
+                isNewUser = value;
             }
         }
     }

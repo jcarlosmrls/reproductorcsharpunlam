@@ -13,8 +13,8 @@ namespace Reproductor
         #region Variables
 
         private PantallaPrincipal ventana_principal;
-        private bool isOpen;
-        private bool isStuck;
+        private bool isOpen;    //Indica si el panel es visible
+        private bool isStuck;   //Indica si el panel esta "pegado"
         private List<Cancion> listaDeReproduccion;
 
         #endregion
@@ -107,6 +107,7 @@ namespace Reproductor
             try
             {
                 ventana_principal.ReproducirCancion(listViewLista.SelectedIndices[0]);
+                ventana_principal.ActualizarEtiquetas();
             }
             catch(Exception)
             {
