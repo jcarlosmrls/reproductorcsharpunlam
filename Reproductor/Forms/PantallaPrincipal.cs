@@ -15,35 +15,44 @@ namespace Reproductor
     {
         #region Variables
 
+        public Usuario user;
         List<Cancion> lista;
         private int cancionActual;
         private PanelReproduccion panelReproduccion;
         private Player player;
         private BaseDeDatos dbReproductor;
-        private string usuarioActual;
+        private Login login;
 
         #endregion
 
         public PantallaPrincipal()
         {
             InitializeComponent();
+
+            //Reservo memoria para los objetos
             panelReproduccion = new PanelReproduccion();
             dbReproductor = new BaseDeDatos();
-            panelReproduccion.Asignar(this);
+            login = new Login(this, ref dbReproductor);
+            lista = new List<Cancion>();
+            player = new Player();
+            user = new Usuario();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //dbReproductor.Open(ConfigurationManager.ConnectionStrings["StringDeConexion"].ConnectionString.ToString());
+            //Abro la base de datos
             dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=C:\Universidad Fabio\Proyectos Visual Studio\Reproductor\Base_Reproductor.mdb");
+            //dbReproductor.Open(ConfigurationManager.ConnectionStrings["StringDeConexion"].ConnectionString.ToString());
+
+            //Inicializo variables, etc
+            panelReproduccion.Asignar(this);
             panelReproduccion.CambiarPosicion();
-            lista = new List<Cancion>();
             abrirArchivo.Multiselect = true;
             abrirArchivo.FileName = "";
             abrirArchivo.Filter = "MP3 files|*.mp3|WAV files|*.wav|All files|*.*";
             cancionActual = -1;
-            player = new Player();
-            Login login = new Login(this, ref dbReproductor);            
+
+            //Muestro el login
             login.Show();
         }
 
@@ -451,12 +460,7 @@ namespace Reproductor
 
         public void CambiarDeUsuario(string user)
         {
-            usuarioActual = user;
-        }
-
-        public string Usuario()
-        {
-            return usuarioActual;
+            //usuarioActual = user;
         }
 
         public void CambiarSkin()
@@ -520,6 +524,11 @@ namespace Reproductor
             botonStop_Click(null, null);
             cancionActual = num;
             botonPlay_Click(null, null);
+        }
+
+        public void SetUserLabel(string name)
+        {
+            labelUsuarioActual.Text = name;
         }
     }
 }
