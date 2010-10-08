@@ -31,7 +31,7 @@ namespace Reproductor
         {
             InitializeComponent();
 
-            //Reservo memoria para los objetos
+            //Creo instancia de objetos
             panelReproduccion = new PanelReproduccion();
             dbReproductor = new BaseDeDatos();
             login = new Login(this, ref dbReproductor);
@@ -47,7 +47,7 @@ namespace Reproductor
             //dbReproductor.Open(ConfigurationManager.ConnectionStrings["StringDeConexion"].ConnectionString.ToString());
 
             //Inicializo variables, etc
-            panelReproduccion.Asignar(this);
+            panelReproduccion.Asignar(this, ref dbReproductor, ref lista);
             panelReproduccion.CambiarPosicion();
             abrirArchivo.Multiselect = true;
             abrirArchivo.FileName = "";
@@ -222,8 +222,8 @@ namespace Reproductor
             {
                 Cancion song = new Cancion(path);
                 lista.Add(song);
-                panelReproduccion.AgregarCancion(song);
             }
+            panelReproduccion.CargarLista();
             player.Close();
             player.Open(lista[0].Ruta.ToString());
             player.Play(false);
