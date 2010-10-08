@@ -25,6 +25,8 @@ namespace Reproductor
 
         #endregion
 
+        #region Métodos funcionales
+        
         public PantallaPrincipal()
         {
             InitializeComponent();
@@ -55,44 +57,7 @@ namespace Reproductor
             //Muestro el login
             login.Show();
         }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (panelReproduccion.IsOpen)
-            {
-                Cerrar_Panel();
-            }
-            else
-            {
-                Abrir_Panel();
-            }
-        }
-
-        private void Cerrar_Panel()
-        {
-            panelReproduccion.Hide();
-            panelReproduccion.IsOpen = false;            
-        }
-
-        private void Abrir_Panel()
-        {
-            panelReproduccion.Show();
-            panelReproduccion.IsOpen = true;
-        }
-
-        private void trackBar2_Leave(object sender, EventArgs e)
-        {
-            trackBar2.Hide();
-        }
-
-        private void boton_volumen_Click(object sender, EventArgs e)
-        {
-            if (trackBar2.Visible.ToString() == "True")
-                trackBar2.Hide();
-            else
-                trackBar2.Show();
-        }
-
+        
         private void opcionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Opciones opc = new Opciones(this, panelReproduccion, ref dbReproductor);
@@ -141,121 +106,13 @@ namespace Reproductor
                 menu.Show();
             }
         }
-
-        public void Cambiar_color_tabs(Color col)
-        {
-            tabPage1.BackColor = col;
-            tabPage2.BackColor = col;
-            tabPage3.BackColor = col;
-        }
-
-        public void CambiarASkinNormal()
-        {
-            //Ventana principal
-            this.BackColor = Color.FromName("Control");
-            panelBotones.BackColor = Color.FromName("Control");
-            //Trackbar de tiempo de reproduccion
-            trackBarReproduccion.BackColor = Color.FromName("Control");
-            //Boton izquierda
-            botonAnterior.BackColor = Color.FromName("Control");
-            botonAnterior.Text = "l◄◄";
-            botonAnterior.BackgroundImage = null;
-            botonAnterior.FlatStyle = FlatStyle.System;
-            //Boton derecha
-            botonSiguiente.BackColor = Color.FromName("Control");
-            botonSiguiente.Text = "►►l";
-            botonSiguiente.BackgroundImage = null;
-            botonSiguiente.FlatStyle = FlatStyle.System;
-            //Boton play
-            botonPlay.BackColor = Color.FromName("Control");
-            botonPlay.Text = "►";
-            botonPlay.BackgroundImage = null;
-            botonPlay.FlatStyle = FlatStyle.System;
-            //Boton stop
-            botonStop.Text = "■";
-            botonStop.BackColor = Color.FromName("Control");
-            botonStop.BackgroundImage = null;
-            botonStop.FlatStyle = FlatStyle.System;
-            //Panel lista de reproduccion
-            panelReproduccion.BackColor = Color.FromName("Control");
-            //Panel inferior
-            panelBotones.BackgroundImage = null;
-            //paneles con pestaña
-            Cambiar_color_tabs(Color.FromName("Control"));
-            //Color de contador
-            labelContador.ForeColor = Color.FromName("ControlText");
-        }
-
-        public void CambiarASkinPacman()
-        {
-            //Ventana principal
-            this.BackColor = Color.Black;
-            panelBotones.BackColor = Color.Black;
-            //Trackbar de tiempo de reproduccion
-            trackBarReproduccion.BackColor = Color.Black;
-            //Boton izquierda
-            botonAnterior.BackColor = Color.Black;
-            botonAnterior.Text = "";
-            botonAnterior.FlatStyle = FlatStyle.Popup;
-            botonAnterior.BackgroundImage = Reproductor.Properties.Resources.botonizq;
-            botonAnterior.BackgroundImageLayout = ImageLayout.Stretch;
-            //Boton derecha
-            botonSiguiente.BackColor = Color.Black;
-            botonSiguiente.Text = "";
-            botonSiguiente.FlatStyle = FlatStyle.Popup;
-            botonSiguiente.BackgroundImage = Reproductor.Properties.Resources.botonder;
-            botonSiguiente.BackgroundImageLayout = ImageLayout.Stretch;
-            //Boton play
-            botonPlay.Text = "";
-            botonPlay.BackColor = Color.Black;
-            botonPlay.FlatStyle = FlatStyle.Popup;
-            botonPlay.BackgroundImage = Properties.Resources.boton;
-            botonPlay.BackgroundImageLayout = ImageLayout.Stretch;
-            //Boton stop
-            botonStop.BackColor = Color.Black;
-            botonStop.Text = "";
-            botonStop.FlatStyle = FlatStyle.Popup;
-            botonStop.BackgroundImage = Properties.Resources.botonstop;
-            botonStop.BackgroundImageLayout = ImageLayout.Stretch;
-            //Panel lista de reproduccion
-            panelReproduccion.BackColor = Color.Black;
-            //Panel inferior
-            panelBotones.BackgroundImage = Properties.Resources.panel;
-            panelBotones.BackgroundImageLayout = ImageLayout.Stretch;
-            //paneles con pestaña
-            Cambiar_color_tabs(Color.Yellow);
-            //Color del contador
-            labelContador.ForeColor = Color.White;
-        }
-
+        
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             abrirArchivo.ShowDialog();
         }
 
-        private void ActualizarEtiquetas()  //Debe ir despues de un Play(....)
-        {
-            if (lista.Count != 0)
-            {
-                this.Text = lista[cancionActual].Nombre + "          ";
-                textBoxCancion.Text = lista[cancionActual].Nombre + "          ";
-                textBoxAlbum.Text = lista[cancionActual].Album;
-                if (lista[cancionActual].Año.ToString() != "0")
-                {
-                    textBoxAño.Text = lista[cancionActual].Año.ToString();
-                }
-                else
-                {
-                    textBoxAño.Text = "";
-                }
-                textBoxArtista.Text = lista[cancionActual].Artista;
-                textBoxGenero.Text = lista[cancionActual].Genero;
-                richTextBoxLetras.Text = lista[cancionActual].Letra;
-                //Calculo la longitud del trackbar
-                ulong length = player.AudioLength;
-                trackBarReproduccion.Maximum = (int) length;
-            }
-        }                
+        
 
         private void ObtenerImagen()
         {
@@ -274,62 +131,6 @@ namespace Reproductor
             }
         }
 
-        private void Form1_LocationChanged(object sender, EventArgs e)
-        {
-            if (panelReproduccion.IsStuck && panelReproduccion.IsOpen)
-                panelReproduccion.CambiarPosicion();
-        }
-
-        public void CambiarPosicion()
-        {
-            this.Location = new Point(panelReproduccion.Location.X - this.Width, panelReproduccion.Location.Y);
-            this.Show();
-        }
-
-        private void Form1_SizeChanged(object sender, EventArgs e)
-        {
-            if (panelReproduccion.IsStuck && panelReproduccion.IsOpen)
-                panelReproduccion.CambiarPosicion();
-        }
-
-        private void CambiarAModoCompacto()
-        {
-            this.WindowState = FormWindowState.Normal;
-            this.CenterToScreen();
-            tabControl1.Hide();
-            this.MinimumSize = new Size(0,0);
-            this.MaximizeBox = false;
-            this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.Size = new Size(655, 220);
-        }
-
-        private void CambiarAModoNormal()
-        {
-            this.MinimumSize = new Size(655, 481);
-            this.MaximizeBox = true;
-            this.AutoSizeMode = AutoSizeMode.GrowOnly;
-            tabControl1.Show();
-        }
-
-        private void modoCompactoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CambiarAModoCompacto();
-        }
-
-        private void modoNormalToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CambiarAModoNormal();
-        }
-
-        public void PegarPanel()
-        {
-            panelReproduccion.IsStuck = true;
-        }
-
-        public void DespegarPanel()
-        {
-            panelReproduccion.IsStuck = false;
-        }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -349,10 +150,7 @@ namespace Reproductor
             c.Show();
         }
 
-        private string DesplazarString(string texto)
-        {
-            return texto.Substring(1) + texto.Substring(0, 1);
-        }
+
 
         private void botonSiguiente_Click(object sender, EventArgs e)
         {
@@ -455,12 +253,122 @@ namespace Reproductor
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+
             dbReproductor.Close();
         }
 
         public void CambiarDeUsuario(string user)
         {
             //usuarioActual = user;
+        }
+        
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string letra = lista[cancionActual].GetLyrics();
+
+            if(letra.Equals("Not found"))
+            {
+                richTextBoxLetras.Text = "No se encontraron letras para la cancion";
+            }
+            else
+            {
+                richTextBoxLetras.Text = letra;
+            }
+        }
+
+        public void ReproducirCancion(int num)
+        {
+            botonStop_Click(null, null);
+            cancionActual = num;
+            botonPlay_Click(null, null);
+        }
+
+        #endregion
+
+        #region Metodos Visuales y demás
+
+        public void SetUserLabel(string name)
+        {
+            labelUsuarioActual.Text = name;
+        }
+
+        public void CambiarASkinNormal()
+        {
+            //Ventana principal
+            this.BackColor = Color.FromName("Control");
+            panelBotones.BackColor = Color.FromName("Control");
+            //Trackbar de tiempo de reproduccion
+            trackBarReproduccion.BackColor = Color.FromName("Control");
+            //Boton izquierda
+            botonAnterior.BackColor = Color.FromName("Control");
+            botonAnterior.Text = "l◄◄";
+            botonAnterior.BackgroundImage = null;
+            botonAnterior.FlatStyle = FlatStyle.System;
+            //Boton derecha
+            botonSiguiente.BackColor = Color.FromName("Control");
+            botonSiguiente.Text = "►►l";
+            botonSiguiente.BackgroundImage = null;
+            botonSiguiente.FlatStyle = FlatStyle.System;
+            //Boton play
+            botonPlay.BackColor = Color.FromName("Control");
+            botonPlay.Text = "►";
+            botonPlay.BackgroundImage = null;
+            botonPlay.FlatStyle = FlatStyle.System;
+            //Boton stop
+            botonStop.Text = "■";
+            botonStop.BackColor = Color.FromName("Control");
+            botonStop.BackgroundImage = null;
+            botonStop.FlatStyle = FlatStyle.System;
+            //Panel lista de reproduccion
+            panelReproduccion.BackColor = Color.FromName("Control");
+            //Panel inferior
+            panelBotones.BackgroundImage = null;
+            //paneles con pestaña
+            Cambiar_color_tabs(Color.FromName("Control"));
+            //Color de contador
+            labelContador.ForeColor = Color.FromName("ControlText");
+        }
+
+        public void CambiarASkinPacman()
+        {
+            //Ventana principal
+            this.BackColor = Color.Black;
+            panelBotones.BackColor = Color.Black;
+            //Trackbar de tiempo de reproduccion
+            trackBarReproduccion.BackColor = Color.Black;
+            //Boton izquierda
+            botonAnterior.BackColor = Color.Black;
+            botonAnterior.Text = "";
+            botonAnterior.FlatStyle = FlatStyle.Popup;
+            botonAnterior.BackgroundImage = Reproductor.Properties.Resources.botonizq;
+            botonAnterior.BackgroundImageLayout = ImageLayout.Stretch;
+            //Boton derecha
+            botonSiguiente.BackColor = Color.Black;
+            botonSiguiente.Text = "";
+            botonSiguiente.FlatStyle = FlatStyle.Popup;
+            botonSiguiente.BackgroundImage = Reproductor.Properties.Resources.botonder;
+            botonSiguiente.BackgroundImageLayout = ImageLayout.Stretch;
+            //Boton play
+            botonPlay.Text = "";
+            botonPlay.BackColor = Color.Black;
+            botonPlay.FlatStyle = FlatStyle.Popup;
+            botonPlay.BackgroundImage = Properties.Resources.boton;
+            botonPlay.BackgroundImageLayout = ImageLayout.Stretch;
+            //Boton stop
+            botonStop.BackColor = Color.Black;
+            botonStop.Text = "";
+            botonStop.FlatStyle = FlatStyle.Popup;
+            botonStop.BackgroundImage = Properties.Resources.botonstop;
+            botonStop.BackgroundImageLayout = ImageLayout.Stretch;
+            //Panel lista de reproduccion
+            panelReproduccion.BackColor = Color.Black;
+            //Panel inferior
+            panelBotones.BackgroundImage = Properties.Resources.panel;
+            panelBotones.BackgroundImageLayout = ImageLayout.Stretch;
+            //paneles con pestaña
+            Cambiar_color_tabs(Color.Yellow);
+            //Color del contador
+            labelContador.ForeColor = Color.White;
         }
 
         public void CambiarSkin()
@@ -505,30 +413,137 @@ namespace Reproductor
             labelContador.ForeColor = Color.White;
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            string letra = lista[cancionActual].GetLyrics();
 
-            if(letra.Equals("Not found"))
+        private void Form1_LocationChanged(object sender, EventArgs e)
+        {
+            if (panelReproduccion.IsStuck && panelReproduccion.IsOpen)
+                panelReproduccion.CambiarPosicion();
+        }
+
+        public void CambiarPosicion()
+        {
+            this.Location = new Point(panelReproduccion.Location.X - this.Width, panelReproduccion.Location.Y);
+            this.Show();
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            if (panelReproduccion.IsStuck && panelReproduccion.IsOpen)
+                panelReproduccion.CambiarPosicion();
+        }
+
+        private void CambiarAModoCompacto()
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.CenterToScreen();
+            tabControl1.Hide();
+            this.MinimumSize = new Size(0, 0);
+            this.MaximizeBox = false;
+            this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            this.Size = new Size(655, 220);
+        }
+
+        private void CambiarAModoNormal()
+        {
+            this.MinimumSize = new Size(655, 481);
+            this.MaximizeBox = true;
+            this.AutoSizeMode = AutoSizeMode.GrowOnly;
+            tabControl1.Show();
+        }
+
+        private void modoCompactoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CambiarAModoCompacto();
+        }
+
+        private void modoNormalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CambiarAModoNormal();
+        }
+
+        public void PegarPanel()
+        {
+            panelReproduccion.IsStuck = true;
+        }
+
+        public void DespegarPanel()
+        {
+            panelReproduccion.IsStuck = false;
+        }
+        
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (panelReproduccion.IsOpen)
             {
-                richTextBoxLetras.Text = "No se encontraron letras para la cancion";
+                Cerrar_Panel();
             }
             else
             {
-                richTextBoxLetras.Text = letra;
+                Abrir_Panel();
             }
         }
 
-        public void ReproducirCancion(int num)
+        private void Cerrar_Panel()
         {
-            botonStop_Click(null, null);
-            cancionActual = num;
-            botonPlay_Click(null, null);
+            panelReproduccion.Hide();
+            panelReproduccion.IsOpen = false;
         }
 
-        public void SetUserLabel(string name)
+        private void Abrir_Panel()
         {
-            labelUsuarioActual.Text = name;
+            panelReproduccion.Show();
+            panelReproduccion.IsOpen = true;
         }
+
+        private void trackBar2_Leave(object sender, EventArgs e)
+        {
+            trackBar2.Hide();
+        }
+
+        private void boton_volumen_Click(object sender, EventArgs e)
+        {
+            if (trackBar2.Visible.ToString() == "True")
+                trackBar2.Hide();
+            else
+                trackBar2.Show();
+        }
+        
+        private string DesplazarString(string texto)
+        {
+            return texto.Substring(1) + texto.Substring(0, 1);
+        }
+
+        public void Cambiar_color_tabs(Color col)
+        {
+            tabPage1.BackColor = col;
+            tabPage2.BackColor = col;
+            tabPage3.BackColor = col;
+        }
+
+        public void ActualizarEtiquetas()  //Debe ir despues de un Play(....)
+        {
+            if (lista.Count != 0)
+            {
+                this.Text = lista[cancionActual].Nombre + "          ";
+                textBoxCancion.Text = lista[cancionActual].Nombre + "          ";
+                textBoxAlbum.Text = lista[cancionActual].Album;
+                if (lista[cancionActual].Año.ToString() != "0")
+                {
+                    textBoxAño.Text = lista[cancionActual].Año.ToString();
+                }
+                else
+                {
+                    textBoxAño.Text = "";
+                }
+                textBoxArtista.Text = lista[cancionActual].Artista;
+                textBoxGenero.Text = lista[cancionActual].Genero;
+                richTextBoxLetras.Text = lista[cancionActual].Letra;
+                //Calculo la longitud del trackbar
+                ulong length = player.AudioLength;
+                trackBarReproduccion.Maximum = (int)length;
+            }
+        }                
+
+        #endregion
     }
 }
