@@ -52,88 +52,89 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseDeDatos.cs" />
-    <Compile Include="Cancion.cs" />
-    <Compile Include="PantallaPrincipal.cs">
+    <Compile Include="Clases\BaseDeDatos.cs" />
+    <Compile Include="Clases\Cancion.cs" />
+    <Compile Include="Clases\Usuario.cs" />
+    <Compile Include="Forms\PantallaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PantallaPrincipal.Designer.cs">
+    <Compile Include="Forms\PantallaPrincipal.Designer.cs">
       <DependentUpon>PantallaPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="AcercaDe.cs">
+    <Compile Include="Forms\AcercaDe.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AcercaDe.Designer.cs">
+    <Compile Include="Forms\AcercaDe.Designer.cs">
       <DependentUpon>AcercaDe.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="Forms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
+    <Compile Include="Forms\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modificar_Album.cs">
+    <Compile Include="Forms\Modificar_Album.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modificar_Album.Designer.cs">
+    <Compile Include="Forms\Modificar_Album.Designer.cs">
       <DependentUpon>Modificar_Album.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modificar_Artista.cs">
+    <Compile Include="Forms\Modificar_Artista.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modificar_Artista.Designer.cs">
+    <Compile Include="Forms\Modificar_Artista.Designer.cs">
       <DependentUpon>Modificar_Artista.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modificar_Cancion.cs">
+    <Compile Include="Forms\Modificar_Cancion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modificar_Cancion.Designer.cs">
+    <Compile Include="Forms\Modificar_Cancion.Designer.cs">
       <DependentUpon>Modificar_Cancion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Opciones.cs">
+    <Compile Include="Forms\Opciones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Opciones.Designer.cs">
+    <Compile Include="Forms\Opciones.Designer.cs">
       <DependentUpon>Opciones.cs</DependentUpon>
     </Compile>
-    <Compile Include="PanelReproduccion.cs">
+    <Compile Include="Forms\PanelReproduccion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PanelReproduccion.Designer.cs">
+    <Compile Include="Forms\PanelReproduccion.Designer.cs">
       <DependentUpon>PanelReproduccion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Player.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Clases\Player.cs" />
+    <Compile Include="Clases\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AcercaDe.resx">
+    <EmbeddedResource Include="Forms\AcercaDe.resx">
       <DependentUpon>AcercaDe.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PantallaPrincipal.resx">
+    <EmbeddedResource Include="Forms\PantallaPrincipal.resx">
       <DependentUpon>PantallaPrincipal.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modificar_Album.resx">
+    <EmbeddedResource Include="Forms\Modificar_Album.resx">
       <DependentUpon>Modificar_Album.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modificar_Artista.resx">
+    <EmbeddedResource Include="Forms\Modificar_Artista.resx">
       <DependentUpon>Modificar_Artista.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modificar_Cancion.resx">
+    <EmbeddedResource Include="Forms\Modificar_Cancion.resx">
       <DependentUpon>Modificar_Cancion.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Opciones.resx">
+    <EmbeddedResource Include="Forms\Opciones.resx">
       <DependentUpon>Opciones.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PanelReproduccion.resx">
+    <EmbeddedResource Include="Forms\PanelReproduccion.resx">
       <DependentUpon>PanelReproduccion.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
