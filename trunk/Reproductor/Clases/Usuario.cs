@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Reproductor.Clases
+namespace Reproductor
 {
-    class Usuario
+    public class Usuario
     {
         private string ID;
 
+        public Usuario()
+        {
+        }
+        
         public string Id
         {
             get
