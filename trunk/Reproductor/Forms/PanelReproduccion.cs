@@ -13,9 +13,10 @@ namespace Reproductor
         #region Variables
 
         private PantallaPrincipal ventana_principal;
+        private List<Cancion> listaDeReproduccion;
+        private BaseDeDatos dBase;
         private bool isOpen;    //Indica si el panel es visible
         private bool isStuck;   //Indica si el panel esta "pegado"
-        private List<Cancion> listaDeReproduccion;
 
         #endregion
 
@@ -52,12 +53,14 @@ namespace Reproductor
             InitializeComponent();
             isOpen = true;
             isStuck = true;
-            listaDeReproduccion = new List<Cancion>();
+            //listaDeReproduccion = new List<Cancion>();
         }
 
-        public void Asignar(PantallaPrincipal form)
+        public void Asignar(PantallaPrincipal form, ref BaseDeDatos db, ref List<Cancion> lista)
         {
             ventana_principal = form;
+            dBase = db;
+            listaDeReproduccion = lista;
         }
 
         public void CambiarPosicion()
@@ -85,10 +88,10 @@ namespace Reproductor
             ventana_principal.Close();
         }
 
-        public void AgregarCancion(Cancion song)
+        public void CargarLista()
         {
-            listaDeReproduccion.Add(song);
-            listViewLista.Items.Add(new ListViewItem(song.Nombre));           
+            foreach(Cancion song in listaDeReproduccion)
+                listViewLista.Items.Add(new ListViewItem(song.Nombre));
         }
 
         public void LimpiarLista()
