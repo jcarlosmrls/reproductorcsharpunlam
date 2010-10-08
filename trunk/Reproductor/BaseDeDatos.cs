@@ -71,7 +71,36 @@ namespace Reproductor
             }
         }
 
+        //lee la columna de una tabla filtrando por un columf con el valor val
+        public string[] Leer_Columna(string tabla, string columna, string columf, string val)
+        {
+            string[] cadena;
+            int cant;
+            OleDbCommand cmdLeer = new OleDbCommand();
 
+            string cad = "SELECT " + columna + " FROM " + tabla + " WHERE " + columf + " = ?";
+
+            cmdLeer.CommandType = CommandType.Text;
+            cmdLeer.Connection = dbConnection;
+            cmdLeer.Parameters.Add("?", val);
+            cmdLeer.CommandText = cad;
+            dbAdapter.SelectCommand = cmdLeer;
+            dbDataSet.Clear();// agregado clear, sino se arma lio con el dataset anterior
+            try
+            {
+                dbAdapter.Fill(dbDataSet);
+                cant = dbDataSet.Tables[0].Rows.Count;
+                cadena = new string[cant];
+                for (int x = 0; x < cant; x++)
+                    cadena[x] = dbDataSet.Tables[0].Rows[x][columna].ToString();
+                return cadena;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al abrir la base de datos");
+                return null;
+            }
+        }
 
         public int AddUser(string user, string password)
         {
@@ -139,6 +168,21 @@ namespace Reproductor
             cmdAgregar.CommandText = @"INSERT INTO Ruta_De_Archivos ([Id_Usuario], [Path]) VALUES (?,?)";
 
             cmdAgregar.ExecuteNonQuery();
+        }
+
+        //metodo agregado
+        public void QuitarRutaDeArchivos(string user, string path)
+        {
+            OleDbCommand cmdQuitar = new OleDbCommand();
+
+            cmdQuitar.CommandType = CommandType.Text;
+            cmdQuitar.Connection = dbConnection;
+            cmdQuitar.Parameters.Add("?", user);
+            cmdQuitar.Parameters.Add("?", path);
+            cmdQuitar.CommandText = @"DELETE FROM Ruta_De_Archivos WHERE Id_Usuario = ? AND Path = ?";
+
+            cmdQuitar.ExecuteNonQuery();
+
         }
 
         #endregion
