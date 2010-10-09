@@ -27,7 +27,7 @@ namespace Reproductor
         {
             ventana_principal.Enabled = false;
             panel.Enabled = false;
-            foreach (string cad in baseDatos.Leer_Columna("Ruta_De_Archivos", "Path"))
+            foreach (string cad in baseDatos.Leer_Columna("Ruta_De_Archivos", "Path", "Id_Usuario", ventana_principal.user.Id))
             {
                 listBox1.Items.Add(cad);
             }
@@ -69,12 +69,17 @@ namespace Reproductor
         private void button3_Click(object sender, EventArgs e)
         {
             folderBrowserDialog1.ShowDialog();
-            baseDatos.AgregarRutaDeArchivos(ventana_principal.user.Id, folderBrowserDialog1.SelectedPath);
 
-            listBox1.Items.Clear();
-            foreach (string cad in baseDatos.Leer_Columna("Ruta_De_Archivos", "Path", "Id_Usuario", ventana_principal.user.Id))
+            //Si eligio carpeta
+            if (folderBrowserDialog1.SelectedPath != "")
             {
-                listBox1.Items.Add(cad);
+                baseDatos.AgregarRutaDeArchivos(ventana_principal.user.Id, folderBrowserDialog1.SelectedPath);
+
+                listBox1.Items.Clear();
+                foreach (string cad in baseDatos.Leer_Columna("Ruta_De_Archivos", "Path", "Id_Usuario", ventana_principal.user.Id))
+                {
+                    listBox1.Items.Add(cad);
+                }
             }
         }
 

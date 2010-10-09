@@ -42,19 +42,20 @@ namespace Reproductor
             dbConnection.Close();
         }
 
+        //lee la columna de una tabla
         public string[] Leer_Columna(string tabla, string columna)
         {
             string[] cadena;
             int cant;
             OleDbCommand cmdLeer = new OleDbCommand();
 
+            string cad = "SELECT " + columna + " FROM " + tabla;
+
             cmdLeer.CommandType = CommandType.Text;
             cmdLeer.Connection = dbConnection;
-            cmdLeer.Parameters.Add("?", columna);
-            cmdLeer.Parameters.Add("?", tabla);
-            cmdLeer.CommandText = @"SELECT ? FROM ?";
+            cmdLeer.CommandText = cad;
             dbAdapter.SelectCommand = cmdLeer;
-
+            dbDataSet.Clear(); // agregado clear, sino se arma lio con el dataset anterior
             try
             {
                 dbAdapter.Fill(dbDataSet);
@@ -66,7 +67,7 @@ namespace Reproductor
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al abrir la base de datos.");
+                MessageBox.Show("Error al abrir la base de datos");
                 return null;
             }
         }
