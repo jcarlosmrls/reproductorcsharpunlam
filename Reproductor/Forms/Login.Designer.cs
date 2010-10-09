@@ -44,8 +44,8 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.labelPass = new System.Windows.Forms.Label();
             this.labelUsuario = new System.Windows.Forms.Label();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.UsuarioNuevo = new System.Windows.Forms.RadioButton();
+            this.UsuarioExistente = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -81,8 +81,8 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.radioButton2);
-            this.panel1.Controls.Add(this.radioButton1);
+            this.panel1.Controls.Add(this.UsuarioNuevo);
+            this.panel1.Controls.Add(this.UsuarioExistente);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(302, 208);
@@ -196,29 +196,29 @@
             this.labelUsuario.TabIndex = 5;
             this.labelUsuario.Text = "Usuario: ";
             // 
-            // radioButton2
+            // UsuarioNuevo
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(3, 97);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(96, 17);
-            this.radioButton2.TabIndex = 4;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Usuario Nuevo";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.UsuarioNuevo.AutoSize = true;
+            this.UsuarioNuevo.Location = new System.Drawing.Point(3, 97);
+            this.UsuarioNuevo.Name = "UsuarioNuevo";
+            this.UsuarioNuevo.Size = new System.Drawing.Size(96, 17);
+            this.UsuarioNuevo.TabIndex = 4;
+            this.UsuarioNuevo.TabStop = true;
+            this.UsuarioNuevo.Text = "Usuario Nuevo";
+            this.UsuarioNuevo.UseVisualStyleBackColor = true;
+            this.UsuarioNuevo.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
-            // radioButton1
+            // UsuarioExistente
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(3, 3);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(107, 17);
-            this.radioButton1.TabIndex = 3;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Usuario Existente";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.UsuarioExistente.AutoSize = true;
+            this.UsuarioExistente.Location = new System.Drawing.Point(3, 3);
+            this.UsuarioExistente.Name = "UsuarioExistente";
+            this.UsuarioExistente.Size = new System.Drawing.Size(107, 17);
+            this.UsuarioExistente.TabIndex = 3;
+            this.UsuarioExistente.TabStop = true;
+            this.UsuarioExistente.Text = "Usuario Existente";
+            this.UsuarioExistente.UseVisualStyleBackColor = true;
+            this.UsuarioExistente.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // Login
             // 
@@ -255,8 +255,8 @@
         private System.Windows.Forms.Button botonLogin;
         private System.Windows.Forms.Button botonCancelar;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton UsuarioExistente;
+        private System.Windows.Forms.RadioButton UsuarioNuevo;
         private System.Windows.Forms.Label labelPass;
         private System.Windows.Forms.Label labelUsuario;
         private System.Windows.Forms.TextBox txtNick;

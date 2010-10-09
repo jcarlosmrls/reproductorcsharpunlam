@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Reproductor")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("UNLaM")]
+[assembly: AssemblyCompany("Microsoft")]
 [assembly: AssemblyProduct("Reproductor")]
-[assembly: AssemblyCopyright("Copyright © UNLaM 2010")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
