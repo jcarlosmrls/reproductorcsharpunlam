@@ -69,10 +69,10 @@ namespace Reproductor
         private void button3_Click(object sender, EventArgs e)
         {
             folderBrowserDialog1.ShowDialog();
-            baseDatos.AgregarRutaDeArchivos(ventana_principal.user.Id, folderBrowserDialog1.SelectedPath);
+            baseDatos.AgregarRutaDeArchivos(ventana_principal.Usuario(), folderBrowserDialog1.SelectedPath);
 
             listBox1.Items.Clear();
-            foreach (string cad in baseDatos.Leer_Columna("Ruta_De_Archivos", "Path", "Id_Usuario", ventana_principal.user.Id))
+            foreach (string cad in baseDatos.Leer_Columna("Ruta_De_Archivos", "Path", "Id_Usuario", ventana_principal.Usuario()))
             {
                 listBox1.Items.Add(cad);
             }
@@ -83,10 +83,10 @@ namespace Reproductor
         {
             foreach (string path in listBox1.SelectedItems)
             {
-                baseDatos.QuitarRutaDeArchivos(ventana_principal.user.Id, path);
+                baseDatos.QuitarRutaDeArchivos(ventana_principal.Usuario(), path);
             }
             listBox1.Items.Clear();
-            foreach (string cad in baseDatos.Leer_Columna("Ruta_De_Archivos", "Path", "Id_Usuario", ventana_principal.user.Id))
+            foreach (string cad in baseDatos.Leer_Columna("Ruta_De_Archivos", "Path", "Id_Usuario", ventana_principal.Usuario()))
             {
                 listBox1.Items.Add(cad);
             }
