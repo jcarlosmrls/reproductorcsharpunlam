@@ -11,35 +11,49 @@ namespace Reproductor
 {
     public partial class Login : Form
     {
-        PantallaPrincipal ventanaPrincipal;
-        BaseDeDatos baseDatos;
+        private PantallaPrincipal ventanaPrincipal;
+        private BaseDeDatos baseDatos;
         
         public Login(PantallaPrincipal vent, ref BaseDeDatos db)
         {
             InitializeComponent();
-            radioButton1.Checked = true;
+            UsuarioExistente.Checked = true;
             ventanaPrincipal = vent;
             baseDatos = db;
         }
 
+        private void Login_Load(object sender, EventArgs e)
+        {
+            ventanaPrincipal.Enabled = false;
+        }
+
         private void botonLogin_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked)
+            //Si elijo loguearme
+            if (UsuarioExistente.Checked)
             {
-                if ( ("Invitado" == txtUsuario.Text) ||                     
-                    (baseDatos.ValidarLogin(txtUsuario.Text, txtPassword.Text)))
+                ventanaPrincipal.user.IsNewUser = false;
+                ventanaPrincipal.user.Id = txtUsuario.Text;
+                ventanaPrincipal.user.Password = txtPassword.Text;
+                //Si entro como invitado, o si el Login es correcto
+                if ( ("Invitado" == ventanaPrincipal.user.Id) || (baseDatos.ValidarLogin(ventanaPrincipal.user.Id, txtPassword.Text)))
                 {
-                    ventanaPrincipal.CambiarDeUsuario(txtUsuario.Text);
                     ventanaPrincipal.Enabled = true;
-                    ventanaPrincipal.labelUsuarioActual.Text = txtUsuario.Text;
+                    ventanaPrincipal.SetUserLabel(ventanaPrincipal.user.Id);
                     this.Close();
                 }
             }
-            else
+            else//Si es nuevo usuario
             {
-                if (baseDatos.AddUser(txtNick.Text, txtPass1.Text) != -1)  //Si no hubo error al registrar un usuario nuevo
+                ventanaPrincipal.user.IsNewUser = false;
+                ventanaPrincipal.user.Id = txtNick.Text;
+                ventanaPrincipal.user.Password = txtPass1.Text;
+
+                //Si no hubo error al registrar un usuario nuevo
+                if (baseDatos.AddUser(txtNick.Text, txtPass1.Text) != -1)
                 {
                     ventanaPrincipal.Enabled = true;
+                    ventanaPrincipal.SetUserLabel(ventanaPrincipal.user.Id);
                     this.Close();
                 }
             }           
@@ -52,7 +66,7 @@ namespace Reproductor
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            panel2.Enabled = true;
+            panel2.Enabled = true ;
             panel3.Enabled = false;
         }
 
@@ -60,11 +74,6 @@ namespace Reproductor
         {
             panel2.Enabled = false;
             panel3.Enabled = true;
-        }
-
-        private void Login_Load(object sender, EventArgs e)
-        {
-            ventanaPrincipal.Enabled = false;
         }
     }
 }

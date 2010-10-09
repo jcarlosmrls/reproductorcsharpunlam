@@ -52,16 +52,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\BaseDeDatos.cs" />
-    <Compile Include="Clases\Cancion.cs" />
-    <Compile Include="Clases\Configuraciones.cs" />
-    <Compile Include="Clases\Usuario.cs" />
     <Compile Include="Forms\AcercaDe.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AcercaDe.Designer.cs">
       <DependentUpon>AcercaDe.cs</DependentUpon>
     </Compile>
+    <Compile Include="Clases\BaseDeDatos.cs" />
+    <Compile Include="Clases\Cancion.cs" />
+    <Compile Include="Clases\Usuario.cs" />
     <Compile Include="Forms\PantallaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,7 +166,6 @@
     <None Include="Resources\SinTapa.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Resources\boton.png" />
     <Content Include="Resources\añadir.png" />
     <Content Include="Resources\borrar.png" />
