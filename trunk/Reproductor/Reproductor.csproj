@@ -167,6 +167,7 @@
     <None Include="Resources\SinTapa.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Resources\boton.png" />
     <Content Include="Resources\añadir.png" />
     <Content Include="Resources\borrar.png" />
