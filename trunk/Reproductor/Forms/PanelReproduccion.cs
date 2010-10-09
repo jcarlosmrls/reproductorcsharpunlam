@@ -13,10 +13,9 @@ namespace Reproductor
         #region Variables
 
         private PantallaPrincipal ventana_principal;
+        private bool isOpen;
+        private bool isStuck;
         private List<Cancion> listaDeReproduccion;
-        private BaseDeDatos dBase;
-        private bool isOpen;    //Indica si el panel es visible
-        private bool isStuck;   //Indica si el panel esta "pegado"
 
         #endregion
 
@@ -53,14 +52,12 @@ namespace Reproductor
             InitializeComponent();
             isOpen = true;
             isStuck = true;
-            //listaDeReproduccion = new List<Cancion>();
+            listaDeReproduccion = new List<Cancion>();
         }
 
-        public void Asignar(PantallaPrincipal form, ref BaseDeDatos db, ref List<Cancion> lista)
+        public void Asignar(PantallaPrincipal form)
         {
             ventana_principal = form;
-            dBase = db;
-            listaDeReproduccion = lista;
         }
 
         public void CambiarPosicion()
@@ -88,17 +85,21 @@ namespace Reproductor
             ventana_principal.Close();
         }
 
-        public void CargarLista()
+        public void AgregarCancion(Cancion song)
         {
+            listaDeReproduccion.Add(song);
+            listViewLista.Items.Add(new ListViewItem(song.Nombre));           
+        }
+
+        public void LimpiarLista()
+        {
+            listaDeReproduccion.Clear();
             listViewLista.Clear();
-            foreach(Cancion song in listaDeReproduccion)
-                listViewLista.Items.Add(new ListViewItem(song.Nombre));
         }
 
         public void SeleccionarCancion(int num)
         {
-            listViewLista.Items[num].Selected = true;
-            this.Activate();
+            listViewLista.Items[num].Focused = true;
         }
 
         private void listViewLista_DoubleClick(object sender, EventArgs e)
@@ -106,7 +107,6 @@ namespace Reproductor
             try
             {
                 ventana_principal.ReproducirCancion(listViewLista.SelectedIndices[0]);
-                ventana_principal.ActualizarEtiquetas();
             }
             catch(Exception)
             {
