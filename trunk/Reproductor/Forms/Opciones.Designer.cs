@@ -145,8 +145,9 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(57, 24);
             this.button4.TabIndex = 9;
-            this.button4.Text = "quitar";
+            this.button4.Text = "Quitar";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Opciones
             // 
