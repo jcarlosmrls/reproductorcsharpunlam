@@ -66,7 +66,7 @@ namespace Reproductor
                     cadena[x] = dbDataSet.Tables[0].Rows[x][columna].ToString();
                 return cadena;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Error al abrir la base de datos");
                 return null;
@@ -97,7 +97,7 @@ namespace Reproductor
                     cadena[x] = dbDataSet.Tables[0].Rows[x][columna].ToString();
                 return cadena;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Error al abrir la base de datos");
                 return null;
@@ -107,19 +107,44 @@ namespace Reproductor
         public int AddUser(string user, string password)
         {
             OleDbCommand cmdInsertar = new OleDbCommand();
+            OleDbCommand cmdPerfil = new OleDbCommand();
+            OleDbCommand cmdConfiguraciones = new OleDbCommand();
             
             cmdInsertar.Connection = dbConnection;
             cmdInsertar.Parameters.Add("?", user);
             cmdInsertar.Parameters.Add("?", password);
             cmdInsertar.CommandText = @"INSERT INTO Usuario ([Id_Usuario], [Password]) VALUES (?,?)";
+
             try
             {
                 cmdInsertar.ExecuteNonQuery();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("El nombre de usuario seleccionado ya está en uso. Por favor, elija otro.", "Error");
                 return -1;
+            }
+
+            //Si pudo crear el usuario, defino las operaciones restantes
+            cmdPerfil.Connection = dbConnection;
+            cmdPerfil.Parameters.Add("?", user);
+            cmdPerfil.Parameters.Add("?", "Normal");    //Es el perfil que se crea por defecto
+            cmdPerfil.CommandText = @"INSERT INTO Perfil ([Id_Usuario], [Nombre]) VALUES (?, ?)";
+
+            cmdConfiguraciones.Connection = dbConnection;
+            cmdConfiguraciones.Parameters.Add("?", user);
+            cmdConfiguraciones.Parameters.Add("?", "Normal");   //El nombre del skin por defecto
+            cmdConfiguraciones.Parameters.Add("?", "Normal");   //El nombre del ultimo Perfil usado
+            cmdConfiguraciones.CommandText = @"INSERT INTO Configuraciones ([Id_Usuario], [Skin], [Perfil]) VALUES (?, ?, ?)";
+
+            try
+            {
+                cmdPerfil.ExecuteNonQuery();
+                cmdConfiguraciones.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al intentar crear el usuario.", "ERROR");
             }
             return 0;
         }
@@ -181,7 +206,7 @@ namespace Reproductor
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Se producido un error en la base de datos");
             }
@@ -264,7 +289,7 @@ namespace Reproductor
                 if (nombre.Length == 0)
                     nombre = "?";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 nombre = "?";
             }
@@ -285,7 +310,7 @@ namespace Reproductor
                 if (nombre.Length == 0)
                     nombre = "?";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 nombre = "?";
             }
@@ -307,7 +332,7 @@ namespace Reproductor
                 if (nombre.Length == 0)
                     nombre = "?";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 nombre = "?";
             }
@@ -337,7 +362,7 @@ namespace Reproductor
                 if (album.Length == 0)
                     album = "?";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 album = "?";
             }

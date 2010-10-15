@@ -45,16 +45,24 @@ namespace Reproductor
             }
             else//Si es nuevo usuario
             {
-                ventanaPrincipal.user.IsNewUser = false;
+                ventanaPrincipal.user.IsNewUser = true;
                 ventanaPrincipal.user.Id = txtNick.Text;
                 ventanaPrincipal.user.Password = txtPass1.Text;
 
-                //Si no hubo error al registrar un usuario nuevo
-                if (baseDatos.AddUser(txtNick.Text, txtPass1.Text) != -1)
+                if ((txtPass1.Text == "") || (txtPass2.Text == "") ||      //Si algun campo de contraseña esta vacio
+                   (txtPass1.Text != txtPass2.Text))                      //O si son distintas las contraseñas ingresadas
                 {
-                    ventanaPrincipal.Enabled = true;
-                    ventanaPrincipal.SetUserLabel(ventanaPrincipal.user.Id);
-                    this.Close();
+                    MessageBox.Show("Los campos de contraseña no coinciden, o bien no pueden estar en blanco");
+                }
+                else
+                {
+                    //Si no hubo error al registrar un usuario nuevo
+                    if (baseDatos.AddUser(txtNick.Text, txtPass1.Text) != -1)
+                    {
+                        ventanaPrincipal.Enabled = true;
+                        ventanaPrincipal.SetUserLabel(ventanaPrincipal.user.Id);
+                        this.Close();
+                    }
                 }
             }           
         }
