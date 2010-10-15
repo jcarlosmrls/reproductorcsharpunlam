@@ -14,6 +14,8 @@ namespace Reproductor
         private PanelReproduccion panel;
         private BaseDeDatos baseDatos;
         private bool hubo_cambio = false;
+        private bool hubo_cambio_paths = false;
+        private List<string> paths;
 
         public Opciones(PantallaPrincipal form, PanelReproduccion pan, ref BaseDeDatos bd)
         {
@@ -21,6 +23,7 @@ namespace Reproductor
             ventana_principal = form;
             panel = pan;
             baseDatos = bd;
+            paths = new List<string>();
         }
 
         private void Opciones_Load(object sender, EventArgs e)
@@ -29,6 +32,7 @@ namespace Reproductor
             panel.Enabled = false;
             foreach (string cad in baseDatos.Leer_Columna("Ruta_De_Archivos", "Path", "Id_Usuario", ventana_principal.user.Id))
             {
+                paths.Add(new string(cad.ToCharArray()));
                 listBox1.Items.Add(cad);
             }
         }
@@ -47,6 +51,12 @@ namespace Reproductor
                     default:
                         break;
                 }
+            if (hubo_cambio_paths)
+            {
+                baseDatos.ActualizarRutaDeArchivos(ventana_principal.user.Id, paths);
+                // aca esta actualizamdo, habria que cambiarlo por un thread.
+                baseDatos.ActualizarCanciones(ventana_principal);
+            }
             this.Close();
         }
 
@@ -73,14 +83,13 @@ namespace Reproductor
             //Si eligio carpeta
             if (folderBrowserDialog1.SelectedPath != "")
             {
-                baseDatos.AgregarRutaDeArchivos(ventana_principal.user.Id, folderBrowserDialog1.SelectedPath);
+                paths.Add(new string(folderBrowserDialog1.SelectedPath.ToCharArray()));
 
                 listBox1.Items.Clear();
-                foreach (string cad in baseDatos.Leer_Columna("Ruta_De_Archivos", "Path", "Id_Usuario", ventana_principal.user.Id))
-                {
-                    listBox1.Items.Add(cad);
-                }
+                for (int x = 0; x < paths.Count; x++)
+                    listBox1.Items.Add(paths[x]);
             }
+            hubo_cambio_paths = true;
         }
 
         //agregado funcion de boton quitar rutas
@@ -88,13 +97,14 @@ namespace Reproductor
         {
             foreach (string path in listBox1.SelectedItems)
             {
-                baseDatos.QuitarRutaDeArchivos(ventana_principal.user.Id, path);
+                paths.Remove(path);
+
             }
             listBox1.Items.Clear();
-            foreach (string cad in baseDatos.Leer_Columna("Ruta_De_Archivos", "Path", "Id_Usuario", ventana_principal.user.Id))
-            {
-                listBox1.Items.Add(cad);
-            }
+            for (int x = 0; x < paths.Count; x++)
+                listBox1.Items.Add(paths[x]);
+
+            hubo_cambio_paths = true;
         }
     }
 }
