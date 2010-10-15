@@ -42,8 +42,16 @@ namespace Reproductor
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Obtengo el path relativo
+            string path = Directory.GetCurrentDirectory();
+            path = path.Remove(path.LastIndexOf("\\"));
+            path = path.Remove(path.LastIndexOf("\\"));
+            path = path.Remove(path.LastIndexOf("\\"));
+            path += "\\Base_Reproductor.mdb";
+
             //Abro la base de datos
-            dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=C:\Universidad Fabio\Proyectos Visual Studio\Reproductor\Base_Reproductor.mdb");
+            dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + path);
+            //dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=C:\Universidad Fabio\Proyectos Visual Studio\Reproductor\Base_Reproductor.mdb");
             //dbReproductor.Open(ConfigurationManager.ConnectionStrings["StringDeConexion"].ConnectionString.ToString());
 
             //Inicializo variables, etc
