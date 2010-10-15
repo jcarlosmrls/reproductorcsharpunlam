@@ -52,6 +52,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Configuracion.cs" />
     <Compile Include="Forms\AcercaDe.cs">
       <SubType>Form</SubType>
     </Compile>
