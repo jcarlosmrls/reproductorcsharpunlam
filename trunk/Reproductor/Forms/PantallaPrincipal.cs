@@ -16,6 +16,8 @@ namespace Reproductor
         #region Variables
 
         public Usuario user;
+        public Configuracion config;
+
         List<Cancion> lista;
         private int cancionActual;
         private PanelReproduccion panelReproduccion;
@@ -38,19 +40,14 @@ namespace Reproductor
             lista = new List<Cancion>();
             player = new Player();
             user = new Usuario();
+            config = new Configuracion();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Obtengo el path relativo
-            string path = Directory.GetCurrentDirectory();
-            path = path.Remove(path.LastIndexOf("\\"));
-            path = path.Remove(path.LastIndexOf("\\"));
-            path = path.Remove(path.LastIndexOf("\\"));
-            path += "\\Base_Reproductor.mdb";
 
             //Abro la base de datos
-            dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + path);
+            dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + config.Path);
             //dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=C:\Universidad Fabio\Proyectos Visual Studio\Reproductor\Base_Reproductor.mdb");
             //dbReproductor.Open(ConfigurationManager.ConnectionStrings["StringDeConexion"].ConnectionString.ToString());
 
@@ -64,6 +61,10 @@ namespace Reproductor
 
             //Muestro el login
             login.Show();
+
+            //Cuando cierra el login (seria conveniente sincronizar)
+            //Cargo la configuracion del usuario
+            //Y la aplico
         }
         
         private void opcionesToolStripMenuItem_Click(object sender, EventArgs e)
