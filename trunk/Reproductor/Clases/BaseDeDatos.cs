@@ -6,6 +6,7 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Reproductor
 {
@@ -158,6 +159,34 @@ namespace Reproductor
             }
         }
 
+        public void ActualizarRutaDeArchivos(string user, List<string> paths)
+        {
+            OleDbCommand cmd = new OleDbCommand();
+
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = dbConnection;
+            cmd.Parameters.Add("?", user);
+
+            cmd.CommandText = @"DELETE FROM Ruta_De_Archivos WHERE Id_Usuario = ?";
+            try
+            {
+                cmd.ExecuteNonQuery();
+
+                for (int x = 0; x < paths.Count; x++)
+                {
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add("?", user);
+                    cmd.Parameters.Add("?", paths[x]);
+                    cmd.CommandText = @"INSERT INTO Ruta_De_Archivos ([Id_Usuario], [Path]) VALUES (?,?)";
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Se producido un error en la base de datos");
+            }
+        }
+
         public void AgregarRutaDeArchivos(string user, string path)
         {
             OleDbCommand cmdAgregar = new OleDbCommand();
@@ -183,7 +212,198 @@ namespace Reproductor
             cmdQuitar.CommandText = @"DELETE FROM Ruta_De_Archivos WHERE Id_Usuario = ? AND Path = ?";
 
             cmdQuitar.ExecuteNonQuery();
+        }
 
+        //metodo que va a generar la lista de canciones en los directorios seleccionados
+        private List<string> ListaPathsCanciones(string[] paths)
+        {
+            List<string> canciones = new List<string>();
+
+            foreach (string path in paths)
+            {
+                //obtiene una lista  por cada formato
+                foreach (string cad in Directory.GetFiles(path, "*.mp3", SearchOption.AllDirectories))
+                {
+
+
+                    canciones.Add(cad.ToString());
+
+                }
+                foreach (string cad in Directory.GetFiles(path, "*.wav", SearchOption.AllDirectories))
+                {
+
+
+                    canciones.Add(cad.ToString());
+
+                }
+                foreach (string cad in Directory.GetFiles(path, "*.mid", SearchOption.AllDirectories))
+                {
+
+
+                    canciones.Add(cad.ToString());
+
+                }
+            }
+
+            return canciones;
+        }
+
+        private bool ExisteCancion(string path)
+        {
+
+            if (Leer_Columna("Cancion", "Path", "Path", path).Length > 0)
+                return true;
+            else
+                return false;
+        }
+
+        private string InterpreteId(string nombre)
+        {
+            try //controla si el nombre es de tamaño 0 o si es nulo
+            {
+                if (nombre.Length == 0)
+                    nombre = "?";
+            }
+            catch (Exception ex)
+            {
+                nombre = "?";
+            }
+
+            string[] lista;
+            lista = Leer_Columna("Interprete", "Id", "Nombre", nombre); //realizo una busqueda en al bd de los interpretes con ese nombre
+
+            if (lista.Length == 0)
+                return "";
+            else
+                return lista[0];
+        }
+
+        private string AlbumId(string nombre)
+        {
+            try//controla si el nombre es de tamaño 0 o si es nulo
+            {
+                if (nombre.Length == 0)
+                    nombre = "?";
+            }
+            catch (Exception ex)
+            {
+                nombre = "?";
+            }
+
+            string[] lista;
+            lista = Leer_Columna("Album", "Id_Album", "Nombre", nombre); //busqueda en la bd de los albunes con ese nombre
+
+            if (lista.Length == 0)
+                return "";
+            else
+                return lista[0];
+        }
+
+
+        private string AgregarInterprete(string nombre)
+        {
+            try//controla si el nombre es de tamaño 0 o si es nulo
+            {
+                if (nombre.Length == 0)
+                    nombre = "?";
+            }
+            catch (Exception ex)
+            {
+                nombre = "?";
+            }
+
+            OleDbCommand cmd = new OleDbCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = dbConnection;
+            cmd.Parameters.Add("?", nombre);
+
+            cmd.CommandText = @"INSERT INTO Interprete ([Nombre]) VALUES (?)";
+            cmd.ExecuteNonQuery();
+
+            return InterpreteId(nombre);
+
+        }
+
+        private string AgregarAlbum(Cancion cancion, string idInterprete)
+        {
+            OleDbCommand cmd = new OleDbCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = dbConnection;
+
+            string album = cancion.Album;
+
+            try//controla si el album es de tamaño 0 o si es nulo
+            {
+                if (album.Length == 0)
+                    album = "?";
+            }
+            catch (Exception ex)
+            {
+                album = "?";
+            }
+
+            cmd.Parameters.Add("?", album);
+            cmd.Parameters.Add("?", idInterprete);
+            cmd.Parameters.Add("?", cancion.Genero);
+            cmd.Parameters.Add("?", cancion.Año);
+            cmd.Parameters.Add("?", cancion.Imagen);
+
+            cmd.CommandText = @"INSERT INTO Album ([Nombre],[Id_Interprete],[Genero],[Año],[ImagenTapa]) VALUES (?,?,?,?,?)";
+            cmd.ExecuteNonQuery();
+
+            return AlbumId(cancion.Album);
+
+        }
+
+        private void AgregarCancion(Cancion cancion, string idAlbum)
+        {
+            OleDbCommand cmd = new OleDbCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = dbConnection;
+            cmd.Parameters.Add("?", idAlbum);
+            cmd.Parameters.Add("?", cancion.Nombre);
+            //cmd.Parameters.Add("?", cancion.numero);
+            cmd.Parameters.Add("?", cancion.Duracion);
+            cmd.Parameters.Add("?", cancion.Ruta);
+
+            cmd.CommandText = @"INSERT INTO Cancion ([Id_Album],[Titulo],[Duracion],[Path]) VALUES (?,?,?,?)";
+            cmd.ExecuteNonQuery();
+        }
+
+
+        // funcion que actualiza las canciones en la base de datos, 
+        public void ActualizarCanciones(PantallaPrincipal ventana)
+        {
+            List<string> canciones;
+
+            //obtengo una lista de los paths de canciones en base a los directorios guardados en la base de datos
+            canciones = ListaPathsCanciones(Leer_Columna("Ruta_De_Archivos", "Path", "Id_Usuario", ventana.user.Id));
+
+            foreach (string path in canciones)
+            {
+
+                if (!ExisteCancion(path)) // controlo si el path de la cancion ya esta en la base de datos.
+                {
+
+                    Cancion cancion = new Cancion(path); //creo objeto cancion
+                    string idInterprete = InterpreteId(cancion.Artista);
+                    string idAlbum = AlbumId(cancion.Album); //obtengo los ids de album y interprete.
+                    if (idInterprete == "") // controlo si el interprete no existe
+                    {
+                        idInterprete = AgregarInterprete(cancion.Artista);
+                        idAlbum = AgregarAlbum(cancion, idInterprete);
+                    }
+                    else
+                    {
+                        if (idAlbum == "") //controlo si el album no existe
+                        {
+                            idAlbum = AgregarAlbum(cancion, idInterprete);
+                        }
+                    }
+
+                    AgregarCancion(cancion, idAlbum);
+                }
+            }
         }
 
         #endregion
