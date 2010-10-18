@@ -300,8 +300,16 @@ namespace Reproductor
                 ThreadStart comienzo = new ThreadStart(Buscador);
                 Thread buscador = new Thread(comienzo);
 
+                ImageList imagenes = new ImageList();
+                listView1.LargeImageList = imagenes;
+                listView1.LargeImageList.ImageSize = new Size(50, 50);
+                foreach (Cancion song in lista)
+                {
+                    imagenes.Images.Add(song.Album, song.Imagen);
+                    listView1.Items.Add(new ListViewItem(song.Album, song.Album));
+                }
                 listViewBuscador.Items.Clear();
-                listViewBuscador.Items.Add(new ListViewItem("Cargando..."));
+                //listViewBuscador.Items.Add(new ListViewItem("Cargando..."));
                 buscador.Start();
             }
             else if (comboBoxBuscador.SelectedItem != null)
@@ -319,6 +327,22 @@ namespace Reproductor
             //Busca en la base de datos
             //Si no encuentra, informa en pantalla
             //Sino, toma los datos necesarios y ahce la lista
+        }
+
+        public void MostrarInterpretes()    //completa el listbox1 con la lista de interpretes de la base de datos
+        {
+            listBox1.Items.Clear();
+            foreach (string interprete in dbReproductor.Leer_Columna("Interprete", "Nombre"))
+            {
+                listBox1.Items.Add(interprete);
+            }
+            listBox1.Sorted = true;
+        }
+
+        private void tabControlPrincipal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControlPrincipal.SelectedTab == tabControlPrincipal.TabPages[1])
+                MostrarInterpretes();
         }
 
         #endregion
@@ -474,7 +498,7 @@ namespace Reproductor
         {
             this.WindowState = FormWindowState.Normal;
             this.CenterToScreen();
-            tabControl1.Hide();
+            tabControlPrincipal.Hide();
             this.MinimumSize = new Size(0, 0);
             this.MaximizeBox = false;
             this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
@@ -486,7 +510,7 @@ namespace Reproductor
             this.MinimumSize = new Size(655, 481);
             this.MaximizeBox = true;
             this.AutoSizeMode = AutoSizeMode.GrowOnly;
-            tabControl1.Show();
+            tabControlPrincipal.Show();
         }
 
         private void modoCompactoToolStripMenuItem_Click(object sender, EventArgs e)
