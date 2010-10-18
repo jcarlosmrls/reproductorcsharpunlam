@@ -83,7 +83,6 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.listView2 = new System.Windows.Forms.ListView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.botonBuscar = new System.Windows.Forms.Button();
             this.comboBoxBuscador = new System.Windows.Forms.ComboBox();
@@ -93,6 +92,7 @@
             this.timerBarra = new System.Windows.Forms.Timer(this.components);
             this.abrirArchivo = new System.Windows.Forms.OpenFileDialog();
             this.labelUsuarioActual = new System.Windows.Forms.Label();
+            this.listViewBuscador = new System.Windows.Forms.ListView();
             this.menu.SuspendLayout();
             this.panelBotones.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -665,7 +665,7 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.listView2);
+            this.tabPage3.Controls.Add(this.listViewBuscador);
             this.tabPage3.Controls.Add(this.panel3);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -673,17 +673,6 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Buscador";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // listView2
-            // 
-            this.listView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView2.Location = new System.Drawing.Point(182, 11);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(419, 222);
-            this.listView2.TabIndex = 1;
-            this.listView2.UseCompatibleStateImageBehavior = false;
             // 
             // panel3
             // 
@@ -706,6 +695,7 @@
             this.botonBuscar.TabIndex = 2;
             this.botonBuscar.Text = "Buscar";
             this.botonBuscar.UseVisualStyleBackColor = true;
+            this.botonBuscar.Click += new System.EventHandler(this.botonBuscar_Click);
             // 
             // comboBoxBuscador
             // 
@@ -772,6 +762,18 @@
             this.labelUsuarioActual.TabIndex = 8;
             this.labelUsuarioActual.Text = "         ";
             this.labelUsuarioActual.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // listViewBuscador
+            // 
+            this.listViewBuscador.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewBuscador.Location = new System.Drawing.Point(182, 11);
+            this.listViewBuscador.Name = "listViewBuscador";
+            this.listViewBuscador.Size = new System.Drawing.Size(419, 222);
+            this.listViewBuscador.TabIndex = 1;
+            this.listViewBuscador.UseCompatibleStateImageBehavior = false;
+            this.listViewBuscador.View = System.Windows.Forms.View.List;
             // 
             // PantallaPrincipal
             // 
@@ -856,7 +858,6 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button botonBuscar;
         private System.Windows.Forms.ComboBox comboBoxBuscador;
@@ -882,6 +883,7 @@
         private System.Windows.Forms.TextBox textBoxArtista;
         private System.Windows.Forms.Button button5;
         public System.Windows.Forms.Label labelUsuarioActual;
+        private System.Windows.Forms.ListView listViewBuscador;
     }
 }
 

@@ -38,11 +38,14 @@ namespace Reproductor
         {
             get
             {
-                return archivo.Tag.FirstAlbumArtist;
+                if (archivo.Tag.FirstPerformer == null || archivo.Tag.Artists == null)
+                    return null;
+                else
+                    return archivo.Tag.FirstPerformer;
             }
             set
             {
-                archivo.Tag.AlbumArtists[0] = value;
+                archivo.Tag.Artists = new string[] { value };
             }
         }
 
@@ -62,11 +65,14 @@ namespace Reproductor
         {
             get
             {
-                return archivo.Tag.FirstGenre;
+                if (archivo.Tag.FirstGenre == null || archivo.Tag.Genres == null)
+                    return null;
+                else
+                    return archivo.Tag.FirstGenre;
             }
             set
             {
-                archivo.Tag.Genres[0] = value;
+                archivo.Tag.Genres = new string[] { value };
             }
         }
 
@@ -127,6 +133,16 @@ namespace Reproductor
             consulta = new Reproductor.LyricWiki.LyricWikiPortTypeClient();
             resultado = new Reproductor.LyricWiki.LyricsResult();
             archivo = TagLib.File.Create(@filePath);
+            if (Album == null)
+                Album = "Desconocido";
+            if (Año.ToString() == "0")
+                Año = 0;
+            if (Artista == null)
+                Artista = "Desconocido";
+            if (Genero == null)
+                Genero = "Desconocido";
+            if(Nombre == null)
+                Nombre = "Desconocido";
             try
             {
                 memoria = new MemoryStream(archivo.Tag.Pictures[0].Data.Data);
@@ -161,6 +177,13 @@ namespace Reproductor
             consulta.getAlbum(ref artist, ref song, ref año, out direccion, out lista);
 
             return lista;
+        }
+
+        public void SetArtist(string nombre)
+        {
+            string[] array = new string[1];
+            array[0] = nombre;
+            archivo.Tag.Artists = array;
         }
 
         #endregion
