@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Configuration;
+using System.Threading;
 
 namespace Reproductor
 {
@@ -239,7 +240,7 @@ namespace Reproductor
             cancionActual = 0;
             ActualizarEtiquetas();
             ObtenerImagen();
-            timerBarra.Enabled = true;
+            timerBarra.Enabled = true;  
         }
 
         private void botonStop_Click(object sender, EventArgs e)
@@ -250,9 +251,9 @@ namespace Reproductor
             {
                 cancionActual = 0;
                 player.Close();
+                textBoxCancion.Text = lista[cancionActual].Nombre.ToString();
+                this.Text = lista[cancionActual].Nombre.ToString();
             }
-            textBoxCancion.Text = lista[cancionActual].Nombre.ToString();
-            this.Text = lista[cancionActual].Nombre.ToString();
         }
 
         private void trackBarReproduccion_MouseUp(object sender, MouseEventArgs e)
@@ -290,6 +291,34 @@ namespace Reproductor
             botonStop_Click(null, null);
             cancionActual = num;
             botonPlay_Click(null, null);
+        }
+
+        private void botonBuscar_Click(object sender, EventArgs e)
+        {
+            if ("" != txtBuscador.Text)
+            {
+                ThreadStart comienzo = new ThreadStart(Buscador);
+                Thread buscador = new Thread(comienzo);
+
+                listViewBuscador.Items.Clear();
+                listViewBuscador.Items.Add(new ListViewItem("Cargando..."));
+                buscador.Start();
+            }
+            else if (comboBoxBuscador.SelectedItem != null)
+            {
+                MessageBox.Show("Debes ingresar algo para buscar!", "Error");
+            }
+            else
+            {
+                MessageBox.Show("Debes elegir una opcion para buscar");
+            }
+        }
+
+        private void Buscador()
+        {
+            //Busca en la base de datos
+            //Si no encuentra, informa en pantalla
+            //Sino, toma los datos necesarios y ahce la lista
         }
 
         #endregion
@@ -536,17 +565,11 @@ namespace Reproductor
                 this.Text = lista[cancionActual].Nombre + "          ";
                 textBoxCancion.Text = lista[cancionActual].Nombre + "          ";
                 textBoxAlbum.Text = lista[cancionActual].Album;
-                if (lista[cancionActual].Año.ToString() != "0")
-                {
-                    textBoxAño.Text = lista[cancionActual].Año.ToString();
-                }
-                else
-                {
-                    textBoxAño.Text = "";
-                }
+                textBoxAño.Text = lista[cancionActual].Año.ToString();
                 textBoxArtista.Text = lista[cancionActual].Artista;
                 textBoxGenero.Text = lista[cancionActual].Genero;
                 richTextBoxLetras.Text = lista[cancionActual].Letra;
+
                 //Calculo la longitud del trackbar
                 ulong length = player.AudioLength;
                 trackBarReproduccion.Maximum = (int)length;
@@ -554,5 +577,6 @@ namespace Reproductor
         }                
 
         #endregion
+
     }
 }

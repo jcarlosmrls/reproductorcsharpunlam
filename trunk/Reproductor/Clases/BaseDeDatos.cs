@@ -324,7 +324,6 @@ namespace Reproductor
                 return lista[0];
         }
 
-
         private string AgregarInterprete(string nombre)
         {
             try//controla si el nombre es de tamaño 0 o si es nulo
@@ -394,7 +393,6 @@ namespace Reproductor
             cmd.CommandText = @"INSERT INTO Cancion ([Id_Album],[Titulo],[Duracion],[Path]) VALUES (?,?,?,?)";
             cmd.ExecuteNonQuery();
         }
-
 
         // funcion que actualiza las canciones en la base de datos, 
         public void ActualizarCanciones(PantallaPrincipal ventana)
