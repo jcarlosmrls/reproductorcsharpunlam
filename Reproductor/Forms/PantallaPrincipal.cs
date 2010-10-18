@@ -63,8 +63,12 @@ namespace Reproductor
             //Muestro el login
             login.Show();
 
+            //TODO:
             //Cuando cierra el login (seria conveniente sincronizar)
-            //Cargo la configuracion del usuario
+            //Si es nuevo el usuario, creo todos los registros de
+            //la configuracion por defecto, como perfil, skin,
+            //lista por defecto(Todos), etc.
+            //Sino, cargo la configuracion del usuario
             //Y la aplico
         }
         

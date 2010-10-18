@@ -394,6 +394,26 @@ namespace Reproductor
             cmd.ExecuteNonQuery();
         }
 
+        public void AgregarCancion(string album, string lista, string titulo, uint numero, TimeSpan duracion, string path)
+        {
+            OleDbCommand cmd = new OleDbCommand();
+
+            //Defino las caracteristicas del comando
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = dbConnection;
+
+            //Creo los parametros
+            cmd.Parameters.Add("?", album);
+            cmd.Parameters.Add("?", lista);
+            cmd.Parameters.Add("?", titulo);
+            cmd.Parameters.Add("?", numero);
+            cmd.Parameters.Add("?", duracion);
+            cmd.Parameters.Add("?", path);
+
+            cmd.CommandText = @"INSERT INTO Cancion ([Id_Album], [Id_Lista], [Titulo], [Numero_Cancion], [Duracion], [Path]) VALUES (?,?,?,?,?,?)";
+            cmd.ExecuteNonQuery();
+        }
+
         // funcion que actualiza las canciones en la base de datos, 
         public void ActualizarCanciones(PantallaPrincipal ventana)
         {

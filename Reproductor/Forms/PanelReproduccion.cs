@@ -129,7 +129,15 @@ namespace Reproductor
 
         private void botonGuardarLista_Click(object sender, EventArgs e)
         {
-            //Guardar la lista actual, preguntar por un nombre
+            if (listaDeReproduccion.Count != 0)
+            {
+                IngresarNombreDeLista guardar = new IngresarNombreDeLista(ref listaDeReproduccion, ref dBase);
+                guardar.Show();
+            }
+            else
+            {
+                MessageBox.Show("No hay canciones actualmente en la lista.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void PanelReproduccion_Load(object sender, EventArgs e)

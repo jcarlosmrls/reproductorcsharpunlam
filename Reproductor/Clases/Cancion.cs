@@ -124,6 +124,18 @@ namespace Reproductor
             }
         }
 
+        public uint NumeroDeCancion
+        {
+            get
+            {
+                return archivo.Tag.Track;
+            }
+            set
+            {
+                archivo.Tag.Track = value;
+            }
+        }
+
         #endregion
 
         #region Metodos
@@ -137,6 +149,8 @@ namespace Reproductor
                 Album = "Desconocido";
             if (Año.ToString() == "0")
                 Año = 0;
+            if (NumeroDeCancion.ToString() == "0")
+                NumeroDeCancion = 0;
             if (Artista == null)
                 Artista = "Desconocido";
             if (Genero == null)

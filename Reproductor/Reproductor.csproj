@@ -62,6 +62,12 @@
     <Compile Include="Clases\BaseDeDatos.cs" />
     <Compile Include="Clases\Cancion.cs" />
     <Compile Include="Clases\Usuario.cs" />
+    <Compile Include="Forms\IngresarNombreDeLista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IngresarNombreDeLista.Designer.cs">
+      <DependentUpon>IngresarNombreDeLista.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PantallaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AcercaDe.resx">
       <DependentUpon>AcercaDe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IngresarNombreDeLista.resx">
+      <DependentUpon>IngresarNombreDeLista.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PantallaPrincipal.resx">
       <DependentUpon>PantallaPrincipal.cs</DependentUpon>
