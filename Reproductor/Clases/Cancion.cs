@@ -179,13 +179,6 @@ namespace Reproductor
             return lista;
         }
 
-        public void SetArtist(string nombre)
-        {
-            string[] array = new string[1];
-            array[0] = nombre;
-            archivo.Tag.Artists = array;
-        }
-
         #endregion
     }
 }
