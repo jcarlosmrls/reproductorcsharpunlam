@@ -91,7 +91,7 @@ namespace Reproductor
             if (trackBarReproduccion.Value < trackBarReproduccion.Maximum)
             {
                 TimeSpan actualPosition = TimeSpan.FromSeconds(player.CurrentPosition/1000);
-                labelContador.Text = actualPosition.Hours.ToString() + ":" + actualPosition.Minutes.ToString() + ":" + actualPosition.Seconds.ToString();
+                labelContador.Text = string.Format("{0:00}", actualPosition.Hours) + ":" + string.Format("{0:00}", actualPosition.Minutes) + ":" + string.Format("{0:00}", actualPosition.Seconds);
                 trackBarReproduccion.Value = (int) player.CurrentPosition;
             }
             else
