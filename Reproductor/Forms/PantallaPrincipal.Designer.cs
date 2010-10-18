@@ -73,9 +73,9 @@
             this.richTextBoxLetras = new System.Windows.Forms.RichTextBox();
             this.pictureBoxTapaDeAlbum = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.botonModificarCanciones = new System.Windows.Forms.Button();
+            this.botonModificarAlbum = new System.Windows.Forms.Button();
+            this.botonModificarInterprete = new System.Windows.Forms.Button();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -85,9 +85,9 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.listView2 = new System.Windows.Forms.ListView();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button7 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.botonBuscar = new System.Windows.Forms.Button();
+            this.comboBoxBuscador = new System.Windows.Forms.ComboBox();
+            this.txtBuscador = new System.Windows.Forms.TextBox();
             this.trackBarReproduccion = new System.Windows.Forms.TrackBar();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.timerBarra = new System.Windows.Forms.Timer(this.components);
@@ -556,9 +556,9 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.button4);
-            this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.botonModificarCanciones);
+            this.tabPage2.Controls.Add(this.botonModificarAlbum);
+            this.tabPage2.Controls.Add(this.botonModificarInterprete);
             this.tabPage2.Controls.Add(this.listBox2);
             this.tabPage2.Controls.Add(this.label10);
             this.tabPage2.Controls.Add(this.label9);
@@ -573,35 +573,35 @@
             this.tabPage2.Text = "Biblioteca";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // botonModificarCanciones
             // 
-            this.button4.Location = new System.Drawing.Point(532, 6);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(66, 26);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "Modificar";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.botonModificarCanciones.Location = new System.Drawing.Point(532, 6);
+            this.botonModificarCanciones.Name = "botonModificarCanciones";
+            this.botonModificarCanciones.Size = new System.Drawing.Size(66, 26);
+            this.botonModificarCanciones.TabIndex = 9;
+            this.botonModificarCanciones.Text = "Modificar";
+            this.botonModificarCanciones.UseVisualStyleBackColor = true;
+            this.botonModificarCanciones.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button2
+            // botonModificarAlbum
             // 
-            this.button2.Location = new System.Drawing.Point(322, 9);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(66, 26);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Modificar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.botonModificarAlbum.Location = new System.Drawing.Point(322, 9);
+            this.botonModificarAlbum.Name = "botonModificarAlbum";
+            this.botonModificarAlbum.Size = new System.Drawing.Size(66, 26);
+            this.botonModificarAlbum.TabIndex = 8;
+            this.botonModificarAlbum.Text = "Modificar";
+            this.botonModificarAlbum.UseVisualStyleBackColor = true;
+            this.botonModificarAlbum.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
+            // botonModificarInterprete
             // 
-            this.button1.Location = new System.Drawing.Point(114, 9);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(66, 26);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Modificar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.botonModificarInterprete.Location = new System.Drawing.Point(114, 9);
+            this.botonModificarInterprete.Name = "botonModificarInterprete";
+            this.botonModificarInterprete.Size = new System.Drawing.Size(66, 26);
+            this.botonModificarInterprete.TabIndex = 7;
+            this.botonModificarInterprete.Text = "Modificar";
+            this.botonModificarInterprete.UseVisualStyleBackColor = true;
+            this.botonModificarInterprete.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // listBox2
             // 
@@ -690,42 +690,42 @@
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
             this.panel3.BackColor = System.Drawing.Color.Transparent;
-            this.panel3.Controls.Add(this.button7);
-            this.panel3.Controls.Add(this.comboBox1);
-            this.panel3.Controls.Add(this.textBox1);
+            this.panel3.Controls.Add(this.botonBuscar);
+            this.panel3.Controls.Add(this.comboBoxBuscador);
+            this.panel3.Controls.Add(this.txtBuscador);
             this.panel3.Location = new System.Drawing.Point(8, 9);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(167, 225);
             this.panel3.TabIndex = 0;
             // 
-            // button7
+            // botonBuscar
             // 
-            this.button7.Location = new System.Drawing.Point(9, 89);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(87, 26);
-            this.button7.TabIndex = 2;
-            this.button7.Text = "Buscar";
-            this.button7.UseVisualStyleBackColor = true;
+            this.botonBuscar.Location = new System.Drawing.Point(9, 89);
+            this.botonBuscar.Name = "botonBuscar";
+            this.botonBuscar.Size = new System.Drawing.Size(87, 26);
+            this.botonBuscar.TabIndex = 2;
+            this.botonBuscar.Text = "Buscar";
+            this.botonBuscar.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // comboBoxBuscador
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.comboBoxBuscador.FormattingEnabled = true;
+            this.comboBoxBuscador.Items.AddRange(new object[] {
             "Intérprete",
             "Álbum",
             "Canción",
             "Género"});
-            this.comboBox1.Location = new System.Drawing.Point(9, 51);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(114, 21);
-            this.comboBox1.TabIndex = 1;
+            this.comboBoxBuscador.Location = new System.Drawing.Point(9, 51);
+            this.comboBoxBuscador.Name = "comboBoxBuscador";
+            this.comboBoxBuscador.Size = new System.Drawing.Size(114, 21);
+            this.comboBoxBuscador.TabIndex = 1;
             // 
-            // textBox1
+            // txtBuscador
             // 
-            this.textBox1.Location = new System.Drawing.Point(9, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(141, 20);
-            this.textBox1.TabIndex = 0;
+            this.txtBuscador.Location = new System.Drawing.Point(9, 25);
+            this.txtBuscador.Name = "txtBuscador";
+            this.txtBuscador.Size = new System.Drawing.Size(141, 20);
+            this.txtBuscador.TabIndex = 0;
             // 
             // trackBarReproduccion
             // 
@@ -858,9 +858,9 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button botonBuscar;
+        private System.Windows.Forms.ComboBox comboBoxBuscador;
+        private System.Windows.Forms.TextBox txtBuscador;
         private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.OpenFileDialog abrirArchivo;
@@ -871,9 +871,9 @@
         private System.Windows.Forms.Label labelLetras;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button botonModificarInterprete;
+        private System.Windows.Forms.Button botonModificarCanciones;
+        private System.Windows.Forms.Button botonModificarAlbum;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textBoxCancion;
         private System.Windows.Forms.TextBox textBoxAño;
