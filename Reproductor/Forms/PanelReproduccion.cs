@@ -102,7 +102,10 @@ namespace Reproductor
 
         public void SeleccionarCancion(int num)
         {
-            listViewLista.Items[num].Focused = true;
+            //listViewLista.Items[num].Focused = true;
+            foreach (ListViewItem item in listViewLista.Items)
+                item.BackColor = Color.Transparent;
+            listViewLista.Items[num].BackColor = Color.ForestGreen;
         }
 
         private void listViewLista_DoubleClick(object sender, EventArgs e)

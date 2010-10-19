@@ -303,7 +303,7 @@ namespace Reproductor
                 return lista[0];
         }
 
-        private string AlbumId(string nombre)
+        public string AlbumId(string nombre)
         {
             try//controla si el nombre es de tamaño 0 o si es nulo
             {
@@ -447,6 +447,18 @@ namespace Reproductor
                     AgregarCancion(cancion, idAlbum);
                 }
             }
+        }
+
+        public List<Cancion> CancionDeCadaAlbum(string interprete)
+        {
+            List<Cancion> canciones = new List<Cancion>();
+            foreach (string idAlbum in Leer_Columna("Album", "Id_Album", "Id_Interprete", InterpreteId(interprete)))
+            {
+                string[] aux = Leer_Columna("Cancion", "Path", "Id_Album", idAlbum);
+                canciones.Add(new Cancion(aux[0]));
+
+            }
+            return canciones;
         }
 
         #endregion
