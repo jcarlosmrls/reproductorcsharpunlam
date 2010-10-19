@@ -354,27 +354,29 @@ namespace Reproductor
 
         private void listBox1_SelectedValueChanged(object sender, EventArgs e)
         {
-            List<Cancion> canciones = dbReproductor.CancionDeCadaAlbum(listBox1.SelectedItem.ToString());
+                List<Cancion> canciones = dbReproductor.CancionDeCadaAlbum(listBox1.SelectedItem.ToString());
 
-            ImageList imagenes = new ImageList();
-            listView1.LargeImageList = imagenes;
-            listView1.LargeImageList.ImageSize = new Size(50, 50);
-            listView1.Clear();
+                ImageList imagenes = new ImageList();
+                listView1.LargeImageList = imagenes;
+                listView1.LargeImageList.ImageSize = new Size(50, 50);
+                listView1.Clear();
 
-            foreach (Cancion song in canciones)
-            {
-
-                imagenes.Images.Add(song.Album, song.Imagen);
-                listView1.Items.Add(new ListViewItem(song.Album, song.Album));
-            }
+                foreach (Cancion song in canciones)
+                {
+                    imagenes.Images.Add(song.Album, song.Imagen);
+                    listView1.Items.Add(new ListViewItem(song.Album, song.Album));
+                }
         }
 
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            listBox2.Items.Clear();
-            foreach (string cad in dbReproductor.Leer_Columna("Cancion", "Titulo", "Id_Album", dbReproductor.AlbumId(listView1.SelectedItems[0].Text)))
+            if (listView1.SelectedItems.Count != 0)
             {
-                listBox2.Items.Add(cad);
+                listBox2.Items.Clear();
+                foreach (string cad in dbReproductor.Leer_Columna("Cancion", "Titulo", "Id_Album", dbReproductor.AlbumId(listView1.SelectedItems[0].Text)))
+                {
+                    listBox2.Items.Add(cad);
+                }
             }
         }
 
