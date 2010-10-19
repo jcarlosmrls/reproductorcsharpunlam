@@ -455,13 +455,15 @@ namespace Reproductor
             foreach (string idAlbum in Leer_Columna("Album", "Id_Album", "Id_Interprete", InterpreteId(interprete)))
             {
                 string[] aux = Leer_Columna("Cancion", "Path", "Id_Album", idAlbum);
-                canciones.Add(new Cancion(aux[0]));
+                if (aux != null)
+                {
+                    canciones.Add(new Cancion(aux[0]));
+                }
 
             }
             return canciones;
         }
 
         #endregion
-
     }
 }
