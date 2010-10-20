@@ -360,6 +360,7 @@ namespace Reproductor
                 listView1.LargeImageList = imagenes;
                 listView1.LargeImageList.ImageSize = new Size(50, 50);
                 listView1.Clear();
+                listBox2.Items.Clear();
 
                 foreach (Cancion song in canciones)
                 {
@@ -370,7 +371,7 @@ namespace Reproductor
 
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            if (listView1.SelectedItems.Count != 0)
+            if (listView1.SelectedItems.Count == 1)
             {
                 listBox2.Items.Clear();
                 foreach (string cad in dbReproductor.Leer_Columna("Cancion", "Titulo", "Id_Album", dbReproductor.AlbumId(listView1.SelectedItems[0].Text)))

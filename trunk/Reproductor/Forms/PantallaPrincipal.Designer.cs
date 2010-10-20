@@ -576,6 +576,7 @@
             // 
             // botonModificarCanciones
             // 
+            this.botonModificarCanciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.botonModificarCanciones.Location = new System.Drawing.Point(532, 6);
             this.botonModificarCanciones.Name = "botonModificarCanciones";
             this.botonModificarCanciones.Size = new System.Drawing.Size(66, 26);
