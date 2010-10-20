@@ -104,6 +104,38 @@ namespace Reproductor
             }
         }
 
+        public string[] Leer_Columna(string tabla, string columna, string columf1, string val1, string columf2, string val2)
+        {
+            string[] cadena;
+            int cant;
+            OleDbCommand cmdLeer = new OleDbCommand();
+
+            string cad = "SELECT " + columna + " FROM " + tabla + " WHERE " + columf1 + " = ? AND " + columf2 + " = ?";
+
+            cmdLeer.CommandType = CommandType.Text;
+            cmdLeer.Connection = dbConnection;
+            cmdLeer.Parameters.Add("?", val1);
+            cmdLeer.Parameters.Add("?", val2);
+            cmdLeer.CommandText = cad;
+            dbAdapter.SelectCommand = cmdLeer;
+            dbDataSet.Clear();// agregado clear, sino se arma lio con el dataset anterior
+            try
+            {
+                dbAdapter.Fill(dbDataSet);
+                cant = dbDataSet.Tables[0].Rows.Count;
+                cadena = new string[cant];
+                for (int x = 0; x < cant; x++)
+                    cadena[x] = dbDataSet.Tables[0].Rows[x][columna].ToString();
+                return cadena;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al abrir la base de datos");
+                return null;
+            }
+        }
+
+
         public int AddUser(string user, string password)
         {
             OleDbCommand cmdInsertar = new OleDbCommand();
@@ -282,7 +314,7 @@ namespace Reproductor
                 return false;
         }
 
-        private string InterpreteId(string nombre)
+        public string InterpreteId(string nombre)
         {
             try //controla si el nombre es de tamaño 0 o si es nulo
             {
@@ -303,7 +335,7 @@ namespace Reproductor
                 return lista[0];
         }
 
-        public string AlbumId(string nombre)
+        /*public string AlbumId(string nombre)
         {
             try//controla si el nombre es de tamaño 0 o si es nulo
             {
@@ -322,7 +354,29 @@ namespace Reproductor
                 return "";
             else
                 return lista[0];
+        }*/
+
+        public string AlbumId(string nombre, string idInterprete)
+        {
+            try//controla si el nombre es de tamaño 0 o si es nulo
+            {
+                if (nombre.Length == 0)
+                    nombre = "?";
+            }
+            catch (Exception)
+            {
+                nombre = "?";
+            }
+
+            string[] lista;
+            lista = Leer_Columna("Album", "Id_Album", "Nombre", nombre, "Id_Interprete", idInterprete); //busqueda en la bd de los albunes con ese nombre
+
+            if (lista.Length == 0)
+                return "";
+            else
+                return lista[0];
         }
+
 
         private string AgregarInterprete(string nombre)
         {
@@ -370,12 +424,12 @@ namespace Reproductor
             cmd.Parameters.Add("?", idInterprete);
             cmd.Parameters.Add("?", cancion.Genero);
             cmd.Parameters.Add("?", cancion.Año);
-            cmd.Parameters.Add("?", cancion.Imagen);
+            //cmd.Parameters.Add("?", cancion.Imagen);
 
-            cmd.CommandText = @"INSERT INTO Album ([Nombre],[Id_Interprete],[Genero],[Año],[ImagenTapa]) VALUES (?,?,?,?,?)";
+            cmd.CommandText = @"INSERT INTO Album ([Nombre],[Id_Interprete],[Genero],[Año]) VALUES (?,?,?,?)";
             cmd.ExecuteNonQuery();
 
-            return AlbumId(cancion.Album);
+            return AlbumId(cancion.Album, idInterprete);
 
         }
 
@@ -430,7 +484,7 @@ namespace Reproductor
 
                     Cancion cancion = new Cancion(path); //creo objeto cancion
                     string idInterprete = InterpreteId(cancion.Artista);
-                    string idAlbum = AlbumId(cancion.Album); //obtengo los ids de album y interprete.
+                    string idAlbum = AlbumId(cancion.Album, idInterprete); //obtengo los ids de album y interprete.
                     if (idInterprete == "") // controlo si el interprete no existe
                     {
                         idInterprete = AgregarInterprete(cancion.Artista);

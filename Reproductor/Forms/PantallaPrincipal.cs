@@ -374,12 +374,13 @@ namespace Reproductor
             if (listView1.SelectedItems.Count == 1)
             {
                 listBox2.Items.Clear();
-                foreach (string cad in dbReproductor.Leer_Columna("Cancion", "Titulo", "Id_Album", dbReproductor.AlbumId(listView1.SelectedItems[0].Text)))
+                foreach (string cad in dbReproductor.Leer_Columna("Cancion", "Titulo", "Id_Album", dbReproductor.AlbumId(listView1.SelectedItems[0].Text, dbReproductor.InterpreteId(listBox1.SelectedItem.ToString()))))
                 {
                     listBox2.Items.Add(cad);
                 }
             }
         }
+
 
         #endregion
 
