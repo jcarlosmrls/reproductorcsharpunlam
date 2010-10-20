@@ -38,14 +38,14 @@ namespace Reproductor
         {
             get
             {
-                if (archivo.Tag.FirstPerformer == null || archivo.Tag.Artists == null)
+                if (archivo.Tag.FirstAlbumArtist == null || archivo.Tag.Artists == null)
                     return null;
                 else
-                    return archivo.Tag.FirstPerformer;
+                    return archivo.Tag.FirstAlbumArtist;
             }
             set
             {
-                archivo.Tag.Artists = new string[] { value };
+                archivo.Tag.AlbumArtists = new string[] { value };
             }
         }
 
