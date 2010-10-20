@@ -335,27 +335,6 @@ namespace Reproductor
                 return lista[0];
         }
 
-        /*public string AlbumId(string nombre)
-        {
-            try//controla si el nombre es de tamaño 0 o si es nulo
-            {
-                if (nombre.Length == 0)
-                    nombre = "?";
-            }
-            catch (Exception)
-            {
-                nombre = "?";
-            }
-
-            string[] lista;
-            lista = Leer_Columna("Album", "Id_Album", "Nombre", nombre); //busqueda en la bd de los albunes con ese nombre
-
-            if (lista.Length == 0)
-                return "";
-            else
-                return lista[0];
-        }*/
-
         public string AlbumId(string nombre, string idInterprete)
         {
             try//controla si el nombre es de tamaño 0 o si es nulo
@@ -430,7 +409,6 @@ namespace Reproductor
             cmd.ExecuteNonQuery();
 
             return AlbumId(cancion.Album, idInterprete);
-
         }
 
         private void AgregarCancion(Cancion cancion, string idAlbum)
@@ -506,16 +484,64 @@ namespace Reproductor
         public List<Cancion> CancionDeCadaAlbum(string interprete)
         {
             List<Cancion> canciones = new List<Cancion>();
-            foreach (string idAlbum in Leer_Columna("Album", "Id_Album", "Id_Interprete", InterpreteId(interprete)))
+            string idInteprete = InterpreteId(interprete);
+
+            foreach (string idAlbum in Leer_Columna("Album", "Id_Album", "Id_Interprete", idInteprete))
             {
                 string[] aux = Leer_Columna("Cancion", "Path", "Id_Album", idAlbum);
                 if (aux != null)
                 {
-                    canciones.Add(new Cancion(aux[0]));
+                    try
+                    {
+                        canciones.Add(new Cancion(aux[0]));
+                    }
+                    catch (Exception)
+                    {//si tira excepcion aca es porque el erchivo de musca ya no existe
+                        BorrarCancion(idInteprete, idAlbum, aux[0]);
+                    }
                 }
 
             }
             return canciones;
+        }
+
+        public void BorrarCancion(string idInterete, string idAlbum, string path)
+        {
+            BorrarRegistro("Cancion", "Path", path);
+
+            string[] cadena;
+            cadena = Leer_Columna("Cancion", "Id_Album", "Id_ALbum", idAlbum);
+
+            if (cadena.Length == 0)
+            {
+                BorrarRegistro("Album", "Id_Album", idAlbum);
+                cadena = Leer_Columna("Album", "Id_Interprete", "Id_Interprete", idInterete);
+                if (cadena.Length == 0)
+                {
+                    BorrarRegistro("Interprete", "Id", idInterete);
+                }
+            }
+        }
+
+        public void BorrarRegistro(string tabla, string columf, string val)
+        {
+            OleDbCommand cmdBorrar = new OleDbCommand();
+
+            string cad = "DELETE FROM " + tabla + " WHERE " + columf + " = ?";
+
+            cmdBorrar.CommandType = CommandType.Text;
+            cmdBorrar.Connection = dbConnection;
+            cmdBorrar.Parameters.Add("?", val);
+            cmdBorrar.CommandText = cad;
+
+            try
+            {
+                cmdBorrar.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al abrir la base de datos");
+            }
         }
 
         #endregion

@@ -614,6 +614,7 @@
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(191, 199);
             this.listBox2.TabIndex = 6;
+            this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
             // 
             // label10
             // 
@@ -655,6 +656,7 @@
             this.listView1.TabIndex = 1;
             this.listView1.TileSize = new System.Drawing.Size(160, 80);
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             this.listView1.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listView1_ItemSelectionChanged);
             // 
             // listBox1

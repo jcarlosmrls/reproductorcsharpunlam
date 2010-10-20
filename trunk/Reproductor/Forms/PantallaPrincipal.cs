@@ -302,7 +302,7 @@ namespace Reproductor
 
         private void botonBuscar_Click(object sender, EventArgs e)
         {
-            if ("" != txtBuscador.Text)
+            if ("" != txtBuscador.Text && comboBoxBuscador.SelectedItem != null)
             {
                 ThreadStart comienzo = new ThreadStart(Buscador);
                 Thread buscador = new Thread(comienzo);
@@ -321,11 +321,11 @@ namespace Reproductor
             }
             else if (comboBoxBuscador.SelectedItem != null)
             {
-                MessageBox.Show("Debes ingresar algo para buscar!", "Error");
+                MessageBox.Show("Debes ingresar algo para buscar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                MessageBox.Show("Debes elegir una opcion para buscar");
+                MessageBox.Show("Debes elegir un criterio para buscar", "Ojo", MessageBoxButtons.OK ,MessageBoxIcon.Error);
             }
         }
 
@@ -381,6 +381,78 @@ namespace Reproductor
             }
         }
 
+        private void listBox2_DoubleClick(object sender, EventArgs e)
+        {
+            string[] paths = dbReproductor.Leer_Columna("Cancion", "Path", "Titulo", listBox2.SelectedItem.ToString());
+
+            Cancion song = new Cancion(paths[0]);
+            //lista.Clear();
+
+            try
+            {
+                //Agrego la cancion a la lista
+                lista.Add(song);
+
+                //Actualizo la lista del reproductor
+                panelReproduccion.LimpiarLista();
+                panelReproduccion.CargarLista();
+
+                //Detengo la reproduccion actual
+                botonStop_Click(null, null);
+                cancionActual = lista.Count - 1;
+
+                //Comienzo reproduccion actual
+                botonPlay_Click(null, null);
+                ActualizarEtiquetas();
+                ObtenerImagen();
+            }
+            catch (Exception)
+            {
+                //aca tiene q borrar si no existe, despues lo agrego por las dudas
+            }
+        }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            string[] paths;
+
+            if (listView1.SelectedItems.Count == 1)
+            {
+                paths = dbReproductor.Leer_Columna("Cancion", "Path", "Id_Album", dbReproductor.AlbumId(listView1.SelectedItems[0].Text, dbReproductor.InterpreteId(listBox1.SelectedItem.ToString())));
+
+                //Detengo la reproduccion actual
+                botonStop_Click(null, null);
+
+                //Borro la lista de canciones
+                lista.Clear();
+                panelReproduccion.LimpiarLista();
+
+                //Cargo el album elegido
+                foreach (string path in paths)
+                {
+                    try
+                    {
+                        lista.Add(new Cancion(path));
+                    }
+                    catch (Exception)
+                    {
+                        //aca borra si la cancion no existe
+                    }
+                }
+                //Actualizo la lista de reproduccion en el panel
+                panelReproduccion.CargarLista();
+                cancionActual = 0;
+
+                //Comienzo la reproduccion
+                botonPlay_Click(null, null);
+                ActualizarEtiquetas();
+                ObtenerImagen();
+                /*if (!player.Reproduciendo())
+                {
+                    //tiene que reproducir la primer cancion del album
+                }*/
+            }
+        }
 
         #endregion
 
@@ -511,7 +583,6 @@ namespace Reproductor
             //Color del contador
             labelContador.ForeColor = Color.White;
         }
-
 
         private void Form1_LocationChanged(object sender, EventArgs e)
         {
