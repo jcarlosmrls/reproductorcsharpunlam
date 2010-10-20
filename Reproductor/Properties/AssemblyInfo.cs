@@ -6,7 +6,10 @@ using System.Runtime.InteropServices;
 // conjunto de atributos. Cambie estos atributos para modificar la información
 // asociada con un ensamblado.
 [assembly: AssemblyTitle("Reproductor")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Este programa fue hecho en C# por: \n" + 
+                               "Imfeld, Nelson D.\n\r" + 
+                               "Negri, Fabio G.\n" +
+                               "Salica, Matías E.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("UNLaM")]
 [assembly: AssemblyProduct("Reproductor")]

@@ -514,8 +514,14 @@ namespace Reproductor
 
         private void Form1_LocationChanged(object sender, EventArgs e)
         {
-            if (panelReproduccion.IsStuck && panelReproduccion.IsOpen)
-                panelReproduccion.CambiarPosicion();
+            try
+            {
+                if (panelReproduccion.IsStuck && panelReproduccion.IsOpen)
+                    panelReproduccion.CambiarPosicion();
+            }
+            catch
+            {
+            }
         }
 
         public void CambiarPosicion()

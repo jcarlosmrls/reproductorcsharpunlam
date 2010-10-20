@@ -145,6 +145,7 @@ namespace Reproductor
 
         private void PanelReproduccion_Load(object sender, EventArgs e)
         {
+            this.CambiarPosicion();
             //Tomar las listas de reproduccion del usuario que se conecta
             //y completar el combobox
         }
