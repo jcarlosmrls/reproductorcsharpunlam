@@ -96,7 +96,7 @@ namespace Reproductor
 
         public void LimpiarLista()
         {
-            listaDeReproduccion.Clear();
+            //listaDeReproduccion.Clear();
             listViewLista.Clear();
         }
 
