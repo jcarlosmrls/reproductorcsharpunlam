@@ -91,28 +91,24 @@ namespace Reproductor
         public void CargarLista()
         {
             foreach(Cancion song in listaDeReproduccion)
-                listViewLista.Items.Add(new ListViewItem(song.Nombre));
+                listBoxLista.Items.Add(song.Nombre);
         }
 
         public void LimpiarLista()
         {
-            //listaDeReproduccion.Clear();
-            listViewLista.Clear();
+            listBoxLista.Items.Clear();
         }
 
         public void SeleccionarCancion(int num)
         {
-            //listViewLista.Items[num].Focused = true;
-            foreach (ListViewItem item in listViewLista.Items)
-                item.BackColor = Color.Transparent;
-            listViewLista.Items[num].BackColor = Color.ForestGreen;
+            listBoxLista.SetSelected(num, true);
         }
 
         private void listViewLista_DoubleClick(object sender, EventArgs e)
         {
             try
             {
-                ventana_principal.ReproducirCancion(listViewLista.SelectedIndices[0]);
+                ventana_principal.ReproducirCancion(listBoxLista.SelectedIndices[0]);
                 ventana_principal.ActualizarEtiquetas();
             }
             catch(Exception)
@@ -148,6 +144,12 @@ namespace Reproductor
             this.CambiarPosicion();
             //Tomar las listas de reproduccion del usuario que se conecta
             //y completar el combobox
+        }
+
+        private void listBoxLista_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (listBoxLista.SelectedItems.Count == 1)
+                ventana_principal.ReproducirCancion(listBoxLista.SelectedIndex);
         }
     }
 }
