@@ -400,32 +400,39 @@ namespace Reproductor
 
         private void listBox2_DoubleClick(object sender, EventArgs e)
         {
-            string[] paths = dbReproductor.Leer_Columna("Cancion", "Path", "Titulo", listBox2.SelectedItem.ToString());
-
-            Cancion song = new Cancion(paths[0]);
-            //lista.Clear();
-
-            try
+            if (listView1.SelectedItems.Count == 1)
             {
-                //Agrego la cancion a la lista
-                lista.Add(song);
+                string idInterprete = dbReproductor.InterpreteId(listBox1.SelectedItem.ToString());
+                string idAlbum = dbReproductor.AlbumId(listView1.SelectedItems[0].Text.ToString(), idInterprete);
+                string[] paths = dbReproductor.Leer_Columna("Cancion", "Path", "Id_Album", idAlbum);
 
-                //Actualizo la lista del reproductor
-                panelReproduccion.LimpiarLista();
-                panelReproduccion.CargarLista();
+                int x = listBox2.SelectedIndex;
+                //lista.Clear();
 
-                //Detengo la reproduccion actual
-                botonStop_Click(null, null);
-                cancionActual = lista.Count - 1;
+                try
+                {
+                    Cancion song = new Cancion(paths[x]);
+                    //Agrego la cancion a la lista
+                    lista.Add(song);
 
-                //Comienzo reproduccion actual
-                botonPlay_Click(null, null);
-                ActualizarEtiquetas();
-                ObtenerImagen();
-            }
-            catch (Exception)
-            {
-                //aca tiene q borrar si no existe, despues lo agrego por las dudas
+                    //Actualizo la lista del reproductor
+                    panelReproduccion.LimpiarLista();
+                    panelReproduccion.CargarLista();
+
+                    //Detengo la reproduccion actual
+                    botonStop_Click(null, null);
+                    cancionActual = lista.Count - 1;
+
+                    //Comienzo reproduccion actual
+                    botonPlay_Click(null, null);
+                    ActualizarEtiquetas();
+                    ObtenerImagen();
+                }
+                catch (Exception)
+                {
+                    dbReproductor.BorrarCancion(idInterprete, idAlbum, paths[x]);
+                    MessageBox.Show("No se ha encontrado la canción solicitada");
+                }
             }
         }
 
@@ -435,7 +442,9 @@ namespace Reproductor
 
             if (listView1.SelectedItems.Count == 1)
             {
-                paths = dbReproductor.Leer_Columna("Cancion", "Path", "Id_Album", dbReproductor.AlbumId(listView1.SelectedItems[0].Text, dbReproductor.InterpreteId(listBox1.SelectedItem.ToString())));
+                string idInterprete = dbReproductor.InterpreteId(listBox1.SelectedItem.ToString());
+                string idAlbum = dbReproductor.AlbumId(listView1.SelectedItems[0].Text, idInterprete);
+                paths = dbReproductor.Leer_Columna("Cancion", "Path", "Id_Album", idAlbum);
 
                 //Detengo la reproduccion actual
                 botonStop_Click(null, null);
@@ -450,25 +459,29 @@ namespace Reproductor
                     try
                     {
                         lista.Add(new Cancion(path));
+                        //Actualizo la lista de reproduccion en el panel
+                        panelReproduccion.CargarLista();
+                        cancionActual = 0;
+
+                        //Comienzo la reproduccion
+                        ActualizarEtiquetas();
+                        botonPlay_Click(null, null);
+                        ActualizarEtiquetas();
+                        ObtenerImagen();
+                        /*if (!player.Reproduciendo())
+                        {
+                            //tiene que reproducir la primer cancion del album
+                        }*/
+
                     }
                     catch (Exception)
                     {
-                        //aca borra si la cancion no existe
+
+                        dbReproductor.BorrarCancion(idInterprete, idAlbum, path);
+                        MessageBox.Show("No se ha encontrado la canción solicitada");
                     }
                 }
-                //Actualizo la lista de reproduccion en el panel
-                panelReproduccion.CargarLista();
-                cancionActual = 0;
 
-                //Comienzo la reproduccion
-                ActualizarEtiquetas();
-                botonPlay_Click(null, null);
-                ActualizarEtiquetas();
-                ObtenerImagen();
-                /*if (!player.Reproduciendo())
-                {
-                    //tiene que reproducir la primer cancion del album
-                }*/
             }
         }
 
