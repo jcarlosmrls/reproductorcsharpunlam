@@ -313,6 +313,7 @@ namespace Reproductor
         {
             botonStop_Click(null, null);
             cancionActual = num;
+            ActualizarEtiquetas();
             botonPlay_Click(null, null);
         }
 
