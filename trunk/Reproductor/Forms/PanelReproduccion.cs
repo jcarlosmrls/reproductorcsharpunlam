@@ -104,18 +104,6 @@ namespace Reproductor
             listBoxLista.SetSelected(num, true);
         }
 
-        private void listViewLista_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                ventana_principal.ReproducirCancion(listBoxLista.SelectedIndices[0]);
-                ventana_principal.ActualizarEtiquetas();
-            }
-            catch(Exception)
-            {
-            }
-        }
-
         private void botonNuevaLista_Click(object sender, EventArgs e)
         {
             //Crear nueva lista

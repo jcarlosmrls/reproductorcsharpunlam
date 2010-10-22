@@ -193,11 +193,6 @@ namespace Reproductor
             return lista;
         }
 
-        public ulong GetLength()
-        {
-            return Convert.ToUInt64(Duracion);
-        }
-
         #endregion
     }
 }
