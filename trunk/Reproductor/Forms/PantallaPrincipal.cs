@@ -16,7 +16,6 @@ namespace Reproductor
     {
         #region Variables
 
-        public Usuario user;
         public Configuracion config;
 
         List<Cancion> lista;
@@ -37,10 +36,10 @@ namespace Reproductor
             //Creo instancia de objetos
             panelReproduccion = new PanelReproduccion();
             dbReproductor = new BaseDeDatos();
-            login = new Login(this, ref dbReproductor);
+            login = new Login(ref dbReproductor);
             lista = new List<Cancion>();
             player = new Player();
-            user = new Usuario();
+            //user = new Usuario();
             config = new Configuracion();
         }
 
@@ -62,6 +61,7 @@ namespace Reproductor
 
             //Muestro el login
             login.ShowDialog();
+            SetUserLabel(login.UsuarioActual.Id);
 
             //TODO:
             //Cuando cierra el login (seria conveniente sincronizar)
@@ -71,7 +71,14 @@ namespace Reproductor
             //Sino, cargo la configuracion del usuario
             //Y la aplico
         }
-        
+
+        public Usuario UsuarioActual
+        {
+            get
+            {
+                return login.UsuarioActual;
+            }
+        }
         private void opcionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Opciones opc = new Opciones(this, panelReproduccion, ref dbReproductor);

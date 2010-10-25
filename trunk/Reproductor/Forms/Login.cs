@@ -11,15 +11,21 @@ namespace Reproductor
 {
     public partial class Login : Form
     {
-        private PantallaPrincipal ventanaPrincipal;
+        #region Variables
+
         private BaseDeDatos baseDatos;
-        
-        public Login(PantallaPrincipal vent, ref BaseDeDatos db)
+        private Usuario usuarioActual;
+
+        #endregion
+
+        #region Metodos
+
+        public Login(ref BaseDeDatos db)
         {
             InitializeComponent();
             UsuarioExistente.Checked = true;
-            ventanaPrincipal = vent;
             baseDatos = db;
+            usuarioActual = new Usuario();
         }
 
         private void botonLogin_Click(object sender, EventArgs e)
@@ -27,21 +33,21 @@ namespace Reproductor
             //Si elijo loguearme
             if (UsuarioExistente.Checked)
             {
-                ventanaPrincipal.user.IsNewUser = false;
-                ventanaPrincipal.user.Id = txtUsuario.Text;
-                ventanaPrincipal.user.Password = txtPassword.Text;
+                usuarioActual.IsNewUser = false;
+                usuarioActual.Id = txtUsuario.Text;
+                usuarioActual.Password = txtPassword.Text;
+
                 //Si entro como invitado, o si el Login es correcto
-                if ( ("Invitado" == ventanaPrincipal.user.Id) || (baseDatos.ValidarLogin(ventanaPrincipal.user.Id, txtPassword.Text)))
+                if ( ("Invitado" == usuarioActual.Id) || (baseDatos.ValidarLogin(usuarioActual.Id, usuarioActual.Password)))
                 {
-                    ventanaPrincipal.SetUserLabel(ventanaPrincipal.user.Id);
                     this.Close();
                 }
             }
             else//Si es nuevo usuario
             {
-                ventanaPrincipal.user.IsNewUser = true;
-                ventanaPrincipal.user.Id = txtNick.Text;
-                ventanaPrincipal.user.Password = txtPass1.Text;
+                usuarioActual.IsNewUser = true;
+                usuarioActual.Id = txtNick.Text;
+                usuarioActual.Password = txtPass1.Text;
 
                 if ((txtPass1.Text == "") || (txtPass2.Text == "") ||      //Si algun campo de contraseña esta vacio
                    (txtPass1.Text != txtPass2.Text))                      //O si son distintas las contraseñas ingresadas
@@ -53,7 +59,6 @@ namespace Reproductor
                     //Si no hubo error al registrar un usuario nuevo
                     if (baseDatos.AddUser(txtNick.Text, txtPass1.Text) != -1)
                     {
-                        ventanaPrincipal.SetUserLabel(ventanaPrincipal.user.Id);
                         this.Close();
                     }
                 }
@@ -76,5 +81,18 @@ namespace Reproductor
             panel2.Enabled = false;
             panel3.Enabled = true;
         }
+
+        #endregion
+
+        #region Propiedades
+
+        public Usuario UsuarioActual
+        {
+            get
+            {
+                return usuarioActual;
+            }
+        }
+        #endregion
     }
 }
