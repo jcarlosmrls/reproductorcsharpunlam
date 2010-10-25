@@ -331,8 +331,8 @@ namespace Reproductor
         {
             botonStop_Click(null, null);
             cancionActual = num;
-            ActualizarEtiquetas();
             botonPlay_Click(null, null);
+            ActualizarEtiquetas();
         }
 
         private void botonBuscar_Click(object sender, EventArgs e)
