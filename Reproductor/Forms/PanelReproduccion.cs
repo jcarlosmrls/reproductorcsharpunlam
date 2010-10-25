@@ -90,29 +90,25 @@ namespace Reproductor
 
         public void CargarLista()
         {
-            foreach(Cancion song in listaDeReproduccion)
-                listViewLista.Items.Add(new ListViewItem(song.Nombre));
+            foreach (Cancion song in listaDeReproduccion)
+                listBoxLista.Items.Add(song.Nombre);
         }
 
         public void LimpiarLista()
         {
-            //listaDeReproduccion.Clear();
-            listViewLista.Clear();
+            listBoxLista.Items.Clear();
         }
 
         public void SeleccionarCancion(int num)
         {
-            //listViewLista.Items[num].Focused = true;
-            foreach (ListViewItem item in listViewLista.Items)
-                item.BackColor = Color.Transparent;
-            listViewLista.Items[num].BackColor = Color.ForestGreen;
+            listBoxLista.SetSelected(num, true);
         }
 
         private void listViewLista_DoubleClick(object sender, EventArgs e)
         {
             try
             {
-                ventana_principal.ReproducirCancion(listViewLista.SelectedIndices[0]);
+                ventana_principal.ReproducirCancion(listBoxLista.SelectedIndex);
                 ventana_principal.ActualizarEtiquetas();
             }
             catch(Exception)

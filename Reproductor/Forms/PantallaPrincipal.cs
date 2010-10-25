@@ -443,37 +443,21 @@ namespace Reproductor
                     try
                     {
                         lista.Add(new Cancion(path));
-                        //Actualizo la lista de reproduccion en el panel
-                        panelReproduccion.CargarLista();
-                        cancionActual = 0;
-
-                        //Comienzo la reproduccion
-                        ActualizarEtiquetas();
-                        botonPlay_Click(null, null);
-                        ActualizarEtiquetas();
-                        ObtenerImagen();
-                        /*if (!player.Reproduciendo())
-                        {
-                            //tiene que reproducir la primer cancion del album
-                        }*/
-
                     }
                     catch (Exception)
                     {
-
                         dbReproductor.BorrarCancion(idInterprete, idAlbum, path);
                         MessageBox.Show("No se ha encontrado la canción solicitada");
                     }
                 }
+                //Actualizo la lista de reproduccion en el panel
+                panelReproduccion.CargarLista();
+                cancionActual = 0;
 
                 //Comienzo la reproduccion
                 botonPlay_Click(null, null);
                 ActualizarEtiquetas();
                 ObtenerImagen();
-                /*if (!player.Reproduciendo())
-                {
-                    //tiene que reproducir la primer cancion del album
-                }*/
             }
         }
 
