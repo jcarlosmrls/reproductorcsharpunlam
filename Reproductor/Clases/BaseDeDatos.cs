@@ -418,11 +418,11 @@ namespace Reproductor
             cmd.Connection = dbConnection;
             cmd.Parameters.Add("?", idAlbum);
             cmd.Parameters.Add("?", cancion.Nombre);
-            //cmd.Parameters.Add("?", cancion.numero);
+            cmd.Parameters.Add("?", cancion.NumeroDeCancion);
             cmd.Parameters.Add("?", cancion.Duracion);
             cmd.Parameters.Add("?", cancion.Ruta);
 
-            cmd.CommandText = @"INSERT INTO Cancion ([Id_Album],[Titulo],[Duracion],[Path]) VALUES (?,?,?,?)";
+            cmd.CommandText = @"INSERT INTO Cancion ([Id_Album],[Titulo],[Numero_Cancion],[Duracion],[Path]) VALUES (?,?,?,?,?)";
             cmd.ExecuteNonQuery();
         }
 

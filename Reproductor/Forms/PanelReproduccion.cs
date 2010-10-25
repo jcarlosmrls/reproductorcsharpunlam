@@ -53,7 +53,6 @@ namespace Reproductor
             InitializeComponent();
             isOpen = true;
             isStuck = true;
-            //listaDeReproduccion = new List<Cancion>();
         }
 
         public void Asignar(PantallaPrincipal form, ref BaseDeDatos db, ref List<Cancion> lista)
