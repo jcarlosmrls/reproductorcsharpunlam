@@ -30,7 +30,7 @@ namespace Reproductor
         {
             ventana_principal.Enabled = false;
             panel.Enabled = false;
-            foreach (string cad in baseDatos.Leer_Columna("Ruta_De_Archivos", "Path", "Id_Usuario", ventana_principal.user.Id))
+            foreach (string cad in baseDatos.Leer_Columna("Ruta_De_Archivos", "Path", "Id_Usuario", ventana_principal.UsuarioActual.Id))
             {
                 paths.Add(new string(cad.ToCharArray()));
                 listBox1.Items.Add(cad);
@@ -53,7 +53,7 @@ namespace Reproductor
                 }
             if (hubo_cambio_paths)
             {
-                baseDatos.ActualizarRutaDeArchivos(ventana_principal.user.Id, paths);
+                baseDatos.ActualizarRutaDeArchivos(ventana_principal.UsuarioActual.Id, paths);
                 // aca esta actualizamdo, habria que cambiarlo por un thread.
                 baseDatos.ActualizarCanciones(ventana_principal);
             }

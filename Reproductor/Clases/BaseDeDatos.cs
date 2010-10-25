@@ -426,7 +426,7 @@ namespace Reproductor
             cmd.ExecuteNonQuery();
         }
 
-        public void AgregarCancion(string album, string lista, string titulo, uint numero, TimeSpan duracion, string path)
+    /*    public void AgregarCancion(string album, string lista, string titulo, uint numero, TimeSpan duracion, string path)
         {
             OleDbCommand cmd = new OleDbCommand();
 
@@ -444,7 +444,7 @@ namespace Reproductor
 
             cmd.CommandText = @"INSERT INTO Cancion ([Id_Album], [Id_Lista], [Titulo], [Numero_Cancion], [Duracion], [Path]) VALUES (?,?,?,?,?,?)";
             cmd.ExecuteNonQuery();
-        }
+        }*/
 
         // funcion que actualiza las canciones en la base de datos, 
         public void ActualizarCanciones(PantallaPrincipal ventana)
@@ -452,7 +452,7 @@ namespace Reproductor
             List<string> canciones;
 
             //obtengo una lista de los paths de canciones en base a los directorios guardados en la base de datos
-            canciones = ListaPathsCanciones(Leer_Columna("Ruta_De_Archivos", "Path", "Id_Usuario", ventana.user.Id));
+            canciones = ListaPathsCanciones(Leer_Columna("Ruta_De_Archivos", "Path", "Id_Usuario", ventana.UsuarioActual.Id));
 
             foreach (string path in canciones)
             {
