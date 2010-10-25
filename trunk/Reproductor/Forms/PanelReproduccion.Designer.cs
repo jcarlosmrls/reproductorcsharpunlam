@@ -34,7 +34,7 @@
             this.botonGuardarLista = new System.Windows.Forms.Button();
             this.botonBorrarLista = new System.Windows.Forms.Button();
             this.botonNuevaLista = new System.Windows.Forms.Button();
-            this.listBoxLista = new System.Windows.Forms.ListBox();
+            this.listViewLista = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -92,17 +92,19 @@
             this.botonNuevaLista.UseVisualStyleBackColor = true;
             this.botonNuevaLista.Click += new System.EventHandler(this.botonNuevaLista_Click);
             // 
-            // listBoxLista
+            // listViewLista
             // 
-            this.listBoxLista.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.listViewLista.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxLista.FormattingEnabled = true;
-            this.listBoxLista.Location = new System.Drawing.Point(12, 69);
-            this.listBoxLista.Name = "listBoxLista";
-            this.listBoxLista.Size = new System.Drawing.Size(214, 368);
-            this.listBoxLista.TabIndex = 6;
-            this.listBoxLista.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxLista_MouseDoubleClick);
+            this.listViewLista.Location = new System.Drawing.Point(13, 71);
+            this.listViewLista.MultiSelect = false;
+            this.listViewLista.Name = "listViewLista";
+            this.listViewLista.Size = new System.Drawing.Size(213, 366);
+            this.listViewLista.TabIndex = 6;
+            this.listViewLista.UseCompatibleStateImageBehavior = false;
+            this.listViewLista.View = System.Windows.Forms.View.List;
+            this.listViewLista.DoubleClick += new System.EventHandler(this.listViewLista_DoubleClick);
             // 
             // PanelReproduccion
             // 
@@ -110,7 +112,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(238, 449);
             this.ControlBox = false;
-            this.Controls.Add(this.listBoxLista);
+            this.Controls.Add(this.listViewLista);
             this.Controls.Add(this.botonGuardarLista);
             this.Controls.Add(this.botonBorrarLista);
             this.Controls.Add(this.botonNuevaLista);
@@ -140,7 +142,7 @@
         private System.Windows.Forms.Button botonNuevaLista;
         private System.Windows.Forms.Button botonBorrarLista;
         private System.Windows.Forms.Button botonGuardarLista;
-        private System.Windows.Forms.ListBox listBoxLista;
+        private System.Windows.Forms.ListView listViewLista;
 
     }
 }
