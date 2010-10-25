@@ -18,6 +18,17 @@ namespace Reproductor
 
         #endregion
 
+        #region Propiedades
+
+        public Usuario UsuarioActual
+        {
+            get
+            {
+                return usuarioActual;
+            }
+        }
+        #endregion
+
         #region Metodos
 
         public Login(ref BaseDeDatos db)
@@ -36,14 +47,10 @@ namespace Reproductor
                 usuarioActual.IsNewUser = false;
                 usuarioActual.Id = txtUsuario.Text;
                 usuarioActual.Password = txtPassword.Text;
-
-                //Si entro como invitado, o si el Login es correcto
-                if ( ("Invitado" == usuarioActual.Id) || (baseDatos.ValidarLogin(usuarioActual.Id, usuarioActual.Password)))
-                {
-                    this.Close();
-                }
+                this.Close();
             }
-            else//Si es nuevo usuario
+            //Si es nuevo usuario
+            else if(UsuarioNuevo.Checked)
             {
                 usuarioActual.IsNewUser = true;
                 usuarioActual.Id = txtNick.Text;
@@ -56,11 +63,7 @@ namespace Reproductor
                 }
                 else
                 {
-                    //Si no hubo error al registrar un usuario nuevo
-                    if (baseDatos.AddUser(txtNick.Text, txtPass1.Text) != -1)
-                    {
-                        this.Close();
-                    }
+                    this.Close();
                 }
             }           
         }
@@ -82,17 +85,6 @@ namespace Reproductor
             panel3.Enabled = true;
         }
 
-        #endregion
-
-        #region Propiedades
-
-        public Usuario UsuarioActual
-        {
-            get
-            {
-                return usuarioActual;
-            }
-        }
         #endregion
     }
 }

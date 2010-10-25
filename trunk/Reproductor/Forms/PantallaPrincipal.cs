@@ -39,7 +39,6 @@ namespace Reproductor
             login = new Login(ref dbReproductor);
             lista = new List<Cancion>();
             player = new Player();
-            //user = new Usuario();
             config = new Configuracion();
         }
 
@@ -60,8 +59,7 @@ namespace Reproductor
             cancionActual = -1;
 
             //Muestro el login
-            login.ShowDialog();
-            SetUserLabel(login.UsuarioActual.Id);
+            MostrarLogin();
 
             //TODO:
             //Cuando cierra el login (seria conveniente sincronizar)
@@ -79,6 +77,37 @@ namespace Reproductor
                 return login.UsuarioActual;
             }
         }
+
+        private void MostrarLogin()
+        {
+            bool loggedIn = false;
+
+            do
+            {
+                login.ShowDialog();
+
+                //Si no es nuevo usuario
+                if (!UsuarioActual.IsNewUser)
+                {
+                    //Si entro como invitado, o si el Login es correcto
+                    if (("Invitado" == UsuarioActual.Id) ||
+                        (dbReproductor.ValidarLogin(UsuarioActual.Id, UsuarioActual.Password)))
+                    {
+                        loggedIn = true;
+                    }
+                }
+                else if(UsuarioActual.IsNewUser)   //Si es nuevo usuario
+                {
+                    //Si no hubo error al registrar un usuario nuevo
+                    if (dbReproductor.AddUser(UsuarioActual.Id, UsuarioActual.Password) != -1)
+                    {
+                        loggedIn = true;
+                    }
+                }
+            } while ( !loggedIn );
+            SetUserLabel(login.UsuarioActual.Id);
+        }
+
         private void opcionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Opciones opc = new Opciones(this, panelReproduccion, ref dbReproductor);
