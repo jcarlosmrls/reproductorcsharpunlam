@@ -22,11 +22,6 @@ namespace Reproductor
             baseDatos = db;
         }
 
-        private void Login_Load(object sender, EventArgs e)
-        {
-            ventanaPrincipal.Enabled = false;
-        }
-
         private void botonLogin_Click(object sender, EventArgs e)
         {
             //Si elijo loguearme
@@ -38,7 +33,6 @@ namespace Reproductor
                 //Si entro como invitado, o si el Login es correcto
                 if ( ("Invitado" == ventanaPrincipal.user.Id) || (baseDatos.ValidarLogin(ventanaPrincipal.user.Id, txtPassword.Text)))
                 {
-                    ventanaPrincipal.Enabled = true;
                     ventanaPrincipal.SetUserLabel(ventanaPrincipal.user.Id);
                     this.Close();
                 }
@@ -59,7 +53,6 @@ namespace Reproductor
                     //Si no hubo error al registrar un usuario nuevo
                     if (baseDatos.AddUser(txtNick.Text, txtPass1.Text) != -1)
                     {
-                        ventanaPrincipal.Enabled = true;
                         ventanaPrincipal.SetUserLabel(ventanaPrincipal.user.Id);
                         this.Close();
                     }
