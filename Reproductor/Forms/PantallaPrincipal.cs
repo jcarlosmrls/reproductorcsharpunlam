@@ -36,7 +36,7 @@ namespace Reproductor
             //Creo instancia de objetos
             panelReproduccion = new PanelReproduccion();
             dbReproductor = new BaseDeDatos();
-            login = new Login(ref dbReproductor);
+            login = new Login();
             lista = new List<Cancion>();
             player = new Player();
             config = new Configuracion();

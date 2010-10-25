@@ -13,7 +13,6 @@ namespace Reproductor
     {
         #region Variables
 
-        private BaseDeDatos baseDatos;
         private Usuario usuarioActual;
 
         #endregion
@@ -31,11 +30,10 @@ namespace Reproductor
 
         #region Metodos
 
-        public Login(ref BaseDeDatos db)
+        public Login()
         {
             InitializeComponent();
             UsuarioExistente.Checked = true;
-            baseDatos = db;
             usuarioActual = new Usuario();
         }
 
