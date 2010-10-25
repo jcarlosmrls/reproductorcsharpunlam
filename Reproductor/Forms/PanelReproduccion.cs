@@ -131,7 +131,7 @@ namespace Reproductor
             if (listaDeReproduccion.Count != 0)
             {
                 IngresarNombreDeLista guardar = new IngresarNombreDeLista(ref listaDeReproduccion, ref dBase);
-                guardar.Show();
+                guardar.ShowDialog();
             }
             else
             {

@@ -61,7 +61,7 @@ namespace Reproductor
             cancionActual = -1;
 
             //Muestro el login
-            login.Show();
+            login.ShowDialog();
 
             //TODO:
             //Cuando cierra el login (seria conveniente sincronizar)
