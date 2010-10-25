@@ -144,5 +144,13 @@ namespace Reproductor
             //Tomar las listas de reproduccion del usuario que se conecta
             //y completar el combobox
         }
+
+        private void listBoxLista_DoubleClick(object sender, EventArgs e)
+        {
+            if (listBoxLista.SelectedItems.Count == 1)
+            {
+                ventana_principal.ReproducirCancion(listBoxLista.SelectedIndex);
+            }
+        }
     }
 }

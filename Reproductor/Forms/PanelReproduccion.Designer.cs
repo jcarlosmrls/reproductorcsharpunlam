@@ -102,6 +102,7 @@
             this.listBoxLista.Name = "listBoxLista";
             this.listBoxLista.Size = new System.Drawing.Size(214, 355);
             this.listBoxLista.TabIndex = 6;
+            this.listBoxLista.DoubleClick += new System.EventHandler(this.listBoxLista_DoubleClick);
             // 
             // PanelReproduccion
             // 
