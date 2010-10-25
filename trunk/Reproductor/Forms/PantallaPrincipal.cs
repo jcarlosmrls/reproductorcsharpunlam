@@ -17,6 +17,8 @@ namespace Reproductor
         #region Variables
 
         public Configuracion config;
+        public string idInterpreteBiblioteca = "";
+        public string idAlbumBiblioteca = "";
 
         List<Cancion> lista;
         private int cancionActual;
@@ -44,7 +46,6 @@ namespace Reproductor
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             //Abro la base de datos
             dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + config.Path);
             //dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=C:\Universidad Fabio\Proyectos Visual Studio\Reproductor\Base_Reproductor.mdb");
@@ -53,9 +54,6 @@ namespace Reproductor
             //Inicializo variables, etc
             panelReproduccion.Asignar(this, ref dbReproductor, ref lista);
             panelReproduccion.CambiarPosicion();
-            abrirArchivo.Multiselect = true;
-            abrirArchivo.FileName = "";
-            abrirArchivo.Filter = "MP3 files|*.mp3|WAV files|*.wav|All files|*.*";
             cancionActual = -1;
 
             //Muestro el login
@@ -391,25 +389,27 @@ namespace Reproductor
 
         private void listBox1_SelectedValueChanged(object sender, EventArgs e)
         {
-                List<Cancion> canciones = dbReproductor.CancionDeCadaAlbum(listBox1.SelectedItem.ToString());
+            List<Cancion> canciones = dbReproductor.CancionDeCadaAlbum(listBox1.SelectedItem.ToString());
+            idInterpreteBiblioteca = dbReproductor.InterpreteId(listBox1.SelectedItem.ToString());
 
-                ImageList imagenes = new ImageList();
-                listView1.LargeImageList = imagenes;
-                listView1.LargeImageList.ImageSize = new Size(50, 50);
-                listView1.Clear();
-                listBox2.Items.Clear();
-
-                foreach (Cancion song in canciones)
-                {
-                    imagenes.Images.Add(song.Album, song.Imagen);
-                    listView1.Items.Add(new ListViewItem(song.Album, song.Album));
-                }
+            ImageList imagenes = new ImageList();
+            listView1.LargeImageList = imagenes;
+            listView1.LargeImageList.ImageSize = new Size(50, 50);
+            listView1.Clear();
+            listBox2.Items.Clear();
+            
+            foreach (Cancion song in canciones)
+            {
+                imagenes.Images.Add(song.Album, song.Imagen);
+                listView1.Items.Add(new ListViewItem(song.Album, song.Album));
+            }
         }
 
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             if (listView1.SelectedItems.Count == 1)
             {
+                idAlbumBiblioteca = dbReproductor.AlbumId(listView1.SelectedItems[0].Text.ToString(), idInterpreteBiblioteca);
                 listBox2.Items.Clear();
                 foreach (string cad in dbReproductor.Leer_Columna("Cancion", "Titulo", "Id_Album", dbReproductor.AlbumId(listView1.SelectedItems[0].Text, dbReproductor.InterpreteId(listBox1.SelectedItem.ToString()))))
                 {
@@ -422,9 +422,8 @@ namespace Reproductor
         {
             if (listView1.SelectedItems.Count == 1)
             {
-                string idInterprete = dbReproductor.InterpreteId(listBox1.SelectedItem.ToString());
-                string idAlbum = dbReproductor.AlbumId(listView1.SelectedItems[0].Text.ToString(), idInterprete);
-                string[] paths = dbReproductor.Leer_Columna("Cancion", "Path", "Id_Album", idAlbum);
+
+                string[] paths = dbReproductor.Leer_Columna("Cancion", "Path", "Id_Album", idAlbumBiblioteca);
 
                 int x = listBox2.SelectedIndex;
                 //lista.Clear();
@@ -450,7 +449,7 @@ namespace Reproductor
                 }
                 catch (Exception)
                 {
-                    dbReproductor.BorrarCancion(idInterprete, idAlbum, paths[x]);
+                    dbReproductor.BorrarCancion(idInterpreteBiblioteca, idAlbumBiblioteca, paths[x]);
                     MessageBox.Show("No se ha encontrado la canción solicitada");
                 }
             }
@@ -462,9 +461,8 @@ namespace Reproductor
 
             if (listView1.SelectedItems.Count == 1)
             {
-                string idInterprete = dbReproductor.InterpreteId(listBox1.SelectedItem.ToString());
-                string idAlbum = dbReproductor.AlbumId(listView1.SelectedItems[0].Text, idInterprete);
-                paths = dbReproductor.Leer_Columna("Cancion", "Path", "Id_Album", idAlbum);
+                idAlbumBiblioteca = dbReproductor.AlbumId(listView1.SelectedItems[0].Text.ToString(), idInterpreteBiblioteca);
+                paths = dbReproductor.Leer_Columna("Cancion", "Path", "Id_Album", idAlbumBiblioteca);
 
                 //Detengo la reproduccion actual
                 botonStop_Click(null, null);
@@ -482,7 +480,7 @@ namespace Reproductor
                     }
                     catch (Exception)
                     {
-                        dbReproductor.BorrarCancion(idInterprete, idAlbum, path);
+                        dbReproductor.BorrarCancion(idInterpreteBiblioteca, idAlbumBiblioteca, path);
                         MessageBox.Show("No se ha encontrado la canción solicitada");
                     }
                 }
@@ -491,6 +489,7 @@ namespace Reproductor
                 cancionActual = 0;
 
                 //Comienzo la reproduccion
+                ActualizarEtiquetas();
                 botonPlay_Click(null, null);
                 ActualizarEtiquetas();
                 ObtenerImagen();

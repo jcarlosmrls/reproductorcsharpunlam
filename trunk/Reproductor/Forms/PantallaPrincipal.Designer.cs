@@ -767,7 +767,8 @@
             // 
             // abrirArchivo
             // 
-            this.abrirArchivo.FileName = "openFileDialog1";
+            this.abrirArchivo.Filter = "MP3 files|*.mp3|WAV files|*.wav|All files|*.*";
+            this.abrirArchivo.Multiselect = true;
             this.abrirArchivo.FileOk += new System.ComponentModel.CancelEventHandler(this.abrirArchivo_FileOk);
             // 
             // labelUsuarioActual
