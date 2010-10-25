@@ -25,8 +25,6 @@ namespace Reproductor
         private Player player;
         private BaseDeDatos dbReproductor;
         private Login login;
-        private UInt64 milisegundos;
-        private TimeSpan actualPosition;
 
         #endregion
 
@@ -95,19 +93,15 @@ namespace Reproductor
         {
             textBoxCancion.Text = DesplazarString(textBoxCancion.Text.ToString());
             this.Text = DesplazarString(this.Text);
-            if (trackBarReproduccion.Value < trackBarReproduccion.Maximum-499)
+            if (trackBarReproduccion.Value < trackBarReproduccion.Maximum)
             {
-                actualPosition = TimeSpan.FromMilliseconds(milisegundos);
+                TimeSpan actualPosition = TimeSpan.FromSeconds(player.CurrentPosition/1000);
                 labelContador.Text = string.Format("{0:00}", actualPosition.Hours) + ":" + string.Format("{0:00}", actualPosition.Minutes) + ":" + string.Format("{0:00}", actualPosition.Seconds);
-                milisegundos += (ulong)timerBarra.Interval;
-                trackBarReproduccion.Value += timerBarra.Interval;
+                trackBarReproduccion.Value = (int) player.CurrentPosition;
             }
             else
             {
                 trackBarReproduccion.Value = 0;
-                milisegundos = 0;
-                actualPosition = TimeSpan.Zero;
-                labelContador.Text = string.Format("{0:00}", actualPosition.Hours) + ":" + string.Format("{0:00}", actualPosition.Minutes) + ":" + string.Format("{0:00}", actualPosition.Seconds);
                 timerBarra.Enabled = false;
                 botonSiguiente_Click(null, null);
             }
@@ -223,16 +217,12 @@ namespace Reproductor
                 {
                     player.Pause();
                     timerBarra.Enabled = false;
-                    //
-                    botonPlay.Text = "►";
                 }
                 else
                 {
                     player.Open(lista[cancionActual].Ruta.ToString());
                     player.Play(false);
                     timerBarra.Enabled = true;
-                    //
-                    botonPlay.Text = "ll";
                 }
                 panelReproduccion.SeleccionarCancion(cancionActual);
             }
@@ -250,8 +240,6 @@ namespace Reproductor
                 Cancion song = new Cancion(path);
                 lista.Add(song);
             }
-            //
-            milisegundos = 0;
             panelReproduccion.CargarLista();
             player.Close();
             player.Open(lista[0].Ruta.ToString());
@@ -259,7 +247,6 @@ namespace Reproductor
             cancionActual = 0;
             ActualizarEtiquetas();
             ObtenerImagen();
-            panelReproduccion.SeleccionarCancion(cancionActual);
             timerBarra.Enabled = true;  
         }
 
@@ -273,20 +260,17 @@ namespace Reproductor
                 player.Close();
                 textBoxCancion.Text = lista[cancionActual].Nombre.ToString();
                 this.Text = lista[cancionActual].Nombre.ToString();
-                //
-                botonPlay.Text = "►";
             }
         }
 
         private void trackBarReproduccion_MouseUp(object sender, MouseEventArgs e)
         {
             player.Seek((ulong)trackBarReproduccion.Value, (ulong)lista[cancionActual].Duracion.TotalMilliseconds);
-            milisegundos = (ulong)trackBarReproduccion.Value;
-            labelContador.Text = string.Format("{0:00}", actualPosition.Hours) + ":" + string.Format("{0:00}", actualPosition.Minutes) + ":" + string.Format("{0:00}", actualPosition.Seconds);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+
             dbReproductor.Close();
         }
 
@@ -482,6 +466,14 @@ namespace Reproductor
                     }
                 }
 
+                //Comienzo la reproduccion
+                botonPlay_Click(null, null);
+                ActualizarEtiquetas();
+                ObtenerImagen();
+                /*if (!player.Reproduciendo())
+                {
+                    //tiene que reproducir la primer cancion del album
+                }*/
             }
         }
 
@@ -739,10 +731,9 @@ namespace Reproductor
                 textBoxGenero.Text = lista[cancionActual].Genero;
                 richTextBoxLetras.Text = lista[cancionActual].Letra;
 
-                botonPlay.Text = "ll";
-                milisegundos = 0;
-                trackBarReproduccion.Value = 0;
-                trackBarReproduccion.Maximum = (int)lista[cancionActual].Duracion.TotalMilliseconds;
+                //Calculo la longitud del trackbar
+                ulong length = player.AudioLength;
+                trackBarReproduccion.Maximum = (int)length;
             }
         }                
 

@@ -111,14 +111,15 @@ namespace Reproductor
             }
         }
 
+        
         private void CalculateLength()
         {        
             StringBuilder str = new StringBuilder(128);
             mciSendString("status MediaFile length", str, 128, IntPtr.Zero);
-            Lng = Convert.ToUInt64(str.ToString());
+            Lng = Convert.ToUInt64(str.ToString());        
         }
                 
-        public ulong AudioLength
+        public ulong AudioLength    
         {            
             get 
             {
@@ -130,5 +131,6 @@ namespace Reproductor
                 else return 0;
             }
         }
+
     }
 }
