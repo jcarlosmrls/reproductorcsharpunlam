@@ -10,13 +10,11 @@ namespace Reproductor
 {
     public partial class IngresarNombreDeLista : Form
     {
-        private List<Cancion> lista;
         private string nombreDeLista;
 
-        public IngresarNombreDeLista(ref List<Cancion> lista)
+        public IngresarNombreDeLista()
         {
             InitializeComponent();
-            this.lista = lista;
         }
 
         public string NombreDeLista
