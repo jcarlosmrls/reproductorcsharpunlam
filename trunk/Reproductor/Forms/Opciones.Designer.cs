@@ -176,7 +176,6 @@
             this.Text = "Opciones";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Opciones_Load);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Opciones_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

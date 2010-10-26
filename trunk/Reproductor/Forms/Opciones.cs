@@ -28,8 +28,6 @@ namespace Reproductor
 
         private void Opciones_Load(object sender, EventArgs e)
         {
-            ventana_principal.Enabled = false;
-            panel.Enabled = false;
             foreach (string cad in baseDatos.Leer_Columna("Ruta_De_Archivos", "Path", "Id_Usuario", ventana_principal.UsuarioActual.Id))
             {
                 paths.Add(new string(cad.ToCharArray()));
@@ -68,12 +66,6 @@ namespace Reproductor
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             hubo_cambio = true;
-        }
-
-        private void Opciones_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            ventana_principal.Enabled = true;
-            panel.Enabled = true;
         }
 
         private void button3_Click(object sender, EventArgs e)

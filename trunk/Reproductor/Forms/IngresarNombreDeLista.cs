@@ -11,24 +11,28 @@ namespace Reproductor
     public partial class IngresarNombreDeLista : Form
     {
         private List<Cancion> lista;
-        private BaseDeDatos dbReproductor;
+        private string nombreDeLista;
 
-        public IngresarNombreDeLista(ref List<Cancion> lista, ref BaseDeDatos db)
+        public IngresarNombreDeLista(ref List<Cancion> lista)
         {
             InitializeComponent();
             this.lista = lista;
-            this.dbReproductor = db;
+        }
+
+        public string NombreDeLista
+        {
+            get
+            {
+                return nombreDeLista;
+            }
         }
 
         private void botonAceptar_Click(object sender, EventArgs e)
         {
             if (txtNombre.Text != "")
             {
-                //TODO: Agregar el registro de la lista en la tabla Lista de reproduccion
-             /*   foreach (Cancion song in lista)
-                {
-                    dbReproductor.AgregarCancion(song.Album, txtNombre.Text, song.Nombre, 0, song.Duracion, song.Ruta);
-                }   */
+                nombreDeLista = txtNombre.Text;
+                this.Close();
             }
             else
             {
@@ -38,6 +42,7 @@ namespace Reproductor
 
         private void botonCancelar_Click(object sender, EventArgs e)
         {
+            nombreDeLista = "";
             this.Close();
         }
     }
