@@ -127,10 +127,21 @@ namespace Reproductor
 
         private void botonGuardarLista_Click(object sender, EventArgs e)
         {
+            IngresarNombreDeLista guardar;
+
             if (listaDeReproduccion.Count != 0)
             {
-                IngresarNombreDeLista guardar = new IngresarNombreDeLista(ref listaDeReproduccion, ref dBase);
+                guardar  = new IngresarNombreDeLista(ref listaDeReproduccion);
                 guardar.ShowDialog();
+                if (guardar.NombreDeLista != "")
+                {
+                    foreach (Cancion song in listaDeReproduccion)
+                    {
+                        //TODO:
+                        //Guardar la cancion en la base de datos con lista: guardar.NombreDeLista
+                    }
+                    MessageBox.Show("Se guarda la lista como " + guardar.NombreDeLista);
+                }
             }
             else
             {

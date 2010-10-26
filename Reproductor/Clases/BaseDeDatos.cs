@@ -281,37 +281,30 @@ namespace Reproductor
                 //obtiene una lista  por cada formato
                 foreach (string cad in Directory.GetFiles(path, "*.mp3", SearchOption.AllDirectories))
                 {
-
-
                     canciones.Add(cad.ToString());
-
                 }
                 foreach (string cad in Directory.GetFiles(path, "*.wav", SearchOption.AllDirectories))
                 {
-
-
                     canciones.Add(cad.ToString());
-
                 }
                 foreach (string cad in Directory.GetFiles(path, "*.mid", SearchOption.AllDirectories))
                 {
-
-
                     canciones.Add(cad.ToString());
-
                 }
             }
-
             return canciones;
         }
 
         private bool ExisteCancion(string path)
         {
-
             if (Leer_Columna("Cancion", "Path", "Path", path).Length > 0)
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
 
         public string InterpreteId(string nombre)
@@ -330,9 +323,13 @@ namespace Reproductor
             lista = Leer_Columna("Interprete", "Id", "Nombre", nombre); //realizo una busqueda en al bd de los interpretes con ese nombre
 
             if (lista.Length == 0)
+            {
                 return "";
+            }
             else
+            {
                 return lista[0];
+            }
         }
 
         public string AlbumId(string nombre, string idInterprete)
@@ -351,9 +348,13 @@ namespace Reproductor
             lista = Leer_Columna("Album", "Id_Album", "Nombre", nombre, "Id_Interprete", idInterprete); //busqueda en la bd de los albunes con ese nombre
 
             if (lista.Length == 0)
+            {
                 return "";
+            }
             else
+            {
                 return lista[0];
+            }
         }
 
 

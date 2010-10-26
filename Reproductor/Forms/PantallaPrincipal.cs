@@ -109,13 +109,13 @@ namespace Reproductor
         private void opcionesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Opciones opc = new Opciones(this, panelReproduccion, ref dbReproductor);
-            opc.Show();
+            opc.ShowDialog();
         }
 
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AcercaDe acerca = new AcercaDe();
-            acerca.Show();
+            acerca.ShowDialog();
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -158,9 +158,7 @@ namespace Reproductor
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             abrirArchivo.ShowDialog();
-        }
-
-        
+        }     
 
         private void ObtenerImagen()
         {
@@ -179,7 +177,6 @@ namespace Reproductor
             }
         }
 
-
         private void button1_Click_1(object sender, EventArgs e)
         {
             Modificar_Artista m = new Modificar_Artista(this,panelReproduccion);
@@ -197,8 +194,6 @@ namespace Reproductor
             Modificar_Cancion c = new Modificar_Cancion(this, panelReproduccion);
             c.Show();
         }
-
-
 
         private void botonSiguiente_Click(object sender, EventArgs e)
         {
@@ -304,13 +299,7 @@ namespace Reproductor
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             dbReproductor.Close();
-        }
-
-        public void CambiarDeUsuario(string user)
-        {
-            //usuarioActual = user;
         }
         
         private void button5_Click(object sender, EventArgs e)
@@ -325,6 +314,8 @@ namespace Reproductor
             {
                 richTextBoxLetras.Text = letra;
             }
+            richTextBoxLetras.SelectAll();
+            richTextBoxLetras.SelectionAlignment = HorizontalAlignment.Center;
         }
 
         public void ReproducirCancion(int num)
@@ -384,7 +375,9 @@ namespace Reproductor
         private void tabControlPrincipal_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControlPrincipal.SelectedTab == tabControlPrincipal.TabPages[1])
+            {
                 MostrarInterpretes();
+            }
         }
 
         private void listBox1_SelectedValueChanged(object sender, EventArgs e)
@@ -410,6 +403,7 @@ namespace Reproductor
             if (listView1.SelectedItems.Count == 1)
             {
                 idAlbumBiblioteca = dbReproductor.AlbumId(listView1.SelectedItems[0].Text.ToString(), idInterpreteBiblioteca);
+
                 listBox2.Items.Clear();
                 foreach (string cad in dbReproductor.Leer_Columna("Cancion", "Titulo", "Id_Album", dbReproductor.AlbumId(listView1.SelectedItems[0].Text, dbReproductor.InterpreteId(listBox1.SelectedItem.ToString()))))
                 {
