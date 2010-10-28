@@ -111,7 +111,6 @@ namespace Reproductor
             }
         }
 
-        
         private void CalculateLength()
         {        
             StringBuilder str = new StringBuilder(128);

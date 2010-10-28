@@ -9,10 +9,26 @@ using System.Windows.Forms;
 namespace Reproductor
 {
     public partial class Modificar_Album : Form
-    {      
-        public Modificar_Album()
+    {
+        private BaseDeDatos db;
+        private string idAlbum;
+        private string nombre;
+        private string interprete;
+        private string idInterprete;
+        private string genero;
+        private string anio;
+
+        public Modificar_Album(string id, BaseDeDatos db)
         {
             InitializeComponent();
+            this.db = db;
+            idAlbum = id;
+            db.DatosAlbum(idAlbum, ref nombre, ref idInterprete, ref genero, ref anio);
+            txtNombre.Text = nombre;
+            interprete = this.db.Leer_Columna("Interprete", "Nombre", "Id", idInterprete)[0];
+            txtInterprete.Text = interprete;
+            txtGenero.Text = genero;
+            txtAnio.Text = anio;
         }
         
         private void Modificar_Album_FormClosed(object sender, FormClosedEventArgs e)

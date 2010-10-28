@@ -10,10 +10,27 @@ namespace Reproductor
 {
     public partial class Modificar_Cancion : Form
     {
-        public Modificar_Cancion()
+        private BaseDeDatos db;
+        private string idCancion;
+        private string titulo;
+        private string idAlbum;
+        private string album;
+        private string numero;
+        private string path;
+
+        public Modificar_Cancion(string id, BaseDeDatos db)
         {
             InitializeComponent();
+            this.db = db;
+            idCancion = id;
+            this.db.DatosCancion(idCancion,ref titulo,ref idAlbum,ref numero,ref path);
+            album = this.db.Leer_Columna("Album","Nombre","Id_Album",idAlbum)[0];
+            txtAlbum.Text = album;
+            txtNumero.Text = numero;
+            txtTitulo.Text = titulo;
+            txtUbicacion.Text = path;
         }
+
 
         private void Modificar_Cancion_FormClosed(object sender, FormClosedEventArgs e)
         {

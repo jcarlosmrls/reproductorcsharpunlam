@@ -457,7 +457,6 @@ namespace Reproductor
 
             foreach (string path in canciones)
             {
-
                 if (!ExisteCancion(path)) // controlo si el path de la cancion ya esta en la base de datos.
                 {
 
@@ -538,6 +537,67 @@ namespace Reproductor
             try
             {
                 cmdBorrar.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al abrir la base de datos");
+            }
+        }
+
+        public void DatosInterprete(string id, ref string nombre)
+        {
+            string[] aux = Leer_Columna("Interprete", "Nombre", "Id", id);
+            nombre = aux[0];
+        }
+
+        public void DatosAlbum(string id, ref string nombre, ref string idInterprete, ref string genero, ref string anio)
+        {
+            OleDbCommand cmdLeer = new OleDbCommand();
+
+            string cad = "SELECT * FROM Album WHERE Id_Album = ?";
+
+            cmdLeer.CommandType = CommandType.Text;
+            cmdLeer.Connection = dbConnection;
+            cmdLeer.Parameters.Add("?", id);
+            cmdLeer.CommandText = cad;
+            dbAdapter.SelectCommand = cmdLeer;
+            dbDataSet.Clear();// agregado clear, sino se arma lio con el dataset anterior
+            try
+            {
+                dbAdapter.Fill(dbDataSet);
+
+                nombre = dbDataSet.Tables[0].Rows[0]["Nombre"].ToString();
+                idInterprete = dbDataSet.Tables[0].Rows[0]["Id_Interprete"].ToString();
+                genero = dbDataSet.Tables[0].Rows[0]["Genero"].ToString();
+                anio = dbDataSet.Tables[0].Rows[0]["Año"].ToString();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al abrir la base de datos");
+            }
+
+        }
+
+        public void DatosCancion(string id, ref string titulo, ref string idAlbum, ref string numero, ref string path)
+        {
+            OleDbCommand cmdLeer = new OleDbCommand();
+
+            string cad = "SELECT * FROM Cancion WHERE Id_Cancion = ?";
+
+            cmdLeer.CommandType = CommandType.Text;
+            cmdLeer.Connection = dbConnection;
+            cmdLeer.Parameters.Add("?", id);
+            cmdLeer.CommandText = cad;
+            dbAdapter.SelectCommand = cmdLeer;
+            dbDataSet.Clear();// agregado clear, sino se arma lio con el dataset anterior
+            try
+            {
+                dbAdapter.Fill(dbDataSet);
+
+                titulo = dbDataSet.Tables[0].Rows[0]["Titulo"].ToString();
+                idAlbum = dbDataSet.Tables[0].Rows[0]["Id_Album"].ToString();
+                numero = dbDataSet.Tables[0].Rows[0]["Numero_Cancion"].ToString();
+                path = dbDataSet.Tables[0].Rows[0]["Path"].ToString();
             }
             catch (Exception)
             {
