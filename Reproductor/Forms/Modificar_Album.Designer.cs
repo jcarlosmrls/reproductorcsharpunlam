@@ -28,42 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.botonCancelar = new System.Windows.Forms.Button();
+            this.botonAceptar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.txtInterprete = new System.Windows.Forms.TextBox();
+            this.txtGenero = new System.Windows.Forms.TextBox();
+            this.txtAnio = new System.Windows.Forms.TextBox();
+            this.botonImagenDeTapa = new System.Windows.Forms.Button();
+            this.picBoxTapa = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxTapa)).BeginInit();
             this.SuspendLayout();
             // 
-            // button2
+            // botonCancelar
             // 
-            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(333, 194);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(64, 28);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Cancelar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.botonCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.botonCancelar.Location = new System.Drawing.Point(333, 194);
+            this.botonCancelar.Name = "botonCancelar";
+            this.botonCancelar.Size = new System.Drawing.Size(64, 28);
+            this.botonCancelar.TabIndex = 5;
+            this.botonCancelar.Text = "Cancelar";
+            this.botonCancelar.UseVisualStyleBackColor = true;
+            this.botonCancelar.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
+            // botonAceptar
             // 
-            this.button1.Location = new System.Drawing.Point(263, 194);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(64, 28);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Aceptar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.botonAceptar.Location = new System.Drawing.Point(263, 194);
+            this.botonAceptar.Name = "botonAceptar";
+            this.botonAceptar.Size = new System.Drawing.Size(64, 28);
+            this.botonAceptar.TabIndex = 4;
+            this.botonAceptar.Text = "Aceptar";
+            this.botonAceptar.UseVisualStyleBackColor = true;
+            this.botonAceptar.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -101,52 +101,52 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Año:";
             // 
-            // textBox1
+            // txtNombre
             // 
-            this.textBox1.Location = new System.Drawing.Point(103, 37);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(122, 20);
-            this.textBox1.TabIndex = 10;
+            this.txtNombre.Location = new System.Drawing.Point(103, 37);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(122, 20);
+            this.txtNombre.TabIndex = 10;
             // 
-            // textBox2
+            // txtInterprete
             // 
-            this.textBox2.Location = new System.Drawing.Point(103, 67);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(122, 20);
-            this.textBox2.TabIndex = 11;
+            this.txtInterprete.Location = new System.Drawing.Point(103, 67);
+            this.txtInterprete.Name = "txtInterprete";
+            this.txtInterprete.Size = new System.Drawing.Size(122, 20);
+            this.txtInterprete.TabIndex = 11;
             // 
-            // textBox3
+            // txtGenero
             // 
-            this.textBox3.Location = new System.Drawing.Point(103, 94);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(122, 20);
-            this.textBox3.TabIndex = 12;
+            this.txtGenero.Location = new System.Drawing.Point(103, 94);
+            this.txtGenero.Name = "txtGenero";
+            this.txtGenero.Size = new System.Drawing.Size(122, 20);
+            this.txtGenero.TabIndex = 12;
             // 
-            // textBox4
+            // txtAnio
             // 
-            this.textBox4.Location = new System.Drawing.Point(103, 119);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(122, 20);
-            this.textBox4.TabIndex = 13;
+            this.txtAnio.Location = new System.Drawing.Point(103, 119);
+            this.txtAnio.Name = "txtAnio";
+            this.txtAnio.Size = new System.Drawing.Size(122, 20);
+            this.txtAnio.TabIndex = 13;
             // 
-            // button3
+            // botonImagenDeTapa
             // 
-            this.button3.Location = new System.Drawing.Point(132, 148);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(93, 23);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "Imagen de Tapa";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.botonImagenDeTapa.Location = new System.Drawing.Point(132, 148);
+            this.botonImagenDeTapa.Name = "botonImagenDeTapa";
+            this.botonImagenDeTapa.Size = new System.Drawing.Size(93, 23);
+            this.botonImagenDeTapa.TabIndex = 14;
+            this.botonImagenDeTapa.Text = "Imagen de Tapa";
+            this.botonImagenDeTapa.UseVisualStyleBackColor = true;
+            this.botonImagenDeTapa.Click += new System.EventHandler(this.button3_Click);
             // 
-            // pictureBox1
+            // picBoxTapa
             // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(263, 37);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(157, 134);
-            this.pictureBox1.TabIndex = 15;
-            this.pictureBox1.TabStop = false;
+            this.picBoxTapa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picBoxTapa.Location = new System.Drawing.Point(263, 37);
+            this.picBoxTapa.Name = "picBoxTapa";
+            this.picBoxTapa.Size = new System.Drawing.Size(157, 134);
+            this.picBoxTapa.TabIndex = 15;
+            this.picBoxTapa.TabStop = false;
             // 
             // openFileDialog1
             // 
@@ -154,30 +154,30 @@
             // 
             // Modificar_Album
             // 
-            this.AcceptButton = this.button1;
+            this.AcceptButton = this.botonAceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.button2;
+            this.CancelButton = this.botonCancelar;
             this.ClientSize = new System.Drawing.Size(439, 238);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.picBoxTapa);
+            this.Controls.Add(this.botonImagenDeTapa);
+            this.Controls.Add(this.txtAnio);
+            this.Controls.Add(this.txtGenero);
+            this.Controls.Add(this.txtInterprete);
+            this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.botonCancelar);
+            this.Controls.Add(this.botonAceptar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Modificar_Album";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Modificar_Album";
+            this.Text = "Modificar Album";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Modificar_Album_FormClosed);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxTapa)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,18 +185,18 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button botonCancelar;
+        private System.Windows.Forms.Button botonAceptar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.TextBox txtInterprete;
+        private System.Windows.Forms.TextBox txtGenero;
+        private System.Windows.Forms.TextBox txtAnio;
+        private System.Windows.Forms.Button botonImagenDeTapa;
+        private System.Windows.Forms.PictureBox picBoxTapa;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

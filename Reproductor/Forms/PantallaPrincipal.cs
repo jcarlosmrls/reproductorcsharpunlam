@@ -179,20 +179,20 @@ namespace Reproductor
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            Modificar_Artista m = new Modificar_Artista(this,panelReproduccion);
-            m.Show();
+            Modificar_Artista m = new Modificar_Artista();
+            m.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Modificar_Album al = new Modificar_Album(this, panelReproduccion);
-            al.Show();
+            Modificar_Album al = new Modificar_Album();
+            al.ShowDialog();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Modificar_Cancion c = new Modificar_Cancion(this, panelReproduccion);
-            c.Show();
+            Modificar_Cancion c = new Modificar_Cancion();
+            c.ShowDialog();
         }
 
         private void botonSiguiente_Click(object sender, EventArgs e)
