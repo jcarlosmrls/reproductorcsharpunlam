@@ -10,22 +10,14 @@ namespace Reproductor
 {
     public partial class Modificar_Cancion : Form
     {
-        private PantallaPrincipal ventana_principal;
-        private PanelReproduccion panel;
-
-        public Modificar_Cancion(PantallaPrincipal form, PanelReproduccion pan)
+        public Modificar_Cancion()
         {
-            ventana_principal = form;
-            panel = pan;
             InitializeComponent();
-            ventana_principal.Enabled = false;
-            panel.Enabled = false;
         }
 
         private void Modificar_Cancion_FormClosed(object sender, FormClosedEventArgs e)
         {
-            ventana_principal.Enabled = true;
-            panel.Enabled = true;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
