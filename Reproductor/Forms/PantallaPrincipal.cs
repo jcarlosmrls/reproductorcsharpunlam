@@ -19,6 +19,7 @@ namespace Reproductor
         public Configuracion config;
         public string idInterpreteBiblioteca = "";
         public string idAlbumBiblioteca = "";
+        public string idCancionBiblioteca = "";
 
         List<Cancion> lista;
         private int cancionActual;
@@ -179,21 +180,32 @@ namespace Reproductor
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            Modificar_Artista m = new Modificar_Artista();
-            m.ShowDialog();
+            if (idInterpreteBiblioteca != "")
+            {
+                Modificar_Artista m = new Modificar_Artista(idInterpreteBiblioteca,dbReproductor);
+                m.ShowDialog();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Modificar_Album al = new Modificar_Album();
-            al.ShowDialog();
+            if (idAlbumBiblioteca != "")
+            {
+                Modificar_Album al = new Modificar_Album(idAlbumBiblioteca, dbReproductor);
+                al.ShowDialog();
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Modificar_Cancion c = new Modificar_Cancion();
-            c.ShowDialog();
+
+            if (idCancionBiblioteca != "")
+            {
+                Modificar_Cancion c = new Modificar_Cancion(idCancionBiblioteca, dbReproductor);
+                c.ShowDialog();
+            }
         }
+
 
         private void botonSiguiente_Click(object sender, EventArgs e)
         {
@@ -403,9 +415,9 @@ namespace Reproductor
             if (listView1.SelectedItems.Count == 1)
             {
                 idAlbumBiblioteca = dbReproductor.AlbumId(listView1.SelectedItems[0].Text.ToString(), idInterpreteBiblioteca);
-
                 listBox2.Items.Clear();
-                foreach (string cad in dbReproductor.Leer_Columna("Cancion", "Titulo", "Id_Album", dbReproductor.AlbumId(listView1.SelectedItems[0].Text, dbReproductor.InterpreteId(listBox1.SelectedItem.ToString()))))
+
+                foreach (string cad in dbReproductor.Leer_Columna("Cancion", "Titulo", "Id_Album", idAlbumBiblioteca))
                 {
                     listBox2.Items.Add(cad);
                 }
@@ -487,6 +499,14 @@ namespace Reproductor
                 botonPlay_Click(null, null);
                 ActualizarEtiquetas();
                 ObtenerImagen();
+            }
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox2.SelectedItems.Count == 1)
+            {
+                idCancionBiblioteca = dbReproductor.Leer_Columna("Cancion", "Id_Cancion", "Titulo", listBox2.SelectedItem.ToString())[0];
             }
         }
 

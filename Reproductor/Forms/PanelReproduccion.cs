@@ -135,12 +135,17 @@ namespace Reproductor
                 guardar.ShowDialog();
                 if (guardar.NombreDeLista != "")
                 {
+                    //TODO:
+                    //Crear un nuevo registro en la tabla ListaDeReproduccion con nombre Guardar.nombreDeLista,
+                    //y con el perfil actualmente utilizado. Obtener su id
                     foreach (Cancion song in listaDeReproduccion)
                     {
                         //TODO:
-                        //Guardar la cancion en la base de datos con lista: guardar.NombreDeLista
+                        //Guardar la cancion en la base de datos con el id de la lista
                     }
-                    MessageBox.Show("Se guarda la lista como " + guardar.NombreDeLista);
+                    //TODO:
+                    //Actualizar el combobox que contiene las listas
+                    MessageBox.Show("Se guardó la lista con el nombre " + guardar.NombreDeLista);
                 }
             }
             else

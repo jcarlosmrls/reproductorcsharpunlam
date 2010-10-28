@@ -614,6 +614,7 @@
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(191, 199);
             this.listBox2.TabIndex = 6;
+            this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
             // 
             // label10
