@@ -31,14 +31,19 @@ namespace Reproductor
             foreach (string cad in baseDatos.Leer_Columna("Ruta_De_Archivos", "Path", "Id_Usuario", ventana_principal.UsuarioActual.Id))
             {
                 paths.Add(new string(cad.ToCharArray()));
-                listBox1.Items.Add(cad);
+                listBoxRutas.Items.Add(cad);
+            }
+            comboPerfiles.Items.Clear();
+            foreach (string perfil in ventana_principal.UsuarioActual.Configuracion.Perfiles)
+            {
+                comboPerfiles.Items.Add(perfil);
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {         
             if(hubo_cambio)
-                switch (comboBox1.SelectedIndex)
+                switch (comboSkins.SelectedIndex)
                 {
                     case 0:
                         ventana_principal.CambiarASkinNormal();
@@ -77,9 +82,9 @@ namespace Reproductor
             {
                 paths.Add(new string(folderBrowserDialog1.SelectedPath.ToCharArray()));
 
-                listBox1.Items.Clear();
+                listBoxRutas.Items.Clear();
                 for (int x = 0; x < paths.Count; x++)
-                    listBox1.Items.Add(paths[x]);
+                    listBoxRutas.Items.Add(paths[x]);
             }
             hubo_cambio_paths = true;
         }
@@ -87,14 +92,14 @@ namespace Reproductor
         //agregado funcion de boton quitar rutas
         private void button4_Click(object sender, EventArgs e)
         {
-            foreach (string path in listBox1.SelectedItems)
+            foreach (string path in listBoxRutas.SelectedItems)
             {
                 paths.Remove(path);
 
             }
-            listBox1.Items.Clear();
+            listBoxRutas.Items.Clear();
             for (int x = 0; x < paths.Count; x++)
-                listBox1.Items.Add(paths[x]);
+                listBoxRutas.Items.Add(paths[x]);
 
             hubo_cambio_paths = true;
         }
