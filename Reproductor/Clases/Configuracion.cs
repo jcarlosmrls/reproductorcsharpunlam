@@ -8,17 +8,33 @@ namespace Reproductor
     public class Configuracion
     {
         List<string> perfiles;
+        List<string> skinsList;
         private string perfil;
         private string skin;
         private string path;
+        private string skinsPath;
 
         public Configuracion()
         {
+            //Obtengo la ruta de la base de datos
             path = Directory.GetCurrentDirectory();
             path = path.Remove(path.LastIndexOf("\\"));
             path = path.Remove(path.LastIndexOf("\\"));
             path = path.Remove(path.LastIndexOf("\\"));
             path += "\\Base_Reproductor.mdb";
+
+            //Obtengo la lista de skins, ubicada en la carpeta "Skins" del directorio del reproductor
+            skinsPath = Directory.GetCurrentDirectory() + "\\Skins";
+            skinsList = new List<string>(Directory.GetDirectories(skinsPath));
+            
+            //Borro el ultimo registro, porque agrega el directorio actual
+            skinsList.RemoveAt(skinsList.Count - 1);
+
+            //Ahora parseo los strings, para sacar la ruta completa
+            for (int i = 0; i < skinsList.Count; i++)
+            {
+                skinsList[i] = skinsList[i].Substring(skinsList[i].LastIndexOf("\\") + 1);
+            }
         }
 
         public List<string> Perfiles
@@ -30,6 +46,18 @@ namespace Reproductor
             set
             {
                 perfiles = value;
+            }
+        }
+
+        public List<string> Skins
+        {
+            get
+            {
+                return skinsList;
+            }
+            set
+            {
+                skinsList = value;
             }
         }
         
@@ -65,10 +93,31 @@ namespace Reproductor
             }
         }
 
+        public string SkinsPath
+        {
+            get
+            {
+                return skinsPath;
+            }
+        }
+
         public void CargarPerfiles(ref BaseDeDatos db, string idUsuario)
         {
             //Cargo la lista de perfiles de acuerdo al usuario
             perfiles = new List<string>(db.Leer_Columna("Perfil", "Nombre", "Id_Usuario", idUsuario));
+        }
+
+        public void CargarUltimaConfiguracion(ref BaseDeDatos db, string idUsuario)
+        {
+            string[] aux;
+            
+            //Leo el ultimo skin usado
+            aux = db.Leer_Columna("Configuraciones", "Skin", "Id_Usuario", idUsuario);
+            skin = aux[0];
+
+            //Leo el ultimo perfil usado
+            aux = db.Leer_Columna("Configuraciones", "Perfil", "Id_Usuario", idUsuario);
+            perfil = aux[0];
         }
     }
 }

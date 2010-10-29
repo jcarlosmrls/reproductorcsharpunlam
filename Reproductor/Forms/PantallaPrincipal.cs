@@ -80,7 +80,7 @@ namespace Reproductor
             {
                 CargarConfiguracionDeUsuario();
             }
-            AplicarConfiguracion();
+            AplicarConfiguracionDeUsuario();
         }
 
         private void MostrarLogin()
@@ -123,13 +123,14 @@ namespace Reproductor
         private void CargarConfiguracionDeUsuario()
         {
             UsuarioActual.Configuracion.CargarPerfiles(ref dbReproductor, UsuarioActual.Id);
+            UsuarioActual.Configuracion.CargarUltimaConfiguracion(ref dbReproductor, UsuarioActual.Id);
         }
 
-        private void AplicarConfiguracion()
+        private void AplicarConfiguracionDeUsuario()
         {
         }
 
-        private void GuardarConfiguracion()
+        private void GuardarConfiguracionDeUsuario()
         {
         }
 
@@ -338,6 +339,7 @@ namespace Reproductor
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             dbReproductor.Close();
+            GuardarConfiguracionDeUsuario();
         }
         
         private void button5_Click(object sender, EventArgs e)
@@ -526,6 +528,9 @@ namespace Reproductor
                 ActualizarEtiquetas();
                 ObtenerImagen();
             }
+
+            //Muestro la pestaña reproduccion
+            tabControlPrincipal.SelectedIndex = 0;
         }
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -580,9 +585,11 @@ namespace Reproductor
             Cambiar_color_tabs(Color.FromName("Control"));
             //Color de contador
             labelContador.ForeColor = Color.FromName("ControlText");
+
+            UsuarioActual.config.UltimoSkinUsado = "Normal";
         }
 
-        public void CambiarASkinPacman()
+       /* public void CambiarASkinPacman()
         {
             //Ventana principal
             this.BackColor = Color.Black;
@@ -622,6 +629,22 @@ namespace Reproductor
             Cambiar_color_tabs(Color.Yellow);
             //Color del contador
             labelContador.ForeColor = Color.White;
+        }*/
+
+        public void CambiarASkin(string skinName)
+        {
+            try
+            {
+                botonAnterior.Image = new Bitmap(UsuarioActual.config.SkinsPath + "\\" + skinName + "\\botonizq.png");
+                botonSiguiente.Image = new Bitmap(UsuarioActual.config.SkinsPath + "\\" + skinName + "\\botonder.png");
+                botonPlay.Image = new Bitmap(UsuarioActual.config.SkinsPath + "\\" + skinName + "\\boton.png");
+                botonStop.Image = new Bitmap(UsuarioActual.config.SkinsPath + "\\" + skinName + "\\botonstop.png");
+            }
+            catch (ArgumentException)
+            {
+                MessageBox.Show("No se encontraron las imagenes.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                CambiarASkinNormal();
+            }
         }
 
         public void CambiarSkin()

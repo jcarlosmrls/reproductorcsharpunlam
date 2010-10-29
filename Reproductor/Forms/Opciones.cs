@@ -13,7 +13,6 @@ namespace Reproductor
         private PantallaPrincipal ventana_principal;
         private PanelReproduccion panel;
         private BaseDeDatos baseDatos;
-        private bool hubo_cambio = false;
         private bool hubo_cambio_paths = false;
         private List<string> paths;
 
@@ -28,32 +27,48 @@ namespace Reproductor
 
         private void Opciones_Load(object sender, EventArgs e)
         {
+            //Cargo las rutas del usuario
             foreach (string cad in baseDatos.Leer_Columna("Ruta_De_Archivos", "Path", "Id_Usuario", ventana_principal.UsuarioActual.Id))
             {
                 paths.Add(new string(cad.ToCharArray()));
                 listBoxRutas.Items.Add(cad);
             }
+
+            //Cargo los skins del usuario
+            foreach (string skin in ventana_principal.UsuarioActual.Configuracion.Skins)
+            {
+                comboSkins.Items.Add(skin);
+            }
+
+            //Cargo los perfiles del usuario
             comboPerfiles.Items.Clear();
             foreach (string perfil in ventana_principal.UsuarioActual.Configuracion.Perfiles)
             {
                 comboPerfiles.Items.Add(perfil);
             }
+
+            //Selecciono las ultimas opciones utilizadas en los combobox
+            comboPerfiles.SelectedIndex =  comboPerfiles.Items.IndexOf(ventana_principal.UsuarioActual.Configuracion.UltimoPerfilUsado);
+            comboSkins.SelectedIndex = comboSkins.Items.IndexOf(ventana_principal.UsuarioActual.Configuracion.UltimoSkinUsado);
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {         
-            if(hubo_cambio)
-                switch (comboSkins.SelectedIndex)
+        {
+            //Si se eligio un skin distinto al ultimo utilizado
+            if (comboSkins.SelectedItem.ToString() != ventana_principal.UsuarioActual.Configuracion.UltimoSkinUsado)
+            {
+                if(comboSkins.SelectedItem.ToString() == "Normal")
                 {
-                    case 0:
-                        ventana_principal.CambiarASkinNormal();
-                        break;
-                    case 1:
-                        ventana_principal.CambiarASkinPacman();
-                        break;
-                    default:
-                        break;
+                    ventana_principal.CambiarASkinNormal();
                 }
+                else
+                {
+                    ventana_principal.CambiarASkin(comboSkins.SelectedItem.ToString());
+                }
+
+                //Como cambie el skin, guardo el cambio
+                ventana_principal.UsuarioActual.Configuracion.UltimoSkinUsado = comboSkins.Items[comboSkins.SelectedIndex].ToString();
+            }
             if (hubo_cambio_paths)
             {
                 baseDatos.ActualizarRutaDeArchivos(ventana_principal.UsuarioActual.Id, paths);
@@ -66,11 +81,6 @@ namespace Reproductor
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            hubo_cambio = true;
         }
 
         private void button3_Click(object sender, EventArgs e)
