@@ -33,7 +33,7 @@ namespace Reproductor
             }
         }
         
-        public string Perfil
+        public string UltimoPerfilUsado
         {
             get
             {
@@ -45,7 +45,7 @@ namespace Reproductor
             }
         }
 
-        public string Skin
+        public string UltimoSkinUsado
         {
             get
             {
