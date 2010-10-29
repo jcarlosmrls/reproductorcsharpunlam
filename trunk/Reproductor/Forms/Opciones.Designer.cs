@@ -29,28 +29,28 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Opciones));
-            this.button1 = new System.Windows.Forms.Button();
+            this.botonAceptar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.comboSkins = new System.Windows.Forms.ComboBox();
+            this.botonCancelar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboPerfiles = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.listBoxRutas = new System.Windows.Forms.ListBox();
+            this.botonAgregarRuta = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.button4 = new System.Windows.Forms.Button();
+            this.botonQuitarRuta = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // botonAceptar
             // 
-            this.button1.Location = new System.Drawing.Point(174, 254);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 27);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Aceptar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.botonAceptar.Location = new System.Drawing.Point(174, 254);
+            this.botonAceptar.Name = "botonAceptar";
+            this.botonAceptar.Size = new System.Drawing.Size(84, 27);
+            this.botonAceptar.TabIndex = 0;
+            this.botonAceptar.Text = "Aceptar";
+            this.botonAceptar.UseVisualStyleBackColor = true;
+            this.botonAceptar.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -61,28 +61,28 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Selección de skin:";
             // 
-            // comboBox1
+            // comboSkins
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.comboSkins.FormattingEnabled = true;
+            this.comboSkins.Items.AddRange(new object[] {
             "Normal",
             "Pacman"});
-            this.comboBox1.Location = new System.Drawing.Point(201, 16);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(112, 21);
-            this.comboBox1.TabIndex = 3;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboSkins.Location = new System.Drawing.Point(201, 16);
+            this.comboSkins.Name = "comboSkins";
+            this.comboSkins.Size = new System.Drawing.Size(112, 21);
+            this.comboSkins.TabIndex = 3;
+            this.comboSkins.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // button2
+            // botonCancelar
             // 
-            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(264, 254);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 27);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Cancelar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.botonCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.botonCancelar.Location = new System.Drawing.Point(264, 254);
+            this.botonCancelar.Name = "botonCancelar";
+            this.botonCancelar.Size = new System.Drawing.Size(84, 27);
+            this.botonCancelar.TabIndex = 1;
+            this.botonCancelar.Text = "Cancelar";
+            this.botonCancelar.UseVisualStyleBackColor = true;
+            this.botonCancelar.Click += new System.EventHandler(this.button2_Click);
             // 
             // label2
             // 
@@ -93,24 +93,13 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Selección de perfil:";
             // 
-            // comboBox2
+            // comboPerfiles
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Normal",
-            "Rock",
-            "Punk",
-            "Latin",
-            "Pop",
-            "Metal",
-            "Clasico",
-            "Reggae",
-            "reggaeton",
-            "Cumbia"});
-            this.comboBox2.Location = new System.Drawing.Point(201, 57);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(111, 21);
-            this.comboBox2.TabIndex = 5;
+            this.comboPerfiles.FormattingEnabled = true;
+            this.comboPerfiles.Location = new System.Drawing.Point(201, 57);
+            this.comboPerfiles.Name = "comboPerfiles";
+            this.comboPerfiles.Size = new System.Drawing.Size(111, 21);
+            this.comboPerfiles.TabIndex = 5;
             // 
             // label3
             // 
@@ -121,52 +110,52 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Origen de archivos multimedia";
             // 
-            // listBox1
+            // listBoxRutas
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(28, 132);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(284, 82);
-            this.listBox1.TabIndex = 7;
+            this.listBoxRutas.FormattingEnabled = true;
+            this.listBoxRutas.Location = new System.Drawing.Point(28, 132);
+            this.listBoxRutas.Name = "listBoxRutas";
+            this.listBoxRutas.Size = new System.Drawing.Size(284, 82);
+            this.listBoxRutas.TabIndex = 7;
             // 
-            // button3
+            // botonAgregarRuta
             // 
-            this.button3.Location = new System.Drawing.Point(193, 95);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(57, 24);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "Agregar";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.botonAgregarRuta.Location = new System.Drawing.Point(193, 95);
+            this.botonAgregarRuta.Name = "botonAgregarRuta";
+            this.botonAgregarRuta.Size = new System.Drawing.Size(57, 24);
+            this.botonAgregarRuta.TabIndex = 8;
+            this.botonAgregarRuta.Text = "Agregar";
+            this.botonAgregarRuta.UseVisualStyleBackColor = true;
+            this.botonAgregarRuta.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // botonQuitarRuta
             // 
-            this.button4.Location = new System.Drawing.Point(256, 95);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(57, 24);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "Quitar";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.botonQuitarRuta.Location = new System.Drawing.Point(256, 95);
+            this.botonQuitarRuta.Name = "botonQuitarRuta";
+            this.botonQuitarRuta.Size = new System.Drawing.Size(57, 24);
+            this.botonQuitarRuta.TabIndex = 9;
+            this.botonQuitarRuta.Text = "Quitar";
+            this.botonQuitarRuta.UseVisualStyleBackColor = true;
+            this.botonQuitarRuta.Click += new System.EventHandler(this.button4_Click);
             // 
             // Opciones
             // 
-            this.AcceptButton = this.button1;
+            this.AcceptButton = this.botonAceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.CancelButton = this.button2;
+            this.CancelButton = this.botonCancelar;
             this.ClientSize = new System.Drawing.Size(360, 293);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.botonQuitarRuta);
+            this.Controls.Add(this.botonAgregarRuta);
+            this.Controls.Add(this.listBoxRutas);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboPerfiles);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboSkins);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.botonCancelar);
+            this.Controls.Add(this.botonAceptar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -183,16 +172,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button botonAceptar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox comboSkins;
+        private System.Windows.Forms.Button botonCancelar;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboPerfiles;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ListBox listBoxRutas;
+        private System.Windows.Forms.Button botonAgregarRuta;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button botonQuitarRuta;
     }
 }

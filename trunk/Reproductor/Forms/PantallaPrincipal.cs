@@ -16,7 +16,6 @@ namespace Reproductor
     {
         #region Variables
 
-        public Configuracion config;
         public string idInterpreteBiblioteca = "";
         public string idAlbumBiblioteca = "";
         public string idCancionBiblioteca = "";
@@ -30,8 +29,20 @@ namespace Reproductor
 
         #endregion
 
+        #region Propiedades
+
+        public Usuario UsuarioActual
+        {
+            get
+            {
+                return login.UsuarioActual;
+            }
+        }
+
+        #endregion
+
         #region Métodos funcionales
-        
+
         public PantallaPrincipal()
         {
             InitializeComponent();
@@ -42,13 +53,12 @@ namespace Reproductor
             login = new Login();
             lista = new List<Cancion>();
             player = new Player();
-            config = new Configuracion();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             //Abro la base de datos
-            dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + config.Path);
+            dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + UsuarioActual.Configuracion.Path);
             //dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=C:\Universidad Fabio\Proyectos Visual Studio\Reproductor\Base_Reproductor.mdb");
             //dbReproductor.Open(ConfigurationManager.ConnectionStrings["StringDeConexion"].ConnectionString.ToString());
 
@@ -60,21 +70,17 @@ namespace Reproductor
             //Muestro el login
             MostrarLogin();
 
-            //TODO:
-            //Cuando cierra el login (seria conveniente sincronizar)
-            //Si es nuevo el usuario, creo todos los registros de
-            //la configuracion por defecto, como perfil, skin,
-            //lista por defecto(Todos), etc.
-            //Sino, cargo la configuracion del usuario
-            //Y la aplico
-        }
-
-        public Usuario UsuarioActual
-        {
-            get
+            //Si es nuevo usuario, debo
+            //crear la configuracion por defecto
+            if (UsuarioActual.IsNewUser)
             {
-                return login.UsuarioActual;
+                CrearConfiguracionPorDefecto();
             }
+            else //Sino, debo leer la configuracion
+            {
+                CargarConfiguracionDeUsuario();
+            }
+            AplicarConfiguracion();
         }
 
         private void MostrarLogin()
@@ -105,6 +111,25 @@ namespace Reproductor
                 }
             } while ( !loggedIn );
             SetUserLabel(login.UsuarioActual.Id);
+        }
+
+        private void CrearConfiguracionPorDefecto()
+        {
+            UsuarioActual.Configuracion.Perfil = "Normal";
+            UsuarioActual.Configuracion.Skin = "Normal";
+        }
+
+        private void CargarConfiguracionDeUsuario()
+        {
+            UsuarioActual.Configuracion.CargarPerfiles(ref dbReproductor, UsuarioActual.Id);
+        }
+
+        private void AplicarConfiguracion()
+        {
+        }
+
+        private void GuardarConfiguracion()
+        {
         }
 
         private void opcionesToolStripMenuItem_Click(object sender, EventArgs e)

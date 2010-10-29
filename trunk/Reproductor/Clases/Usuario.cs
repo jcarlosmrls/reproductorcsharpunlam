@@ -9,9 +9,11 @@ namespace Reproductor
         private string ID;
         private string password;
         private bool isNewUser;
+        public Configuracion config;
 
         public Usuario()
         {
+            config = new Configuracion();
         }
         
         public string Id
@@ -47,6 +49,18 @@ namespace Reproductor
             set
             {
                 isNewUser = value;
+            }
+        }
+
+        public Configuracion Configuracion
+        {
+            get
+            {
+                return config;
+            }
+            set
+            {
+                config = value;
             }
         }
     }

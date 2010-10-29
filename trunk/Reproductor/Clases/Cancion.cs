@@ -193,6 +193,10 @@ namespace Reproductor
             return lista;
         }
 
+        public void GuardarTags()
+        {
+            archivo.Save();
+        }
         #endregion
     }
 }
