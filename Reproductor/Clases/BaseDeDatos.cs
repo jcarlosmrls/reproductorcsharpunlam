@@ -156,28 +156,6 @@ namespace Reproductor
                 MessageBox.Show("El nombre de usuario seleccionado ya está en uso. Por favor, elija otro.", "Error");
                 return -1;
             }
-
-            //Si pudo crear el usuario, defino las operaciones restantes
-            cmdPerfil.Connection = dbConnection;
-            cmdPerfil.Parameters.Add("?", user);
-            cmdPerfil.Parameters.Add("?", "Normal");    //Es el perfil que se crea por defecto
-            cmdPerfil.CommandText = @"INSERT INTO Perfil ([Id_Usuario], [Nombre]) VALUES (?, ?)";
-
-            cmdConfiguraciones.Connection = dbConnection;
-            cmdConfiguraciones.Parameters.Add("?", user);
-            cmdConfiguraciones.Parameters.Add("?", "Normal");   //El nombre del skin por defecto
-            cmdConfiguraciones.Parameters.Add("?", "Normal");   //El nombre del ultimo Perfil usado
-            cmdConfiguraciones.CommandText = @"INSERT INTO Configuraciones ([Id_Usuario], [Skin], [Perfil]) VALUES (?, ?, ?)";
-
-            try
-            {
-                cmdPerfil.ExecuteNonQuery();
-                cmdConfiguraciones.ExecuteNonQuery();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Error al intentar crear el usuario.", "ERROR");
-            }
             return 0;
         }
 
@@ -602,6 +580,35 @@ namespace Reproductor
             {
                 MessageBox.Show("Error al abrir la base de datos");
             }
+        }
+
+        public void AgregarConfiguracionDeUsuario(string idUsuario, string skin, string perfil)
+        {
+            //Primero creo el perfil por defecto
+            CrearNuevoPerfil(idUsuario, perfil);
+
+            //Ahora creo el registro en la parte de las ultimas configuraciones utilizadas
+            OleDbCommand cmdCfg = new OleDbCommand();
+
+            cmdCfg.CommandText = "INSERT INTO Configuraciones ([Id_Usuario], [Skin], [Perfil]) VALUES (?, ?, ?)";
+            cmdCfg.Connection = dbConnection;
+            cmdCfg.Parameters.Add("?", idUsuario);
+            cmdCfg.Parameters.Add("?", skin);
+            cmdCfg.Parameters.Add("?", perfil);
+
+            cmdCfg.ExecuteNonQuery();
+        }
+
+        public void CrearNuevoPerfil(string idUsuario, string nombrePerfil)
+        {
+            OleDbCommand cmdPerfil = new OleDbCommand();
+
+            cmdPerfil.CommandText = "INSERT INTO Perfil ([Id_Usuario], [Nombre]) VALUES (?, ?)";
+            cmdPerfil.Connection = dbConnection;
+            cmdPerfil.Parameters.Add("?", idUsuario);
+            cmdPerfil.Parameters.Add("?", nombrePerfil);
+
+            cmdPerfil.ExecuteNonQuery();
         }
 
         #endregion

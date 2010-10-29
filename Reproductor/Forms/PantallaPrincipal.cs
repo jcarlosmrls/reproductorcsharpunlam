@@ -115,8 +115,9 @@ namespace Reproductor
 
         private void CrearConfiguracionPorDefecto()
         {
-            UsuarioActual.Configuracion.Perfil = "Normal";
-            UsuarioActual.Configuracion.Skin = "Normal";
+            UsuarioActual.Configuracion.UltimoPerfilUsado = "Normal";
+            UsuarioActual.Configuracion.UltimoSkinUsado = "Normal";
+            dbReproductor.AgregarConfiguracionDeUsuario(UsuarioActual.Id, UsuarioActual.Configuracion.UltimoSkinUsado, UsuarioActual.Configuracion.UltimoPerfilUsado);
         }
 
         private void CargarConfiguracionDeUsuario()
