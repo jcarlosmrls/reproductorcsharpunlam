@@ -65,13 +65,11 @@
             // 
             this.comboSkins.FormattingEnabled = true;
             this.comboSkins.Items.AddRange(new object[] {
-            "Normal",
-            "Pacman"});
-            this.comboSkins.Location = new System.Drawing.Point(201, 16);
+            "Normal"});
+            this.comboSkins.Location = new System.Drawing.Point(145, 16);
             this.comboSkins.Name = "comboSkins";
-            this.comboSkins.Size = new System.Drawing.Size(112, 21);
+            this.comboSkins.Size = new System.Drawing.Size(168, 21);
             this.comboSkins.TabIndex = 3;
-            this.comboSkins.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // botonCancelar
             // 
@@ -96,9 +94,9 @@
             // comboPerfiles
             // 
             this.comboPerfiles.FormattingEnabled = true;
-            this.comboPerfiles.Location = new System.Drawing.Point(201, 57);
+            this.comboPerfiles.Location = new System.Drawing.Point(145, 57);
             this.comboPerfiles.Name = "comboPerfiles";
-            this.comboPerfiles.Size = new System.Drawing.Size(111, 21);
+            this.comboPerfiles.Size = new System.Drawing.Size(167, 21);
             this.comboPerfiles.TabIndex = 5;
             // 
             // label3
