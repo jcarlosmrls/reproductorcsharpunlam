@@ -74,41 +74,6 @@ namespace Reproductor.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap boton {
-            get {
-                object obj = ResourceManager.GetObject("boton", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap botonder {
-            get {
-                object obj = ResourceManager.GetObject("botonder", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap botonizq {
-            get {
-                object obj = ResourceManager.GetObject("botonizq", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap botonpresionado {
-            get {
-                object obj = ResourceManager.GetObject("botonpresionado", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap botonstop {
-            get {
-                object obj = ResourceManager.GetObject("botonstop", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap flecha_derecha {
             get {
                 object obj = ResourceManager.GetObject("flecha-derecha", resourceCulture);
@@ -119,13 +84,6 @@ namespace Reproductor.Properties {
         internal static System.Drawing.Bitmap guardar {
             get {
                 object obj = ResourceManager.GetObject("guardar", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap panel {
-            get {
-                object obj = ResourceManager.GetObject("panel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
