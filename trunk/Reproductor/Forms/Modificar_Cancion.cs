@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Reproductor
 {
@@ -17,8 +18,9 @@ namespace Reproductor
         private string album;
         private string numero;
         private string path;
+        private string idInterprete;
 
-        public Modificar_Cancion(string id, BaseDeDatos db)
+        public Modificar_Cancion(string id, string idint, BaseDeDatos db)
         {
             InitializeComponent();
             this.db = db;
@@ -29,8 +31,8 @@ namespace Reproductor
             txtNumero.Text = numero;
             txtTitulo.Text = titulo;
             txtUbicacion.Text = path;
+            idInterprete = idint;
         }
-
 
         private void Modificar_Cancion_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -39,6 +41,39 @@ namespace Reproductor
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (txtTitulo.Text != titulo || txtNumero.Text != numero || txtAlbum.Text != album || txtUbicacion.Text != path)
+            {
+                if (txtUbicacion.Text != path)
+                {
+                    if (File.Exists(txtUbicacion.Text))// preguntar por esto
+                    {
+                        //falta comprobar si es un archivo de musica
+                        path = txtUbicacion.Text;
+                    }
+                    else
+                    {
+                        MessageBox.Show("La ruta ingresada no especifica un archivo valido");
+                    }
+                }
+                Cancion cancion = new Cancion(path);
+                if (txtAlbum.Text != album)
+                {
+                    string[] aux = db.Leer_Columna("Album", "Id_Album", "Nombre", txtAlbum.Text);
+                    if (aux.Length == 0)
+                    {
+                        MessageBox.Show("El album no existe");
+                        cancion.Album = txtAlbum.Text;
+                        cancion.Save();
+                        idAlbum = db.AgregarAlbum(cancion, idInterprete);
+                    }
+                    else
+                        idAlbum = aux[0];
+                }
+                db.ModificarCancion(idCancion, txtTitulo.Text, idAlbum, txtNumero.Text, path);
+                cancion.Nombre = txtTitulo.Text;
+                cancion.Album = txtAlbum.Text;
+                cancion.NumeroDeCancion = uint.Parse(txtNumero.Text);
+            }
             this.Close();
         }
 

@@ -122,6 +122,10 @@ namespace Reproductor
             {
                 return imagen;
             }
+            set
+            {
+                imagen = value;
+            }
         }
 
         public uint NumeroDeCancion
@@ -193,7 +197,7 @@ namespace Reproductor
             return lista;
         }
 
-        public void GuardarTags()
+        public void Save()
         {
             archivo.Save();
         }
