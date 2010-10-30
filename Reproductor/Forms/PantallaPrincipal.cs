@@ -635,10 +635,32 @@ namespace Reproductor
         {
             try
             {
-                botonAnterior.Image = new Bitmap(UsuarioActual.config.SkinsPath + "\\" + skinName + "\\botonizq.png");
-                botonSiguiente.Image = new Bitmap(UsuarioActual.config.SkinsPath + "\\" + skinName + "\\botonder.png");
-                botonPlay.Image = new Bitmap(UsuarioActual.config.SkinsPath + "\\" + skinName + "\\boton.png");
-                botonStop.Image = new Bitmap(UsuarioActual.config.SkinsPath + "\\" + skinName + "\\botonstop.png");
+                //Asigno las imagenes
+                botonAnterior.BackgroundImage = Image.FromFile(UsuarioActual.config.SkinsPath + "\\" + skinName + "\\botonizq.png");
+                botonSiguiente.BackgroundImage = Image.FromFile(UsuarioActual.config.SkinsPath + "\\" + skinName + "\\botonder.png");
+                botonPlay.BackgroundImage = Image.FromFile(UsuarioActual.config.SkinsPath + "\\" + skinName + "\\boton.png");
+                botonStop.BackgroundImage = Image.FromFile(UsuarioActual.config.SkinsPath + "\\" + skinName + "\\botonstop.png");
+                panelBotones.BackgroundImage = Image.FromFile(UsuarioActual.config.SkinsPath + "\\" + skinName + "\\panel.png");
+                
+                //Cambio el estilo, para poder visualizar las imagenes
+                botonAnterior.FlatStyle = FlatStyle.Popup;
+                botonSiguiente.FlatStyle = FlatStyle.Popup;
+                botonPlay.FlatStyle = FlatStyle.Popup;
+                botonStop.FlatStyle = FlatStyle.Popup;
+
+                //Asigno la propiedad layout para dimensionar las imagenes
+                botonAnterior.BackgroundImageLayout = ImageLayout.Stretch;
+                botonSiguiente.BackgroundImageLayout = ImageLayout.Stretch;
+                botonPlay.BackgroundImageLayout = ImageLayout.Stretch;
+                botonStop.BackgroundImageLayout = ImageLayout.Stretch;
+                panelBotones.BackgroundImageLayout = ImageLayout.Stretch;
+
+                //Borro el texto de los botones
+                botonAnterior.Text = "";
+                botonSiguiente.Text = "";
+                botonPlay.Text = "";
+                botonStop.Text = "";
+                panelBotones.Text = "";
             }
             catch (ArgumentException)
             {
