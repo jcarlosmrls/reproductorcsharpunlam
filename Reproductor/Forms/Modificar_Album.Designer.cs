@@ -145,6 +145,7 @@
             this.picBoxTapa.Location = new System.Drawing.Point(263, 37);
             this.picBoxTapa.Name = "picBoxTapa";
             this.picBoxTapa.Size = new System.Drawing.Size(157, 134);
+            this.picBoxTapa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBoxTapa.TabIndex = 15;
             this.picBoxTapa.TabStop = false;
             // 

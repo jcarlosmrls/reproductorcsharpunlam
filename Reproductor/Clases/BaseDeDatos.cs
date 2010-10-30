@@ -336,7 +336,7 @@ namespace Reproductor
         }
 
 
-        private string AgregarInterprete(string nombre)
+        public string AgregarInterprete(string nombre)
         {
             try//controla si el nombre es de tamaño 0 o si es nulo
             {
@@ -360,7 +360,7 @@ namespace Reproductor
 
         }
 
-        private string AgregarAlbum(Cancion cancion, string idInterprete)
+        public string AgregarAlbum(Cancion cancion, string idInterprete)
         {
             OleDbCommand cmd = new OleDbCommand();
             cmd.CommandType = CommandType.Text;
@@ -390,7 +390,7 @@ namespace Reproductor
             return AlbumId(cancion.Album, idInterprete);
         }
 
-        private void AgregarCancion(Cancion cancion, string idAlbum)
+        public void AgregarCancion(Cancion cancion, string idAlbum)
         {
             OleDbCommand cmd = new OleDbCommand();
             cmd.CommandType = CommandType.Text;
@@ -477,7 +477,6 @@ namespace Reproductor
                         BorrarCancion(idInteprete, idAlbum, aux[0]);
                     }
                 }
-
             }
             return canciones;
         }
@@ -510,7 +509,6 @@ namespace Reproductor
             cmdBorrar.Connection = dbConnection;
             cmdBorrar.Parameters.Add("?", val);
             cmdBorrar.CommandText = cad;
-
             try
             {
                 cmdBorrar.ExecuteNonQuery();
@@ -552,7 +550,6 @@ namespace Reproductor
             {
                 MessageBox.Show("Error al abrir la base de datos");
             }
-
         }
 
         public void DatosCancion(string id, ref string titulo, ref string idAlbum, ref string numero, ref string path)
@@ -570,7 +567,6 @@ namespace Reproductor
             try
             {
                 dbAdapter.Fill(dbDataSet);
-
                 titulo = dbDataSet.Tables[0].Rows[0]["Titulo"].ToString();
                 idAlbum = dbDataSet.Tables[0].Rows[0]["Id_Album"].ToString();
                 numero = dbDataSet.Tables[0].Rows[0]["Numero_Cancion"].ToString();
@@ -609,6 +605,113 @@ namespace Reproductor
             cmdPerfil.Parameters.Add("?", nombrePerfil);
 
             cmdPerfil.ExecuteNonQuery();
+        }
+
+        public void ModificarInterprete(string id, string nombre)
+        {
+            OleDbCommand cmd = new OleDbCommand();
+
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = dbConnection;
+            cmd.Parameters.Add("?", nombre);
+            cmd.Parameters.Add("?", id);
+            cmd.CommandText = "UPDATE Interprete SET Nombre = ? WHERE Id = ?";
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al abrir la base de datos");
+            }
+        }
+
+        public List<Cancion> CancionesDeArtista(string idInterprete)
+        {
+            List<Cancion> canciones = new List<Cancion>();
+
+            foreach (string idAlbum in Leer_Columna("Album", "Id_Album", "Id_Interprete", idInterprete))
+            {
+                foreach (string aux in Leer_Columna("Cancion", "Path", "Id_Album", idAlbum))
+                    if (aux != null)
+                    {
+                        try
+                        {
+                            canciones.Add(new Cancion(aux));
+                        }
+                        catch (Exception)
+                        {//si tira excepcion aca es porque el erchivo de musica ya no existe
+                            BorrarCancion(idInterprete, idAlbum, aux);
+                        }
+                    }
+            }
+            return canciones;
+        }
+
+        public void ModificarAlbum(string id, string nombre, string idInterprete, string genero, string anio)
+        {
+            OleDbCommand cmd = new OleDbCommand();
+
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = dbConnection;
+            cmd.Parameters.Add("?", nombre);
+            cmd.Parameters.Add("?", idInterprete);
+            cmd.Parameters.Add("?", genero);
+            cmd.Parameters.Add("?", anio);
+            cmd.Parameters.Add("?", id);
+            cmd.CommandText = "UPDATE Album SET Nombre = ?, Id_Interprete = ?, Genero = ?, Año = ? WHERE Id_Album = ?";
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al abrir la base de datos");
+            }
+        }
+
+        public List<Cancion> CancionesDeAlbum(string idAlbum, string idInterprete)
+        {
+            List<Cancion> canciones = new List<Cancion>();
+
+            foreach (string aux in Leer_Columna("Cancion", "Path", "Id_Album", idAlbum))
+                if (aux != null)
+                {
+                    try
+                    {
+                        canciones.Add(new Cancion(aux));
+                    }
+                    catch (Exception)
+                    {//si tira excepcion aca es porque el erchivo de musica ya no existe
+                        BorrarCancion(idInterprete, idAlbum, aux);
+                    }
+                }
+            return canciones;
+        }
+
+        public void ModificarCancion(string id, string titulo, string idAlbum, string numero, string path)
+        {
+            OleDbCommand cmd = new OleDbCommand();
+            
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = dbConnection;
+            cmd.Parameters.Add("?", titulo);
+            cmd.Parameters.Add("?", idAlbum);
+            cmd.Parameters.Add("?", numero);
+            cmd.Parameters.Add("?", path);
+            cmd.Parameters.Add("?", id);
+            cmd.CommandText = "UPDATE Cancion SET Titulo = ?, Id_Album = ?, Numero_Cancion = ?, Path = ? WHERE Id_Cancion = ?";
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al abrir la base de datos");
+            }
         }
 
         #endregion

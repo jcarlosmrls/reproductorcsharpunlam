@@ -225,10 +225,9 @@ namespace Reproductor
 
         private void button4_Click(object sender, EventArgs e)
         {
-
             if (idCancionBiblioteca != "")
             {
-                Modificar_Cancion c = new Modificar_Cancion(idCancionBiblioteca, dbReproductor);
+                Modificar_Cancion c = new Modificar_Cancion(idCancionBiblioteca, idInterpreteBiblioteca, dbReproductor);
                 c.ShowDialog();
             }
         }
