@@ -57,6 +57,9 @@ namespace Reproductor
             //Si se eligio un skin distinto al ultimo utilizado
             if (comboSkins.SelectedItem.ToString() != ventana_principal.UsuarioActual.Configuracion.UltimoSkinUsado)
             {
+                //Como cambio el skin, guardo el cambio
+                ventana_principal.UsuarioActual.Configuracion.UltimoSkinUsado = comboSkins.SelectedItem.ToString();
+
                 if(comboSkins.SelectedItem.ToString() == "Normal")
                 {
                     ventana_principal.CambiarASkinNormal();
@@ -65,9 +68,6 @@ namespace Reproductor
                 {
                     ventana_principal.CambiarASkin(comboSkins.SelectedItem.ToString());
                 }
-
-                //Como cambie el skin, guardo el cambio
-                ventana_principal.UsuarioActual.Configuracion.UltimoSkinUsado = comboSkins.Items[comboSkins.SelectedIndex].ToString();
             }
             if (hubo_cambio_paths)
             {

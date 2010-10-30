@@ -26,9 +26,6 @@ namespace Reproductor
             //Obtengo la lista de skins, ubicada en la carpeta "Skins" del directorio del reproductor
             skinsPath = Directory.GetCurrentDirectory() + "\\Skins";
             skinsList = new List<string>(Directory.GetDirectories(skinsPath));
-            
-            //Borro el ultimo registro, porque agrega el directorio actual
-            skinsList.RemoveAt(skinsList.Count - 1);
 
             //Ahora parseo los strings, para sacar la ruta completa
             for (int i = 0; i < skinsList.Count; i++)
