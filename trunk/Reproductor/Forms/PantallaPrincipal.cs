@@ -423,17 +423,26 @@ namespace Reproductor
         {
             List<Cancion> canciones = dbReproductor.CancionDeCadaAlbum(listBox1.SelectedItem.ToString());
             idInterpreteBiblioteca = dbReproductor.InterpreteId(listBox1.SelectedItem.ToString());
+            idAlbumBiblioteca = ""; //AG
+            idCancionBiblioteca = "";   //AG
 
             ImageList imagenes = new ImageList();
             listView1.LargeImageList = imagenes;
             listView1.LargeImageList.ImageSize = new Size(50, 50);
             listView1.Clear();
             listBox2.Items.Clear();
-            
-            foreach (Cancion song in canciones)
+            if (canciones.Count == 0)   //AGREGADO EL IF
             {
-                imagenes.Images.Add(song.Album, song.Imagen);
-                listView1.Items.Add(new ListViewItem(song.Album, song.Album));
+                dbReproductor.BorrarRegistro("Interprete", "Id", idInterpreteBiblioteca);
+                idInterpreteBiblioteca = "";
+            }
+            else
+            {
+                foreach (Cancion song in canciones)
+                {
+                    imagenes.Images.Add(song.Album, song.Imagen);
+                    listView1.Items.Add(new ListViewItem(song.Album, song.Album));
+                }
             }
         }
 
@@ -442,6 +451,7 @@ namespace Reproductor
             if (listView1.SelectedItems.Count == 1)
             {
                 idAlbumBiblioteca = dbReproductor.AlbumId(listView1.SelectedItems[0].Text.ToString(), idInterpreteBiblioteca);
+                idCancionBiblioteca = "";  //AGREWGAFDO
                 listBox2.Items.Clear();
 
                 foreach (string cad in dbReproductor.Leer_Columna("Cancion", "Titulo", "Id_Album", idAlbumBiblioteca))
@@ -453,7 +463,7 @@ namespace Reproductor
 
         private void listBox2_DoubleClick(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count == 1)
+            if (listView1.SelectedItems.Count == 1 && listBox2.SelectedItems.Count == 1)    //SGUNDA PARTE DE IIF
             {
 
                 string[] paths = dbReproductor.Leer_Columna("Cancion", "Path", "Id_Album", idAlbumBiblioteca);
@@ -536,7 +546,7 @@ namespace Reproductor
         {
             if (listBox2.SelectedItems.Count == 1)
             {
-                idCancionBiblioteca = dbReproductor.Leer_Columna("Cancion", "Id_Cancion", "Titulo", listBox2.SelectedItem.ToString())[0];
+                idCancionBiblioteca = dbReproductor.Leer_Columna("Cancion", "Id_Cancion", "Id_Album", idAlbumBiblioteca)[listBox2.SelectedIndex];
             }
         }
 
