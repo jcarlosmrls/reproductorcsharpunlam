@@ -594,64 +594,28 @@ namespace Reproductor
             Cambiar_color_tabs(Color.FromName("Control"));
             //Color de contador
             labelContador.ForeColor = Color.FromName("ControlText");
-
-            UsuarioActual.config.UltimoSkinUsado = "Normal";
+            labelContador.BackColor = Color.FromName("Control");
+            // Color de botones
+            botonBordes.BackColor = Color.FromName("Control");
+            botonPanel.BackColor = Color.FromName("Control");
+            botonVolumen.BackColor = Color.FromName("Control");
+            botonBordes.ForeColor = Color.Black;
+            botonPanel.ForeColor = Color.Black;
+            botonVolumen.ForeColor = Color.Black;
         }
 
-       /* public void CambiarASkinPacman()
-        {
-            //Ventana principal
-            this.BackColor = Color.Black;
-            panelBotones.BackColor = Color.Black;
-            //Trackbar de tiempo de reproduccion
-            trackBarReproduccion.BackColor = Color.Black;
-            //Boton izquierda
-            botonAnterior.BackColor = Color.Black;
-            botonAnterior.Text = "";
-            botonAnterior.FlatStyle = FlatStyle.Popup;
-            botonAnterior.BackgroundImage = Reproductor.Properties.Resources.botonizq;
-            botonAnterior.BackgroundImageLayout = ImageLayout.Stretch;
-            //Boton derecha
-            botonSiguiente.BackColor = Color.Black;
-            botonSiguiente.Text = "";
-            botonSiguiente.FlatStyle = FlatStyle.Popup;
-            botonSiguiente.BackgroundImage = Reproductor.Properties.Resources.botonder;
-            botonSiguiente.BackgroundImageLayout = ImageLayout.Stretch;
-            //Boton play
-            botonPlay.Text = "";
-            botonPlay.BackColor = Color.Black;
-            botonPlay.FlatStyle = FlatStyle.Popup;
-            botonPlay.BackgroundImage = Properties.Resources.boton;
-            botonPlay.BackgroundImageLayout = ImageLayout.Stretch;
-            //Boton stop
-            botonStop.BackColor = Color.Black;
-            botonStop.Text = "";
-            botonStop.FlatStyle = FlatStyle.Popup;
-            botonStop.BackgroundImage = Properties.Resources.botonstop;
-            botonStop.BackgroundImageLayout = ImageLayout.Stretch;
-            //Panel lista de reproduccion
-            panelReproduccion.BackColor = Color.Black;
-            //Panel inferior
-            panelBotones.BackgroundImage = Properties.Resources.panel;
-            panelBotones.BackgroundImageLayout = ImageLayout.Stretch;
-            //paneles con pestaña
-            Cambiar_color_tabs(Color.Yellow);
-            //Color del contador
-            labelContador.ForeColor = Color.White;
-        }*/
-
-        public void CambiarASkin(string skinName)
+        public void CambiarASkin(string skinName, Color colorClaro, Color colorOscuro)
         {
             try
             {
                 //Asigno las imagenes
-                botonAnterior.BackgroundImage = Image.FromFile(UsuarioActual.config.SkinsPath + "\\" + skinName + "\\botonizq.png");
-                botonSiguiente.BackgroundImage = Image.FromFile(UsuarioActual.config.SkinsPath + "\\" + skinName + "\\botonder.png");
-                botonPlay.BackgroundImage = Image.FromFile(UsuarioActual.config.SkinsPath + "\\" + skinName + "\\boton.png");
-                botonStop.BackgroundImage = Image.FromFile(UsuarioActual.config.SkinsPath + "\\" + skinName + "\\botonstop.png");
-                panelBotones.BackgroundImage = Image.FromFile(UsuarioActual.config.SkinsPath + "\\" + skinName + "\\panel.png");
+                botonAnterior.BackgroundImage = Image.FromFile(UsuarioActual.Configuracion.SkinsPath + "\\" + skinName + "\\botonizq.png");
+                botonSiguiente.BackgroundImage = Image.FromFile(UsuarioActual.Configuracion.SkinsPath + "\\" + skinName + "\\botonder.png");
+                botonPlay.BackgroundImage = Image.FromFile(UsuarioActual.Configuracion.SkinsPath + "\\" + skinName + "\\boton.png");
+                botonStop.BackgroundImage = Image.FromFile(UsuarioActual.Configuracion.SkinsPath + "\\" + skinName + "\\botonstop.png");
+                panelBotones.BackgroundImage = Image.FromFile(UsuarioActual.Configuracion.SkinsPath + "\\" + skinName + "\\panel.png");
                 
-                //Cambio el estilo, para poder visualizar las imagenes
+                //Cambio el estilo, para poder visualizar las imagenes, y pongo color
                 botonAnterior.FlatStyle = FlatStyle.Popup;
                 botonSiguiente.FlatStyle = FlatStyle.Popup;
                 botonPlay.FlatStyle = FlatStyle.Popup;
@@ -664,12 +628,29 @@ namespace Reproductor
                 botonStop.BackgroundImageLayout = ImageLayout.Stretch;
                 panelBotones.BackgroundImageLayout = ImageLayout.Stretch;
 
-                //Borro el texto de los botones
+                //Borro el texto de los botones o cambio color
                 botonAnterior.Text = "";
                 botonSiguiente.Text = "";
                 botonPlay.Text = "";
                 botonStop.Text = "";
                 panelBotones.Text = "";
+                botonVolumen.ForeColor = colorClaro;
+                botonPanel.ForeColor = colorClaro;
+                botonBordes.ForeColor = colorClaro;
+                labelContador.ForeColor = colorClaro;
+
+                //Asigno colores
+                botonAnterior.BackColor = colorOscuro;
+                botonSiguiente.BackColor = colorOscuro;
+                botonStop.BackColor = colorOscuro;
+                botonPlay.BackColor = colorOscuro;
+                this.BackColor = colorOscuro;
+                panelReproduccion.BackColor = colorOscuro;
+                botonVolumen.BackColor = colorOscuro;
+                botonPanel.BackColor = colorOscuro;
+                botonVolumen.BackColor = colorOscuro;
+                labelContador.BackColor = colorOscuro;
+                botonBordes.BackColor = colorOscuro;
             }
             catch (ArgumentException)
             {

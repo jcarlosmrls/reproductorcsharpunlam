@@ -15,6 +15,8 @@ namespace Reproductor
         private BaseDeDatos baseDatos;
         private bool hubo_cambio_paths = false;
         private List<string> paths;
+        private Color colorClaro;
+        private Color colorOscuro;
 
         public Opciones(PantallaPrincipal form, PanelReproduccion pan, ref BaseDeDatos bd)
         {
@@ -50,15 +52,25 @@ namespace Reproductor
             //Selecciono las ultimas opciones utilizadas en los combobox
             comboPerfiles.SelectedIndex =  comboPerfiles.Items.IndexOf(ventana_principal.UsuarioActual.Configuracion.UltimoPerfilUsado);
             comboSkins.SelectedIndex = comboSkins.Items.IndexOf(ventana_principal.UsuarioActual.Configuracion.UltimoSkinUsado);
+
+            //Cargo colores
+            colorClaro = ventana_principal.UsuarioActual.Configuracion.ColorClaro;
+            colorOscuro = ventana_principal.UsuarioActual.Configuracion.ColorOscuro;
+            botonColorClaro.BackColor = colorClaro;
+            botonColorOscuro.BackColor = colorOscuro;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             //Si se eligio un skin distinto al ultimo utilizado
-            if (comboSkins.SelectedItem.ToString() != ventana_principal.UsuarioActual.Configuracion.UltimoSkinUsado)
+            if ((comboSkins.SelectedItem.ToString() != ventana_principal.UsuarioActual.Configuracion.UltimoSkinUsado) ||
+                (colorClaro != ventana_principal.UsuarioActual.Configuracion.ColorClaro) ||
+                (colorOscuro != ventana_principal.UsuarioActual.Configuracion.ColorOscuro))
             {
                 //Como cambio el skin, guardo el cambio
                 ventana_principal.UsuarioActual.Configuracion.UltimoSkinUsado = comboSkins.SelectedItem.ToString();
+                ventana_principal.UsuarioActual.Configuracion.ColorClaro = colorClaro;
+                ventana_principal.UsuarioActual.Configuracion.ColorOscuro = colorOscuro;
 
                 if(comboSkins.SelectedItem.ToString() == "Normal")
                 {
@@ -66,7 +78,7 @@ namespace Reproductor
                 }
                 else
                 {
-                    ventana_principal.CambiarASkin(comboSkins.SelectedItem.ToString());
+                    ventana_principal.CambiarASkin(comboSkins.SelectedItem.ToString(), colorClaro, colorOscuro);
                 }
             }
             if (hubo_cambio_paths)
@@ -112,6 +124,20 @@ namespace Reproductor
                 listBoxRutas.Items.Add(paths[x]);
 
             hubo_cambio_paths = true;
+        }
+
+        private void botonColorClaro_Click(object sender, EventArgs e)
+        {
+            colorDialog.ShowDialog();
+            colorClaro = colorDialog.Color;
+            botonColorClaro.BackColor = colorClaro;
+        }
+
+        private void botonColorOscuro_Click(object sender, EventArgs e)
+        {
+            colorDialog.ShowDialog();
+            colorOscuro = colorDialog.Color;
+            botonColorOscuro.BackColor = colorOscuro;
         }
     }
 }
