@@ -9,7 +9,7 @@ namespace Reproductor
         private string ID;
         private string password;
         private bool isNewUser;
-        public Configuracion config;
+        private Configuracion config;
 
         public Usuario()
         {

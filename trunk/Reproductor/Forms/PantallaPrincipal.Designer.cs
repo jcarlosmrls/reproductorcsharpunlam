@@ -50,9 +50,9 @@
             this.panelBotones = new System.Windows.Forms.Panel();
             this.labelContador = new System.Windows.Forms.Label();
             this.botonVolumen = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.botonBordes = new System.Windows.Forms.Button();
             this.botonAnterior = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.botonPanel = new System.Windows.Forms.Button();
             this.botonSiguiente = new System.Windows.Forms.Button();
             this.botonStop = new System.Windows.Forms.Button();
             this.botonPlay = new System.Windows.Forms.Button();
@@ -243,9 +243,9 @@
             this.panelBotones.BackColor = System.Drawing.SystemColors.Control;
             this.panelBotones.Controls.Add(this.labelContador);
             this.panelBotones.Controls.Add(this.botonVolumen);
-            this.panelBotones.Controls.Add(this.button6);
+            this.panelBotones.Controls.Add(this.botonBordes);
             this.panelBotones.Controls.Add(this.botonAnterior);
-            this.panelBotones.Controls.Add(this.button3);
+            this.panelBotones.Controls.Add(this.botonPanel);
             this.panelBotones.Controls.Add(this.botonSiguiente);
             this.panelBotones.Controls.Add(this.botonStop);
             this.panelBotones.Controls.Add(this.botonPlay);
@@ -280,18 +280,18 @@
             this.botonVolumen.UseVisualStyleBackColor = true;
             this.botonVolumen.Click += new System.EventHandler(this.boton_volumen_Click);
             // 
-            // button6
+            // botonBordes
             // 
-            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(568, 21);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(22, 21);
-            this.button6.TabIndex = 8;
-            this.button6.Text = "X";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.botonBordes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.botonBordes.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.botonBordes.Location = new System.Drawing.Point(568, 21);
+            this.botonBordes.Name = "botonBordes";
+            this.botonBordes.Size = new System.Drawing.Size(22, 21);
+            this.botonBordes.TabIndex = 8;
+            this.botonBordes.Text = "X";
+            this.botonBordes.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.botonBordes.UseVisualStyleBackColor = true;
+            this.botonBordes.Click += new System.EventHandler(this.button6_Click);
             // 
             // botonAnterior
             // 
@@ -305,16 +305,16 @@
             this.botonAnterior.UseVisualStyleBackColor = true;
             this.botonAnterior.Click += new System.EventHandler(this.botonAnterior_Click);
             // 
-            // button3
+            // botonPanel
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(541, 45);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(51, 21);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Panel";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.botonPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.botonPanel.Location = new System.Drawing.Point(541, 45);
+            this.botonPanel.Name = "botonPanel";
+            this.botonPanel.Size = new System.Drawing.Size(51, 21);
+            this.botonPanel.TabIndex = 4;
+            this.botonPanel.Text = "Panel";
+            this.botonPanel.UseVisualStyleBackColor = true;
+            this.botonPanel.Click += new System.EventHandler(this.button3_Click);
             // 
             // botonSiguiente
             // 
@@ -843,7 +843,7 @@
         private System.Windows.Forms.PictureBox pictureBoxTapaDeAlbum;
         private System.Windows.Forms.TrackBar trackBarReproduccion;
         private System.Windows.Forms.Button botonStop;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button botonPanel;
         private System.Windows.Forms.Button botonSiguiente;
         private System.Windows.Forms.Label labelContador;
         private System.Windows.Forms.Button botonAnterior;
@@ -856,7 +856,7 @@
         private System.Windows.Forms.Button botonVolumen;
         private System.Windows.Forms.TrackBar trackBar2;
         private System.Windows.Forms.Timer timerBarra;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button botonBordes;
         private System.Windows.Forms.ToolStripMenuItem accionesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reproducirPausarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem detenerToolStripMenuItem;

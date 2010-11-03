@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Drawing;
 
 namespace Reproductor
 {
@@ -11,6 +12,8 @@ namespace Reproductor
         List<string> skinsList;
         private string perfil;
         private string skin;
+        private Color colorClaro;
+        private Color colorOscuro;
         private string path;
         private string skinsPath;
 
@@ -32,6 +35,10 @@ namespace Reproductor
             {
                 skinsList[i] = skinsList[i].Substring(skinsList[i].LastIndexOf("\\") + 1);
             }
+
+            //Defino colores por defecto
+            colorClaro = Color.FromName("Control");
+            colorOscuro = Color.FromName("Control");
         }
 
         public List<string> Perfiles
@@ -95,6 +102,30 @@ namespace Reproductor
             get
             {
                 return skinsPath;
+            }
+        }
+
+        public Color ColorClaro
+        {
+            get
+            {
+                return colorClaro;
+            }
+            set
+            {
+                colorClaro = value;
+            }
+        }
+
+        public Color ColorOscuro
+        {
+            get
+            {
+                return colorOscuro;
+            }
+            set
+            {
+                colorOscuro = value;
             }
         }
 
