@@ -20,12 +20,13 @@ namespace Reproductor
         public string idAlbumBiblioteca = "";
         public string idCancionBiblioteca = "";
 
-        List<Cancion> lista;
+        private List<Cancion> lista;
         private int cancionActual;
         private PanelReproduccion panelReproduccion;
         private Player player;
         private BaseDeDatos dbReproductor;
         private Login login;
+        private List<Cancion> listaBusqueda;
 
         #endregion
 
@@ -53,6 +54,7 @@ namespace Reproductor
             login = new Login();
             lista = new List<Cancion>();
             player = new Player();
+            CheckForIllegalCrossThreadCalls = false;    //Deberia ser con Delegates en vez de esta propiedad
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -380,7 +382,7 @@ namespace Reproductor
                     imagenes.Images.Add(song.Album, song.Imagen);
                     listView1.Items.Add(new ListViewItem(song.Album, song.Album));
                 }
-                listViewBuscador.Items.Clear();
+                listBoxBuscador.Items.Clear();
                 //listViewBuscador.Items.Add(new ListViewItem("Cargando..."));
                 buscador.Start();
             }
@@ -396,7 +398,49 @@ namespace Reproductor
 
         private void Buscador()
         {
-            //Busca en la base de datos
+            string busqueda = txtBuscador.Text;
+            string criterio = comboBoxBuscador.Text;// por si al usuario final se le oucrre cambiar los varlores mietras se ejecuta el hilo
+
+            List<Cancion> canciones = new List<Cancion>();
+
+            canciones = dbReproductor.CancionesDeArtista(dbReproductor.InterpreteId(busqueda));
+            switch (criterio)
+            {
+                case "Intérprete":
+                    canciones = dbReproductor.CancionesDeArtista(dbReproductor.InterpreteId(busqueda));
+                    break;
+
+                case "Género":
+                    canciones = dbReproductor.BuscarPorGenero(busqueda);
+                    break;
+
+                case "Álbum":
+                    canciones = dbReproductor.BuscarPorAlbum(busqueda);
+                    break;
+
+                default: //Cancion
+                    foreach (string path in dbReproductor.Leer_Columna("Cancion", "Path", "Titulo", busqueda))
+                    {
+                        Cancion song = new Cancion(path);
+                        canciones.Add(song);
+                    }
+                    break;
+            };
+
+            listBoxBuscador.Items.Clear();
+
+            if (canciones.Count == 0)
+            {
+                MessageBox.Show("La Búsqueda no ha arrojado ningun resultado.");
+            }
+            else
+            {
+                foreach (Cancion cancion in canciones)
+                {
+                    listBoxBuscador.Items.Add(cancion.Nombre);
+                }
+                listaBusqueda = canciones;
+            }
             //Si no encuentra, informa en pantalla
             //Sino, toma los datos necesarios y ahce la lista
         }
@@ -547,6 +591,38 @@ namespace Reproductor
             if (listBox2.SelectedItems.Count == 1)
             {
                 idCancionBiblioteca = dbReproductor.Leer_Columna("Cancion", "Id_Cancion", "Id_Album", idAlbumBiblioteca)[listBox2.SelectedIndex];
+            }
+        }
+
+        private void listBoxBuscador_DoubleClick(object sender, EventArgs e)
+        {
+            if (listBoxBuscador.SelectedItems.Count > 0)
+            {
+                //Detengo la reproduccion actual
+                botonStop_Click(null, null);
+
+                //Borro la lista de canciones
+                lista.Clear();
+                panelReproduccion.LimpiarLista();
+
+                //Cargo las canciones
+                foreach (Cancion song in listaBusqueda)
+                {
+                    lista.Add(song);
+                }
+
+                //Actualizo la lista de reproduccion en el panel
+                panelReproduccion.CargarLista();
+                cancionActual = listBoxBuscador.SelectedIndex;
+
+                //Comienzo la reproduccion
+                ActualizarEtiquetas();
+                botonPlay_Click(null, null);
+                ActualizarEtiquetas();
+                ObtenerImagen();
+
+                //Muestro la pestaña reproduccion
+                tabControlPrincipal.SelectedIndex = 0;
             }
         }
 
@@ -787,7 +863,7 @@ namespace Reproductor
                 ulong length = player.AudioLength;
                 trackBarReproduccion.Maximum = (int)length;
             }
-        }                
+        }
 
         #endregion
     }

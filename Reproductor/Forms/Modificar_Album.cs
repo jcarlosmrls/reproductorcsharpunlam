@@ -61,10 +61,14 @@ namespace Reproductor
                     string[] albunes = db.Leer_Columna("Album", "Id_Album", "Nombre", txtNombre.Text);
                     if (albunes.Length > 0)
                     {
-                        MessageBox.Show("hay otro album con el mismo nombre");
-                        //Se borra el album actual, se pasan las canciones a el album encontrado, y se realizan los cambios pedidos en ese album.
-                        //obtener el nuevo id de album.
-                        //obtener una nueva lista de canciones
+                        if (MessageBox.Show("Se ha encontrado otro album con el mismo nombre.\n¿Desea combinarlos?", "Album repetido", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            db.CombinarAlbunes(idAlbum, albunes[0]);
+                            idAlbum = albunes[0];
+                            canciones = db.CancionesDeAlbum(idAlbum, idInterprete);
+                        }
+                        else
+                            txtNombre.Text = nombre;
                     }
                 }
 
@@ -79,6 +83,7 @@ namespace Reproductor
                     canciones[x].Save();
                 }
                 this.Close();
+                // hay q actualizar los artistas y albunes en la biblioteca
             }
             else
             {

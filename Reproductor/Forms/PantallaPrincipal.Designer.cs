@@ -83,7 +83,6 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.listViewBuscador = new System.Windows.Forms.ListView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.botonBuscar = new System.Windows.Forms.Button();
             this.comboBoxBuscador = new System.Windows.Forms.ComboBox();
@@ -93,6 +92,7 @@
             this.timerBarra = new System.Windows.Forms.Timer(this.components);
             this.abrirArchivo = new System.Windows.Forms.OpenFileDialog();
             this.labelUsuarioActual = new System.Windows.Forms.Label();
+            this.listBoxBuscador = new System.Windows.Forms.ListBox();
             this.menu.SuspendLayout();
             this.panelBotones.SuspendLayout();
             this.tabControlPrincipal.SuspendLayout();
@@ -673,7 +673,7 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.listViewBuscador);
+            this.tabPage3.Controls.Add(this.listBoxBuscador);
             this.tabPage3.Controls.Add(this.panel3);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -681,18 +681,6 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Buscador";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // listViewBuscador
-            // 
-            this.listViewBuscador.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.listViewBuscador.Location = new System.Drawing.Point(182, 11);
-            this.listViewBuscador.Name = "listViewBuscador";
-            this.listViewBuscador.Size = new System.Drawing.Size(419, 222);
-            this.listViewBuscador.TabIndex = 1;
-            this.listViewBuscador.UseCompatibleStateImageBehavior = false;
-            this.listViewBuscador.View = System.Windows.Forms.View.List;
             // 
             // panel3
             // 
@@ -783,6 +771,18 @@
             this.labelUsuarioActual.TabIndex = 8;
             this.labelUsuarioActual.Text = "         ";
             this.labelUsuarioActual.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // listBoxBuscador
+            // 
+            this.listBoxBuscador.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxBuscador.FormattingEnabled = true;
+            this.listBoxBuscador.Location = new System.Drawing.Point(180, 9);
+            this.listBoxBuscador.Name = "listBoxBuscador";
+            this.listBoxBuscador.Size = new System.Drawing.Size(421, 225);
+            this.listBoxBuscador.TabIndex = 1;
+            this.listBoxBuscador.DoubleClick += new System.EventHandler(this.listBoxBuscador_DoubleClick);
             // 
             // PantallaPrincipal
             // 
@@ -892,7 +892,7 @@
         private System.Windows.Forms.TextBox textBoxArtista;
         private System.Windows.Forms.Button button5;
         public System.Windows.Forms.Label labelUsuarioActual;
-        private System.Windows.Forms.ListView listViewBuscador;
+        private System.Windows.Forms.ListBox listBoxBuscador;
     }
 }
 
