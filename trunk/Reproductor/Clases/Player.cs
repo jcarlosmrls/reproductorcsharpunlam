@@ -12,12 +12,45 @@ namespace Reproductor
 	    private bool isOpen;
 		private bool isPlaying = false;
         private ulong Lng;
+        private uint volume;
 		
 		[DllImport("winmm.dll")]
 		private static extern long mciSendString(string strCommand,StringBuilder strReturn,int iReturnLength, IntPtr hwndCallback);
-		
+
+        [DllImport("winmm.dll")]
+        public static extern int waveOutGetVolume(IntPtr hwo, out uint dwVolume);
+
+        [DllImport("winmm.dll")]
+        public static extern int waveOutSetVolume(IntPtr hwo, uint dwVolume);
+
+        public ushort Volume
+        {
+            get
+            {
+                // Obtengo el volumen
+                waveOutGetVolume(IntPtr.Zero, out volume);
+
+                // Calculo el volumen
+                ushort CalcVol = (ushort)(volume & 0x0000ffff);
+
+                // Devuelvo en escala del 1 al 10 para encajar en el trackbar
+                return (ushort)(CalcVol / (ushort.MaxValue / 10));
+            }
+            set
+            {
+                int NewVolume = ((ushort.MaxValue / 10) * value);
+
+                // Asigno el mismo volumen a izquierda y derecha
+                uint NewVolumeAllChannels = (((uint)NewVolume & 0x0000ffff) | ((uint)NewVolume << 16));
+
+                // Asigno el volumen
+                waveOutSetVolume(IntPtr.Zero, NewVolumeAllChannels);
+            }
+        }
+
 		public Player()
 		{
+            volume = 0;
 		}
 		
 		public bool Reproduciendo()

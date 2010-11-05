@@ -83,16 +83,16 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.listBoxBuscador = new System.Windows.Forms.ListBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.botonBuscar = new System.Windows.Forms.Button();
             this.comboBoxBuscador = new System.Windows.Forms.ComboBox();
             this.txtBuscador = new System.Windows.Forms.TextBox();
             this.trackBarReproduccion = new System.Windows.Forms.TrackBar();
-            this.trackBar2 = new System.Windows.Forms.TrackBar();
+            this.trackBarVolumen = new System.Windows.Forms.TrackBar();
             this.timerBarra = new System.Windows.Forms.Timer(this.components);
             this.abrirArchivo = new System.Windows.Forms.OpenFileDialog();
             this.labelUsuarioActual = new System.Windows.Forms.Label();
-            this.listBoxBuscador = new System.Windows.Forms.ListBox();
             this.menu.SuspendLayout();
             this.panelBotones.SuspendLayout();
             this.tabControlPrincipal.SuspendLayout();
@@ -103,7 +103,7 @@
             this.tabPage3.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarReproduccion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarVolumen)).BeginInit();
             this.SuspendLayout();
             // 
             // menu
@@ -682,6 +682,18 @@
             this.tabPage3.Text = "Buscador";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // listBoxBuscador
+            // 
+            this.listBoxBuscador.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxBuscador.FormattingEnabled = true;
+            this.listBoxBuscador.Location = new System.Drawing.Point(180, 9);
+            this.listBoxBuscador.Name = "listBoxBuscador";
+            this.listBoxBuscador.Size = new System.Drawing.Size(421, 225);
+            this.listBoxBuscador.TabIndex = 1;
+            this.listBoxBuscador.DoubleClick += new System.EventHandler(this.listBoxBuscador_DoubleClick);
+            // 
             // panel3
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -737,17 +749,18 @@
             this.trackBarReproduccion.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarReproduccion.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBarReproduccion_MouseUp);
             // 
-            // trackBar2
+            // trackBarVolumen
             // 
-            this.trackBar2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.trackBar2.Location = new System.Drawing.Point(469, 216);
-            this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar2.Size = new System.Drawing.Size(45, 178);
-            this.trackBar2.TabIndex = 7;
-            this.trackBar2.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.trackBar2.Visible = false;
-            this.trackBar2.MouseLeave += new System.EventHandler(this.trackBar2_Leave);
+            this.trackBarVolumen.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.trackBarVolumen.Location = new System.Drawing.Point(469, 216);
+            this.trackBarVolumen.Name = "trackBarVolumen";
+            this.trackBarVolumen.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBarVolumen.Size = new System.Drawing.Size(45, 178);
+            this.trackBarVolumen.TabIndex = 7;
+            this.trackBarVolumen.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.trackBarVolumen.Visible = false;
+            this.trackBarVolumen.MouseLeave += new System.EventHandler(this.trackBar2_Leave);
+            this.trackBarVolumen.Scroll += new System.EventHandler(this.trackBarVolumen_Scroll);
             // 
             // timerBarra
             // 
@@ -772,18 +785,6 @@
             this.labelUsuarioActual.Text = "         ";
             this.labelUsuarioActual.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // listBoxBuscador
-            // 
-            this.listBoxBuscador.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxBuscador.FormattingEnabled = true;
-            this.listBoxBuscador.Location = new System.Drawing.Point(180, 9);
-            this.listBoxBuscador.Name = "listBoxBuscador";
-            this.listBoxBuscador.Size = new System.Drawing.Size(421, 225);
-            this.listBoxBuscador.TabIndex = 1;
-            this.listBoxBuscador.DoubleClick += new System.EventHandler(this.listBoxBuscador_DoubleClick);
-            // 
             // PantallaPrincipal
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -791,7 +792,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.ClientSize = new System.Drawing.Size(639, 463);
             this.Controls.Add(this.labelUsuarioActual);
-            this.Controls.Add(this.trackBar2);
+            this.Controls.Add(this.trackBarVolumen);
             this.Controls.Add(this.tabControlPrincipal);
             this.Controls.Add(this.panelBotones);
             this.Controls.Add(this.menu);
@@ -822,7 +823,7 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarReproduccion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarVolumen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -854,7 +855,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem opcionesToolStripMenuItem;
         private System.Windows.Forms.Button botonVolumen;
-        private System.Windows.Forms.TrackBar trackBar2;
+        private System.Windows.Forms.TrackBar trackBarVolumen;
         private System.Windows.Forms.Timer timerBarra;
         private System.Windows.Forms.Button botonBordes;
         private System.Windows.Forms.ToolStripMenuItem accionesToolStripMenuItem;
