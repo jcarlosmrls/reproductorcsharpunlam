@@ -68,6 +68,7 @@ namespace Reproductor
             panelReproduccion.Asignar(this, ref dbReproductor, ref lista);
             panelReproduccion.CambiarPosicion();
             cancionActual = -1;
+            trackBarVolumen.Value = player.Volume;
 
             //Muestro el login
             MostrarLogin();
@@ -824,15 +825,15 @@ namespace Reproductor
 
         private void trackBar2_Leave(object sender, EventArgs e)
         {
-            trackBar2.Hide();
+            trackBarVolumen.Hide();
         }
 
         private void boton_volumen_Click(object sender, EventArgs e)
         {
-            if (trackBar2.Visible.ToString() == "True")
-                trackBar2.Hide();
+            if (trackBarVolumen.Visible.ToString() == "True")
+                trackBarVolumen.Hide();
             else
-                trackBar2.Show();
+                trackBarVolumen.Show();
         }
         
         private string DesplazarString(string texto)
@@ -866,5 +867,10 @@ namespace Reproductor
         }
 
         #endregion
+
+        private void trackBarVolumen_Scroll(object sender, EventArgs e)
+        {
+            player.Volume = (ushort) trackBarVolumen.Value;
+        }
     }
 }
