@@ -75,6 +75,7 @@ namespace Reproductor
                 cancion.NumeroDeCancion = uint.Parse(txtNumero.Text);
             }
             this.Close();
+            //hay q actualizar las canciones en la biblioteca
         }
 
         private void button2_Click(object sender, EventArgs e)

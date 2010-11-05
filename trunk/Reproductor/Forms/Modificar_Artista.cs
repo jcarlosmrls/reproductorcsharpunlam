@@ -30,12 +30,17 @@ namespace Reproductor
                 string[] aux = db.Leer_Columna("Interprete", "Id", "Nombre", txtNombre.Text);
                 if (aux.Length > 0)
                 {
-                    MessageBox.Show("el artista ya existe");
-                    //se pasan los albunes  a este artista y se borra la antreda acutal.
+                    if (MessageBox.Show("Se ha encontrado otro artista con el mismo nombre.\n¿Desea combinarlos?", "Artista repetido", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+
+                        db.CombinarInterpretes(idInterprete, aux[0]);
+                        idInterprete = aux[0];
+                        this.Close();
+                        //hay q modificar los artistas en la blblioteca
+                    }
                 }
                 else
                 {
-
                     db.ModificarInterprete(idInterprete, txtNombre.Text);// aqui se modifica la base de datos
                     List<Cancion> lista = db.CancionesDeArtista(idInterprete);
 
@@ -45,6 +50,7 @@ namespace Reproductor
                         lista[x].Save();
                     }
                     this.Close();
+                    //hay q modificar los artistas en la blblioteca
                 }
 
             }

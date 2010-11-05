@@ -714,6 +714,78 @@ namespace Reproductor
             }
         }
 
+        public void CombinarInterpretes(string idOrigen, string idDestino)
+        {
+            OleDbCommand cmd = new OleDbCommand();
+
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = dbConnection;
+            cmd.Parameters.Add("?", idDestino);
+            cmd.Parameters.Add("?", idOrigen);
+            cmd.CommandText = "UPDATE Album SET Id_Interprete = ? WHERE Id_Interprete = ?";
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al abrir la base de datos");
+            }
+            BorrarRegistro("Interprete", "Id", idOrigen);
+        }
+
+        public void CombinarAlbunes(string idOrigen, string idDestino)
+        {
+            OleDbCommand cmd = new OleDbCommand();
+
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = dbConnection;
+            cmd.Parameters.Add("?", idDestino);
+            cmd.Parameters.Add("?", idOrigen);
+            cmd.CommandText = "UPDATE Cancion SET Id_Album = ? WHERE Id_Album = ?";
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al abrir la base de datos");
+            }
+            BorrarRegistro("Album", "Id_Album", idOrigen);
+        }
+
+        public List<Cancion> BuscarPorAlbum(string nombre)
+        {
+            List<Cancion> canciones = new List<Cancion>();
+
+            foreach (string album in Leer_Columna("Album", "Id_Album", "Nombre", nombre))
+            {
+                foreach (string path in Leer_Columna("Cancion", "Path", "Id_Album", album))
+                {
+                    Cancion song = new Cancion(path);
+                    canciones.Add(song);
+                }
+            }
+            return canciones;
+        }
+
+        public List<Cancion> BuscarPorGenero(string genero)
+        {
+            List<Cancion> canciones = new List<Cancion>();
+
+            foreach (string album in Leer_Columna("Album", "Id_Album", "Genero", genero))
+            {
+                foreach (string path in Leer_Columna("Cancion", "Path", "Id_Album", album))
+                {
+                    Cancion song = new Cancion(path);
+                    canciones.Add(song);
+                }
+            }
+            return canciones;
+        }
+
         #endregion
     }
 }
