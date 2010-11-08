@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Reproductor
 {
@@ -13,7 +14,7 @@ namespace Reproductor
         private PantallaPrincipal ventana_principal;
         private PanelReproduccion panel;
         private BaseDeDatos baseDatos;
-        private bool hubo_cambio_paths = false;
+        public bool hubo_cambio_paths = false;
         private List<string> paths;
         private Color colorClaro;
         private Color colorOscuro;
@@ -62,6 +63,10 @@ namespace Reproductor
 
         private void button1_Click(object sender, EventArgs e)
         {
+            ThreadStart actualizador = new ThreadStart(Actualizar);
+            if (ventana_principal.hiloActualizar != null && ventana_principal.hiloActualizar.IsAlive)
+                ventana_principal.hiloActualizar.Abort();
+            ventana_principal.hiloActualizar = new Thread(actualizador);
             //Si se eligio un skin distinto al ultimo utilizado
             if ((comboSkins.SelectedItem.ToString() != ventana_principal.UsuarioActual.Configuracion.UltimoSkinUsado) ||
                 (colorClaro != ventana_principal.UsuarioActual.Configuracion.ColorClaro) ||
@@ -84,10 +89,17 @@ namespace Reproductor
             if (hubo_cambio_paths)
             {
                 baseDatos.ActualizarRutaDeArchivos(ventana_principal.UsuarioActual.Id, paths);
-                // aca esta actualizamdo, habria que cambiarlo por un thread.
-                baseDatos.ActualizarCanciones(ventana_principal);
+                ventana_principal.hiloActualizar.Start();
+         
             }
             this.Close();
+        }
+
+        void Actualizar()
+        {
+            ventana_principal.labelTrabajando.Text = "Actualizando";
+            baseDatos.ActualizarCanciones(ventana_principal);
+            ventana_principal.labelTrabajando.Text = "";
         }
 
         private void button2_Click(object sender, EventArgs e)

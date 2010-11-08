@@ -93,6 +93,7 @@
             this.timerBarra = new System.Windows.Forms.Timer(this.components);
             this.abrirArchivo = new System.Windows.Forms.OpenFileDialog();
             this.labelUsuarioActual = new System.Windows.Forms.Label();
+            this.labelTrabajando = new System.Windows.Forms.Label();
             this.menu.SuspendLayout();
             this.panelBotones.SuspendLayout();
             this.tabControlPrincipal.SuspendLayout();
@@ -785,12 +786,23 @@
             this.labelUsuarioActual.Text = "         ";
             this.labelUsuarioActual.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // labelTrabajando
+            // 
+            this.labelTrabajando.AutoSize = true;
+            this.labelTrabajando.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.labelTrabajando.Location = new System.Drawing.Point(492, 6);
+            this.labelTrabajando.Name = "labelTrabajando";
+            this.labelTrabajando.Size = new System.Drawing.Size(22, 13);
+            this.labelTrabajando.TabIndex = 9;
+            this.labelTrabajando.Text = "     ";
+            // 
             // PantallaPrincipal
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.ClientSize = new System.Drawing.Size(639, 463);
+            this.Controls.Add(this.labelTrabajando);
             this.Controls.Add(this.labelUsuarioActual);
             this.Controls.Add(this.trackBarVolumen);
             this.Controls.Add(this.tabControlPrincipal);
@@ -894,6 +906,7 @@
         private System.Windows.Forms.Button button5;
         public System.Windows.Forms.Label labelUsuarioActual;
         private System.Windows.Forms.ListBox listBoxBuscador;
+        public System.Windows.Forms.Label labelTrabajando;
     }
 }
 

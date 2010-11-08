@@ -49,6 +49,7 @@ namespace Reproductor
             string[] cadena;
             int cant;
             OleDbCommand cmdLeer = new OleDbCommand();
+            DataSet ds = new DataSet();
 
             string cad = "SELECT " + columna + " FROM " + tabla;
 
@@ -56,14 +57,14 @@ namespace Reproductor
             cmdLeer.Connection = dbConnection;
             cmdLeer.CommandText = cad;
             dbAdapter.SelectCommand = cmdLeer;
-            dbDataSet.Clear(); // agregado clear, sino se arma lio con el dataset anterior
+            ds.Clear(); // agregado clear, sino se arma lio con el dataset anterior
             try
             {
-                dbAdapter.Fill(dbDataSet);
-                cant = dbDataSet.Tables[0].Rows.Count;
+                dbAdapter.Fill(ds);
+                cant = ds.Tables[0].Rows.Count;
                 cadena = new string[cant];
                 for (int x = 0; x < cant; x++)
-                    cadena[x] = dbDataSet.Tables[0].Rows[x][columna].ToString();
+                    cadena[x] = ds.Tables[0].Rows[x][columna].ToString();
                 return cadena;
             }
             catch (Exception)
@@ -79,6 +80,7 @@ namespace Reproductor
             string[] cadena;
             int cant;
             OleDbCommand cmdLeer = new OleDbCommand();
+            DataSet ds = new DataSet();
 
             string cad = "SELECT " + columna + " FROM " + tabla + " WHERE " + columf + " = ?";
 
@@ -87,14 +89,14 @@ namespace Reproductor
             cmdLeer.Parameters.Add("?", val);
             cmdLeer.CommandText = cad;
             dbAdapter.SelectCommand = cmdLeer;
-            dbDataSet.Clear();// agregado clear, sino se arma lio con el dataset anterior
+            ds.Clear();// agregado clear, sino se arma lio con el dataset anterior
             try
             {
-                dbAdapter.Fill(dbDataSet);
-                cant = dbDataSet.Tables[0].Rows.Count;
+                dbAdapter.Fill(ds);
+                cant = ds.Tables[0].Rows.Count;
                 cadena = new string[cant];
                 for (int x = 0; x < cant; x++)
-                    cadena[x] = dbDataSet.Tables[0].Rows[x][columna].ToString();
+                    cadena[x] = ds.Tables[0].Rows[x][columna].ToString();
                 return cadena;
             }
             catch (Exception)
@@ -103,6 +105,7 @@ namespace Reproductor
                 return null;
             }
         }
+
 
         public string[] Leer_Columna(string tabla, string columna, string columf1, string val1, string columf2, string val2)
         {
@@ -665,6 +668,30 @@ namespace Reproductor
             try
             {
                 cmd.ExecuteNonQuery();
+
+                OleDbCommand cmdLeer = new OleDbCommand();
+
+                string cad = "SELECT * FROM Album WHERE Id_Interprete = ?";
+
+                cmdLeer.CommandType = CommandType.Text;
+                cmdLeer.Connection = dbConnection;
+                cmdLeer.Parameters.Add("?", idInterprete);
+                cmdLeer.CommandText = cad;
+                dbAdapter.SelectCommand = cmdLeer;
+                
+                dbDataSet.Clear();
+                dbAdapter.Fill(dbDataSet);
+
+                for (int x = 0; x < dbDataSet.Tables[0].Rows.Count; x++)
+                {
+                    for (int y = x + 1; y < dbDataSet.Tables[0].Rows.Count; y++)
+                    {
+                        if (dbDataSet.Tables[0].Rows[x][0].ToString() == dbDataSet.Tables[0].Rows[y]["Nombre"].ToString())
+                        {
+                            CombinarAlbunes(dbDataSet.Tables[0].Rows[x]["Id_Album"].ToString(), dbDataSet.Tables[0].Rows[y]["Id_Album"].ToString());
+                        }
+                    }
+                }
             }
             catch (Exception)
             {
@@ -732,8 +759,40 @@ namespace Reproductor
             {
                 MessageBox.Show("Error al abrir la base de datos");
             }
-            BorrarRegistro("Interprete", "Id", idOrigen);
+
+            OleDbCommand cmdLeer = new OleDbCommand();
+
+            string cad = "SELECT * FROM Album WHERE Id_Interprete = ?";
+
+            cmdLeer.CommandType = CommandType.Text;
+            cmdLeer.Connection = dbConnection;
+            cmdLeer.Parameters.Add("?", idDestino);
+            cmdLeer.CommandText = cad;
+            dbAdapter.SelectCommand = cmdLeer;
+
+            try
+            {
+                dbDataSet.Clear();
+                dbAdapter.Fill(dbDataSet);
+
+                for (int x = 0; x < dbDataSet.Tables[0].Rows.Count; x++)
+                {
+                    for (int y = x + 1; y < dbDataSet.Tables[0].Rows.Count; y++)
+                    {
+                        if (dbDataSet.Tables[0].Rows[x]["Nombre"].ToString() == dbDataSet.Tables[0].Rows[y]["Nombre"].ToString())
+                        {
+                            CombinarAlbunes(dbDataSet.Tables[0].Rows[x]["Id_Album"].ToString(), dbDataSet.Tables[0].Rows[y]["Id_Album"].ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al abrir la base de datos");
+            }
+            BorrarRegistro("Interprete", "Id", idOrigen);            
         }
+
 
         public void CombinarAlbunes(string idOrigen, string idDestino)
         {

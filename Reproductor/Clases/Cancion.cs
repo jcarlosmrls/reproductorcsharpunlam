@@ -122,10 +122,6 @@ namespace Reproductor
             {
                 return imagen;
             }
-            set
-            {
-                imagen = value;
-            }
         }
 
         public uint NumeroDeCancion
@@ -201,6 +197,17 @@ namespace Reproductor
         {
             archivo.Save();
         }
+
+        public void CambiarImagen(string path)
+        {
+            TagLib.Picture picture = TagLib.Picture.CreateFromPath(path);
+            TagLib.Id3v2.AttachedPictureFrame albumCoverPictFrame = new TagLib.Id3v2.AttachedPictureFrame(picture);
+            albumCoverPictFrame.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
+            albumCoverPictFrame.Type = TagLib.PictureType.FrontCover;
+            TagLib.IPicture[] pictFrames = { albumCoverPictFrame };
+            archivo.Tag.Pictures = pictFrames;
+        }
+
         #endregion
     }
 }

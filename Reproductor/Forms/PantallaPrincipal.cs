@@ -19,6 +19,7 @@ namespace Reproductor
         public string idInterpreteBiblioteca = "";
         public string idAlbumBiblioteca = "";
         public string idCancionBiblioteca = "";
+        public Thread hiloActualizar;
 
         private List<Cancion> lista;
         private int cancionActual;
@@ -335,29 +336,44 @@ namespace Reproductor
 
         private void trackBarReproduccion_MouseUp(object sender, MouseEventArgs e)
         {
-            player.Seek((ulong)trackBarReproduccion.Value, (ulong)lista[cancionActual].Duracion.TotalMilliseconds);
+            if (cancionActual >= 0)
+            {
+                player.Seek((ulong)trackBarReproduccion.Value, (ulong)lista[cancionActual].Duracion.TotalMilliseconds);
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            dbReproductor.Close();
-            GuardarConfiguracionDeUsuario();
+            if (hiloActualizar != null && hiloActualizar.IsAlive)
+            {
+                hiloActualizar.Abort();
+                dbReproductor.Close();
+                GuardarConfiguracionDeUsuario();
+            }
+            else
+            {
+                dbReproductor.Close();
+                GuardarConfiguracionDeUsuario();
+            }
         }
         
         private void button5_Click(object sender, EventArgs e)
         {
-            string letra = lista[cancionActual].GetLyrics();
+            if (cancionActual >= 0)
+            {
+                string letra = lista[cancionActual].GetLyrics();
 
-            if(letra.Equals("Not found"))
-            {
-                richTextBoxLetras.Text = "No se encontraron letras para la cancion";
+                if (letra.Equals("Not found"))
+                {
+                    richTextBoxLetras.Text = "No se encontraron letras para la cancion";
+                }
+                else
+                {
+                    richTextBoxLetras.Text = letra;
+                }
+                richTextBoxLetras.SelectAll();
+                richTextBoxLetras.SelectionAlignment = HorizontalAlignment.Center;
             }
-            else
-            {
-                richTextBoxLetras.Text = letra;
-            }
-            richTextBoxLetras.SelectAll();
-            richTextBoxLetras.SelectionAlignment = HorizontalAlignment.Center;
         }
 
         public void ReproducirCancion(int num)
@@ -466,27 +482,30 @@ namespace Reproductor
 
         private void listBox1_SelectedValueChanged(object sender, EventArgs e)
         {
-            List<Cancion> canciones = dbReproductor.CancionDeCadaAlbum(listBox1.SelectedItem.ToString());
-            idInterpreteBiblioteca = dbReproductor.InterpreteId(listBox1.SelectedItem.ToString());
-            idAlbumBiblioteca = ""; //AG
-            idCancionBiblioteca = "";   //AG
+            if (listBox1.SelectedItems.Count == 1)
+            {
+                List<Cancion> canciones = new List<Cancion>(dbReproductor.CancionDeCadaAlbum(listBox1.SelectedItem.ToString()));
+                idInterpreteBiblioteca = dbReproductor.InterpreteId(listBox1.SelectedItem.ToString());
+                idAlbumBiblioteca = "";
+                idCancionBiblioteca = "";
 
-            ImageList imagenes = new ImageList();
-            listView1.LargeImageList = imagenes;
-            listView1.LargeImageList.ImageSize = new Size(50, 50);
-            listView1.Clear();
-            listBox2.Items.Clear();
-            if (canciones.Count == 0)   //AGREGADO EL IF
-            {
-                dbReproductor.BorrarRegistro("Interprete", "Id", idInterpreteBiblioteca);
-                idInterpreteBiblioteca = "";
-            }
-            else
-            {
-                foreach (Cancion song in canciones)
+                ImageList imagenes = new ImageList();
+                listView1.LargeImageList = imagenes;
+                listView1.LargeImageList.ImageSize = new Size(50, 50);
+                listView1.Clear();
+                listBox2.Items.Clear();
+                if (canciones.Count == 0)
                 {
-                    imagenes.Images.Add(song.Album, song.Imagen);
-                    listView1.Items.Add(new ListViewItem(song.Album, song.Album));
+                    dbReproductor.BorrarRegistro("Interprete", "Id", idInterpreteBiblioteca);
+                    idInterpreteBiblioteca = "";
+                }
+                else
+                {
+                    foreach (Cancion song in canciones)
+                    {
+                        imagenes.Images.Add(song.Album, song.Imagen);
+                        listView1.Items.Add(new ListViewItem(song.Album, song.Album));
+                    }
                 }
             }
         }
@@ -496,7 +515,7 @@ namespace Reproductor
             if (listView1.SelectedItems.Count == 1)
             {
                 idAlbumBiblioteca = dbReproductor.AlbumId(listView1.SelectedItems[0].Text.ToString(), idInterpreteBiblioteca);
-                idCancionBiblioteca = "";  //AGREWGAFDO
+                idCancionBiblioteca = "";
                 listBox2.Items.Clear();
 
                 foreach (string cad in dbReproductor.Leer_Columna("Cancion", "Titulo", "Id_Album", idAlbumBiblioteca))

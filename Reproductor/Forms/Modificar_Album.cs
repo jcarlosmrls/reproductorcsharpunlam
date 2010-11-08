@@ -17,6 +17,7 @@ namespace Reproductor
         private string idInterprete;
         private string genero;
         private string anio;
+        private string rutaImagen;
         private bool imagenModificada = false;
         private List<Cancion> canciones;
 
@@ -72,6 +73,15 @@ namespace Reproductor
                     }
                 }
 
+                // Verifico si se cambio la imagen
+                if (imagenModificada)
+                {
+                    for (int x = 0; x < canciones.Count; x++)
+                    {
+                        canciones[x].CambiarImagen(openFileDialog1.FileName);
+                    }
+                }
+
                 db.ModificarAlbum(idAlbum, txtNombre.Text, idInterprete, txtGenero.Text, txtAnio.Text);
                 for (int x = 0; x < canciones.Count; x++)
                 {
@@ -80,6 +90,7 @@ namespace Reproductor
                     canciones[x].Año = uint.Parse(txtAnio.Text);
                     canciones[x].Genero = txtGenero.Text;
 
+                    // Guardo los cambios
                     canciones[x].Save();
                 }
                 this.Close();
@@ -103,11 +114,8 @@ namespace Reproductor
             if (openFileDialog1.FileName != "")
             {
                 imagenModificada = true;
+                rutaImagen = openFileDialog1.FileName;
                 picBoxTapa.Image = Image.FromFile(openFileDialog1.FileName);
-                foreach (Cancion cn in canciones)
-                {
-                    cn.Imagen = Image.FromFile(openFileDialog1.FileName);
-                }
             }
             //Se guardan los tags aca?
             //Esta bien el foreach anterior??

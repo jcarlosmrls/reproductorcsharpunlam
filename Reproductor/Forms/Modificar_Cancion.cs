@@ -73,6 +73,7 @@ namespace Reproductor
                 cancion.Nombre = txtTitulo.Text;
                 cancion.Album = txtAlbum.Text;
                 cancion.NumeroDeCancion = uint.Parse(txtNumero.Text);
+                cancion.Save();
             }
             this.Close();
             //hay q actualizar las canciones en la biblioteca
