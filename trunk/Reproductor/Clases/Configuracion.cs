@@ -21,10 +21,7 @@ namespace Reproductor
         {
             //Obtengo la ruta de la base de datos
             path = Directory.GetCurrentDirectory();
-            path = path.Remove(path.LastIndexOf("\\"));
-            path = path.Remove(path.LastIndexOf("\\"));
-            path = path.Remove(path.LastIndexOf("\\"));
-            path += "\\Base_Reproductor.mdb";
+            path += "\\Data\\Base_Reproductor.mdb";
 
             //Obtengo la lista de skins, ubicada en la carpeta "Skins" del directorio del reproductor
             skinsPath = Directory.GetCurrentDirectory() + "\\Skins";

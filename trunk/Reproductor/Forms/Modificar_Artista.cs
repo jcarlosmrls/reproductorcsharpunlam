@@ -36,7 +36,6 @@ namespace Reproductor
                         db.CombinarInterpretes(idInterprete, aux[0]);
                         idInterprete = aux[0];
                         this.Close();
-                        //hay q modificar los artistas en la blblioteca
                     }
                 }
                 else
