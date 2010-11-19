@@ -182,6 +182,8 @@
     <None Include="Resources\flecha-derecha.png" />
     <Content Include="Resources\guardar.png" />
     <Content Include="Resources\icono.ico" />
+    <None Include="Resources\pin1.png" />
+    <None Include="Resources\pin2.png" />
     <None Include="Service References\LyricWiki\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

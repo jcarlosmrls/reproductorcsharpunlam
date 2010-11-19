@@ -157,19 +157,27 @@ namespace Reproductor
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            textBoxCancion.Text = DesplazarString(textBoxCancion.Text.ToString());
-            this.Text = DesplazarString(this.Text);
-            if (trackBarReproduccion.Value < trackBarReproduccion.Maximum)
+            try
             {
-                TimeSpan actualPosition = TimeSpan.FromSeconds(player.CurrentPosition/1000);
-                labelContador.Text = string.Format("{0:00}", actualPosition.Hours) + ":" + string.Format("{0:00}", actualPosition.Minutes) + ":" + string.Format("{0:00}", actualPosition.Seconds);
-                trackBarReproduccion.Value = (int) player.CurrentPosition;
+                textBoxCancion.Text = DesplazarString(textBoxCancion.Text.ToString());
+                this.Text = DesplazarString(this.Text);
+                if (trackBarReproduccion.Value < trackBarReproduccion.Maximum)
+                {
+                    TimeSpan actualPosition = TimeSpan.FromSeconds(player.CurrentPosition / 1000);
+                    labelContador.Text = string.Format("{0:00}", actualPosition.Hours) + ":" + string.Format("{0:00}", actualPosition.Minutes) + ":" + string.Format("{0:00}", actualPosition.Seconds);
+                    trackBarReproduccion.Value = (int)player.CurrentPosition;
+                }
+                else
+                {
+                    trackBarReproduccion.Value = 0;
+                    timerBarra.Enabled = false;
+                    botonSiguiente_Click(null, null);
+                }
             }
-            else
+            catch(Exception ex)
             {
-                trackBarReproduccion.Value = 0;
-                timerBarra.Enabled = false;
-                botonSiguiente_Click(null, null);
+                botonStop_Click(null, null);
+                MessageBox.Show(ex.Message, "Excepcion en el timer");
             }
         }
 
@@ -178,11 +186,19 @@ namespace Reproductor
             if (PantallaPrincipal.ActiveForm.FormBorderStyle == FormBorderStyle.Sizable)
             {
                 PantallaPrincipal.ActiveForm.FormBorderStyle = FormBorderStyle.None;
+                PantallaPrincipal.ActiveForm.SendToBack();
+                PantallaPrincipal.ActiveForm.TopMost = false;
+                panelReproduccion.FormBorderStyle = FormBorderStyle.None;
+                panelReproduccion.SendToBack();
+                panelReproduccion.TopMost = false;
+                botonBordes.BackgroundImage = Reproductor.Properties.Resources.pin2;
                 menu.Hide();
             }
             else
             {
                 PantallaPrincipal.ActiveForm.FormBorderStyle = FormBorderStyle.Sizable;
+                panelReproduccion.FormBorderStyle = FormBorderStyle.Sizable;
+                botonBordes.BackgroundImage = Reproductor.Properties.Resources.pin1;
                 menu.Show();
             }
         }
@@ -890,6 +906,48 @@ namespace Reproductor
         private void trackBarVolumen_Scroll(object sender, EventArgs e)
         {
             player.Volume = (ushort) trackBarVolumen.Value;
+        }
+
+        private void listBox1_DragDrop(object sender, DragEventArgs e)
+        {
+            try
+            {
+                string[] rutas = (string[])e.Data.GetData(DataFormats.FileDrop);
+                List<string> paths = new List<string>(rutas);
+
+                // Realizo un filtrado, es decir, elimino todos
+                // aquellos strings que no pertenezcan a directorios
+                for (int i = 0; i < paths.Count; i++)
+                {
+                    if (!Directory.Exists(paths[i]))
+                    {
+                        paths.Remove(paths[i]);
+                        i--;
+                    }
+                }
+
+                // Ahora actualizo y comienzo el hilo de actualizacion
+                dbReproductor.ActualizarRutaDeArchivos(UsuarioActual.Id, paths);
+
+                hiloActualizar = new Thread(new ThreadStart(Actualizar));
+                hiloActualizar.Start();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Actualizar()
+        {
+            labelTrabajando.Text = "Actualizando";
+            dbReproductor.ActualizarCanciones(this);
+            labelTrabajando.Text = "";
+        }
+
+        private void listBox1_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Copy;
         }
     }
 }

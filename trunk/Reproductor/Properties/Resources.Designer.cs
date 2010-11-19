@@ -74,16 +74,23 @@ namespace Reproductor.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap flecha_derecha {
+        internal static System.Drawing.Bitmap guardar {
             get {
-                object obj = ResourceManager.GetObject("flecha-derecha", resourceCulture);
+                object obj = ResourceManager.GetObject("guardar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap guardar {
+        internal static System.Drawing.Bitmap pin1 {
             get {
-                object obj = ResourceManager.GetObject("guardar", resourceCulture);
+                object obj = ResourceManager.GetObject("pin1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap pin2 {
+            get {
+                object obj = ResourceManager.GetObject("pin2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
