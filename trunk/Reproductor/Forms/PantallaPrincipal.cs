@@ -20,6 +20,7 @@ namespace Reproductor
         public string idAlbumBiblioteca = "";
         public string idCancionBiblioteca = "";
         public Thread hiloActualizar;
+        public Thread buscador;
 
         private List<Cancion> lista;
         private int cancionActual;
@@ -27,7 +28,7 @@ namespace Reproductor
         private Player player;
         private BaseDeDatos dbReproductor;
         private Login login;
-        private List<Cancion> listaBusqueda;
+        private List<string> listaBusqueda;
 
         #endregion
 
@@ -360,14 +361,17 @@ namespace Reproductor
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (hiloActualizar != null && hiloActualizar.IsAlive)
+            if ((hiloActualizar != null) && hiloActualizar.IsAlive)
             {
                 hiloActualizar.Abort();
+
                 dbReproductor.Close();
                 GuardarConfiguracionDeUsuario();
             }
             else
             {
+                if (buscador != null)
+                    buscador.Abort();
                 dbReproductor.Close();
                 GuardarConfiguracionDeUsuario();
             }
@@ -402,41 +406,31 @@ namespace Reproductor
 
         private void botonBuscar_Click(object sender, EventArgs e)
         {
-            if ("" != txtBuscador.Text && comboBoxBuscador.SelectedItem != null)
+            if ("" != txtBuscador.Text)
             {
                 ThreadStart comienzo = new ThreadStart(Buscador);
                 Thread buscador = new Thread(comienzo);
 
-                ImageList imagenes = new ImageList();
-                listView1.LargeImageList = imagenes;
-                listView1.LargeImageList.ImageSize = new Size(50, 50);
-                foreach (Cancion song in lista)
-                {
-                    imagenes.Images.Add(song.Album, song.Imagen);
-                    listView1.Items.Add(new ListViewItem(song.Album, song.Album));
-                }
                 listBoxBuscador.Items.Clear();
-                //listViewBuscador.Items.Add(new ListViewItem("Cargando..."));
+                listBoxBuscador.Items.Add("Buscando...");
+
                 buscador.Start();
-            }
-            else if (comboBoxBuscador.SelectedItem != null)
-            {
-                MessageBox.Show("Debes ingresar algo para buscar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                MessageBox.Show("Debes elegir un criterio para buscar", "Ojo", MessageBoxButtons.OK ,MessageBoxIcon.Error);
+                MessageBox.Show("Debes ingresar algo para buscar!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
         }
 
         private void Buscador()
         {
-            string busqueda = txtBuscador.Text;
-            string criterio = comboBoxBuscador.Text;// por si al usuario final se le oucrre cambiar los varlores mietras se ejecuta el hilo
+            buscador = Thread.CurrentThread;
+            string busqueda = "%" + txtBuscador.Text + "%";
 
-            List<Cancion> canciones = new List<Cancion>();
+            List<string> canciones = dbReproductor.Buscar(busqueda);
 
-            canciones = dbReproductor.CancionesDeArtista(dbReproductor.InterpreteId(busqueda));
+            /*canciones = dbReproductor.CancionesDeArtista(dbReproductor.InterpreteId(busqueda));
             switch (criterio)
             {
                 case "Intérprete":
@@ -459,7 +453,7 @@ namespace Reproductor
                     }
                     break;
             };
-
+            */
             listBoxBuscador.Items.Clear();
 
             if (canciones.Count == 0)
@@ -468,14 +462,16 @@ namespace Reproductor
             }
             else
             {
-                foreach (Cancion cancion in canciones)
+                foreach (string cancion in canciones)
                 {
-                    listBoxBuscador.Items.Add(cancion.Nombre);
+                    Cancion aux = new Cancion(cancion);
+                    listBoxBuscador.Items.Add(aux.Nombre);
                 }
                 listaBusqueda = canciones;
             }
             //Si no encuentra, informa en pantalla
-            //Sino, toma los datos necesarios y ahce la lista
+            //Sino, toma los datos necesarios y ahce la lista*/
+            buscador = null;
         }
 
         public void MostrarInterpretes()    //completa el listbox1 con la lista de interpretes de la base de datos
@@ -642,9 +638,10 @@ namespace Reproductor
                 panelReproduccion.LimpiarLista();
 
                 //Cargo las canciones
-                foreach (Cancion song in listaBusqueda)
+                foreach (string song in listaBusqueda)
                 {
-                    lista.Add(song);
+                    Cancion aux = new Cancion(song);
+                    lista.Add(aux);
                 }
 
                 //Actualizo la lista de reproduccion en el panel
