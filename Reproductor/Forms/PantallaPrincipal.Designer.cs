@@ -94,6 +94,8 @@
             this.abrirArchivo = new System.Windows.Forms.OpenFileDialog();
             this.labelUsuarioActual = new System.Windows.Forms.Label();
             this.labelTrabajando = new System.Windows.Forms.Label();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.menu.SuspendLayout();
             this.panelBotones.SuspendLayout();
             this.tabControlPrincipal.SuspendLayout();
@@ -105,6 +107,12 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarReproduccion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVolumen)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menu
@@ -558,15 +566,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.botonModificarCanciones);
-            this.tabPage2.Controls.Add(this.botonModificarAlbum);
-            this.tabPage2.Controls.Add(this.botonModificarInterprete);
-            this.tabPage2.Controls.Add(this.listBox2);
-            this.tabPage2.Controls.Add(this.label10);
-            this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.label8);
-            this.tabPage2.Controls.Add(this.listView1);
-            this.tabPage2.Controls.Add(this.listBox1);
+            this.tabPage2.Controls.Add(this.splitContainer1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -578,7 +578,7 @@
             // botonModificarCanciones
             // 
             this.botonModificarCanciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.botonModificarCanciones.Location = new System.Drawing.Point(532, 6);
+            this.botonModificarCanciones.Location = new System.Drawing.Point(137, 11);
             this.botonModificarCanciones.Name = "botonModificarCanciones";
             this.botonModificarCanciones.Size = new System.Drawing.Size(66, 26);
             this.botonModificarCanciones.TabIndex = 9;
@@ -588,7 +588,8 @@
             // 
             // botonModificarAlbum
             // 
-            this.botonModificarAlbum.Location = new System.Drawing.Point(322, 9);
+            this.botonModificarAlbum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.botonModificarAlbum.Location = new System.Drawing.Point(111, 11);
             this.botonModificarAlbum.Name = "botonModificarAlbum";
             this.botonModificarAlbum.Size = new System.Drawing.Size(66, 26);
             this.botonModificarAlbum.TabIndex = 8;
@@ -598,7 +599,8 @@
             // 
             // botonModificarInterprete
             // 
-            this.botonModificarInterprete.Location = new System.Drawing.Point(114, 9);
+            this.botonModificarInterprete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.botonModificarInterprete.Location = new System.Drawing.Point(142, 11);
             this.botonModificarInterprete.Name = "botonModificarInterprete";
             this.botonModificarInterprete.Size = new System.Drawing.Size(66, 26);
             this.botonModificarInterprete.TabIndex = 7;
@@ -608,21 +610,21 @@
             // 
             // listBox2
             // 
-            this.listBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.listBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(415, 41);
+            this.listBox2.Location = new System.Drawing.Point(3, 44);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(191, 199);
+            this.listBox2.Size = new System.Drawing.Size(200, 186);
             this.listBox2.TabIndex = 6;
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
             // 
             // label10
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(412, 16);
+            this.label10.Location = new System.Drawing.Point(10, 18);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(57, 13);
             this.label10.TabIndex = 5;
@@ -631,7 +633,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(218, 16);
+            this.label9.Location = new System.Drawing.Point(9, 18);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(36, 13);
             this.label9.TabIndex = 3;
@@ -640,7 +642,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 16);
+            this.label8.Location = new System.Drawing.Point(3, 18);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(52, 13);
             this.label8.TabIndex = 2;
@@ -652,9 +654,9 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listView1.Location = new System.Drawing.Point(212, 41);
+            this.listView1.Location = new System.Drawing.Point(3, 44);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(186, 198);
+            this.listView1.Size = new System.Drawing.Size(174, 186);
             this.listView1.TabIndex = 1;
             this.listView1.TileSize = new System.Drawing.Size(160, 80);
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -663,12 +665,13 @@
             // 
             // listBox1
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(6, 41);
+            this.listBox1.Location = new System.Drawing.Point(3, 44);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(191, 199);
+            this.listBox1.Size = new System.Drawing.Size(206, 186);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedValueChanged += new System.EventHandler(this.listBox1_SelectedValueChanged);
             // 
@@ -691,7 +694,7 @@
             this.listBoxBuscador.FormattingEnabled = true;
             this.listBoxBuscador.Location = new System.Drawing.Point(180, 9);
             this.listBoxBuscador.Name = "listBoxBuscador";
-            this.listBoxBuscador.Size = new System.Drawing.Size(421, 225);
+            this.listBoxBuscador.Size = new System.Drawing.Size(421, 212);
             this.listBoxBuscador.TabIndex = 1;
             this.listBoxBuscador.DoubleClick += new System.EventHandler(this.listBoxBuscador_DoubleClick);
             // 
@@ -796,6 +799,50 @@
             this.labelTrabajando.TabIndex = 9;
             this.labelTrabajando.Text = "     ";
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(3, 6);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.Controls.Add(this.listBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.label8);
+            this.splitContainer1.Panel1.Controls.Add(this.botonModificarInterprete);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Size = new System.Drawing.Size(606, 233);
+            this.splitContainer1.SplitterDistance = 212;
+            this.splitContainer1.TabIndex = 10;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.listView1);
+            this.splitContainer2.Panel1.Controls.Add(this.label9);
+            this.splitContainer2.Panel1.Controls.Add(this.botonModificarAlbum);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.listBox2);
+            this.splitContainer2.Panel2.Controls.Add(this.botonModificarCanciones);
+            this.splitContainer2.Panel2.Controls.Add(this.label10);
+            this.splitContainer2.Size = new System.Drawing.Size(390, 233);
+            this.splitContainer2.SplitterDistance = 180;
+            this.splitContainer2.TabIndex = 0;
+            // 
             // PantallaPrincipal
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -830,12 +877,20 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTapaDeAlbum)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarReproduccion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVolumen)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
+            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -907,6 +962,8 @@
         public System.Windows.Forms.Label labelUsuarioActual;
         private System.Windows.Forms.ListBox listBoxBuscador;
         public System.Windows.Forms.Label labelTrabajando;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer splitContainer2;
     }
 }
 
