@@ -88,7 +88,6 @@
             this.listBoxBuscador = new System.Windows.Forms.ListBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.botonBuscar = new System.Windows.Forms.Button();
-            this.comboBoxBuscador = new System.Windows.Forms.ComboBox();
             this.txtBuscador = new System.Windows.Forms.TextBox();
             this.trackBarReproduccion = new System.Windows.Forms.TrackBar();
             this.trackBarVolumen = new System.Windows.Forms.TrackBar();
@@ -755,7 +754,6 @@
                         | System.Windows.Forms.AnchorStyles.Left)));
             this.panel3.BackColor = System.Drawing.Color.Transparent;
             this.panel3.Controls.Add(this.botonBuscar);
-            this.panel3.Controls.Add(this.comboBoxBuscador);
             this.panel3.Controls.Add(this.txtBuscador);
             this.panel3.Location = new System.Drawing.Point(8, 9);
             this.panel3.Name = "panel3";
@@ -771,19 +769,6 @@
             this.botonBuscar.Text = "Buscar";
             this.botonBuscar.UseVisualStyleBackColor = true;
             this.botonBuscar.Click += new System.EventHandler(this.botonBuscar_Click);
-            // 
-            // comboBoxBuscador
-            // 
-            this.comboBoxBuscador.FormattingEnabled = true;
-            this.comboBoxBuscador.Items.AddRange(new object[] {
-            "Intérprete",
-            "Álbum",
-            "Canción",
-            "Género"});
-            this.comboBoxBuscador.Location = new System.Drawing.Point(9, 51);
-            this.comboBoxBuscador.Name = "comboBoxBuscador";
-            this.comboBoxBuscador.Size = new System.Drawing.Size(114, 21);
-            this.comboBoxBuscador.TabIndex = 1;
             // 
             // txtBuscador
             // 
@@ -945,7 +930,6 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button botonBuscar;
-        private System.Windows.Forms.ComboBox comboBoxBuscador;
         private System.Windows.Forms.TextBox txtBuscador;
         private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

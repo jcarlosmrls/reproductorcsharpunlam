@@ -259,22 +259,30 @@ namespace Reproductor
 
             foreach (string path in paths)
             {
-                //obtiene una lista  por cada formato
-                foreach (string cad in Directory.GetFiles(path, "*.mp3", SearchOption.AllDirectories))
+                try
                 {
-                    canciones.Add(cad.ToString());
+                    //obtiene una lista  por cada formato
+                    foreach (string cad in Directory.GetFiles(path, "*.mp3", SearchOption.AllDirectories))
+                    {
+                        canciones.Add(cad.ToString());
+                    }
+                    foreach (string cad in Directory.GetFiles(path, "*.wav", SearchOption.AllDirectories))
+                    {
+                        canciones.Add(cad.ToString());
+                    }
+                    foreach (string cad in Directory.GetFiles(path, "*.mid", SearchOption.AllDirectories))
+                    {
+                        canciones.Add(cad.ToString());
+                    }
                 }
-                foreach (string cad in Directory.GetFiles(path, "*.wav", SearchOption.AllDirectories))
+                catch (System.UnauthorizedAccessException)
                 {
-                    canciones.Add(cad.ToString());
-                }
-                foreach (string cad in Directory.GetFiles(path, "*.mid", SearchOption.AllDirectories))
-                {
-                    canciones.Add(cad.ToString());
+                    MessageBox.Show("Su sistema operativo no le permite acceder a alguno de los subdirectorios de la ruta que ha ingresado.\nLa actualización de la biblioteca se ha cancelado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             return canciones;
         }
+
 
         private bool ExisteCancion(string path)
         {
@@ -815,7 +823,7 @@ namespace Reproductor
             BorrarRegistro("Album", "Id_Album", idOrigen);
         }
 
-        public List<Cancion> BuscarPorAlbum(string nombre)
+        /*public List<Cancion> BuscarPorAlbum(string nombre)
         {
             List<Cancion> canciones = new List<Cancion>();
 
@@ -843,6 +851,39 @@ namespace Reproductor
                 }
             }
             return canciones;
+        }*/
+
+        public List<string> Buscar(string cad)
+        {
+            List<string> lista = new List<string>();
+
+            OleDbCommand cmd = new OleDbCommand();
+
+            cmd.Connection = dbConnection;
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.Add("?", cad);
+            cmd.Parameters.Add("?", cad);
+            cmd.Parameters.Add("?", cad);
+            cmd.Parameters.Add("?", cad);
+            cmd.CommandText = "SELECT DISTINCT Path FROM Cancion WHERE Titulo LIKE ? OR Id_Album IN (SELECT Id_Album FROM Album WHERE Genero LIKE ?) OR Id_Album IN (SELECT Id_Album FROM Album WHERE Nombre LIKE ?) OR Id_Album IN (SELECT Id_Album FROM Album WHERE Id_Interprete IN (SELECT Id FROM Interprete WHERE Nombre LIKE ?) )";
+            // 
+            dbDataSet.Clear();
+
+            dbAdapter.SelectCommand = cmd;
+            try
+            {
+                dbAdapter.Fill(dbDataSet);
+
+                for (int x = 0; x < dbDataSet.Tables[0].Rows.Count; x++)
+                {
+                    lista.Add(dbDataSet.Tables[0].Rows[x]["Path"].ToString());
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error en la base de datos");
+            }
+            return lista;
         }
 
         #endregion
