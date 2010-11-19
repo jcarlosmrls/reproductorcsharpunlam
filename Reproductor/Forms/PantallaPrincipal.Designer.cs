@@ -73,15 +73,17 @@
             this.richTextBoxLetras = new System.Windows.Forms.RichTextBox();
             this.pictureBoxTapaDeAlbum = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.botonModificarCanciones = new System.Windows.Forms.Button();
-            this.botonModificarAlbum = new System.Windows.Forms.Button();
-            this.botonModificarInterprete = new System.Windows.Forms.Button();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.botonModificarInterprete = new System.Windows.Forms.Button();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.label9 = new System.Windows.Forms.Label();
+            this.botonModificarAlbum = new System.Windows.Forms.Button();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.botonModificarCanciones = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.listBoxBuscador = new System.Windows.Forms.ListBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -94,8 +96,6 @@
             this.abrirArchivo = new System.Windows.Forms.OpenFileDialog();
             this.labelUsuarioActual = new System.Windows.Forms.Label();
             this.labelTrabajando = new System.Windows.Forms.Label();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.menu.SuspendLayout();
             this.panelBotones.SuspendLayout();
             this.tabControlPrincipal.SuspendLayout();
@@ -103,16 +103,16 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTapaDeAlbum)).BeginInit();
             this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarReproduccion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarVolumen)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarReproduccion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarVolumen)).BeginInit();
             this.SuspendLayout();
             // 
             // menu
@@ -292,12 +292,13 @@
             // botonBordes
             // 
             this.botonBordes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.botonBordes.BackgroundImage = global::Reproductor.Properties.Resources.pin1;
+            this.botonBordes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.botonBordes.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.botonBordes.Location = new System.Drawing.Point(568, 21);
+            this.botonBordes.Location = new System.Drawing.Point(561, 10);
             this.botonBordes.Name = "botonBordes";
-            this.botonBordes.Size = new System.Drawing.Size(22, 21);
+            this.botonBordes.Size = new System.Drawing.Size(30, 30);
             this.botonBordes.TabIndex = 8;
-            this.botonBordes.Text = "X";
             this.botonBordes.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.botonBordes.UseVisualStyleBackColor = true;
             this.botonBordes.Click += new System.EventHandler(this.button6_Click);
@@ -367,6 +368,7 @@
             // 
             // tabControlPrincipal
             // 
+            this.tabControlPrincipal.AllowDrop = true;
             this.tabControlPrincipal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -566,6 +568,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.AllowDrop = true;
             this.tabPage2.Controls.Add(this.splitContainer1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -575,27 +578,52 @@
             this.tabPage2.Text = "Biblioteca";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // botonModificarCanciones
+            // splitContainer1
             // 
-            this.botonModificarCanciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.botonModificarCanciones.Location = new System.Drawing.Point(137, 11);
-            this.botonModificarCanciones.Name = "botonModificarCanciones";
-            this.botonModificarCanciones.Size = new System.Drawing.Size(66, 26);
-            this.botonModificarCanciones.TabIndex = 9;
-            this.botonModificarCanciones.Text = "Modificar";
-            this.botonModificarCanciones.UseVisualStyleBackColor = true;
-            this.botonModificarCanciones.Click += new System.EventHandler(this.button4_Click);
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(3, 6);
+            this.splitContainer1.Name = "splitContainer1";
             // 
-            // botonModificarAlbum
+            // splitContainer1.Panel1
             // 
-            this.botonModificarAlbum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.botonModificarAlbum.Location = new System.Drawing.Point(111, 11);
-            this.botonModificarAlbum.Name = "botonModificarAlbum";
-            this.botonModificarAlbum.Size = new System.Drawing.Size(66, 26);
-            this.botonModificarAlbum.TabIndex = 8;
-            this.botonModificarAlbum.Text = "Modificar";
-            this.botonModificarAlbum.UseVisualStyleBackColor = true;
-            this.botonModificarAlbum.Click += new System.EventHandler(this.button2_Click);
+            this.splitContainer1.Panel1.AllowDrop = true;
+            this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.Controls.Add(this.listBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.label8);
+            this.splitContainer1.Panel1.Controls.Add(this.botonModificarInterprete);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Size = new System.Drawing.Size(606, 233);
+            this.splitContainer1.SplitterDistance = 212;
+            this.splitContainer1.TabIndex = 10;
+            // 
+            // listBox1
+            // 
+            this.listBox1.AllowDrop = true;
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(3, 44);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(206, 186);
+            this.listBox1.TabIndex = 0;
+            this.listBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.listBox1_DragDrop);
+            this.listBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.listBox1_DragEnter);
+            this.listBox1.SelectedValueChanged += new System.EventHandler(this.listBox1_SelectedValueChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(3, 18);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(52, 13);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Intérprete";
             // 
             // botonModificarInterprete
             // 
@@ -608,45 +636,27 @@
             this.botonModificarInterprete.UseVisualStyleBackColor = true;
             this.botonModificarInterprete.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // listBox2
+            // splitContainer2
             // 
-            this.listBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(3, 44);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(200, 186);
-            this.listBox2.TabIndex = 6;
-            this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
-            this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
             // 
-            // label10
+            // splitContainer2.Panel1
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(10, 18);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(57, 13);
-            this.label10.TabIndex = 5;
-            this.label10.Text = "Canciones";
+            this.splitContainer2.Panel1.Controls.Add(this.listView1);
+            this.splitContainer2.Panel1.Controls.Add(this.label9);
+            this.splitContainer2.Panel1.Controls.Add(this.botonModificarAlbum);
             // 
-            // label9
+            // splitContainer2.Panel2
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(9, 18);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(36, 13);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "Álbum";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 18);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(52, 13);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Intérprete";
+            this.splitContainer2.Panel2.Controls.Add(this.listBox2);
+            this.splitContainer2.Panel2.Controls.Add(this.botonModificarCanciones);
+            this.splitContainer2.Panel2.Controls.Add(this.label10);
+            this.splitContainer2.Size = new System.Drawing.Size(390, 233);
+            this.splitContainer2.SplitterDistance = 180;
+            this.splitContainer2.TabIndex = 0;
             // 
             // listView1
             // 
@@ -663,17 +673,58 @@
             this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             this.listView1.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listView1_ItemSelectionChanged);
             // 
-            // listBox1
+            // label9
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(9, 18);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(36, 13);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Álbum";
+            // 
+            // botonModificarAlbum
+            // 
+            this.botonModificarAlbum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.botonModificarAlbum.Location = new System.Drawing.Point(111, 11);
+            this.botonModificarAlbum.Name = "botonModificarAlbum";
+            this.botonModificarAlbum.Size = new System.Drawing.Size(66, 26);
+            this.botonModificarAlbum.TabIndex = 8;
+            this.botonModificarAlbum.Text = "Modificar";
+            this.botonModificarAlbum.UseVisualStyleBackColor = true;
+            this.botonModificarAlbum.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // listBox2
+            // 
+            this.listBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(3, 44);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(206, 186);
-            this.listBox1.TabIndex = 0;
-            this.listBox1.SelectedValueChanged += new System.EventHandler(this.listBox1_SelectedValueChanged);
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(3, 44);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(200, 186);
+            this.listBox2.TabIndex = 6;
+            this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
+            this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
+            // 
+            // botonModificarCanciones
+            // 
+            this.botonModificarCanciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.botonModificarCanciones.Location = new System.Drawing.Point(137, 11);
+            this.botonModificarCanciones.Name = "botonModificarCanciones";
+            this.botonModificarCanciones.Size = new System.Drawing.Size(66, 26);
+            this.botonModificarCanciones.TabIndex = 9;
+            this.botonModificarCanciones.Text = "Modificar";
+            this.botonModificarCanciones.UseVisualStyleBackColor = true;
+            this.botonModificarCanciones.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(10, 18);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(57, 13);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "Canciones";
             // 
             // tabPage3
             // 
@@ -694,7 +745,7 @@
             this.listBoxBuscador.FormattingEnabled = true;
             this.listBoxBuscador.Location = new System.Drawing.Point(180, 9);
             this.listBoxBuscador.Name = "listBoxBuscador";
-            this.listBoxBuscador.Size = new System.Drawing.Size(421, 212);
+            this.listBoxBuscador.Size = new System.Drawing.Size(421, 225);
             this.listBoxBuscador.TabIndex = 1;
             this.listBoxBuscador.DoubleClick += new System.EventHandler(this.listBoxBuscador_DoubleClick);
             // 
@@ -799,52 +850,9 @@
             this.labelTrabajando.TabIndex = 9;
             this.labelTrabajando.Text = "     ";
             // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(3, 6);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.AutoScroll = true;
-            this.splitContainer1.Panel1.Controls.Add(this.listBox1);
-            this.splitContainer1.Panel1.Controls.Add(this.label8);
-            this.splitContainer1.Panel1.Controls.Add(this.botonModificarInterprete);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(606, 233);
-            this.splitContainer1.SplitterDistance = 212;
-            this.splitContainer1.TabIndex = 10;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.listView1);
-            this.splitContainer2.Panel1.Controls.Add(this.label9);
-            this.splitContainer2.Panel1.Controls.Add(this.botonModificarAlbum);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.listBox2);
-            this.splitContainer2.Panel2.Controls.Add(this.botonModificarCanciones);
-            this.splitContainer2.Panel2.Controls.Add(this.label10);
-            this.splitContainer2.Size = new System.Drawing.Size(390, 233);
-            this.splitContainer2.SplitterDistance = 180;
-            this.splitContainer2.TabIndex = 0;
-            // 
             // PantallaPrincipal
             // 
+            this.AllowDrop = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
@@ -877,11 +885,6 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTapaDeAlbum)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarReproduccion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarVolumen)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -891,6 +894,11 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
             this.splitContainer2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarReproduccion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarVolumen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
