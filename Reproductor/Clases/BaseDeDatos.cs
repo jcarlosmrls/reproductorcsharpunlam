@@ -466,6 +466,7 @@ namespace Reproductor
                     }
                     AgregarCancion(cancion, idAlbum);
                 }
+                ventana.MostrarInterpretes();
             }
         }
 
@@ -884,6 +885,19 @@ namespace Reproductor
                 MessageBox.Show("Error en la base de datos");
             }
             return lista;
+        }
+
+        public void AgregarListaDeReproduccion(string nombre, int id_perfil, string ruta)
+        {
+            OleDbCommand agregar = new OleDbCommand();
+
+            // Desarrollo del comando
+            agregar.Connection = dbConnection;
+            agregar.Parameters.Add("?", nombre);
+            agregar.Parameters.Add("?", int.Parse(Leer_Columna("Cancion", "Id_Cancion", "Path", ruta)[0]));
+            agregar.Parameters.Add("?", id_perfil);
+            agregar.CommandText = @"INSERT INTO ListaDeReproduccion ([Nombre], [Id_Cancion], [Id_Perfil]) VALUES (?, ?, ?)";
+            agregar.ExecuteNonQuery();
         }
 
         #endregion
