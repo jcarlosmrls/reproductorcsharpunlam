@@ -117,7 +117,9 @@ namespace Reproductor
 
         private void botonNuevaLista_Click(object sender, EventArgs e)
         {
-            //Crear nueva lista
+            ventana_principal.DetenerReproduccion();
+            listaDeReproduccion.Clear();
+            LimpiarLista();
         }
 
         private void botonBorrarLista_Click(object sender, EventArgs e)
@@ -183,7 +185,38 @@ namespace Reproductor
             comboBoxListas.Items.Clear();
             foreach (string lista in dBase.Leer_Columna("ListaDeReproduccion", "Nombre", "Id_Perfil", id_perfil))
             {
-                comboBoxListas.Items.Add(lista);
+                if(comboBoxListas.FindString(lista) < 0)
+                    comboBoxListas.Items.Add(lista);
+            }
+        }
+
+        private void comboBoxListas_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if ((comboBoxListas.SelectedIndex != -1) && ("" != comboBoxListas.SelectedItem.ToString()))
+            {
+                // Detengo la reproduccion
+                ventana_principal.DetenerReproduccion();
+
+                // Borro la lista de canciones actuales
+                listaDeReproduccion.Clear();
+
+                string id = dBase.Leer_Columna("Perfil", "Id_Perfil", "Nombre", ventana_principal.UsuarioActual.Configuracion.UltimoPerfilUsado)[0];
+
+                // Tomo de la base aquellas canciones de la lista seleccionada
+                foreach (string idCancion in dBase.Leer_Columna("ListaDeReproduccion", "Id_Cancion", "Nombre", comboBoxListas.SelectedItem.ToString()))
+                {
+                    // Una vez obtenidos los ids de las canciones que coinciden con el nombre de la lista indicado
+                    // Busco su ruta en la tabla canciones y creo la cancion, agregandola a la listas
+                    listaDeReproduccion.Add(new Cancion(dBase.Leer_Columna("Cancion", "Path", "Id_Cancion", idCancion.ToString())[0]));
+                    //MessageBox.Show(dBase.Leer_Columna("Cancion", "Path", "Id_Cancion", idCancion.ToString())[0])
+                }
+
+                // Muestro la lista de reproduccion
+                LimpiarLista();
+                CargarLista();
+
+                // Comienzo a reproducir la lista
+                ventana_principal.ReproducirCancion(0);
             }
         }
     }
