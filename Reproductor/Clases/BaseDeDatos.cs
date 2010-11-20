@@ -833,36 +833,6 @@ namespace Reproductor
             BorrarRegistro("Album", "Id_Album", idOrigen);
         }
 
-        /*public List<Cancion> BuscarPorAlbum(string nombre)
-        {
-            List<Cancion> canciones = new List<Cancion>();
-
-            foreach (string album in Leer_Columna("Album", "Id_Album", "Nombre", nombre))
-            {
-                foreach (string path in Leer_Columna("Cancion", "Path", "Id_Album", album))
-                {
-                    Cancion song = new Cancion(path);
-                    canciones.Add(song);
-                }
-            }
-            return canciones;
-        }
-
-        public List<Cancion> BuscarPorGenero(string genero)
-        {
-            List<Cancion> canciones = new List<Cancion>();
-
-            foreach (string album in Leer_Columna("Album", "Id_Album", "Genero", genero))
-            {
-                foreach (string path in Leer_Columna("Cancion", "Path", "Id_Album", album))
-                {
-                    Cancion song = new Cancion(path);
-                    canciones.Add(song);
-                }
-            }
-            return canciones;
-        }*/
-
         public List<string> Buscar(string cad)
         {
             List<string> lista = new List<string>();

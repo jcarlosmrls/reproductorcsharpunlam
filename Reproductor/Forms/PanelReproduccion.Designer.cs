@@ -46,6 +46,7 @@
             this.comboBoxListas.Name = "comboBoxListas";
             this.comboBoxListas.Size = new System.Drawing.Size(172, 21);
             this.comboBoxListas.TabIndex = 1;
+            this.comboBoxListas.SelectedValueChanged += new System.EventHandler(this.comboBoxListas_SelectedValueChanged);
             // 
             // label1
             // 

@@ -233,6 +233,7 @@ namespace Reproductor
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            object aux = listBox1.SelectedItem;
             if (idInterpreteBiblioteca != "")
             {
                 Modificar_Artista m = new Modificar_Artista(idInterpreteBiblioteca, dbReproductor);
@@ -241,6 +242,8 @@ namespace Reproductor
             if (listBox1.SelectedItems.Count == 1)
                 listBox1.Items.Remove(listBox1.SelectedItem);
             MostrarInterpretes();
+            if (listBox1.Items.Contains(aux))
+                listBox1.SelectedItem = aux;
         }
 
 
@@ -344,9 +347,9 @@ namespace Reproductor
 
         private void Buscar_Letra()
         {
+            buscar_letra = Thread.CurrentThread;
             try
             {
-                buscar_letra = Thread.CurrentThread;
                 if (cancionActual >= 0)
                 {
                     string letra = lista[cancionActual].GetLyrics();
@@ -472,30 +475,6 @@ namespace Reproductor
 
             List<string> canciones = dbReproductor.Buscar(busqueda);
 
-            /*canciones = dbReproductor.CancionesDeArtista(dbReproductor.InterpreteId(busqueda));
-            switch (criterio)
-            {
-                case "Intérprete":
-                    canciones = dbReproductor.CancionesDeArtista(dbReproductor.InterpreteId(busqueda));
-                    break;
-
-                case "Género":
-                    canciones = dbReproductor.BuscarPorGenero(busqueda);
-                    break;
-
-                case "Álbum":
-                    canciones = dbReproductor.BuscarPorAlbum(busqueda);
-                    break;
-
-                default: //Cancion
-                    foreach (string path in dbReproductor.Leer_Columna("Cancion", "Path", "Titulo", busqueda))
-                    {
-                        Cancion song = new Cancion(path);
-                        canciones.Add(song);
-                    }
-                    break;
-            };
-            */
             listBoxBuscador.Items.Clear();
 
             if (canciones.Count == 0)

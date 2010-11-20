@@ -59,7 +59,6 @@
             this.tabControlPrincipal = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
             this.textBoxAño = new System.Windows.Forms.TextBox();
             this.textBoxGenero = new System.Windows.Forms.TextBox();
             this.textBoxAlbum = new System.Windows.Forms.TextBox();
@@ -399,7 +398,6 @@
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.textBoxAño);
             this.panel1.Controls.Add(this.textBoxGenero);
             this.panel1.Controls.Add(this.textBoxAlbum);
@@ -414,15 +412,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(345, 157);
             this.panel1.TabIndex = 10;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(78, 126);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(132, 27);
-            this.button5.TabIndex = 14;
-            this.button5.Text = "Obtener!";
-            this.button5.UseVisualStyleBackColor = true;
             // 
             // textBoxAño
             // 
@@ -950,7 +939,6 @@
         private System.Windows.Forms.TextBox textBoxGenero;
         private System.Windows.Forms.TextBox textBoxAlbum;
         private System.Windows.Forms.TextBox textBoxArtista;
-        private System.Windows.Forms.Button button5;
         public System.Windows.Forms.Label labelUsuarioActual;
         private System.Windows.Forms.ListBox listBoxBuscador;
         public System.Windows.Forms.Label labelTrabajando;
