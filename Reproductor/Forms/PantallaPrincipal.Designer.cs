@@ -423,7 +423,6 @@
             this.button5.TabIndex = 14;
             this.button5.Text = "Obtener!";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // textBoxAño
             // 
@@ -542,6 +541,7 @@
             this.richTextBoxLetras.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBoxLetras.DetectUrls = false;
+            this.richTextBoxLetras.Font = new System.Drawing.Font("David", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBoxLetras.Location = new System.Drawing.Point(260, 170);
             this.richTextBoxLetras.Name = "richTextBoxLetras";
             this.richTextBoxLetras.ReadOnly = true;

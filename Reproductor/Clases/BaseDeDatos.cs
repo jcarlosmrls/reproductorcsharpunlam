@@ -279,14 +279,17 @@ namespace Reproductor
                 {
                     MessageBox.Show("Su sistema operativo no le permite acceder a alguno de los subdirectorios de la ruta que ha ingresado.\nLa actualización de la biblioteca se ha cancelado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                catch (System.IO.DirectoryNotFoundException)
+                {
+                    MessageBox.Show("Alguna de las rutas ingresadas no existen.");
+                }
             }
             return canciones;
         }
 
-
         private bool ExisteCancion(string path)
         {
-            if (Leer_Columna("Cancion", "Path", "Path", path).Length > 0)
+            if (Leer_Columna("Cancion", "Path", "Path", path).Length > 0 && File.Exists(path))
             {
                 return true;
             }
@@ -295,6 +298,7 @@ namespace Reproductor
                 return false;
             }
         }
+
 
         public string InterpreteId(string nombre)
         {
@@ -448,23 +452,28 @@ namespace Reproductor
             {
                 if (!ExisteCancion(path)) // controlo si el path de la cancion ya esta en la base de datos.
                 {
-
-                    Cancion cancion = new Cancion(path); //creo objeto cancion
-                    string idInterprete = InterpreteId(cancion.Artista);
-                    string idAlbum = AlbumId(cancion.Album, idInterprete); //obtengo los ids de album y interprete.
-                    if (idInterprete == "") // controlo si el interprete no existe
+                    try
                     {
-                        idInterprete = AgregarInterprete(cancion.Artista);
-                        idAlbum = AgregarAlbum(cancion, idInterprete);
-                    }
-                    else
-                    {
-                        if (idAlbum == "") //controlo si el album no existe
+                        Cancion cancion = new Cancion(path); //creo objeto cancion
+                        string idInterprete = InterpreteId(cancion.Artista);
+                        string idAlbum = AlbumId(cancion.Album, idInterprete); //obtengo los ids de album y interprete.
+                        if (idInterprete == "") // controlo si el interprete no existe
                         {
+                            idInterprete = AgregarInterprete(cancion.Artista);
                             idAlbum = AgregarAlbum(cancion, idInterprete);
                         }
+                        else
+                        {
+                            if (idAlbum == "") //controlo si el album no existe
+                            {
+                                idAlbum = AgregarAlbum(cancion, idInterprete);
+                            }
+                        }
+                        AgregarCancion(cancion, idAlbum);
                     }
-                    AgregarCancion(cancion, idAlbum);
+                    catch (Exception)
+                    {
+                    }
                 }
                 ventana.MostrarInterpretes();
             }
@@ -887,7 +896,7 @@ namespace Reproductor
             return lista;
         }
 
-        public void AgregarListaDeReproduccion(string nombre, int id_perfil, string ruta)
+        public void AgregarListaDeReproduccion(string nombre, string id_perfil, string ruta)
         {
             OleDbCommand agregar = new OleDbCommand();
 
@@ -895,7 +904,7 @@ namespace Reproductor
             agregar.Connection = dbConnection;
             agregar.Parameters.Add("?", nombre);
             agregar.Parameters.Add("?", int.Parse(Leer_Columna("Cancion", "Id_Cancion", "Path", ruta)[0]));
-            agregar.Parameters.Add("?", id_perfil);
+            agregar.Parameters.Add("?", int.Parse(id_perfil));
             agregar.CommandText = @"INSERT INTO ListaDeReproduccion ([Nombre], [Id_Cancion], [Id_Perfil]) VALUES (?, ?, ?)";
             agregar.ExecuteNonQuery();
         }
