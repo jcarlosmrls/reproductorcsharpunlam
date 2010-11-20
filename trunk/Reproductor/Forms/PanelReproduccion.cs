@@ -122,7 +122,15 @@ namespace Reproductor
 
         private void botonBorrarLista_Click(object sender, EventArgs e)
         {
-            //Borrar una lista de reproduccion
+            // Si hay una lista seleccionada
+            if (comboBoxListas.SelectedIndex == -1)
+            {
+                // Pido confirmacion
+                if(MessageBox.Show("¿Está seguro que desea borrar la lista seleccionada?", "Borrar Lista", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                {
+                    // Llamar a metodo borrar lista de reproduccion, parametros: combolistas[selectedindex] y perfil
+                }
+            }
         }
 
         private void botonGuardarLista_Click(object sender, EventArgs e)
@@ -135,17 +143,22 @@ namespace Reproductor
                 guardar.ShowDialog();
                 if (guardar.NombreDeLista != "")
                 {
-                    //TODO:
-                    //Crear un nuevo registro en la tabla ListaDeReproduccion con nombre Guardar.nombreDeLista,
-                    //y con el perfil actualmente utilizado. Obtener su id
+                    // Obtengo el id del skin
+                    int id = int.Parse(dBase.Leer_Columna("Perfil", "Id_Perfil", "Nombre", ventana_principal.UsuarioActual.Configuracion.UltimoPerfilUsado)[0]);
+
+                    // Por cada cancion, llamo al metodo para agregar un registro
                     foreach (Cancion song in listaDeReproduccion)
                     {
-                        //TODO:
-                        //Guardar la cancion en la base de datos con el id de la lista
+                        dBase.AgregarListaDeReproduccion(guardar.NombreDeLista, id, song.Ruta);
                     }
-                    //TODO:
-                    //Actualizar el combobox que contiene las listas
                     MessageBox.Show("Se guardó la lista con el nombre " + guardar.NombreDeLista);
+
+                    // Ahora actualizo el combobox
+                    comboBoxListas.Items.Clear();
+                    foreach (string lista in dBase.Leer_Columna("ListaDeReproduccion", "Nombre", "Id_Perfil", id.ToString()))
+                    {
+                        comboBoxListas.Items.Add(lista);
+                    }
                 }
             }
             else

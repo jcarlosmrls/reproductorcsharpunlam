@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PanelReproduccion));
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxListas = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.botonGuardarLista = new System.Windows.Forms.Button();
             this.botonBorrarLista = new System.Windows.Forms.Button();
@@ -37,15 +37,15 @@
             this.listBoxLista = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // comboBoxListas
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.comboBoxListas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(54, 42);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(172, 21);
-            this.comboBox1.TabIndex = 1;
+            this.comboBoxListas.FormattingEnabled = true;
+            this.comboBoxListas.Location = new System.Drawing.Point(54, 42);
+            this.comboBoxListas.Name = "comboBoxListas";
+            this.comboBoxListas.Size = new System.Drawing.Size(172, 21);
+            this.comboBoxListas.TabIndex = 1;
             // 
             // label1
             // 
@@ -115,7 +115,7 @@
             this.Controls.Add(this.botonBorrarLista);
             this.Controls.Add(this.botonNuevaLista);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxListas);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -135,7 +135,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxListas;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button botonNuevaLista;
         private System.Windows.Forms.Button botonBorrarLista;

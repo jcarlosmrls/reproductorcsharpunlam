@@ -404,6 +404,11 @@ namespace Reproductor
             ActualizarEtiquetas();
         }
 
+        public void DetenerReproduccion()
+        {
+            botonStop_Click(null, null);
+        }
+
         private void botonBuscar_Click(object sender, EventArgs e)
         {
             if ("" != txtBuscador.Text)

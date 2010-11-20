@@ -215,9 +215,9 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.CancelButton = this.botonCancelar;
             this.ClientSize = new System.Drawing.Size(360, 333);
+            this.Controls.Add(this.botonAgregarRuta);
             this.Controls.Add(this.gpBoxSkin);
             this.Controls.Add(this.botonQuitarRuta);
-            this.Controls.Add(this.botonAgregarRuta);
             this.Controls.Add(this.listBoxRutas);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboPerfiles);
