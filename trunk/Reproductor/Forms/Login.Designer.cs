@@ -57,7 +57,7 @@
             this.botonLogin.Location = new System.Drawing.Point(153, 226);
             this.botonLogin.Name = "botonLogin";
             this.botonLogin.Size = new System.Drawing.Size(76, 28);
-            this.botonLogin.TabIndex = 0;
+            this.botonLogin.TabIndex = 8;
             this.botonLogin.Text = "Login";
             this.botonLogin.UseVisualStyleBackColor = true;
             this.botonLogin.Click += new System.EventHandler(this.botonLogin_Click);
@@ -69,7 +69,7 @@
             this.botonCancelar.Location = new System.Drawing.Point(235, 226);
             this.botonCancelar.Name = "botonCancelar";
             this.botonCancelar.Size = new System.Drawing.Size(76, 28);
-            this.botonCancelar.TabIndex = 1;
+            this.botonCancelar.TabIndex = 9;
             this.botonCancelar.Text = "Cancelar";
             this.botonCancelar.UseVisualStyleBackColor = true;
             this.botonCancelar.Click += new System.EventHandler(this.botonCancelar_Click);
@@ -107,7 +107,7 @@
             this.txtPass2.Name = "txtPass2";
             this.txtPass2.PasswordChar = '*';
             this.txtPass2.Size = new System.Drawing.Size(154, 20);
-            this.txtPass2.TabIndex = 13;
+            this.txtPass2.TabIndex = 7;
             // 
             // txtPass1
             // 
@@ -115,7 +115,7 @@
             this.txtPass1.Name = "txtPass1";
             this.txtPass1.PasswordChar = '*';
             this.txtPass1.Size = new System.Drawing.Size(154, 20);
-            this.txtPass1.TabIndex = 12;
+            this.txtPass1.TabIndex = 6;
             // 
             // label3
             // 
@@ -149,7 +149,7 @@
             this.txtNick.Location = new System.Drawing.Point(111, 5);
             this.txtNick.Name = "txtNick";
             this.txtNick.Size = new System.Drawing.Size(154, 20);
-            this.txtNick.TabIndex = 7;
+            this.txtNick.TabIndex = 5;
             // 
             // panel2
             // 
@@ -167,7 +167,7 @@
             this.txtUsuario.Location = new System.Drawing.Point(71, 10);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(194, 20);
-            this.txtUsuario.TabIndex = 16;
+            this.txtUsuario.TabIndex = 2;
             this.txtUsuario.Text = "Invitado";
             // 
             // txtPassword
@@ -176,7 +176,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(194, 20);
-            this.txtPassword.TabIndex = 15;
+            this.txtPassword.TabIndex = 3;
             // 
             // labelPass
             // 
@@ -214,7 +214,7 @@
             this.UsuarioExistente.Location = new System.Drawing.Point(3, 3);
             this.UsuarioExistente.Name = "UsuarioExistente";
             this.UsuarioExistente.Size = new System.Drawing.Size(107, 17);
-            this.UsuarioExistente.TabIndex = 3;
+            this.UsuarioExistente.TabIndex = 1;
             this.UsuarioExistente.TabStop = true;
             this.UsuarioExistente.Text = "Usuario Existente";
             this.UsuarioExistente.UseVisualStyleBackColor = true;

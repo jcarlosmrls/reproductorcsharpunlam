@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.IO;
 using System.Configuration;
 using System.Threading;
+using System.Net.NetworkInformation;
 
 namespace Reproductor
 {
@@ -21,6 +22,7 @@ namespace Reproductor
         public string idCancionBiblioteca = "";
         public Thread hiloActualizar;
         public Thread buscador;
+        public Thread buscar_letra;
 
         private List<Cancion> lista;
         private int cancionActual;
@@ -129,6 +131,9 @@ namespace Reproductor
         {
             UsuarioActual.Configuracion.CargarPerfiles(ref dbReproductor, UsuarioActual.Id);
             UsuarioActual.Configuracion.CargarUltimaConfiguracion(ref dbReproductor, UsuarioActual.Id);
+
+            // Cargo las listas de reproduccion
+            panelReproduccion.CargarComboDeListas(dbReproductor.Leer_Columna("Perfil", "Id_Perfil", "Nombre", UsuarioActual.Configuracion.UltimoPerfilUsado)[0]);
         }
 
         private void AplicarConfiguracionDeUsuario()
@@ -178,7 +183,7 @@ namespace Reproductor
             catch(Exception ex)
             {
                 botonStop_Click(null, null);
-                MessageBox.Show(ex.Message, "Excepcion en el timer");
+                //MessageBox.Show(ex.Message, "Excepcion en el timer");
             }
         }
 
@@ -230,10 +235,14 @@ namespace Reproductor
         {
             if (idInterpreteBiblioteca != "")
             {
-                Modificar_Artista m = new Modificar_Artista(idInterpreteBiblioteca,dbReproductor);
+                Modificar_Artista m = new Modificar_Artista(idInterpreteBiblioteca, dbReproductor);
                 m.ShowDialog();
             }
+            if (listBox1.SelectedItems.Count == 1)
+                listBox1.Items.Remove(listBox1.SelectedItem);
+            MostrarInterpretes();
         }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -274,6 +283,11 @@ namespace Reproductor
                 if (lista.Count != 0)
                     ObtenerImagen();
                 panelReproduccion.SeleccionarCancion(cancionActual);
+                if (buscar_letra != null && buscar_letra.ThreadState == ThreadState.Running)
+                    buscar_letra.Abort();
+                ThreadStart comienzo = new ThreadStart(Buscar_Letra);
+                buscar_letra = new Thread(comienzo);
+                buscar_letra.Start();
             }
         }
 
@@ -294,6 +308,11 @@ namespace Reproductor
                 timerBarra.Enabled = true;
                 ActualizarEtiquetas();
                 panelReproduccion.SeleccionarCancion(cancionActual);
+                if (buscar_letra != null && buscar_letra.ThreadState == ThreadState.Running)
+                    buscar_letra.Abort();
+                ThreadStart comienzo = new ThreadStart(Buscar_Letra);
+                buscar_letra = new Thread(comienzo);
+                buscar_letra.Start();
             }
         }
 
@@ -311,8 +330,43 @@ namespace Reproductor
                     player.Open(lista[cancionActual].Ruta.ToString());
                     player.Play(false);
                     timerBarra.Enabled = true;
+
+                    // Creo hilo para buscar letra de canciones
+                    if (buscar_letra != null && buscar_letra.ThreadState == ThreadState.Running)
+                        buscar_letra.Abort();
+                    ThreadStart comienzo = new ThreadStart(Buscar_Letra);
+                    buscar_letra = new Thread(comienzo);
+                    buscar_letra.Start();
                 }
                 panelReproduccion.SeleccionarCancion(cancionActual);
+            }
+        }
+
+        private void Buscar_Letra()
+        {
+            try
+            {
+                buscar_letra = Thread.CurrentThread;
+                if (cancionActual >= 0)
+                {
+                    string letra = lista[cancionActual].GetLyrics();
+
+                    if (letra.Equals("Not found"))
+                    {
+                        richTextBoxLetras.Text = "No se encontraron letras para la cancion";
+                    }
+                    else
+                    {
+                        richTextBoxLetras.Text = letra;
+                    }
+                    richTextBoxLetras.SelectAll();
+                    richTextBoxLetras.SelectionAlignment = HorizontalAlignment.Center;
+                }
+                buscar_letra = null;
+            }
+            catch (Exception)
+            {
+                richTextBoxLetras.Text = "No hay conexion a internet para buscar las letras.";
             }
         }
 
@@ -372,30 +426,13 @@ namespace Reproductor
             {
                 if (buscador != null)
                     buscador.Abort();
+                if (buscar_letra != null)
+                    buscar_letra.Abort();
                 dbReproductor.Close();
                 GuardarConfiguracionDeUsuario();
             }
         }
         
-        private void button5_Click(object sender, EventArgs e)
-        {
-            if (cancionActual >= 0)
-            {
-                string letra = lista[cancionActual].GetLyrics();
-
-                if (letra.Equals("Not found"))
-                {
-                    richTextBoxLetras.Text = "No se encontraron letras para la cancion";
-                }
-                else
-                {
-                    richTextBoxLetras.Text = letra;
-                }
-                richTextBoxLetras.SelectAll();
-                richTextBoxLetras.SelectionAlignment = HorizontalAlignment.Center;
-            }
-        }
-
         public void ReproducirCancion(int num)
         {
             botonStop_Click(null, null);
@@ -481,10 +518,11 @@ namespace Reproductor
 
         public void MostrarInterpretes()    //completa el listbox1 con la lista de interpretes de la base de datos
         {
-            listBox1.Items.Clear();
+            //listBox1.Items.Clear();
             foreach (string interprete in dbReproductor.Leer_Columna("Interprete", "Nombre"))
             {
-                listBox1.Items.Add(interprete);
+                if (!listBox1.Items.Contains(interprete))
+                    listBox1.Items.Add(interprete);
             }
             listBox1.Sorted = true;
         }
@@ -514,6 +552,7 @@ namespace Reproductor
                 if (canciones.Count == 0)
                 {
                     dbReproductor.BorrarRegistro("Interprete", "Id", idInterpreteBiblioteca);
+                    listBox1.Items.Remove(listBox1.SelectedItem);
                     idInterpreteBiblioteca = "";
                 }
                 else

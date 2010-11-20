@@ -144,7 +144,7 @@ namespace Reproductor
                 if (guardar.NombreDeLista != "")
                 {
                     // Obtengo el id del skin
-                    int id = int.Parse(dBase.Leer_Columna("Perfil", "Id_Perfil", "Nombre", ventana_principal.UsuarioActual.Configuracion.UltimoPerfilUsado)[0]);
+                    string id = dBase.Leer_Columna("Perfil", "Id_Perfil", "Nombre", ventana_principal.UsuarioActual.Configuracion.UltimoPerfilUsado)[0];
 
                     // Por cada cancion, llamo al metodo para agregar un registro
                     foreach (Cancion song in listaDeReproduccion)
@@ -154,11 +154,7 @@ namespace Reproductor
                     MessageBox.Show("Se guardó la lista con el nombre " + guardar.NombreDeLista);
 
                     // Ahora actualizo el combobox
-                    comboBoxListas.Items.Clear();
-                    foreach (string lista in dBase.Leer_Columna("ListaDeReproduccion", "Nombre", "Id_Perfil", id.ToString()))
-                    {
-                        comboBoxListas.Items.Add(lista);
-                    }
+                    CargarComboDeListas(id);
                 }
             }
             else
@@ -179,6 +175,15 @@ namespace Reproductor
             if (listBoxLista.SelectedItems.Count == 1)
             {
                 ventana_principal.ReproducirCancion(listBoxLista.SelectedIndex);
+            }
+        }
+
+        public void CargarComboDeListas(string id_perfil)
+        {
+            comboBoxListas.Items.Clear();
+            foreach (string lista in dBase.Leer_Columna("ListaDeReproduccion", "Nombre", "Id_Perfil", id_perfil))
+            {
+                comboBoxListas.Items.Add(lista);
             }
         }
     }
