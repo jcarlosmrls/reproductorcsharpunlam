@@ -879,6 +879,45 @@ namespace Reproductor
             agregar.ExecuteNonQuery();
         }
 
+        public void ModificarConfiguracionesSkin(string dato, string usuario)
+        {
+            OleDbCommand cmd = new OleDbCommand();
+
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = dbConnection;
+            //cmd.Parameters.Add("?", campo);
+            cmd.Parameters.Add("?", dato);
+            cmd.Parameters.Add("?", usuario);
+            cmd.CommandText = "UPDATE Configuraciones SET Skin = ? WHERE Id_Usuario = ?";
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public void ModificarConfiguracionesPerfil(string dato, string usuario)
+        {
+            OleDbCommand cmd = new OleDbCommand();
+
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = dbConnection;
+            //cmd.Parameters.Add("?", campo);
+            cmd.Parameters.Add("?", dato);
+            cmd.Parameters.Add("?", usuario);
+            cmd.CommandText = "UPDATE Configuraciones SET Perfil = ? WHERE Id_Usuario = ?";
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public void BorrarListaDeReproduccion(string nombre)
+        {
+            OleDbCommand cmd = new OleDbCommand();
+
+            cmd.Parameters.Add("?", nombre);
+            cmd.Connection = dbConnection;
+            cmd.CommandText = "DELETE FROM ListaDeReproduccion WHERE Nombre = ?";
+
+            cmd.ExecuteNonQuery();
+        }
+
         #endregion
     }
 }

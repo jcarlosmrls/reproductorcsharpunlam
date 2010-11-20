@@ -65,8 +65,6 @@ namespace Reproductor
         {
             //Abro la base de datos
             dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + UsuarioActual.Configuracion.Path);
-            //dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=C:\Universidad Fabio\Proyectos Visual Studio\Reproductor\Base_Reproductor.mdb");
-            //dbReproductor.Open(ConfigurationManager.ConnectionStrings["StringDeConexion"].ConnectionString.ToString());
 
             //Inicializo variables, etc
             panelReproduccion.Asignar(this, ref dbReproductor, ref lista);
@@ -138,10 +136,14 @@ namespace Reproductor
 
         private void AplicarConfiguracionDeUsuario()
         {
+            if (UsuarioActual.Configuracion.UltimoSkinUsado != "Normal")
+                CambiarASkin(UsuarioActual.Configuracion.UltimoSkinUsado, Color.White, Color.White);
         }
 
         private void GuardarConfiguracionDeUsuario()
         {
+            dbReproductor.ModificarConfiguracionesSkin(UsuarioActual.Configuracion.UltimoSkinUsado, UsuarioActual.Id);
+            dbReproductor.ModificarConfiguracionesPerfil(UsuarioActual.Configuracion.UltimoPerfilUsado, UsuarioActual.Id);
         }
 
         private void opcionesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -270,7 +272,7 @@ namespace Reproductor
         {
             trackBarReproduccion.Value = 0;
             timerBarra.Enabled = false;
-            if (cancionActual != -1)
+            if (lista.Count > 0)
             {
                 player.Close();
                 cancionActual++;
@@ -298,7 +300,7 @@ namespace Reproductor
         {
             trackBarReproduccion.Value = 0;
             timerBarra.Enabled = false;
-            if(cancionActual != -1)
+            if (lista.Count > 0)
             {
                 player.Close();
                 cancionActual--;
@@ -321,7 +323,7 @@ namespace Reproductor
 
         private void botonPlay_Click(object sender, EventArgs e)
         {
-            if (cancionActual != -1)
+            if (lista.Count > 0)
             {
                 if (player.Reproduciendo())
                 {
@@ -410,7 +412,7 @@ namespace Reproductor
 
         private void trackBarReproduccion_MouseUp(object sender, MouseEventArgs e)
         {
-            if (cancionActual >= 0)
+            if (cancionActual >= 0 && lista.Count > 0)
             {
                 player.Seek((ulong)trackBarReproduccion.Value, (ulong)lista[cancionActual].Duracion.TotalMilliseconds);
             }
@@ -421,9 +423,8 @@ namespace Reproductor
             if ((hiloActualizar != null) && hiloActualizar.IsAlive)
             {
                 hiloActualizar.Abort();
-
-                dbReproductor.Close();
                 GuardarConfiguracionDeUsuario();
+                dbReproductor.Close();
             }
             else
             {
@@ -431,8 +432,8 @@ namespace Reproductor
                     buscador.Abort();
                 if (buscar_letra != null)
                     buscar_letra.Abort();
-                dbReproductor.Close();
                 GuardarConfiguracionDeUsuario();
+                dbReproductor.Close();
             }
         }
         
@@ -968,6 +969,26 @@ namespace Reproductor
         private void listBox1_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = DragDropEffects.Copy;
+        }
+
+        private void reproducirPausarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            botonPlay_Click(null, null);
+        }
+
+        private void detenerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            botonStop_Click(null, null);
+        }
+
+        private void siguienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            botonSiguiente_Click(null, null);
+        }
+
+        private void anteriorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            botonAnterior_Click(null, null);
         }
     }
 }

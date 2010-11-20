@@ -125,12 +125,15 @@ namespace Reproductor
         private void botonBorrarLista_Click(object sender, EventArgs e)
         {
             // Si hay una lista seleccionada
-            if (comboBoxListas.SelectedIndex == -1)
+            if (comboBoxListas.SelectedIndex != -1)
             {
                 // Pido confirmacion
                 if(MessageBox.Show("¿Está seguro que desea borrar la lista seleccionada?", "Borrar Lista", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                 {
-                    // Llamar a metodo borrar lista de reproduccion, parametros: combolistas[selectedindex] y perfil
+                    string lista = comboBoxListas.SelectedItem.ToString();
+                    ventana_principal.DetenerReproduccion();
+                    dBase.BorrarListaDeReproduccion(lista);
+                    comboBoxListas.Items.Remove(lista);
                 }
             }
         }
