@@ -879,7 +879,7 @@ namespace Reproductor
             agregar.ExecuteNonQuery();
         }
 
-        public void ModificarConfiguracionesSkin(string dato, string usuario)
+        public void ModificarConfiguracionesSkin(string dato, string usuario, string colorClaro, string colorOscuro)
         {
             OleDbCommand cmd = new OleDbCommand();
 
@@ -887,8 +887,10 @@ namespace Reproductor
             cmd.Connection = dbConnection;
             //cmd.Parameters.Add("?", campo);
             cmd.Parameters.Add("?", dato);
+            cmd.Parameters.Add("?", colorClaro);
+            cmd.Parameters.Add("?", colorOscuro);
             cmd.Parameters.Add("?", usuario);
-            cmd.CommandText = "UPDATE Configuraciones SET Skin = ? WHERE Id_Usuario = ?";
+            cmd.CommandText = "UPDATE Configuraciones SET Skin = ?, ColorClaro = ?, ColorOscuro = ? WHERE Id_Usuario = ?";
 
             cmd.ExecuteNonQuery();
         }

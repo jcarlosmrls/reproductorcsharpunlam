@@ -136,13 +136,30 @@ namespace Reproductor
         {
             string[] aux;
             
-            //Leo el ultimo skin usado
+            // Leo el ultimo skin usado
             aux = db.Leer_Columna("Configuraciones", "Skin", "Id_Usuario", idUsuario);
             skin = aux[0];
 
-            //Leo el ultimo perfil usado
+            // Leo el ultimo perfil usado
             aux = db.Leer_Columna("Configuraciones", "Perfil", "Id_Usuario", idUsuario);
             perfil = aux[0];
+
+            // Si no es el skin por defecto, cargo los colores
+            if (skin != "Normal")
+            {
+                // Leo el ultimo colorClaro usado
+                aux = db.Leer_Columna("Configuraciones", "ColorClaro", "Id_Usuario", idUsuario);
+                colorClaro = Color.FromName(aux[0]);
+
+                // Leo el ultimo colorOscuro usado
+                aux = db.Leer_Columna("Configuraciones", "ColorOscuro", "Id_Usuario", idUsuario);
+                colorOscuro = Color.FromName(aux[0]);
+            }
+            else
+            {
+                colorClaro = Color.FromName("Control");
+                colorOscuro = Color.FromName("Control");
+            }
         }
     }
 }
