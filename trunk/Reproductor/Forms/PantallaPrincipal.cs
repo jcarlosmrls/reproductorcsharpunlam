@@ -63,28 +63,27 @@ namespace Reproductor
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Abro la base de datos
+            // Abro la base de datos
             dbReproductor.Open(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + UsuarioActual.Configuracion.Path);
 
-            //Inicializo variables, etc
+            // Inicializo variables, etc
             panelReproduccion.Asignar(this, ref dbReproductor, ref lista);
             panelReproduccion.CambiarPosicion();
             cancionActual = -1;
             trackBarVolumen.Value = player.Volume;
 
-            //Muestro el login
+            // Muestro el login
             MostrarLogin();
 
-            //Si es nuevo usuario, debo
-            //crear la configuracion por defecto
+            // Si es nuevo usuario, debo
+            // crear la configuracion por defecto
             if (UsuarioActual.IsNewUser)
             {
                 CrearConfiguracionPorDefecto();
             }
-            else //Sino, debo leer la configuracion
-            {
-                CargarConfiguracionDeUsuario();
-            }
+
+            // Cargo y aplico la configuracion
+            CargarConfiguracionDeUsuario();
             AplicarConfiguracionDeUsuario();
         }
 
