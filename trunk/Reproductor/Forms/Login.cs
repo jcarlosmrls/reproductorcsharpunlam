@@ -14,6 +14,7 @@ namespace Reproductor
         #region Variables
 
         private Usuario usuarioActual;
+        private DialogResult estado;
 
         #endregion
 
@@ -26,6 +27,15 @@ namespace Reproductor
                 return usuarioActual;
             }
         }
+
+        public DialogResult Estado
+        {
+            get
+            {
+                return estado;
+            }
+        }
+
         #endregion
 
         #region Metodos
@@ -39,6 +49,8 @@ namespace Reproductor
 
         private void botonLogin_Click(object sender, EventArgs e)
         {
+            estado = DialogResult.OK;
+
             //Si elijo loguearme
             if (UsuarioExistente.Checked)
             {
@@ -68,6 +80,7 @@ namespace Reproductor
 
         private void botonCancelar_Click(object sender, EventArgs e)
         {
+            estado = DialogResult.Cancel;
             Application.Exit();  
         }
 

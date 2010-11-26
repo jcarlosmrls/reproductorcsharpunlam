@@ -75,7 +75,7 @@ namespace Reproductor
             // Muestro el login
             MostrarLogin();
 
-            if (login.DialogResult != DialogResult.Cancel)
+            if (login.Estado != DialogResult.Cancel)
             {
                 // Si es nuevo usuario, debo
                 // crear la configuracion por defecto
@@ -97,7 +97,7 @@ namespace Reproductor
             do
             {
                 login.ShowDialog();
-                if (login.DialogResult != DialogResult.Cancel)
+                if (login.Estado != DialogResult.Cancel)
                 {
                     //Si no es nuevo usuario
                     if (!UsuarioActual.IsNewUser)
