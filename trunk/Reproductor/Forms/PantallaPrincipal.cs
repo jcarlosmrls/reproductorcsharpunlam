@@ -136,12 +136,12 @@ namespace Reproductor
         private void AplicarConfiguracionDeUsuario()
         {
             if (UsuarioActual.Configuracion.UltimoSkinUsado != "Normal")
-                CambiarASkin(UsuarioActual.Configuracion.UltimoSkinUsado, Color.White, Color.White);
+                CambiarASkin(UsuarioActual.Configuracion.UltimoSkinUsado, UsuarioActual.Configuracion.ColorClaro, UsuarioActual.Configuracion.ColorOscuro);
         }
 
         private void GuardarConfiguracionDeUsuario()
         {
-            dbReproductor.ModificarConfiguracionesSkin(UsuarioActual.Configuracion.UltimoSkinUsado, UsuarioActual.Id);
+            dbReproductor.ModificarConfiguracionesSkin(UsuarioActual.Configuracion.UltimoSkinUsado, UsuarioActual.Id, UsuarioActual.Configuracion.ColorClaro.Name, UsuarioActual.Configuracion.ColorOscuro.Name);
             dbReproductor.ModificarConfiguracionesPerfil(UsuarioActual.Configuracion.UltimoPerfilUsado, UsuarioActual.Id);
         }
 
