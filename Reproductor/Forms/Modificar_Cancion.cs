@@ -41,42 +41,49 @@ namespace Reproductor
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (txtTitulo.Text != titulo || txtNumero.Text != numero || txtAlbum.Text != album || txtUbicacion.Text != path)
+            try
             {
-                if (txtUbicacion.Text != path)
+                if (txtTitulo.Text != titulo || txtNumero.Text != numero || txtAlbum.Text != album || txtUbicacion.Text != path)
                 {
-                    if (File.Exists(txtUbicacion.Text))// preguntar por esto
+                    if (txtUbicacion.Text != path)
                     {
-                        //falta comprobar si es un archivo de musica
-                        path = txtUbicacion.Text;
+                        if (File.Exists(txtUbicacion.Text))// preguntar por esto
+                        {
+                            //falta comprobar si es un archivo de musica
+                            path = txtUbicacion.Text;
+                        }
+                        else
+                        {
+                            MessageBox.Show("La ruta ingresada no especifica un archivo valido");
+                        }
                     }
-                    else
+                    Cancion cancion = new Cancion(path);
+                    if (txtAlbum.Text != album)
                     {
-                        MessageBox.Show("La ruta ingresada no especifica un archivo valido");
+                        string[] aux = db.Leer_Columna("Album", "Id_Album", "Nombre", txtAlbum.Text);
+                        if (aux.Length == 0)
+                        {
+                            MessageBox.Show("El album no existe");
+                            cancion.Album = txtAlbum.Text;
+                            cancion.Save();
+                            idAlbum = db.AgregarAlbum(cancion, idInterprete);
+                        }
+                        else
+                            idAlbum = aux[0];
                     }
+                    db.ModificarCancion(idCancion, txtTitulo.Text, idAlbum, txtNumero.Text, path);
+                    cancion.Nombre = txtTitulo.Text;
+                    cancion.Album = txtAlbum.Text;
+                    cancion.NumeroDeCancion = uint.Parse(txtNumero.Text);
+                    cancion.Save();
                 }
-                Cancion cancion = new Cancion(path);
-                if (txtAlbum.Text != album)
-                {
-                    string[] aux = db.Leer_Columna("Album", "Id_Album", "Nombre", txtAlbum.Text);
-                    if (aux.Length == 0)
-                    {
-                        MessageBox.Show("El album no existe");
-                        cancion.Album = txtAlbum.Text;
-                        cancion.Save();
-                        idAlbum = db.AgregarAlbum(cancion, idInterprete);
-                    }
-                    else
-                        idAlbum = aux[0];
-                }
-                db.ModificarCancion(idCancion, txtTitulo.Text, idAlbum, txtNumero.Text, path);
-                cancion.Nombre = txtTitulo.Text;
-                cancion.Album = txtAlbum.Text;
-                cancion.NumeroDeCancion = uint.Parse(txtNumero.Text);
-                cancion.Save();
+                this.Close();
+                //hay q actualizar las canciones en la biblioteca
             }
-            this.Close();
-            //hay q actualizar las canciones en la biblioteca
+            catch (Exception)
+            {
+                MessageBox.Show("Los cambios seran aplicados cuando la cancion deje de estar en reproduccion.");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

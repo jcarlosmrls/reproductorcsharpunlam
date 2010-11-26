@@ -45,60 +45,67 @@ namespace Reproductor
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text != nombre || txtInterprete.Text != interprete || txtGenero.Text != genero || txtAnio.Text != anio || imagenModificada)
+            try
             {
-                if (txtInterprete.Text != interprete)
+                if (txtNombre.Text != nombre || txtInterprete.Text != interprete || txtGenero.Text != genero || txtAnio.Text != anio || imagenModificada)
                 {
-                    string[] aux = db.Leer_Columna("Interprete", "Id", "Nombre", txtInterprete.Text);
-                    if (aux.Length == 0)
+                    if (txtInterprete.Text != interprete)
                     {
-                        idInterprete = db.AgregarInterprete(txtInterprete.Text);
-                    }
-                    else
-                        idInterprete = aux[0];
-                }
-                if (txtNombre.Text != nombre)
-                {
-                    string[] albunes = db.Leer_Columna("Album", "Id_Album", "Nombre", txtNombre.Text);
-                    if (albunes.Length > 0)
-                    {
-                        if (MessageBox.Show("Se ha encontrado otro album con el mismo nombre.\n¿Desea combinarlos?", "Album repetido", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        string[] aux = db.Leer_Columna("Interprete", "Id", "Nombre", txtInterprete.Text);
+                        if (aux.Length == 0)
                         {
-                            db.CombinarAlbunes(idAlbum, albunes[0]);
-                            idAlbum = albunes[0];
-                            canciones = db.CancionesDeAlbum(idAlbum, idInterprete);
+                            idInterprete = db.AgregarInterprete(txtInterprete.Text);
                         }
                         else
-                            txtNombre.Text = nombre;
+                            idInterprete = aux[0];
                     }
-                }
+                    if (txtNombre.Text != nombre)
+                    {
+                        string[] albunes = db.Leer_Columna("Album", "Id_Album", "Nombre", txtNombre.Text);
+                        if (albunes.Length > 0)
+                        {
+                            if (MessageBox.Show("Se ha encontrado otro album con el mismo nombre.\n¿Desea combinarlos?", "Album repetido", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            {
+                                db.CombinarAlbunes(idAlbum, albunes[0]);
+                                idAlbum = albunes[0];
+                                canciones = db.CancionesDeAlbum(idAlbum, idInterprete);
+                            }
+                            else
+                                txtNombre.Text = nombre;
+                        }
+                    }
 
-                // Verifico si se cambio la imagen
-                if (imagenModificada)
-                {
+                    // Verifico si se cambio la imagen
+                    if (imagenModificada)
+                    {
+                        for (int x = 0; x < canciones.Count; x++)
+                        {
+                            canciones[x].CambiarImagen(openFileDialog1.FileName);
+                        }
+                    }
+
+                    db.ModificarAlbum(idAlbum, txtNombre.Text, idInterprete, txtGenero.Text, txtAnio.Text);
                     for (int x = 0; x < canciones.Count; x++)
                     {
-                        canciones[x].CambiarImagen(openFileDialog1.FileName);
+                        canciones[x].Album = txtNombre.Text;
+                        canciones[x].Artista = txtInterprete.Text;
+                        canciones[x].Año = uint.Parse(txtAnio.Text);
+                        canciones[x].Genero = txtGenero.Text;
+
+                        // Guardo los cambios
+                        canciones[x].Save();
                     }
+                    this.Close();
+                    // hay q actualizar los artistas y albunes en la biblioteca
                 }
-
-                db.ModificarAlbum(idAlbum, txtNombre.Text, idInterprete, txtGenero.Text, txtAnio.Text);
-                for (int x = 0; x < canciones.Count; x++)
+                else
                 {
-                    canciones[x].Album = txtNombre.Text;
-                    canciones[x].Artista = txtInterprete.Text;
-                    canciones[x].Año = uint.Parse(txtAnio.Text);
-                    canciones[x].Genero = txtGenero.Text;
-
-                    // Guardo los cambios
-                    canciones[x].Save();
+                    this.Close();
                 }
-                this.Close();
-                // hay q actualizar los artistas y albunes en la biblioteca
             }
-            else
+            catch (Exception)
             {
-                this.Close();
+                MessageBox.Show("Los cambios serán aplicados cuando el album actual no este en reproduccion.");
             }
         }
 

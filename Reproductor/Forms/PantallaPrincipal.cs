@@ -75,16 +75,19 @@ namespace Reproductor
             // Muestro el login
             MostrarLogin();
 
-            // Si es nuevo usuario, debo
-            // crear la configuracion por defecto
-            if (UsuarioActual.IsNewUser)
+            if (login.DialogResult != DialogResult.Cancel)
             {
-                CrearConfiguracionPorDefecto();
-            }
+                // Si es nuevo usuario, debo
+                // crear la configuracion por defecto
+                if (UsuarioActual.IsNewUser)
+                {
+                    CrearConfiguracionPorDefecto();
+                }
 
-            // Cargo y aplico la configuracion
-            CargarConfiguracionDeUsuario();
-            AplicarConfiguracionDeUsuario();
+                // Cargo y aplico la configuracion
+                CargarConfiguracionDeUsuario();
+                AplicarConfiguracionDeUsuario();
+            }
         }
 
         private void MostrarLogin()
@@ -94,26 +97,28 @@ namespace Reproductor
             do
             {
                 login.ShowDialog();
-
-                //Si no es nuevo usuario
-                if (!UsuarioActual.IsNewUser)
+                if (login.DialogResult != DialogResult.Cancel)
                 {
-                    //Si entro como invitado, o si el Login es correcto
-                    if (("Invitado" == UsuarioActual.Id) ||
-                        (dbReproductor.ValidarLogin(UsuarioActual.Id, UsuarioActual.Password)))
+                    //Si no es nuevo usuario
+                    if (!UsuarioActual.IsNewUser)
                     {
-                        loggedIn = true;
+                        //Si entro como invitado, o si el Login es correcto
+                        if (("Invitado" == UsuarioActual.Id) ||
+                            (dbReproductor.ValidarLogin(UsuarioActual.Id, UsuarioActual.Password)))
+                        {
+                            loggedIn = true;
+                        }
+                    }
+                    else if (UsuarioActual.IsNewUser)   //Si es nuevo usuario
+                    {
+                        //Si no hubo error al registrar un usuario nuevo
+                        if (dbReproductor.AddUser(UsuarioActual.Id, UsuarioActual.Password) != -1)
+                        {
+                            loggedIn = true;
+                        }
                     }
                 }
-                else if(UsuarioActual.IsNewUser)   //Si es nuevo usuario
-                {
-                    //Si no hubo error al registrar un usuario nuevo
-                    if (dbReproductor.AddUser(UsuarioActual.Id, UsuarioActual.Password) != -1)
-                    {
-                        loggedIn = true;
-                    }
-                }
-            } while ( !loggedIn );
+            } while ( !loggedIn && (login.DialogResult != DialogResult.Cancel));
             SetUserLabel(login.UsuarioActual.Id);
         }
 
@@ -419,21 +424,23 @@ namespace Reproductor
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if ((hiloActualizar != null) && hiloActualizar.IsAlive)
+            if (login.DialogResult != DialogResult.Cancel)
             {
-                hiloActualizar.Abort();
-                GuardarConfiguracionDeUsuario();
-                dbReproductor.Close();
+                if ((hiloActualizar != null) && hiloActualizar.IsAlive)
+                {
+                    hiloActualizar.Abort();
+                    GuardarConfiguracionDeUsuario();
+                }
+                else
+                {
+                    if (buscador != null)
+                        buscador.Abort();
+                    if (buscar_letra != null)
+                        buscar_letra.Abort();
+                    GuardarConfiguracionDeUsuario();
+                }
             }
-            else
-            {
-                if (buscador != null)
-                    buscador.Abort();
-                if (buscar_letra != null)
-                    buscar_letra.Abort();
-                GuardarConfiguracionDeUsuario();
-                dbReproductor.Close();
-            }
+            dbReproductor.Close();
         }
         
         public void ReproducirCancion(int num)
@@ -442,6 +449,7 @@ namespace Reproductor
             cancionActual = num;
             botonPlay_Click(null, null);
             ActualizarEtiquetas();
+            ObtenerImagen();
         }
 
         public void DetenerReproduccion()
