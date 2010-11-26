@@ -173,6 +173,22 @@ namespace Reproductor
             }
         }
 
+        ~Cancion()
+        {
+            try
+            {
+                if (memoria != null)
+                    memoria.Close();
+                if (imagen != null)
+                    imagen.Dispose();
+                archivo.Dispose();
+                consulta.Close();
+            }
+            catch(Exception)
+            {
+            }
+        }
+
         public string GetLyrics()
         {
             resultado = consulta.getSong(archivo.Tag.FirstAlbumArtist, archivo.Tag.Title);
