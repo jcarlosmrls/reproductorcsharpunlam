@@ -33,19 +33,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtUbicacion = new System.Windows.Forms.TextBox();
             this.txtTitulo = new System.Windows.Forms.TextBox();
             this.txtAlbum = new System.Windows.Forms.TextBox();
             this.txtNumero = new System.Windows.Forms.TextBox();
-            this.botonExaminar = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // botonCancelar
             // 
+            this.botonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.botonCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.botonCancelar.Location = new System.Drawing.Point(193, 169);
+            this.botonCancelar.Location = new System.Drawing.Point(144, 118);
             this.botonCancelar.Name = "botonCancelar";
             this.botonCancelar.Size = new System.Drawing.Size(64, 28);
             this.botonCancelar.TabIndex = 7;
@@ -55,7 +53,8 @@
             // 
             // botonAceptar
             // 
-            this.botonAceptar.Location = new System.Drawing.Point(123, 169);
+            this.botonAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.botonAceptar.Location = new System.Drawing.Point(74, 118);
             this.botonAceptar.Name = "botonAceptar";
             this.botonAceptar.Size = new System.Drawing.Size(64, 28);
             this.botonAceptar.TabIndex = 6;
@@ -90,22 +89,6 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Número:";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 118);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Ubicación:";
-            // 
-            // txtUbicacion
-            // 
-            this.txtUbicacion.Location = new System.Drawing.Point(16, 143);
-            this.txtUbicacion.Name = "txtUbicacion";
-            this.txtUbicacion.Size = new System.Drawing.Size(181, 20);
-            this.txtUbicacion.TabIndex = 12;
-            // 
             // txtTitulo
             // 
             this.txtTitulo.Location = new System.Drawing.Point(71, 31);
@@ -127,16 +110,6 @@
             this.txtNumero.Size = new System.Drawing.Size(131, 20);
             this.txtNumero.TabIndex = 15;
             // 
-            // botonExaminar
-            // 
-            this.botonExaminar.Location = new System.Drawing.Point(131, 113);
-            this.botonExaminar.Name = "botonExaminar";
-            this.botonExaminar.Size = new System.Drawing.Size(66, 22);
-            this.botonExaminar.TabIndex = 16;
-            this.botonExaminar.Text = "Examinar";
-            this.botonExaminar.UseVisualStyleBackColor = true;
-            this.botonExaminar.Click += new System.EventHandler(this.button3_Click);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -147,13 +120,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.botonCancelar;
-            this.ClientSize = new System.Drawing.Size(264, 208);
-            this.Controls.Add(this.botonExaminar);
+            this.ClientSize = new System.Drawing.Size(215, 157);
             this.Controls.Add(this.txtNumero);
             this.Controls.Add(this.txtAlbum);
             this.Controls.Add(this.txtTitulo);
-            this.Controls.Add(this.txtUbicacion);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -177,12 +147,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtUbicacion;
         private System.Windows.Forms.TextBox txtTitulo;
         private System.Windows.Forms.TextBox txtAlbum;
         private System.Windows.Forms.TextBox txtNumero;
-        private System.Windows.Forms.Button botonExaminar;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

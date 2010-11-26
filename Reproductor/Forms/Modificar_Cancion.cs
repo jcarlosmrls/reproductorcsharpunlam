@@ -30,7 +30,6 @@ namespace Reproductor
             txtAlbum.Text = album;
             txtNumero.Text = numero;
             txtTitulo.Text = titulo;
-            txtUbicacion.Text = path;
             idInterprete = idint;
         }
 
@@ -43,20 +42,8 @@ namespace Reproductor
         {
             try
             {
-                if (txtTitulo.Text != titulo || txtNumero.Text != numero || txtAlbum.Text != album || txtUbicacion.Text != path)
+                if (txtTitulo.Text != titulo || txtNumero.Text != numero || txtAlbum.Text != album)
                 {
-                    if (txtUbicacion.Text != path)
-                    {
-                        if (File.Exists(txtUbicacion.Text))// preguntar por esto
-                        {
-                            //falta comprobar si es un archivo de musica
-                            path = txtUbicacion.Text;
-                        }
-                        else
-                        {
-                            MessageBox.Show("La ruta ingresada no especifica un archivo valido");
-                        }
-                    }
                     Cancion cancion = new Cancion(path);
                     if (txtAlbum.Text != album)
                     {

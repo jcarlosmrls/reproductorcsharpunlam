@@ -31,6 +31,7 @@ namespace Reproductor
         private BaseDeDatos dbReproductor;
         private Login login;
         private List<string> listaBusqueda;
+        private ImageList imagenes;
 
         #endregion
 
@@ -437,12 +438,11 @@ namespace Reproductor
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (login.DialogResult != DialogResult.Cancel)
+            if (login.Estado != DialogResult.Cancel)
             {
                 if ((hiloActualizar != null) && hiloActualizar.IsAlive)
                 {
                     hiloActualizar.Abort();
-                    GuardarConfiguracionDeUsuario();
                 }
                 else
                 {
@@ -450,8 +450,8 @@ namespace Reproductor
                         buscador.Abort();
                     if (buscar_letra != null)
                         buscar_letra.Abort();
-                    GuardarConfiguracionDeUsuario();
                 }
+                GuardarConfiguracionDeUsuario();
             }
             dbReproductor.Close();
         }
@@ -544,7 +544,8 @@ namespace Reproductor
                 idAlbumBiblioteca = "";
                 idCancionBiblioteca = "";
 
-                ImageList imagenes = new ImageList();
+                listView1.Items.Clear();
+                imagenes = new ImageList();
                 listView1.LargeImageList = imagenes;
                 listView1.LargeImageList.ImageSize = new Size(50, 50);
                 listView1.Clear();
@@ -563,6 +564,7 @@ namespace Reproductor
                         listView1.Items.Add(new ListViewItem(song.Album, song.Album));
                     }
                 }
+                canciones.Clear();
             }
         }
 
