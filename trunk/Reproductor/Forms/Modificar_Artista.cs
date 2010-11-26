@@ -25,37 +25,44 @@ namespace Reproductor
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (txtNombre.Text != nombre)
+            try
             {
-                string[] aux = db.Leer_Columna("Interprete", "Id", "Nombre", txtNombre.Text);
-                if (aux.Length > 0)
+                if (txtNombre.Text != nombre)
                 {
-                    if (MessageBox.Show("Se ha encontrado otro artista con el mismo nombre.\n¿Desea combinarlos?", "Artista repetido", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    string[] aux = db.Leer_Columna("Interprete", "Id", "Nombre", txtNombre.Text);
+                    if (aux.Length > 0)
                     {
+                        if (MessageBox.Show("Se ha encontrado otro artista con el mismo nombre.\n¿Desea combinarlos?", "Artista repetido", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
 
-                        db.CombinarInterpretes(idInterprete, aux[0]);
-                        idInterprete = aux[0];
-                        this.Close();
+                            db.CombinarInterpretes(idInterprete, aux[0]);
+                            idInterprete = aux[0];
+                            this.Close();
+                        }
                     }
+                    else
+                    {
+                        db.ModificarInterprete(idInterprete, txtNombre.Text);// aqui se modifica la base de datos
+                        List<Cancion> lista = db.CancionesDeArtista(idInterprete);
+
+                        for (int x = 0; x < lista.Count; x++)
+                        {
+                            lista[x].Artista = txtNombre.Text;
+                            lista[x].Save();
+                        }
+                        this.Close();
+                        //hay q modificar los artistas en la blblioteca
+                    }
+
                 }
                 else
                 {
-                    db.ModificarInterprete(idInterprete, txtNombre.Text);// aqui se modifica la base de datos
-                    List<Cancion> lista = db.CancionesDeArtista(idInterprete);
-
-                    for (int x = 0; x < lista.Count; x++)
-                    {
-                        lista[x].Artista = txtNombre.Text;
-                        lista[x].Save();
-                    }
                     this.Close();
-                    //hay q modificar los artistas en la blblioteca
                 }
-
             }
-            else
+            catch (Exception)
             {
-                this.Close();
+                MessageBox.Show("Los cambios seran aplicados cuando el interprete actual deje de reproducir.");
             }
         }
 
