@@ -222,5 +222,48 @@ namespace Reproductor
                 ventana_principal.ReproducirCancion(0);
             }
         }
+
+        private void listBoxLista_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (listBoxLista.SelectedIndex != -1)
+            {
+                // Si presiona enter
+                if (e.KeyCode == Keys.Return)
+                {
+                    ventana_principal.ReproducirCancion(listBoxLista.SelectedIndex);
+                }
+                else if (e.KeyCode == Keys.Delete)
+                {
+                    // Si es la unica que hay
+                    if (listBoxLista.Items.Count == 1)
+                    {
+                        ventana_principal.DetenerReproduccion();
+                        ventana_principal.LimpiarEtiquetas();
+                    }
+                    // Si es la que estoy reproduciendo
+                    if (listBoxLista.SelectedIndex == ventana_principal.CancionActual)
+                    {
+                        // Me fijo si es la ultima
+                        if (listBoxLista.SelectedIndex == listaDeReproduccion.Count - 1)
+                        {
+                            // Reproduzco la primer cancion
+                            listaDeReproduccion.RemoveAt(listaDeReproduccion.Count - 1);
+                            ventana_principal.ReproducirCancion(0);
+                        }
+                        else
+                        {
+                            listaDeReproduccion.RemoveAt(listBoxLista.SelectedIndex);
+                            ventana_principal.ReproducirCancion(listBoxLista.SelectedIndex);
+                        }
+                    }
+                    else
+                    {
+                        listaDeReproduccion.RemoveAt(listBoxLista.SelectedIndex);
+                    }
+                    LimpiarLista();
+                    CargarLista();
+                }
+            }
+        }
     }
 }

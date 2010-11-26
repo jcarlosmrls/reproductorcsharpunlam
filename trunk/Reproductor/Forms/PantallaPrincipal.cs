@@ -44,6 +44,18 @@ namespace Reproductor
             }
         }
 
+        public int CancionActual
+        {
+            get
+            {
+                return cancionActual;
+            }
+            set
+            {
+                cancionActual = value;
+            }
+        }
+
         #endregion
 
         #region Métodos funcionales
@@ -222,7 +234,8 @@ namespace Reproductor
 
         private void ObtenerImagen()
         {
-            pictureBoxTapaDeAlbum.Image = lista[cancionActual].Imagen;
+            if (cancionActual < lista.Count)
+                pictureBoxTapaDeAlbum.Image = lista[cancionActual].Imagen;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -996,6 +1009,18 @@ namespace Reproductor
         private void anteriorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             botonAnterior_Click(null, null);
+        }
+
+        public void LimpiarEtiquetas()
+        {
+            this.Text = "Reproductor      ";
+            textBoxAlbum.Text = "";
+            textBoxAño.Text = "";
+            textBoxArtista.Text = "";
+            textBoxCancion.Text = "";
+            textBoxGenero.Text = "";
+            richTextBoxLetras.Text = "";
+            pictureBoxTapaDeAlbum.Image = Reproductor.Properties.Resources.SinTapa;
         }
     }
 }

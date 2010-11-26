@@ -104,6 +104,7 @@
             this.listBoxLista.Size = new System.Drawing.Size(214, 355);
             this.listBoxLista.TabIndex = 6;
             this.listBoxLista.DoubleClick += new System.EventHandler(this.listBoxLista_DoubleClick);
+            this.listBoxLista.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxLista_KeyDown);
             // 
             // PanelReproduccion
             // 
