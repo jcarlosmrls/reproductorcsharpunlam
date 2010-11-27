@@ -423,6 +423,7 @@ namespace Reproductor
 
         private void botonStop_Click(object sender, EventArgs e)
         {
+            botonPlay.Text = ">";
             timerBarra.Enabled = false;
             trackBarReproduccion.Value = 0;
             if (lista.Count != 0)
@@ -450,13 +451,10 @@ namespace Reproductor
                 {
                     hiloActualizar.Abort();
                 }
-                else
-                {
-                    if (buscador != null)
-                        buscador.Abort();
-                    if (buscar_letra != null)
-                        buscar_letra.Abort();
-                }
+                if (buscador != null && buscador.IsAlive)
+                    buscador.Abort();
+                if (buscar_letra != null && buscar_letra.IsAlive)
+                    buscar_letra.Abort();
                 GuardarConfiguracionDeUsuario();
             }
             dbReproductor.Close();
@@ -686,34 +684,41 @@ namespace Reproductor
 
         private void listBoxBuscador_DoubleClick(object sender, EventArgs e)
         {
-            if (listBoxBuscador.SelectedItems.Count > 0)
+            if (buscador != null)
             {
-                //Detengo la reproduccion actual
-                botonStop_Click(null, null);
-
-                //Borro la lista de canciones
-                lista.Clear();
-                panelReproduccion.LimpiarLista();
-
-                //Cargo las canciones
-                foreach (string song in listaBusqueda)
+                MessageBox.Show("Espere a que finalice la busqueda.");
+            }
+            else
+            {
+                if (listBoxBuscador.SelectedItems.Count > 0)
                 {
-                    Cancion aux = new Cancion(song);
-                    lista.Add(aux);
+                    //Detengo la reproduccion actual
+                    botonStop_Click(null, null);
+
+                    //Borro la lista de canciones
+                    lista.Clear();
+                    panelReproduccion.LimpiarLista();
+
+                    //Cargo las canciones
+                    foreach (string song in listaBusqueda)
+                    {
+                        Cancion aux = new Cancion(song);
+                        lista.Add(aux);
+                    }
+
+                    //Actualizo la lista de reproduccion en el panel
+                    panelReproduccion.CargarLista();
+                    cancionActual = listBoxBuscador.SelectedIndex;
+
+                    //Comienzo la reproduccion
+                    ActualizarEtiquetas();
+                    botonPlay_Click(null, null);
+                    ActualizarEtiquetas();
+                    ObtenerImagen();
+
+                    //Muestro la pestaña reproduccion
+                    tabControlPrincipal.SelectedIndex = 0;
                 }
-
-                //Actualizo la lista de reproduccion en el panel
-                panelReproduccion.CargarLista();
-                cancionActual = listBoxBuscador.SelectedIndex;
-
-                //Comienzo la reproduccion
-                ActualizarEtiquetas();
-                botonPlay_Click(null, null);
-                ActualizarEtiquetas();
-                ObtenerImagen();
-
-                //Muestro la pestaña reproduccion
-                tabControlPrincipal.SelectedIndex = 0;
             }
         }
 

@@ -98,6 +98,7 @@
             this.label2.Size = new System.Drawing.Size(97, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Selección de perfil:";
+            this.label2.Visible = false;
             // 
             // comboPerfiles
             // 
@@ -106,6 +107,7 @@
             this.comboPerfiles.Name = "comboPerfiles";
             this.comboPerfiles.Size = new System.Drawing.Size(167, 21);
             this.comboPerfiles.TabIndex = 5;
+            this.comboPerfiles.Visible = false;
             // 
             // label3
             // 
