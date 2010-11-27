@@ -147,13 +147,17 @@ namespace Reproductor
             // Si no es el skin por defecto, cargo los colores
             if (skin != "Normal")
             {
-                // Leo el ultimo colorClaro usado
-                aux = db.Leer_Columna("Configuraciones", "ColorClaro", "Id_Usuario", idUsuario);
-                colorClaro = Color.FromName(aux[0]);
+                    // Leo el ultimo colorClaro usado
+                    aux = db.Leer_Columna("Configuraciones", "ColorClaro", "Id_Usuario", idUsuario);
+                    colorClaro = Color.FromName(aux[0]);
+                    if (!colorClaro.IsKnownColor)
+                        colorClaro = Color.FromKnownColor(KnownColor.Control);
 
-                // Leo el ultimo colorOscuro usado
-                aux = db.Leer_Columna("Configuraciones", "ColorOscuro", "Id_Usuario", idUsuario);
-                colorOscuro = Color.FromName(aux[0]);
+                    // Leo el ultimo colorOscuro usado
+                    aux = db.Leer_Columna("Configuraciones", "ColorOscuro", "Id_Usuario", idUsuario);
+                    colorOscuro = Color.FromName(aux[0]);
+                    if (!colorOscuro.IsKnownColor)
+                        colorOscuro = Color.FromKnownColor(KnownColor.Control);
             }
             else
             {

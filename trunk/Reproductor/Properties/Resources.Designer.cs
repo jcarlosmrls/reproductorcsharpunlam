@@ -74,6 +74,13 @@ namespace Reproductor.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap FondoAcercaDe {
+            get {
+                object obj = ResourceManager.GetObject("FondoAcercaDe", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap guardar {
             get {
                 object obj = ResourceManager.GetObject("guardar", resourceCulture);

@@ -180,6 +180,7 @@
     <Content Include="Resources\añadir.png" />
     <Content Include="Resources\borrar.png" />
     <None Include="Resources\flecha-derecha.png" />
+    <None Include="Resources\FondoAcercaDe.jpg" />
     <Content Include="Resources\guardar.png" />
     <Content Include="Resources\icono.ico" />
     <None Include="Resources\pin1.png" />
