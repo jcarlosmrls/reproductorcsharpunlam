@@ -599,7 +599,7 @@ namespace Reproductor
             }
         }
 
-        public void AgregarConfiguracionDeUsuario(string idUsuario, string skin, string perfil)
+        public void AgregarConfiguracionDeUsuario(string idUsuario, string skin, string perfil, string colorClaro, string colorOscuro)
         {
             //Primero creo el perfil por defecto
             CrearNuevoPerfil(idUsuario, perfil);
@@ -607,11 +607,13 @@ namespace Reproductor
             //Ahora creo el registro en la parte de las ultimas configuraciones utilizadas
             OleDbCommand cmdCfg = new OleDbCommand();
 
-            cmdCfg.CommandText = "INSERT INTO Configuraciones ([Id_Usuario], [Skin], [Perfil]) VALUES (?, ?, ?)";
+            cmdCfg.CommandText = "INSERT INTO Configuraciones ([Id_Usuario], [Skin], [Perfil], [ColorClaro], [ColorOscuro]) VALUES (?, ?, ?, ?, ?)";
             cmdCfg.Connection = dbConnection;
             cmdCfg.Parameters.Add("?", idUsuario);
             cmdCfg.Parameters.Add("?", skin);
             cmdCfg.Parameters.Add("?", perfil);
+            cmdCfg.Parameters.Add("?", colorClaro);
+            cmdCfg.Parameters.Add("?", colorOscuro);
 
             cmdCfg.ExecuteNonQuery();
         }

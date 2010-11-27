@@ -148,7 +148,14 @@ namespace Reproductor
         {        
             StringBuilder str = new StringBuilder(128);
             mciSendString("status MediaFile length", str, 128, IntPtr.Zero);
-            Lng = Convert.ToUInt64(str.ToString());        
+            try
+            {
+                Lng = Convert.ToUInt64(str.ToString());
+            }
+            catch (Exception)
+            {
+                Lng = 0;
+            }
         }
                 
         public ulong AudioLength    

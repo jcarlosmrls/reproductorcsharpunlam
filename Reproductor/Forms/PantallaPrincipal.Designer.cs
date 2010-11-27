@@ -313,7 +313,7 @@
             this.botonAnterior.Name = "botonAnterior";
             this.botonAnterior.Size = new System.Drawing.Size(74, 52);
             this.botonAnterior.TabIndex = 3;
-            this.botonAnterior.Text = "l◄◄";
+            this.botonAnterior.Text = "<<";
             this.botonAnterior.UseVisualStyleBackColor = true;
             this.botonAnterior.Click += new System.EventHandler(this.botonAnterior_Click);
             // 
@@ -336,7 +336,7 @@
             this.botonSiguiente.Name = "botonSiguiente";
             this.botonSiguiente.Size = new System.Drawing.Size(74, 52);
             this.botonSiguiente.TabIndex = 2;
-            this.botonSiguiente.Text = "►►l";
+            this.botonSiguiente.Text = ">>";
             this.botonSiguiente.UseVisualStyleBackColor = true;
             this.botonSiguiente.Click += new System.EventHandler(this.botonSiguiente_Click);
             // 
@@ -350,7 +350,7 @@
             this.botonStop.Name = "botonStop";
             this.botonStop.Size = new System.Drawing.Size(53, 32);
             this.botonStop.TabIndex = 1;
-            this.botonStop.Text = "■";
+            this.botonStop.Text = "Stop";
             this.botonStop.UseVisualStyleBackColor = true;
             this.botonStop.Click += new System.EventHandler(this.botonStop_Click);
             // 
@@ -364,7 +364,7 @@
             this.botonPlay.Name = "botonPlay";
             this.botonPlay.Size = new System.Drawing.Size(72, 49);
             this.botonPlay.TabIndex = 0;
-            this.botonPlay.Text = "►";
+            this.botonPlay.Text = ">";
             this.botonPlay.UseVisualStyleBackColor = true;
             this.botonPlay.Click += new System.EventHandler(this.botonPlay_Click);
             // 
@@ -830,6 +830,7 @@
             // 
             // PantallaPrincipal
             // 
+            this.AcceptButton = this.botonBuscar;
             this.AllowDrop = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;

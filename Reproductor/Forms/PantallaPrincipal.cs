@@ -131,7 +131,7 @@ namespace Reproductor
                         }
                     }
                 }
-            } while ( !loggedIn && (login.DialogResult != DialogResult.Cancel));
+            } while ( !loggedIn && (login.Estado != DialogResult.Cancel));
             SetUserLabel(login.UsuarioActual.Id);
         }
 
@@ -139,7 +139,11 @@ namespace Reproductor
         {
             UsuarioActual.Configuracion.UltimoPerfilUsado = "Normal";
             UsuarioActual.Configuracion.UltimoSkinUsado = "Normal";
-            dbReproductor.AgregarConfiguracionDeUsuario(UsuarioActual.Id, UsuarioActual.Configuracion.UltimoSkinUsado, UsuarioActual.Configuracion.UltimoPerfilUsado);
+            dbReproductor.AgregarConfiguracionDeUsuario(UsuarioActual.Id,
+                                                        UsuarioActual.Configuracion.UltimoSkinUsado,
+                                                        UsuarioActual.Configuracion.UltimoPerfilUsado,
+                                                        UsuarioActual.Configuracion.ColorClaro.Name.ToString(),
+                                                        UsuarioActual.Configuracion.ColorOscuro.Name.ToString());
         }
 
         private void CargarConfiguracionDeUsuario()
@@ -346,10 +350,12 @@ namespace Reproductor
                 if (player.Reproduciendo())
                 {
                     player.Pause();
+                    botonPlay.Text = ">";
                     timerBarra.Enabled = false;
                 }
                 else
                 {
+                    botonPlay.Text = "||";
                     player.Open(lista[cancionActual].Ruta.ToString());
                     player.Play(false);
                     timerBarra.Enabled = true;
@@ -668,7 +674,13 @@ namespace Reproductor
         {
             if (listBox2.SelectedItems.Count == 1)
             {
-                idCancionBiblioteca = dbReproductor.Leer_Columna("Cancion", "Id_Cancion", "Id_Album", idAlbumBiblioteca)[listBox2.SelectedIndex];
+                try
+                {
+                    idCancionBiblioteca = dbReproductor.Leer_Columna("Cancion", "Id_Cancion", "Id_Album", idAlbumBiblioteca)[listBox2.SelectedIndex];
+                }
+                catch (Exception)
+                {
+                }
             }
         }
 
@@ -723,21 +735,25 @@ namespace Reproductor
             trackBarReproduccion.BackColor = Color.FromName("Control");
             //Boton izquierda
             botonAnterior.BackColor = Color.FromName("Control");
-            botonAnterior.Text = "l◄◄";
+            //botonAnterior.Text = "l◄◄";
+            botonAnterior.Text = "<<";
             botonAnterior.BackgroundImage = null;
             botonAnterior.FlatStyle = FlatStyle.System;
             //Boton derecha
             botonSiguiente.BackColor = Color.FromName("Control");
-            botonSiguiente.Text = "►►l";
+            //botonSiguiente.Text = "►►l";
+            botonSiguiente.Text = ">>";
             botonSiguiente.BackgroundImage = null;
             botonSiguiente.FlatStyle = FlatStyle.System;
             //Boton play
             botonPlay.BackColor = Color.FromName("Control");
-            botonPlay.Text = "►";
+            //botonPlay.Text = "►";
+            botonPlay.Text = ">";
             botonPlay.BackgroundImage = null;
             botonPlay.FlatStyle = FlatStyle.System;
             //Boton stop
-            botonStop.Text = "■";
+            //botonStop.Text = "■";
+            botonStop.Text = "Stop";
             botonStop.BackColor = Color.FromName("Control");
             botonStop.BackgroundImage = null;
             botonStop.FlatStyle = FlatStyle.System;
@@ -807,9 +823,10 @@ namespace Reproductor
                 labelContador.BackColor = colorOscuro;
                 botonBordes.BackColor = colorOscuro;
             }
-            catch (ArgumentException)
+            catch (Exception ex)
             {
                 MessageBox.Show("No se encontraron las imagenes.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message);
                 CambiarASkinNormal();
             }
         }
